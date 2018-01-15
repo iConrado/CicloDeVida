@@ -15,7 +15,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <Text>Dados básicos</Text>
         <Button 
-          title='Proxima tela'
+          title='Próximo'
           onPress={() => navigate('Patrimonio')}
         />
       </View>

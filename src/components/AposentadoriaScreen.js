@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 
 import Cabecalho from './Function/Cabecalho';
 
-export default class PatrimonioScreen extends React.Component {
+export default class AposentadoriaScreen extends React.Component {
   static navigationOptions = { //eslint-disable-line
     headerTitle: Cabecalho('Consultoria Ciclo de Vida'),
     headerBackTitle: 'Voltar',
@@ -13,10 +13,10 @@ export default class PatrimonioScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
-        <Text>Patrimonio</Text>
+        <Text>Aposentadoria</Text>
         <Button 
           title='Próximo'
-          onPress={() => navigate('Reserva')}
+          onPress={() => navigate('Seguranca')}
         />
       </View>
     );
