@@ -10,13 +10,13 @@ export default class ResultadoScreen extends React.Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { goBack } = this.props.navigation;
     return(
       <View style={styles.container}>
         <Text>Resultado</Text>
         <Button 
           title='Recomeçar'
-          onPress={() => navigate('Home')}
+          onPress={() => goBack('Home') }
         />
       </View>
     );
@@ -29,3 +29,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
+});
