@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+// Estilo a ser usado no componente principal do cabeçalho. INTERNO
 const styles = StyleSheet.create({
   cab: {
     backgroundColor: '#568CD9', 
@@ -16,6 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// Cabeçalho padrão. EXPORT PADRÃO
 const Cabecalho = (texto) => 
   (<View style={styles.cab}>
     <Text style={styles.tex}>{texto}</Text>
