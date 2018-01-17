@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 
 import HomeScreen from './src/components/HomeScreen';
 import PatrimonioScreen from './src/components/PatrimonioScreen';

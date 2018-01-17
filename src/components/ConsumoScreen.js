@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 
-import Cabecalho from './Function/Cabecalho';
-import BackOptions from './Function/BackOptions';
+import Cabecalho from './Functions/Cabecalho';
+import BackOptions from './Functions/BackOptions';
 
 export default class ConsumoScreen extends React.Component {
   static navigationOptions = { //eslint-disable-line
@@ -14,7 +14,7 @@ export default class ConsumoScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    return(
+    return (
       <View style={styles.container}>
         <Text>Consumo</Text>
         <Button 
