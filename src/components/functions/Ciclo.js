@@ -1,4 +1,5 @@
 import hashCode from './hashcode';
+import Erro from './Erro';
 
 // *************************************************************************************
 // * CLASSE CICLO PARA O ARMAZENAMENTO DE INFORMAÇÕES E REALIZAÇÃO DOS CÁLCULOS DO APP *
@@ -112,6 +113,15 @@ export default class Ciclo {
     const d = new Date();
     this.id = hashCode(d.getTime().toString());
     return Ciclo.instance;
+  }
+
+  teste(arg) {
+    if (arg === 'Arroz-doce') {
+      console.log('Função COM erro');
+      throw Erro.e03;
+    }
+    console.log('Função sem erro');
+    return true;
   }
 
   recuperar(email) {

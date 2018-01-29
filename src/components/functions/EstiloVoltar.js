@@ -1,7 +1,7 @@
 
-const BackOptions = {
+const EstiloVoltar = {
   hTintColor: 'white',
   hStyle: { backgroundColor: '#568CD9' },
 };
 
-export default BackOptions;
+export default EstiloVoltar;
