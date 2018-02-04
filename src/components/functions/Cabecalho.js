@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native';
 // Estilo a ser usado no componente principal do cabeçalho. INTERNO
 const styles = StyleSheet.create({
   cab: {
-    backgroundColor: '#568CD9', 
+    backgroundColor: '#0A2955', 
     flex: 1, 
     width: '100%',
     justifyContent: 'center',
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   tex: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#454545',
+    color: '#FFF',
   },
 });
 

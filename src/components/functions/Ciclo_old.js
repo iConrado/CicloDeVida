@@ -1,3 +1,6 @@
+import hashCode from './hashcode';
+import Erro from './Erro';
+
 // *************************************************************************************
 // * CLASSE CICLO PARA O ARMAZENAMENTO DE INFORMAÇÕES E REALIZAÇÃO DOS CÁLCULOS DO APP *
 // *************************************************************************************
@@ -101,11 +104,7 @@
 //       usuário, caso saldo positivo ou negativo.
 // 
 
-import hashCode from './hashcode';
-import Erro from './Erro';
-
-export default class Ciclo {
-  constructor() {
+function Ciclo() {
     // Mecanismo Singleton para garantir uma única instância da classe para a sessão do app
     if (!Ciclo.instance) {
       Ciclo.instance = this;
@@ -113,17 +112,7 @@ export default class Ciclo {
     const d = new Date();
     this.id = hashCode(d.getTime().toString());
     return Ciclo.instance;
-  }
-
-  teste(arg) {
-    if (arg === 'Arroz-doce') {
-      console.log('Função COM erro');
-      throw Erro.e03;
-    }
-    console.log('Função sem erro');
-    return true;
-  }
-
+/*
   recuperar(email) {
     return email;
   }
@@ -172,29 +161,29 @@ export default class Ciclo {
     return this;
   }
 
-
+*/
   // ******************************************************
   // * GETTERS AND SETTERS                                *
   // ******************************************************
 
   // Getter e Setter - Email
-  getEmail() {
+  Ciclo.prototype.getEmail = function() {
     return this.Email.toLowerCase();
   }
-  setEmail(str) {
+  Ciclo.prototype.setEmail = function(str) {
     if (str) {
       this.Email = str.toLowerCase();
     }
   }
 
-  // Getter e Setter - Nome
-  getNome() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Nome
+  Ciclo.prototype.getNome = function() {
     if (this.Nome === undefined) {
       return 'Indefinido';
     }
     return this.Nome;
   }
-  setNome(str) {
+  Ciclo.prototype.setNome = function(str) {
     if (str) {
       this.Nome = str;
     } else {
@@ -202,183 +191,185 @@ export default class Ciclo {
     }
   }
 
-  // Getter e Setter - Nasc
-  getNasc() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Nasc
+  Ciclo.prototype.getNasc = function() {
     return this.Nasc;
   }
-  setNasc(str) {
+  Ciclo.prototype.setNasc = function(str) {
     if (str) {
       this.Nasc = str;
     }
   }
 
-  // Getter e Setter - EstCivil
-  getEstCivil() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - EstCivil
+  Ciclo.prototype.getEstCivil = function() {
     return this.EstCivil;
   }
-  setEstCivil(str) {
+  Ciclo.prototype.setEstCivil = function(str) {
     if (str) {
       this.EstCivil = str;
     }
   }
 
-  // Getter e Setter - Filhos
-  getFilhos() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Filhos
+  Ciclo.prototype.getFilhos = function() {
     return this.Filhos;
   }
-  setFilhos(str) {
+  Ciclo.prototype.setFilhos = function(str) {
     if (str) {
       this.Filhos = str;
     }
   }
 
-  // Getter e Setter - SalLiq
-  getSalLiq() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - SalLiq
+  Ciclo.prototype.getSalLiq = function() {
     return this.SalLiq;
   }
-  setSalLiq(str) {
+  Ciclo.prototype.setSalLiq = function(str) {
     if (str) {
       this.SalLiq = str;
     }
   }
 
-  // Getter e Setter - IniCarreira
-  getIniCarreira() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - IniCarreira
+  Ciclo.prototype.getIniCarreira = function() {
     return this.IniCarreira;
   }
-  setIniCarreira(str) {
+  Ciclo.prototype.setIniCarreira = function(str) {
     if (str) {
       this.IniCarreira = str;
     }
   }
 
-  // Getter e Setter - Invest
-  getInvest() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Invest
+  Ciclo.prototype.getInvest = function() {
     return this.Invest;
   }
-  setInvest(str) {
+  Ciclo.prototype.setInvest = function(str) {
     if (str) {
       this.Invest = str;
     }
   }
 
-  // Getter e Setter - Imoveis
-  getImoveis() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Imoveis
+  Ciclo.prototype.getImoveis = function() {
     return this.Imoveis;
   }
-  setImoveis(str) {
+  Ciclo.prototype.setImoveis = function(str) {
     if (str) {
       this.Imoveis = str;
     }
   }
 
-  // Getter e Setter - Veiculos
-  getVeiculos() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Veiculos
+  Ciclo.prototype.getVeiculos = function() {
     return this.Veiculos;
   }
-  setVeiculos(str) {
+  Ciclo.prototype.setVeiculos = function(str) {
     if (str) {
       this.Veiculos = str;
     }
   }
 
-  // Getter e Setter - Gasto
-  getGasto() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Gasto
+  Ciclo.prototype.getGasto = function() {
     return this.Gasto;
   }
-  setGasto(str) {
+  Ciclo.prototype.setGasto = function(str) {
     if (str) {
       this.Gasto = str;
     }
   }
 
-  // Getter e Setter - Reserva
-  getReserva() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Reserva
+  Ciclo.prototype.getReserva = function() {
     return this.Reserva;
   }
-  setReserva(str) {
+  Ciclo.prototype.setReserva = function(str) {
     if (str) {
       this.Reserva = str;
     }
   }
 
-  // Getter e Setter - Disponib
-  getDisponib() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Disponib
+  Ciclo.prototype.getDisponib = function() {
     return this.Disponib;
   }
-  setDisponib(str) {
+  Ciclo.prototype.setDisponib = function(str) {
     if (str) {
       this.Disponib = str;
     }
   }
 
-  // Getter e Setter - ReservaPrev
-  getReservaPrev() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - ReservaPrev
+  Ciclo.prototype.getReservaPrev = function() {
     return this.ReservaPrev;
   }
-  setReservaPrev(str) {
+  Ciclo.prototype.setReservaPrev = function(str) {
     if (str) {
       this.ReservaPrev = str;
     }
   }
 
-  // Getter e Setter - IdadeAposent
-  getIdadeAposent() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - IdadeAposent
+  Ciclo.prototype.getIdadeAposent = function() {
     return this.IdadeAposent;
   }
-  setIdadeAposent(str) {
+  Ciclo.prototype.setIdadeAposent = function(str) {
     if (str) {
       this.IdadeAposent = str;
     }
   }
 
-  // Getter e Setter - Rentab
-  getRentab() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Rentab
+  Ciclo.prototype.getRentab = function() {
     return this.Rentab;
   }
-  setRentab(str) {
+  Ciclo.prototype.setRentab = function(str) {
     if (str) {
       this.Rentab = str;
     }
   }
 
-  // Getter e Setter - Saude
-  getSaude() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - Saude
+  Ciclo.prototype.getSaude = function() {
     return this.Saude;
   }
-  setSaude(str) {
+  Ciclo.prototype.setSaude = function(str) {
     if (str) {
       this.Saude = str;
     }
   }
 
-  // Getter e Setter - SegVida
-  getSegVida() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - SegVida
+  Ciclo.prototype.getSegVida = function() {
     return this.SegVida;
   }
-  setSegVida(str) {
+  Ciclo.prototype.setSegVida = function(str) {
     if (str) {
       this.SegVida = str;
     }
   }
 
-  // Getter e Setter - SegImov
-  getSegImov() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - SegImov
+  Ciclo.prototype.getSegImov = function() {
     return this.SegImov;
   }
-  setSegImov(str) {
+  Ciclo.prototype.setSegImov = function(str) {
     if (str) {
       this.SegImov = str;
     }
   }
 
-  // Getter e Setter - SegAuto
-  getSegAuto() {
+  // Ciclo.prototype.getter e Ciclo.prototype.setter - SegAuto
+  Ciclo.prototype.getSegAuto = function() {
     return this.SegAuto;
   }
-  setSegAuto(str) {
+  Ciclo.prototype.setSegAuto = function(str) {
     if (str) {
       this.SegAuto = str;
     }
   }
 }
+
+export default Ciclo;

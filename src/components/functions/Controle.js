@@ -1,11 +1,14 @@
 
-const Controle = (retErro, funcao, argumento) => {
+const Controle = (retErro, obj, funcao, ...args) => {
   try {
-    funcao(argumento);
-    console.log('Chamou e retornou com sucesso a função');
+    funcao.call(obj, ...args);
+    console.log('Controle - executou com sucesso.');
+    return true;
   } catch (e) {
     retErro(e, 0);
-    console.log('Retornou com erro da função');
+    /* Adicionar função de log para os erros */
+    console.log('Controle - função executou com erro.');
+    return false;
   }
 };
 

@@ -5,9 +5,9 @@ const Erro = {
     solucao: 'Confira os dados digitados e tente novamente.',
   },
   e02: {
-    titulo: 'Ohh não...',
-    descricao: 'Erro na aplicação.',
-    solucao: 'Confira os dados digitados e tente novamente.',
+    titulo: 'Erro',
+    descricao: 'Nome inválido.',
+    solucao: 'Verifique o nome informado e tente novamente.',
   },
   e03: {
     titulo: 'Tratamento de erros ok',
@@ -49,10 +49,10 @@ const Erro = {
     descricao: 'Data de início da carreira não preenchida.',
     solucao: 'Esta informação será importante para os próximos cálculos.',
   },
-  e11: {
-    titulo: '',
-    descricao: '',
-    solucao: '',
+  t07: {
+    titulo: 'Ops',
+    descricao: 'Email inválido.',
+    solucao: 'Verifique se o email informado está digitado corretamente.',
   },
   e12: {
     titulo: '',

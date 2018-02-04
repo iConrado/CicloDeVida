@@ -5,9 +5,8 @@ import Cabecalho from './functions/Cabecalho';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
 import Controle from './functions/Controle';
-import Ciclo from './functions/Ciclo';
 
-
+let C = {};
 let objErro = {};
 
 export default class PatrimonioScreen extends React.Component {
@@ -25,6 +24,8 @@ export default class PatrimonioScreen extends React.Component {
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+    C = this.props.navigation.state.params.Ciclo;
+    console.log(C);
   }
 
   abreErro(e, tipo) {
@@ -46,7 +47,6 @@ export default class PatrimonioScreen extends React.Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const C = new Ciclo();
     return (
       <View style={styles.container}>
         {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
@@ -63,7 +63,7 @@ export default class PatrimonioScreen extends React.Component {
           title='Próximo'
           onPress={() => navigate('Reserva')}
         />
-        <Text />
+        <Text>{C.getNome()}</Text>
         <Text />
         <Text />
         <Text />
