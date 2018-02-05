@@ -1,12 +1,26 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { 
+  ScrollView, 
+  View, 
+  Text, 
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import Slider from 'react-native-slider';
 
+import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
 import Controle from './functions/Controle';
+import Ciclo from './functions/Ciclo';
+import monetizar from './functions/monetizar';
 
-let C = {};
+const imgMoney = require('../imgs/ic_money_white.png');
+const imgHome = require('../imgs/ic_home_white.png');
+const imgCar = require('../imgs/ic_car_white.png');
+
+const C = new Ciclo();
 let objErro = {};
 
 export default class PatrimonioScreen extends React.Component {
@@ -20,12 +34,21 @@ export default class PatrimonioScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalErro: false, 
+      modalErro: false,
+      invest: 0,
+      imoveis: 0,
+      veiculos: 0,
+      tmpInvest: 0,
+      tmpImoveis: 0,
+      tmpVeiculos: 0, 
+      patrimEsperado: C.patrimonioEsperado(),
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
-    C = this.props.navigation.state.params.Ciclo;
-    console.log(C);
+  }
+
+  componentWillMount() {
+
   }
 
   abreErro(e, tipo) {
@@ -45,10 +68,27 @@ export default class PatrimonioScreen extends React.Component {
     objErro = {};
   }
 
+  patrimonioFormado() {
+    const invest = this.state.invest;
+    const imoveis = this.state.imoveis;
+    const veiculos = this.state.veiculos;
+    return invest + imoveis + veiculos;
+  }
+
+  patrimonioEsperado() {
+    this.setState({ patrimEsperado: C.patrimonioEsperado() });
+  }
+
+  proxTela() {
+
+  }
+
   render() {
-    const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <ScrollView 
+        style={styles.scroll}
+        contentContainerStyle={styles.container}
+      >
         {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
         <ModalErro 
           visivel={this.state.modalErro}
@@ -56,34 +96,129 @@ export default class PatrimonioScreen extends React.Component {
           objErro={objErro}
         />
         {/* **************************************************************************** */}
-
-
-        <Text>Patrimonio</Text>
-        <Button 
-          title='Próximo'
-          onPress={() => navigate('Reserva')}
-        />
-        <Text>{C.getNome()}</Text>
-        <Text />
-        <Text />
-        <Text />
-        <Text />
-        <Button 
-          title='Erro'
-          onPress={() => Controle(this.abreErro, C.teste, 'Arro-doce')}
-        />
-      </View>
+        <View style={styles.viewTitulo}>
+          <Text style={styles.titulo}>Patrimônio</Text>
+        </View>
+        {/*View Sliders*/}
+        <View>
+          {/*View Investimento*/}
+          <View style={styles.viewVertical}>
+            <Text style={styles.label}>Investimentos (aplicações, poupança, etc):</Text>
+            <View style={styles.viewHorizontal}>
+              <View style={styles.viewIcone}>
+                <Image 
+                  style={styles.imgIcone}
+                  source={imgMoney}
+                />
+              </View>
+              <View style={styles.viewPosIcone}>
+                <Slider
+                  style={styles.patrim_slIcone}
+                  minimumValue={0}
+                  maximumValue={2000000}
+                  step={5000}
+                  minimumTrackTintColor='#14567A'
+                  thumbTintColor='#14567A'
+                  value={this.state.tmpInvest}
+                  onValueChange={(value) => this.setState({ tmpInvest: value })}
+                  onSlidingComplete={(value) => this.setState({ invest: value })}
+                />
+                <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpInvest)}</Text>
+              </View>
+            </View>
+          </View>
+          {/*View Imóveis*/}
+          <View style={[styles.viewVertical, styles.espacador]}>
+            <Text style={styles.label}>Imóveis (valor total - financiados ou não):</Text>
+            <View style={styles.viewHorizontal}>
+              <View style={styles.viewIcone}>
+                <Image 
+                  style={styles.imgIcone}
+                  source={imgHome}
+                />
+              </View>
+              <View style={styles.viewPosIcone}>
+                <Slider
+                  style={styles.patrim_slIcone}
+                  minimumValue={0}
+                  maximumValue={5000000}
+                  step={10000}
+                  minimumTrackTintColor='#14567A'
+                  thumbTintColor='#14567A'
+                  value={this.state.tmpImoveis}
+                  onValueChange={(value) => this.setState({ tmpImoveis: value })}
+                  onSlidingComplete={(value) => this.setState({ imoveis: value })}
+                />
+                <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpImoveis)}</Text>
+              </View>
+            </View>
+          </View>
+        {/*View Veículos*/}
+          <View style={[styles.viewVertical, styles.espacador]}>
+            <Text style={styles.label}>Veículos (valor total - financiados ou não):</Text>
+            <View style={styles.viewHorizontal}>
+              <View style={styles.viewIcone}>
+                <Image 
+                  style={styles.imgIcone}
+                  source={imgCar}
+                />
+              </View>
+              <View style={styles.viewPosIcone}>
+                <Slider
+                  style={styles.patrim_slIcone}
+                  minimumValue={0}
+                  maximumValue={500000}
+                  step={2000}
+                  minimumTrackTintColor='#14567A'
+                  thumbTintColor='#14567A'
+                  value={this.state.tmpVeiculos}
+                  onValueChange={(value) => this.setState({ tmpVeiculos: value })}
+                  onSlidingComplete={(value) => this.setState({ veiculos: value })}
+                />
+                <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpVeiculos)}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        {/*Fim da View Sliders*/}
+        {/*View Calculos*/}
+        <View>
+          <View style={styles.viewHorizontal}>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.label}>Patrimônio formado:</Text>
+            </View>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.txValor}>{monetizar(this.patrimonioFormado())}</Text>
+            </View>
+          </View>
+          <View style={[styles.viewHorizontal, styles.espacador]}>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.label}>Patrimônio esperado:</Text>
+            </View>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.txValor}>
+                {(this.patrimonioFormado() > 0) ? monetizar(this.state.patrimEsperado) : monetizar(0)}
+              </Text>
+            </View>
+          </View>
+          <View style={[styles.viewHorizontal, styles.espacador]}>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.label}>Resultado:</Text>
+            </View>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.txValor}>% </Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.viewBotoes}>
+          <TouchableOpacity 
+            style={styles.botao}
+            onPress={() => this.proxTela('Reserva')}
+          >
+            <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  back: {
-    backgroundColor: '#568CD9',
-  }
-});

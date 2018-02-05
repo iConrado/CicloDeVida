@@ -1,22 +1,23 @@
 import React from 'react';
 import { 
-  StyleSheet, 
   View, 
   ScrollView,
   Text, 
   TextInput,
-  Button,
-  Picker,
-  Slider, } from 'react-native';
+  Picker, 
+  TouchableOpacity,
+} from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import Slider from 'react-native-slider';
 
+import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
 import Erro from './functions/Erro';
 import Controle from './functions/Controle';
 import monetizar from './functions/monetizar';
-import desmonetizar from './functions/desmonetizar';
+//import desmonetizar from './functions/desmonetizar';
 import validaEmail from './functions/validaEmail';
 import Ciclo from './functions/Ciclo';
 
@@ -45,13 +46,6 @@ export default class HomeScreen extends React.Component {
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
-    /*C.setNome = C.setNome.bind(this);
-    C.setNasc = C.setNasc.bind(this);
-    C.setEstCivil = C.setEstCivil.bind(this);
-    C.setFilhos = C.setFilhos.bind(this);
-    C.setSalLiq = C.setSalLiq.bind(this);
-    C.setIniCarreira = C.setIniCarreira.bind(this);
-    C.setEmail = C.setEmail.bind(this);*/
   }
 
   componentWillMount() {
@@ -178,22 +172,38 @@ export default class HomeScreen extends React.Component {
         <View style={styles.viewTitulo}>
           <Text style={styles.titulo}>Dados básicos</Text>
         </View>
-        <Text style={styles.label}>Nome completo:</Text>
-        <TextInput
-          ref='nome'
-          style={styles.inpNome}
-          autoCapitalize='characters'
-          maxLength={50}
-          selectTextOnFocus
-          autoCorrect={false}
-          underlineColorAndroid='#EAEAEA'
-          onChangeText={(text) => this.setState({ nome: text })}
-          value={this.state.nome}
-        />
+        <View style={styles.viewVertical}>
+          <Text style={styles.label}>Nome completo:</Text>
+          <TextInput
+            ref='nome'
+            style={styles.home_inpNome}
+            autoCapitalize='characters'
+            maxLength={50}
+            selectTextOnFocus
+            autoCorrect={false}
+            underlineColorAndroid='#EAEAEA'
+            onChangeText={(text) => this.setState({ nome: text })}
+            value={this.state.nome}
+          />
+        </View>
+        <View style={styles.viewVertical}>
+          <Text style={styles.label}>E-mail:</Text>
+          <TextInput
+            ref='email'
+            style={styles.home_inpEmail}
+            keyboardType='email-address'
+            maxLength={40}
+            autoCorrect={false}
+            underlineColorAndroid='#EAEAEA'
+            onChangeText={(text) => this.setState({ email: text.toLowerCase() })}
+            value={this.state.email}
+          />
+        </View>
         <View style={styles.viewHorizontal}>
-          <View style={styles.compHoriz}>
+          <View style={styles.viewCompHoriz}>
             <Text style={styles.label}>Data Nasc.:</Text>
             <DatePicker
+              style={styles.home_dtNasc}
               date={this.state.nasc}
               mode='date'
               placeholder='Selecione uma data'
@@ -212,11 +222,11 @@ export default class HomeScreen extends React.Component {
               onDateChange={(nasc) => { this.setState({ nasc }); }}
             />
           </View>
-          <View style={styles.compHoriz}>
+          <View style={styles.viewCompHoriz}>
             <Text style={styles.label}>Estado Civil:</Text>
-            <View style={styles.viewEstCiv}>
+            <View style={styles.home_viewEstCiv}>
               <Picker
-                style={styles.estCiv}
+                style={styles.home_pkEstCiv}
                 selectedValue={this.state.estCiv}
                 onValueChange={(itemValue) => this.setState({ estCiv: itemValue })}
                 prompt='Selecione'
@@ -231,24 +241,70 @@ export default class HomeScreen extends React.Component {
             </View>
           </View>
         </View>
-        <Text style={styles.label}>Filhos:</Text>
-        <View style={styles.viewHorizontal}>
-          <Slider 
-            style={styles.slFilhos}
-            minimumValue={0}
-            maximumValue={10}
-            step={1}
-            value={this.state.filhos}
-            onSlidingComplete={(value) => this.setState({ filhos: value })}
-          />
-          <Text style={styles.filhos}>{this.state.filhos}</Text>
+        <View style={styles.viewVertical}>
+          <Text style={styles.label}>Filhos:</Text>
+          <View style={styles.viewHorizontal}>
+            <Slider 
+              style={styles.home_slFilhos}
+              minimumValue={0}
+              maximumValue={10}
+              step={1}
+              minimumTrackTintColor='#14567A'
+              thumbTintColor='#14567A'
+              value={this.state.filhos}
+              onValueChange={(value) => this.setState({ filhos: value })}
+            />
+            <Text style={styles.home_txFilhos}>{this.state.filhos}</Text>
+          </View>
         </View>
-        <View style={styles.viewHorizontal}>
-          <View style={styles.compHoriz}>
+        {/*Teste com salário com slider*/}
+        <View style={styles.viewVertical}>
+          <Text style={styles.label}>Início da carreira:</Text>
+          <DatePicker
+            style={styles.home_dtIniCarr}
+            date={this.state.iniCarr}
+            mode='date'
+            placeholder='Selecione uma data'
+            format='DD/MM/YYYY'
+            minDate='01/01/1900'
+            maxDate='31/12/2050'
+            confirmBtnText='Ok'
+            cancelBtnText='Cancelar'
+            showIcon={false}
+            customStyles={{
+              dateInput: {
+                marginLeft: 0
+              }
+              // ... You can check the source to find the other keys.
+            }}
+            onDateChange={(iniCarr) => { this.setState({ iniCarr }); }}
+          />
+        </View>
+        <View style={styles.viewVertical}>
+          <Text style={styles.label}>Salário Líquido:</Text>
+          <View style={styles.viewHorizontal}>
+              <Slider 
+                style={styles.home_slSalLiq}
+                minimumValue={0}
+                maximumValue={50000}
+                step={100}
+                minimumTrackTintColor='#14567A'
+                thumbTintColor='#14567A'
+                value={this.state.salLiq}
+                onValueChange={(value) => this.setState({ salLiq: value })}
+              />
+            <Text style={styles.home_txSalLiq}>{monetizar(this.state.salLiq)}</Text>
+          </View>
+        </View>
+        {/*Fim do testte*/}
+
+        {/*Código antigo - salário em TextInput*/}
+        {/*<View style={styles.viewHorizontal}>
+          <View style={styles.viewCompHoriz}>
             <Text style={styles.label}>Salário Líquido:</Text>
             <TextInput
               ref='salLiq'
-              style={styles.inpSal}
+              style={styles.home_inpSal}
               keyboardType='numeric'
               maxLength={10}
               autoCorrect={false}
@@ -257,10 +313,10 @@ export default class HomeScreen extends React.Component {
               value={monetizar(this.state.salLiq)}
             />
           </View>
-          <View style={styles.compHoriz}>
+          <View style={styles.viewCompHoriz}>
             <Text style={styles.label}>Início da carreira:</Text>
             <DatePicker
-              style={styles.iniCarr}
+              style={styles.home_dtIniCarr}
               date={this.state.iniCarr}
               mode='date'
               placeholder='Selecione uma data'
@@ -279,113 +335,16 @@ export default class HomeScreen extends React.Component {
               onDateChange={(iniCarr) => { this.setState({ iniCarr }); }}
             />
           </View>
-        </View>
-          <Text style={styles.label}>E-mail:</Text>
-          <TextInput
-            ref='email'
-            style={styles.inpEmail}
-            keyboardType='email-address'
-            maxLength={40}
-            autoCorrect={false}
-            underlineColorAndroid='#EAEAEA'
-            onChangeText={(text) => this.setState({ email: text.toLowerCase() })}
-            value={this.state.email}
-          />
+        </View>*/}
         <View style={styles.viewBotoes}>
-          <Button 
-            title='Próximo'
+          <TouchableOpacity 
+            style={styles.botao}
             onPress={() => this.proxTela('Patrimonio')}
-          />
+          >
+            <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  scroll: {
-    flex: 1
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    paddingTop: 10,
-    paddingBottom: 20,
-    paddingHorizontal: 10,
-  },
-  viewTitulo: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  viewBotoes: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  viewHorizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-  },
-  compHoriz: {
-    width: '50%',
-  },
-  titulo: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: '#14567A',
-  },
-  label: {
-    color: '#666',
-  },
-  filhos: {
-    width: '10%',
-    alignSelf: 'center',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-  },
-  slFilhos: {
-    width: '90%',
-    height: 40,
-  },
-  inpNome: {
-    width: '100%',
-    height: 40,
-    marginBottom: 20,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#C1C1C1',
-    paddingHorizontal: 5,
-  },
-  inpSal: {
-    width: '90%',
-    height: 40,
-    marginBottom: 20,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#C1C1C1',
-    paddingHorizontal: 5,
-  },
-  inpEmail: {
-    width: '100%',
-    height: 40,
-    marginBottom: 20,
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#C1C1C1',
-    paddingHorizontal: 5,
-  },
-  estCiv: {
-    width: '100%',
-    height: 38,
-    color: '#5E5E5E',
-  },
-  viewEstCiv: {
-    borderWidth: 1,
-    borderRadius: 5,
-    borderColor: '#C1C1C1',
-  },
-  iniCarr: {
-    width: '100%',
-  }
-});

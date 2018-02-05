@@ -133,7 +133,7 @@ export default class Ciclo {
   }
 
   patrimonioEsperado() {
-    return this;
+    return 300000;
   }
 
   saldoReserva() {
@@ -189,17 +189,19 @@ export default class Ciclo {
 
   // Getter e Setter - Nome
   getNome() {
-    if (this.Nome === undefined) {
-      return 'Indefinido';
-    }
     return this.Nome;
   }
   setNome(str) {
-    if (str) {
-      this.Nome = str;
-    } else {
+    if (!str) {
       throw Erro.e02;
     }
+    if (str.trim().length < 6) {
+      throw Erro.t01;
+    }
+    if (!str.match(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ. -]+$/)) {
+      throw Erro.t02;
+    }
+    this.Nome = str;
   }
 
   // Getter e Setter - Nasc
@@ -207,9 +209,13 @@ export default class Ciclo {
     return this.Nasc;
   }
   setNasc(str) {
-    if (str) {
-      this.Nasc = str;
+    if (!str) {
+      throw Erro.t03;
     }
+    if (str === '') {
+      throw Erro.t03; 
+    }
+    this.Nasc = str;
   }
 
   // Getter e Setter - EstCivil
@@ -217,9 +223,13 @@ export default class Ciclo {
     return this.EstCivil;
   }
   setEstCivil(str) {
-    if (str) {
-      this.EstCivil = str;
+    if (!str) {
+      throw Erro.t04;
     }
+    if (str < 1 || str > 5) {
+      throw Erro.t04;
+    }
+    this.EstCivil = str;
   }
 
   // Getter e Setter - Filhos
@@ -227,19 +237,27 @@ export default class Ciclo {
     return this.Filhos;
   }
   setFilhos(str) {
-    if (str) {
-      this.Filhos = str;
+    if (!str) {
+      throw Erro.t07;
     }
+    if (str < 1 || str > 10) {
+      throw Erro.t07;
+    }
+    this.Filhos = str;
   }
 
   // Getter e Setter - SalLiq
   getSalLiq() {
-    return this.SalLiq;
+    return Number.parseInt(this.SalLiq, 10);
   }
   setSalLiq(str) {
-    if (str) {
-      this.SalLiq = str;
+    if (!str) {
+      throw Erro.t05;
     }
+    if (!Number.isInteger(str)) {
+      throw Erro.e04;
+    }
+    this.SalLiq = str;
   }
 
   // Getter e Setter - IniCarreira
@@ -247,9 +265,13 @@ export default class Ciclo {
     return this.IniCarreira;
   }
   setIniCarreira(str) {
-    if (str) {
-      this.IniCarreira = str;
+    if (!str) {
+      throw Erro.t06;
     }
+    if (str === '') {
+      throw Erro.t06;
+    }
+    this.IniCarreira = str;
   }
 
   // Getter e Setter - Invest

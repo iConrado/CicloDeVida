@@ -15,9 +15,9 @@ const Erro = {
     solucao: 'Teste novamente com um valor diferente.',
   },
   e04: {
-    titulo: '',
-    descricao: '',
-    solucao: '',
+    titulo: 'Erro',
+    descricao: 'Salário líquido inválido.',
+    solucao: 'Tente informar um número sem casas decimais.',
   },
   t01: {
     titulo: 'Ops',
@@ -54,10 +54,10 @@ const Erro = {
     descricao: 'Email inválido.',
     solucao: 'Verifique se o email informado está digitado corretamente.',
   },
-  e12: {
-    titulo: '',
-    descricao: '',
-    solucao: '',
+  t08: {
+    titulo: 'Ops',
+    descricao: 'Quantidade de filhos inválida.',
+    solucao: 'Certifique-se de ter informado apenas números.',
   },
   e13: {
     titulo: '',
