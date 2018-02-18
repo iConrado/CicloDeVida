@@ -153,7 +153,7 @@ export default class HomeScreen extends React.Component {
     if (!Controle(this.abreErro, C, C.setEmail, email)) { return false; }
 
     // Após passar em todos os teste, abre a próxima tela do formulário
-    navigate(tela, { Ciclo: C });
+    navigate(tela);
   }
   
   render() {
@@ -199,45 +199,47 @@ export default class HomeScreen extends React.Component {
             value={this.state.email}
           />
         </View>
-        <View style={styles.viewHorizontal}>
-          <View style={styles.viewCompHoriz}>
-            <Text style={styles.label}>Data Nasc.:</Text>
-            <DatePicker
-              style={styles.home_dtNasc}
-              date={this.state.nasc}
-              mode='date'
-              placeholder='Selecione uma data'
-              format='DD/MM/YYYY'
-              minDate='01/01/1900'
-              maxDate='31/12/2050'
-              confirmBtnText='Ok'
-              cancelBtnText='Cancelar'
-              showIcon={false}
-              customStyles={{
-                dateInput: {
-                  marginLeft: 0
-                }
-                // ... You can check the source to find the other keys.
-              }}
-              onDateChange={(nasc) => { this.setState({ nasc }); }}
-            />
-          </View>
-          <View style={styles.viewCompHoriz}>
-            <Text style={styles.label}>Estado Civil:</Text>
-            <View style={styles.home_viewEstCiv}>
-              <Picker
-                style={styles.home_pkEstCiv}
-                selectedValue={this.state.estCiv}
-                onValueChange={(itemValue) => this.setState({ estCiv: itemValue })}
-                prompt='Selecione'
-                mode='dropdown'
-              >
-                <Picker.Item label='Solteiro' value={1} />
-                <Picker.Item label='Casado/União Estável' value={2} />
-                <Picker.Item label='Divorciado' value={3} />
-                <Picker.Item label='Viúvo' value={4} />
-                <Picker.Item label='Separado' value={5} />
-              </Picker>
+        <View style={styles.viewVertical}>
+          <View style={styles.viewHorizontal}>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.label}>Data Nasc.:</Text>
+              <DatePicker
+                style={styles.home_dtNasc}
+                date={this.state.nasc}
+                mode='date'
+                placeholder='Selecione uma data'
+                format='DD/MM/YYYY'
+                minDate='01/01/1900'
+                maxDate='31/12/2050'
+                confirmBtnText='Ok'
+                cancelBtnText='Cancelar'
+                showIcon={false}
+                customStyles={{
+                  dateInput: {
+                    marginLeft: 0
+                  }
+                  // ... You can check the source to find the other keys.
+                }}
+                onDateChange={(nasc) => { this.setState({ nasc }); }}
+              />
+            </View>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.label}>Estado Civil:</Text>
+              <View style={styles.home_viewEstCiv}>
+                <Picker
+                  style={styles.home_pkEstCiv}
+                  selectedValue={this.state.estCiv}
+                  onValueChange={(itemValue) => this.setState({ estCiv: itemValue })}
+                  prompt='Selecione'
+                  mode='dropdown'
+                >
+                  <Picker.Item label='Solteiro' value={1} />
+                  <Picker.Item label='Casado/União Estável' value={2} />
+                  <Picker.Item label='Divorciado' value={3} />
+                  <Picker.Item label='Viúvo' value={4} />
+                  <Picker.Item label='Separado' value={5} />
+                </Picker>
+              </View>
             </View>
           </View>
         </View>

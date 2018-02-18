@@ -21,6 +21,7 @@ const imgHome = require('../imgs/ic_home_white.png');
 const imgCar = require('../imgs/ic_car_white.png');
 
 const C = new Ciclo();
+let patrForm = 0;
 let objErro = {};
 
 export default class PatrimonioScreen extends React.Component {
@@ -41,7 +42,6 @@ export default class PatrimonioScreen extends React.Component {
       tmpInvest: 0,
       tmpImoveis: 0,
       tmpVeiculos: 0, 
-      patrimEsperado: C.patrimonioEsperado(),
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
@@ -72,15 +72,63 @@ export default class PatrimonioScreen extends React.Component {
     const invest = this.state.invest;
     const imoveis = this.state.imoveis;
     const veiculos = this.state.veiculos;
-    return invest + imoveis + veiculos;
+    patrForm = invest + imoveis + veiculos;
+    
+    if (patrForm >= C.patrimonioEsperado()) {
+      return (<Text style={styles.txValorPos}>{monetizar(patrForm)}</Text>);
+    }
+
+    if (patrForm < C.patrimonioEsperado() && patrForm > 0) {
+      return (<Text style={styles.txValorNeg}>{monetizar(patrForm)}</Text>);
+    }
+
+    return (<Text style={styles.txValor}>{monetizar(patrForm)}</Text>);
   }
 
   patrimonioEsperado() {
-    this.setState({ patrimEsperado: C.patrimonioEsperado() });
+    if (patrForm > 0) {
+      return (<Text style={styles.txValor}>{monetizar(C.patrimonioEsperado())}</Text>);  
+    }
+    return (<Text style={styles.txValor}>{monetizar(0)}</Text>);
   }
 
-  proxTela() {
+  percentualPatrimonio() {
+    let percPatr = 0;
 
+    if (patrForm > 0) {
+      percPatr = patrForm / C.patrimonioEsperado();
+    }
+    if (percPatr >= 1) {
+      return (
+        <Text style={styles.txValorPos}>{(percPatr * 100).toFixed(1).replace('.', ',')}%</Text>
+      );
+    }
+
+    if (percPatr > 0 && percPatr < 1) {
+      return (
+        <Text style={styles.txValorNeg}>{(percPatr * 100).toFixed(1).replace('.', ',')}%</Text>
+      );
+    }
+
+    return (<Text style={styles.txValor}>{(percPatr * 100).toFixed(1).replace('.', ',')}%</Text>);
+  }
+
+  proxTela(tela) {
+    // Função que valida os campos e submete os dados para registro na classe de negócio.
+    // Em caso de algum retorno com erro, executa a abertura da tela de erros.
+
+    const { navigate } = this.props.navigation;
+
+    const invest = this.state.invest;
+    const imoveis = this.state.imoveis;
+    const veiculos = this.state.veiculos;
+
+    // Validação das regras de negócio, registro e gravação de log
+    if (!Controle(this.abreErro, C, C.setInvest, invest)) { return false; }
+    if (!Controle(this.abreErro, C, C.setImoveis, imoveis)) { return false; }
+    if (!Controle(this.abreErro, C, C.setVeiculos, veiculos)) { return false; }
+
+    navigate(tela);
   }
 
   render() {
@@ -182,23 +230,22 @@ export default class PatrimonioScreen extends React.Component {
         </View>
         {/*Fim da View Sliders*/}
         {/*View Calculos*/}
-        <View>
+        <View style={styles.espacador} />
+        <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>
             <View style={styles.viewCompHoriz}>
               <Text style={styles.label}>Patrimônio formado:</Text>
             </View>
             <View style={styles.viewCompHoriz}>
-              <Text style={styles.txValor}>{monetizar(this.patrimonioFormado())}</Text>
+              {this.patrimonioFormado()}
             </View>
           </View>
           <View style={[styles.viewHorizontal, styles.espacador]}>
             <View style={styles.viewCompHoriz}>
               <Text style={styles.label}>Patrimônio esperado:</Text>
-            </View>
+            </View> 
             <View style={styles.viewCompHoriz}>
-              <Text style={styles.txValor}>
-                {(this.patrimonioFormado() > 0) ? monetizar(this.state.patrimEsperado) : monetizar(0)}
-              </Text>
+              {this.patrimonioEsperado()}
             </View>
           </View>
           <View style={[styles.viewHorizontal, styles.espacador]}>
@@ -206,7 +253,7 @@ export default class PatrimonioScreen extends React.Component {
               <Text style={styles.label}>Resultado:</Text>
             </View>
             <View style={styles.viewCompHoriz}>
-              <Text style={styles.txValor}>% </Text>
+              {this.percentualPatrimonio()}
             </View>
           </View>
         </View>

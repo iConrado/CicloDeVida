@@ -19,6 +19,21 @@ const Erro = {
     descricao: 'Salário líquido inválido.',
     solucao: 'Tente informar um número sem casas decimais.',
   },
+  e05: {
+    titulo: 'Erro',
+    descricao: 'Valor de investimentos inválido.',
+    solucao: 'Tente informar um número sem casas decimais.',
+  },
+  e06: {
+    titulo: 'Erro',
+    descricao: 'Valor de imóveis inválido.',
+    solucao: 'Tente informar um número sem casas decimais.',
+  },
+  e07: {
+    titulo: 'Erro',
+    descricao: 'Valor de veículos inválido.',
+    solucao: 'Tente informar um número sem casas decimais.',
+  },
   t01: {
     titulo: 'Ops',
     descricao: 'O nome informado é curto demais.',

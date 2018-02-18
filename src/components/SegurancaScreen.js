@@ -57,7 +57,7 @@ export default class SegurancaScreen extends React.Component {
         <Text>Seguranca</Text>
         <Button 
           title='Próximo'
-          onPress={() => navigate('Consumo')}
+          onPress={() => {}}
         />
       </ScrollView>
     );

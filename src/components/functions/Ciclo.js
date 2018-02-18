@@ -66,6 +66,10 @@
 // - PatrimonioEsperado (nihil)
 //       Retorna o valor de patrimônio referência de acordo com a idade e renda.
 // 
+// - ComprometimentoGasto (Gasto)
+//       Retorna o percentual de comprometimento da renda em relação ao gasto mensal 
+//       informado.
+// 
 // - SaldoReserva (nihil)
 //       Retorna o resto da subtração do valor em investimento - poupança de emergencia 
 //       ideal. Retorno pode ser negativo.
@@ -115,15 +119,6 @@ export default class Ciclo {
     return Ciclo.instance;
   }
 
-  teste(arg) {
-    if (arg === 'Arroz-doce') {
-      console.log('Função COM erro');
-      throw Erro.e03;
-    }
-    console.log('Função sem erro');
-    return true;
-  }
-
   recuperar(email) {
     return email;
   }
@@ -134,6 +129,13 @@ export default class Ciclo {
 
   patrimonioEsperado() {
     return 300000;
+  }
+
+  comprometimentoGasto(gasto) {
+    if (this.SalLiq > 0) {
+      return gasto / this.SalLiq;
+    }
+    return 0;
   }
 
   saldoReserva() {
@@ -279,8 +281,10 @@ export default class Ciclo {
     return this.Invest;
   }
   setInvest(str) {
-    if (str) {
+    if (str >= 0) {
       this.Invest = str;
+    } else {
+      throw Erro.e05;
     }
   }
 
@@ -289,8 +293,10 @@ export default class Ciclo {
     return this.Imoveis;
   }
   setImoveis(str) {
-    if (str) {
+    if (str >= 0) {
       this.Imoveis = str;
+    } else {
+      throw Erro.e06;
     }
   }
 
@@ -299,8 +305,10 @@ export default class Ciclo {
     return this.Veiculos;
   }
   setVeiculos(str) {
-    if (str) {
+    if (str >= 0) {
       this.Veiculos = str;
+    } else {
+      throw Erro.e07;
     }
   }
 
@@ -316,7 +324,10 @@ export default class Ciclo {
 
   // Getter e Setter - Reserva
   getReserva() {
-    return this.Reserva;
+    if (this.reserva) {
+      return this.Reserva;
+    }
+    return 0;
   }
   setReserva(str) {
     if (str) {

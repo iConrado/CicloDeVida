@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   container: {
-    flex: 1,
+    //flex: 1, // Não permite a scroolview rolar a tela
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     paddingTop: 10,
@@ -15,10 +15,12 @@ const styles = StyleSheet.create({
   viewTitulo: {
     width: '100%',
     alignItems: 'center',
+    marginBottom: 10,
   },
   viewBotoes: {
     width: '100%',
     alignItems: 'center',
+    marginTop: 0,
   },
   viewHorizontal: {
     width: '100%',
@@ -31,6 +33,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
+    marginBottom: 10,
+  },
+  viewCentral: {
+    width: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   viewCompHoriz: {
     width: '50%',
@@ -51,6 +60,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 10,
   },
+  viewLogo: {
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    height: 24,
+    width: 24,
+    borderRadius: 12,
+    backgroundColor: '#E7A730'
+  },
+  viewPosLogo: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingLeft: 10,
+  },
   titulo: {
     fontWeight: 'bold',
     fontSize: 20,
@@ -61,6 +86,11 @@ const styles = StyleSheet.create({
   },
   espacador: {
     marginTop: 15,
+  },
+  separador: {
+    width: '100%',
+    borderBottomWidth: 1,
+    borderBottomColor: '#AAA',
   },
   botao: {
     height: 35,
@@ -84,9 +114,23 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textAlign: 'center',
   },
+  txValorPos: {
+    alignSelf: 'center',
+    textAlign: 'center',
+    color: 'green',
+  },
+  txValorNeg: {
+    alignSelf: 'center',
+    textAlign: 'center',
+    color: 'red',
+  },
   imgIcone: {
     height: 35,
     width: 35,
+  },
+  imgLogo: {
+    height: 24,
+    width: 24,
   },
   //***********************************
   //* HOME_SCREEN                     *
@@ -163,6 +207,59 @@ const styles = StyleSheet.create({
     height: 40,
     textAlign: 'center',
     textAlignVertical: 'center',
+  },
+  //***********************************
+  //* RESERVA_SCREEN                  *
+  //***********************************
+  reserva_viewCalculo: {
+    width: '70%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  reserva_slider: {
+    width: '70%',
+    height: 40,
+  },
+  reserva_txDireita: {
+    width: '30%',
+    alignSelf: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  reserva_lbGasto: {
+    width: '70%',
+    textAlignVertical: 'center',
+  },
+  reserva_lbCalculo: {
+    alignSelf: 'center',
+    textAlignVertical: 'center',
+    textAlign: 'center',
+  },
+  //***********************************
+  //* APOSENTADORIA_SCREEN            *
+  //***********************************
+  aposent_vinheta: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#666',
+  },
+  aposent_viewCalculo: {
+    width: '70%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  aposent_txDireita: {
+    width: '30%',
+    alignSelf: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  aposent_lbCalculo: {
+    alignSelf: 'center',
+    textAlignVertical: 'center',
+    textAlign: 'center',
   },
 });
 
