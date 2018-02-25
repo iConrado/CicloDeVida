@@ -33,6 +33,7 @@
 // ReservaPrev  = Reserva existente em plano previdenciário privado
 // IdadeAposent = Idade desejada para aposentadoria (em anos)
 // Rentab       = Taxa de Rentabilidade (% a.a.)
+// SugestReserv = Sugestão de reserva mensal
 // 
 // - Segurança
 // Saude        = Gasto mensal com convênios de saúde/odontolôgico/funerário
@@ -65,6 +66,9 @@
 // 
 // - idadeAtual (nihil)
 //       Retorna a idade atual do usuário (em anos completos).
+// 
+// - faixaEtaria (nihil)
+//       Retorna string com a faixa etária atual do usuário.
 // 
 // - patrimonioEsperado (nihil)
 //       Retorna o valor de patrimônio referência de acordo com a idade e renda.
@@ -159,6 +163,26 @@ export default class Ciclo {
     }
 
     return 0;
+  }
+
+  faixaEtaria() {
+    if (this.idadeAtual() <= 30) {
+      this.SugestReserv = 0.1;
+      return 'Até 30 anos';
+    }
+
+    if (this.idadeAtual() > 30) {
+      this.SugestReserv = 0.2;
+      return 'Acima de 30 anos';
+    }
+
+    if (this.idadeAtual() > 45) {
+      this.SugestReserv = 0.3;
+      return 'Acima de 45 anos';
+    }
+
+    this.SugestReserv = 0;
+    return 'Idade inválida ou não definida';
   }
 
   patrimonioEsperado() {
@@ -406,6 +430,18 @@ export default class Ciclo {
   setRentab(str) {
     if (str) {
       this.Rentab = str;
+    }
+  }
+
+  // Getter e Setter - SugestReserv
+  getSugestReserv() {
+    // Executa o cálculo de faixa etária, que atribui automaticamente o atributo SugestReserv
+    this.faixaEtaria();
+    return this.SugestReserv;
+  }
+  setSugestReserv(str) {
+    if (str) {
+      this.SugestReserv = str;
     }
   }
 
