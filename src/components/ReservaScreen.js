@@ -166,7 +166,9 @@ export default class ReservaScreen extends React.Component {
              <Text style={styles.reserva_txDireita}>{monetizar(this.state.tmpReserva)}</Text>
           </View>
         </View>
+        <View style={styles.espacador} />
         <View style={styles.separador} />
+        <View style={styles.espacador} />
         <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>
             <View style={styles.reserva_viewCalculo}>
@@ -185,6 +187,7 @@ export default class ReservaScreen extends React.Component {
             <Text style={styles.reserva_txDireita}>{this.tempoNecessario()} meses</Text>
           </View>
         </View>
+        <View style={styles.espacador} />
         <View style={styles.viewBotoes}>
           <TouchableOpacity 
             style={styles.botao}

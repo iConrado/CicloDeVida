@@ -218,7 +218,6 @@ export default class HomeScreen extends React.Component {
                   dateInput: {
                     marginLeft: 0
                   }
-                  // ... You can check the source to find the other keys.
                 }}
                 onDateChange={(nasc) => { this.setState({ nasc }); }}
               />
@@ -277,7 +276,6 @@ export default class HomeScreen extends React.Component {
               dateInput: {
                 marginLeft: 0
               }
-              // ... You can check the source to find the other keys.
             }}
             onDateChange={(iniCarr) => { this.setState({ iniCarr }); }}
           />
@@ -298,8 +296,6 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.home_txSalLiq}>{monetizar(this.state.salLiq)}</Text>
           </View>
         </View>
-        {/*Fim do testte*/}
-
         {/*Código antigo - salário em TextInput*/}
         {/*<View style={styles.viewHorizontal}>
           <View style={styles.viewCompHoriz}>

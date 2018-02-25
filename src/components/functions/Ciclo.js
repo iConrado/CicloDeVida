@@ -49,61 +49,66 @@
 // 
 // MÉTODOS
 // 
-// - Constructor (nihil)
+// - constructor (nihil)
 //       Inicializa a instância da classe com o app, certificando que não haverá mais 
 //       de uma instância por sessão.
 // 
-// - Recuperar (email)
+// - recuperar (email)
 //       Recupera uma consultoria através de um endereço de e-mail.
 //       Limpa a instância e refaz todos os campos de acordo com o obtido no objeto 
 //       armazenado.
 // 
-// - Salvar (nihil)
+// - salvar (nihil)
 //       Armazena a consultoria para que possa ser recuperada posteriormente.
 //       Deve permitir salvar a consultoria a qualquer momento, independente da 
 //       quantidade de informações registradas.
 // 
-// - PatrimonioEsperado (nihil)
+// - idadeAtual (nihil)
+//       Retorna a idade atual do usuário (em anos completos).
+// 
+// - patrimonioEsperado (nihil)
 //       Retorna o valor de patrimônio referência de acordo com a idade e renda.
 // 
-// - ComprometimentoGasto (Gasto)
+// - comprometimentoGasto (Gasto)
 //       Retorna o percentual de comprometimento da renda em relação ao gasto mensal 
 //       informado.
 // 
-// - SaldoReserva (nihil)
+// - saldoReserva (nihil)
 //       Retorna o resto da subtração do valor em investimento - poupança de emergencia 
 //       ideal. Retorno pode ser negativo.
 // 
-// - SugestaoReserva (nihil)
+// - sugestaoReserva (nihil)
 //       Retorna a sugestão de reserva para aposentadoria de acordo com a idade e renda
 //       do usuário.
 // 
-// - SugestaoLimSeg (nihil)
+// - sugestaoLimSeg (nihil)
 //       Retorna sugestão de limite mensal para aplicação em seguridade.
 // 
-// - ComprometSeg (nihil)
+// - comprometSeg (nihil)
 //       Retorna o percentual de comprometimento da renda líquida com itens de 
 //       seguridade.
 // 
-// - PatrimonioProt (nihil)
+// - patrimonioProt (nihil)
 //       Retorna o valor total do patrimônio protegido de acordo com as coberturas 
 //       registradas em seguridade.
 // 
-// - ImovelInvest (nihil)
+// - imovelInvest (nihil)
 //       Retorna o valor de imóvel para investimento de acordo com um prazo pré-
 //       estabelecido.
 // 
-// - AutoInvest (nihil)
+// - autoInvest (nihil)
 //       Retorna o valor de automóvel para compra ou troca de acordo com um prazo pré-
 //       estabelecido.
 // 
-// - ResultadoGrafico (nihil)
+// - resultadoGrafico (nihil)
 //       Retorna objeto JSON com os valor em cadas área para montagem do gráfico.
 // 
-// - ResultadoAnalise (nihil)
+// - resultadoAnalise (nihil)
 //       Retorna o tipo de resultado de acordo com a análise do ciclo de vida do 
 //       usuário, caso saldo positivo ou negativo.
 // 
+
+import moment from 'moment';
 
 import hashCode from './hashcode';
 import Erro from './Erro';
@@ -125,6 +130,35 @@ export default class Ciclo {
 
   salvar() {
     return this;
+  }
+
+  idadeAtual() {
+    moment.updateLocale('en', {
+        relativeTime: {
+            future: '',
+            past: '',
+            s: '',
+            ss: '',
+            m: '',
+            mm: '',
+            h: '',
+            hh: '',
+            d: '',
+            dd: '',
+            M: '',
+            MM: '',
+            y: '1',
+            yy: '%d'
+        }
+    });
+
+    const idadeAtual = moment(this.Nasc, 'DD/MM/YYYY').fromNow(true);
+
+    if (Number.isInteger(parseInt(idadeAtual, 10))) {
+      return parseInt(idadeAtual, 10);
+    }
+
+    return 0;
   }
 
   patrimonioEsperado() {

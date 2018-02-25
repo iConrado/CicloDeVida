@@ -147,88 +147,84 @@ export default class PatrimonioScreen extends React.Component {
         <View style={styles.viewTitulo}>
           <Text style={styles.titulo}>Patrimônio</Text>
         </View>
-        {/*View Sliders*/}
-        <View>
-          {/*View Investimento*/}
-          <View style={styles.viewVertical}>
-            <Text style={styles.label}>Investimentos (aplicações, poupança, etc):</Text>
-            <View style={styles.viewHorizontal}>
-              <View style={styles.viewIcone}>
-                <Image 
-                  style={styles.imgIcone}
-                  source={imgMoney}
-                />
-              </View>
-              <View style={styles.viewPosIcone}>
-                <Slider
-                  style={styles.patrim_slIcone}
-                  minimumValue={0}
-                  maximumValue={2000000}
-                  step={5000}
-                  minimumTrackTintColor='#14567A'
-                  thumbTintColor='#14567A'
-                  value={this.state.tmpInvest}
-                  onValueChange={(value) => this.setState({ tmpInvest: value })}
-                  onSlidingComplete={(value) => this.setState({ invest: value })}
-                />
-                <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpInvest)}</Text>
-              </View>
+        {/*View Investimento*/}
+        <View style={styles.viewVertical}>
+          <Text style={styles.label}>Investimentos (aplicações, poupança, etc):</Text>
+          <View style={styles.viewHorizontal}>
+            <View style={styles.viewIcone}>
+              <Image 
+                style={styles.imgIcone}
+                source={imgMoney}
+              />
             </View>
-          </View>
-          {/*View Imóveis*/}
-          <View style={[styles.viewVertical, styles.espacador]}>
-            <Text style={styles.label}>Imóveis (valor total - financiados ou não):</Text>
-            <View style={styles.viewHorizontal}>
-              <View style={styles.viewIcone}>
-                <Image 
-                  style={styles.imgIcone}
-                  source={imgHome}
-                />
-              </View>
-              <View style={styles.viewPosIcone}>
-                <Slider
-                  style={styles.patrim_slIcone}
-                  minimumValue={0}
-                  maximumValue={5000000}
-                  step={10000}
-                  minimumTrackTintColor='#14567A'
-                  thumbTintColor='#14567A'
-                  value={this.state.tmpImoveis}
-                  onValueChange={(value) => this.setState({ tmpImoveis: value })}
-                  onSlidingComplete={(value) => this.setState({ imoveis: value })}
-                />
-                <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpImoveis)}</Text>
-              </View>
-            </View>
-          </View>
-        {/*View Veículos*/}
-          <View style={[styles.viewVertical, styles.espacador]}>
-            <Text style={styles.label}>Veículos (valor total - financiados ou não):</Text>
-            <View style={styles.viewHorizontal}>
-              <View style={styles.viewIcone}>
-                <Image 
-                  style={styles.imgIcone}
-                  source={imgCar}
-                />
-              </View>
-              <View style={styles.viewPosIcone}>
-                <Slider
-                  style={styles.patrim_slIcone}
-                  minimumValue={0}
-                  maximumValue={500000}
-                  step={2000}
-                  minimumTrackTintColor='#14567A'
-                  thumbTintColor='#14567A'
-                  value={this.state.tmpVeiculos}
-                  onValueChange={(value) => this.setState({ tmpVeiculos: value })}
-                  onSlidingComplete={(value) => this.setState({ veiculos: value })}
-                />
-                <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpVeiculos)}</Text>
-              </View>
+            <View style={styles.viewPosIcone}>
+              <Slider
+                style={styles.patrim_slIcone}
+                minimumValue={0}
+                maximumValue={2000000}
+                step={5000}
+                minimumTrackTintColor='#14567A'
+                thumbTintColor='#14567A'
+                value={this.state.tmpInvest}
+                onValueChange={(value) => this.setState({ tmpInvest: value })}
+                onSlidingComplete={(value) => this.setState({ invest: value })}
+              />
+              <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpInvest)}</Text>
             </View>
           </View>
         </View>
-        {/*Fim da View Sliders*/}
+        {/*View Imóveis*/}
+        <View style={[styles.viewVertical, styles.espacador]}>
+          <Text style={styles.label}>Imóveis (valor total - financiados ou não):</Text>
+          <View style={styles.viewHorizontal}>
+            <View style={styles.viewIcone}>
+              <Image 
+                style={styles.imgIcone}
+                source={imgHome}
+              />
+            </View>
+            <View style={styles.viewPosIcone}>
+              <Slider
+                style={styles.patrim_slIcone}
+                minimumValue={0}
+                maximumValue={5000000}
+                step={10000}
+                minimumTrackTintColor='#14567A'
+                thumbTintColor='#14567A'
+                value={this.state.tmpImoveis}
+                onValueChange={(value) => this.setState({ tmpImoveis: value })}
+                onSlidingComplete={(value) => this.setState({ imoveis: value })}
+              />
+              <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpImoveis)}</Text>
+            </View>
+          </View>
+        </View>
+      {/*View Veículos*/}
+        <View style={[styles.viewVertical, styles.espacador]}>
+          <Text style={styles.label}>Veículos (valor total - financiados ou não):</Text>
+          <View style={styles.viewHorizontal}>
+            <View style={styles.viewIcone}>
+              <Image 
+                style={styles.imgIcone}
+                source={imgCar}
+              />
+            </View>
+            <View style={styles.viewPosIcone}>
+              <Slider
+                style={styles.patrim_slIcone}
+                minimumValue={0}
+                maximumValue={500000}
+                step={2000}
+                minimumTrackTintColor='#14567A'
+                thumbTintColor='#14567A'
+                value={this.state.tmpVeiculos}
+                onValueChange={(value) => this.setState({ tmpVeiculos: value })}
+                onSlidingComplete={(value) => this.setState({ veiculos: value })}
+              />
+              <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpVeiculos)}</Text>
+            </View>
+          </View>
+        </View>
         {/*View Calculos*/}
         <View style={styles.espacador} />
         <View style={styles.viewVertical}>
@@ -257,6 +253,7 @@ export default class PatrimonioScreen extends React.Component {
             </View>
           </View>
         </View>
+        <View style={styles.espacador} />
         <View style={styles.viewBotoes}>
           <TouchableOpacity 
             style={styles.botao}

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   viewCentral: {
     width: '100%',
@@ -239,6 +239,11 @@ const styles = StyleSheet.create({
   //***********************************
   //* APOSENTADORIA_SCREEN            *
   //***********************************
+  aposent_viewCentral: {
+    width: '30%',
+    height: 40,
+    justifyContent: 'center',
+  },
   aposent_vinheta: {
     fontSize: 16,
     fontWeight: 'bold',
@@ -260,6 +265,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textAlignVertical: 'center',
     textAlign: 'center',
+  },
+  aposent_slider: {
+    width: '70%',
+    height: 40,
+  },
+  aposent_Input: {
+    width: '100%',
+    height: 30,
+    borderBottomWidth: 1,
+    borderBottomColor: '#14567A', //#5BA849
+    paddingHorizontal: 5,
   },
 });
 
