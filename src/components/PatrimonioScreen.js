@@ -225,7 +225,9 @@ export default class PatrimonioScreen extends React.Component {
             </View>
           </View>
         </View>
+        <View style={styles.espacador} />
         {/*View Calculos*/}
+        <View style={styles.separador} />
         <View style={styles.espacador} />
         <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>

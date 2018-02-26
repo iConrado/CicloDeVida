@@ -279,14 +279,15 @@ export default class AposentadoriaScreen extends React.Component {
         </View>
 
         <View style={styles.separador} />
-        <View style={styles.espacador} />
 
         <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>
-            <View style={styles.aposent_viewCalculo}>
-              <Text style={[styles.label, styles.aposent_lbCalculo]}>Reserva total:</Text>
+            <View style={styles.aposent_viewReserva}>
+              <Text style={[styles.label, styles.aposent_lbReserva]}>Reserva total:</Text>
             </View>
-            <Text style={styles.aposent_txResTotal}>{monetizar(this.reservaTotal())}</Text>
+            <View style={styles.aposent_viewReserva}>
+              <Text style={styles.aposent_txResTotal}>{monetizar(this.reservaTotal())}</Text>
+            </View>
           </View>
         </View>
 

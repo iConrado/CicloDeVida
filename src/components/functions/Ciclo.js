@@ -136,7 +136,7 @@ export default class Ciclo {
     return this;
   }
 
-  idadeAtual() {
+  tempoDecorridoAnos(data) {
     moment.updateLocale('en', {
         relativeTime: {
             future: '',
@@ -156,13 +156,17 @@ export default class Ciclo {
         }
     });
 
-    const idadeAtual = moment(this.Nasc, 'DD/MM/YYYY').fromNow(true);
+    const tempoDecorridoAA = moment(data, 'DD/MM/YYYY').fromNow(true);
 
-    if (Number.isInteger(parseInt(idadeAtual, 10))) {
-      return parseInt(idadeAtual, 10);
+    if (Number.isInteger(parseInt(tempoDecorridoAA, 10))) {
+      return parseInt(tempoDecorridoAA, 10);
     }
 
     return 0;
+  }
+
+  idadeAtual() {
+    return this.tempoDecorridoAnos(this.getNasc());
   }
 
   faixaEtaria() {
@@ -186,7 +190,16 @@ export default class Ciclo {
   }
 
   patrimonioEsperado() {
-    return 300000;
+    const tempoTrab = this.tempoDecorridoAnos(this.getIniCarreira());
+    // Cálculo: 10% dos anos de trabalho * 12 
+    const baseCalc = parseInt((tempoTrab * 0.1) * 12, 10);
+    const calculo = baseCalc * this.getSalLiq();
+
+    if (calculo > 0) {
+      console.log('esta retorando', calculo);
+      return calculo;
+    }
+    return 0;
   }
 
   comprometimentoGasto(gasto) {

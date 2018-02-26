@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   separador: {
     width: '100%',
     borderBottomWidth: 1,
-    borderBottomColor: '#AAA',
+    borderBottomColor: '#14567A',
   },
   botao: {
     height: 35,
@@ -255,6 +255,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  aposent_viewReserva: {
+    width: '50%',
+    paddingTop: 5,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   aposent_txDireita: {
     width: '100%',
     alignSelf: 'center',
@@ -262,12 +269,20 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
   },
   aposent_txResTotal: {
-    width: '30%',
+    height: 30,
+    fontWeight: 'bold',
     alignSelf: 'center',
-    textAlign: 'center',
     textAlignVertical: 'center',
+    textAlign: 'center',
   },
   aposent_lbCalculo: {
+    alignSelf: 'center',
+    textAlignVertical: 'center',
+    textAlign: 'center',
+  },
+  aposent_lbReserva: {
+    height: 30,
+    fontWeight: 'bold',
     alignSelf: 'center',
     textAlignVertical: 'center',
     textAlign: 'center',
@@ -280,7 +295,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 30,
     borderBottomWidth: 1,
-    borderBottomColor: '#14567A', //#5BA849
+    borderBottomColor: '#AAA', //#5BA849
     paddingHorizontal: 5,
   },
 });

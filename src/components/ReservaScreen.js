@@ -180,6 +180,7 @@ export default class ReservaScreen extends React.Component {
           </View>
         </View>
         <View style={styles.viewVertical}>
+          <View style={styles.espacador} />
           <View style={styles.viewHorizontal}>
             <View style={styles.reserva_viewCalculo}>
               <Text style={[styles.label, styles.reserva_lbCalculo]}>Tempo para reserva:</Text>

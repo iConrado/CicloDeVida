@@ -281,7 +281,7 @@ export default class HomeScreen extends React.Component {
           />
         </View>
         <View style={styles.viewVertical}>
-          <Text style={styles.label}>Salário Líquido:</Text>
+          <Text style={styles.label}>Salário Bruto:</Text>
           <View style={styles.viewHorizontal}>
               <Slider 
                 style={styles.home_slSalLiq}
