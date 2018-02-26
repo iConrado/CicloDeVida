@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   viewVertical: {
     width: '100%',
@@ -217,12 +217,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  reserva_viewCentral: {
+    width: '30%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   reserva_slider: {
     width: '70%',
     height: 40,
   },
   reserva_txDireita: {
-    width: '30%',
+    width: '100%',
+    alignSelf: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  reserva_txPositivo: {
+    width: '100%',
+    color: 'green',
+    alignSelf: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  reserva_txNegativo: {
+    width: '100%',
+    color: 'red',
     alignSelf: 'center',
     textAlign: 'center',
     textAlignVertical: 'center',

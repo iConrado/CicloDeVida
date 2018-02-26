@@ -196,7 +196,6 @@ export default class Ciclo {
     const calculo = baseCalc * this.getSalLiq();
 
     if (calculo > 0) {
-      console.log('esta retorando', calculo);
       return calculo;
     }
     return 0;

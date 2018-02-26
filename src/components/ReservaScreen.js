@@ -56,6 +56,15 @@ export default class ReservaScreen extends React.Component {
     objErro = {};
   }
 
+  percentualRenda(valor) {
+    if (valor === 0) { return 0; }
+    
+    const salario = C.getSalLiq();
+    const perc = (valor / salario) * 100;
+
+    return perc.toFixed(1).replace('.', ',');
+  }
+
   comprometimento() {
     const gasto = this.state.gasto;
     if (gasto > 0) {
@@ -77,11 +86,12 @@ export default class ReservaScreen extends React.Component {
 
   calculoNecessario() {
     const calc = C.getInvest() - desmonetizar(this.poupanca());
-    return monetizar(calc);
+
+    return calc;
   }
 
   tempoNecessario() {
-    const necessario = desmonetizar(this.calculoNecessario());
+    const necessario = this.calculoNecessario();
     const reserva = this.state.reserva;
     if (necessario < 0) {
       const abs = Math.abs(necessario);
@@ -91,6 +101,25 @@ export default class ReservaScreen extends React.Component {
       }
     }
     return 0;
+  }
+
+  montaResultadoCalculo() {
+    const calc = this.calculoNecessario();
+    if (calc === 0) {
+      return (
+        <Text style={styles.reserva_txDireita}>{monetizar(calc)}</Text>
+      );
+    }
+
+    if (calc > 0) {
+      return (
+        <Text style={styles.reserva_txPositivo}>{monetizar(calc)}</Text>
+      );
+    }
+
+    return (
+      <Text style={styles.reserva_txNegativo}>{monetizar(calc)}</Text>
+    );
   }
 
   proxTela(tela) {
@@ -130,7 +159,9 @@ export default class ReservaScreen extends React.Component {
               onValueChange={(value) => this.setState({ tmpGasto: value })}
               onSlidingComplete={(value) => this.setState({ gasto: value })}
             />
-             <Text style={styles.reserva_txDireita}>{monetizar(this.state.tmpGasto)}</Text>
+            <View style={styles.reserva_viewCentral}>
+              <Text style={styles.reserva_txDireita}>{monetizar(this.state.tmpGasto)}</Text>
+            </View>
           </View>
         </View>
         <View style={styles.viewVertical}>
@@ -138,13 +169,17 @@ export default class ReservaScreen extends React.Component {
             <Text style={[styles.label, styles.reserva_lbGasto]}>
               Comprometimento da renda com gastos mensais: 
             </Text>
-            <Text style={styles.reserva_txDireita}>{this.comprometimento()}%</Text>
+            <View style={styles.reserva_viewCentral}>
+              <Text style={styles.reserva_txDireita}>{this.comprometimento()}%</Text>
+            </View>
           </View>
         </View>
         <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>
             <Text style={[styles.label, styles.reserva_lbGasto]}>Poupança (12x gastos):</Text>
-            <Text style={styles.reserva_txDireita}>{this.poupanca()}</Text>
+            <View style={styles.reserva_viewCentral}>
+              <Text style={styles.reserva_txDireita}>{this.poupanca()}</Text>
+            </View>
           </View>
         </View>
         <View style={styles.viewVertical}>
@@ -163,7 +198,12 @@ export default class ReservaScreen extends React.Component {
               onValueChange={(value) => this.setState({ tmpReserva: value })}
               onSlidingComplete={(value) => this.setState({ reserva: value })}
             />
-             <Text style={styles.reserva_txDireita}>{monetizar(this.state.tmpReserva)}</Text>
+            <View style={styles.reserva_viewCentral}>
+              <Text style={styles.reserva_txDireita}>
+                {this.percentualRenda(this.state.tmpReserva)}%
+              </Text>
+              <Text style={styles.reserva_txDireita}>{monetizar(this.state.tmpReserva)}</Text>
+            </View>
           </View>
         </View>
         <View style={styles.espacador} />
@@ -176,7 +216,9 @@ export default class ReservaScreen extends React.Component {
               <Text style={[styles.label, styles.reserva_lbCalculo]}>-</Text>
               <Text style={[styles.label, styles.reserva_lbCalculo]}>Poupança emergencial</Text>
             </View>
-            <Text style={styles.reserva_txDireita}>{this.calculoNecessario()}</Text>
+            <View style={styles.reserva_viewCentral}>
+              {this.montaResultadoCalculo()}
+            </View>
           </View>
         </View>
         <View style={styles.viewVertical}>
@@ -185,7 +227,9 @@ export default class ReservaScreen extends React.Component {
             <View style={styles.reserva_viewCalculo}>
               <Text style={[styles.label, styles.reserva_lbCalculo]}>Tempo para reserva:</Text>
             </View>
-            <Text style={styles.reserva_txDireita}>{this.tempoNecessario()} meses</Text>
+            <View style={styles.reserva_viewCentral}>
+              <Text style={styles.reserva_txDireita}>{this.tempoNecessario()} meses</Text>
+            </View>
           </View>
         </View>
         <View style={styles.espacador} />

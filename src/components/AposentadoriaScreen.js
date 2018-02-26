@@ -82,7 +82,7 @@ export default class AposentadoriaScreen extends React.Component {
     const salario = C.getSalLiq();
     const perc = (valor / salario) * 100;
 
-    return perc.toFixed(2);
+    return perc.toFixed(1).replace('.', ',');
   }
 
   rendaPercentual() {
@@ -209,7 +209,7 @@ export default class AposentadoriaScreen extends React.Component {
               <Text style={styles.aposent_txDireita}>
                 {this.percentualRenda(this.state.tmpDisponib)}%
               </Text>
-             <Text style={styles.aposent_txDireita}>{monetizar(this.state.tmpDisponib)}</Text>
+              <Text style={styles.aposent_txDireita}>{monetizar(this.state.tmpDisponib)}</Text>
              </View>
           </View>
         </View>
