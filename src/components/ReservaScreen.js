@@ -123,7 +123,17 @@ export default class ReservaScreen extends React.Component {
   }
 
   proxTela(tela) {
+    // Função que valida os campos e submete os dados para registro na classe de negócio.
+    // Em caso de algum retorno com erro, executa a abertura da tela de erros.
     const { navigate } = this.props.navigation;
+
+    const gasto = this.state.gasto;
+    const reserva = this.state.reserva;
+
+    // Validação das regras de negócio, registro e gravação de log
+    if (!Controle(this.abreErro, C, C.setGasto, gasto)) { return false; }
+    if (!Controle(this.abreErro, C, C.setReserva, reserva)) { return false; }
+
     navigate(tela);
   }
 

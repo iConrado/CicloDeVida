@@ -1,15 +1,25 @@
 import React from 'react';
 import { 
-  StyleSheet, 
   ScrollView, 
   View, 
   Text, 
-  Button } from 'react-native';
+  TextInput,
+  TouchableOpacity,
+  Image } from 'react-native';
 
+import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import EstiloVoltar from './functions/EstiloVoltar';
+import ModalErro from './functions/ModalErro';
 import Controle from './functions/Controle';
 import Ciclo from './functions/Ciclo';
+import monetizar from './functions/monetizar';
+import desmonetizar from './functions/desmonetizar';
+
+const imgConvenio = require('../imgs/ic_vallet_white.png');
+const imgVida = require('../imgs/ic_people_white.png');
+const imgImoveis = require('../imgs/ic_home_white.png');
+const imgAuto = require('../imgs/ic_car_white.png');
 
 const C = new Ciclo();
 let objErro = {};
@@ -26,7 +36,9 @@ export default class SegurancaScreen extends React.Component {
     super(props);
     this.state = {
       modalErro: false, 
+      saude: 0,
     };
+
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
   }
@@ -48,32 +60,215 @@ export default class SegurancaScreen extends React.Component {
     objErro = {};
   }
 
+  sugestLim() {
+    return C.sugestaoLimSeg();
+  }
+
+  calculaVida() {
+    return C.seguroVida();
+  }
+
+  calculaImoveis() {
+    return C.seguroImoveis();
+  }
+
+  calculaAuto() {
+    return C.seguroAuto();
+  }
+
+  calculaComprTotal() {
+    const convenio = this.state.saude;
+    const vida = this.calculaVida();
+    const imoveis = this.calculaImoveis();
+    const auto = this.calculaAuto();
+    const soma = convenio + vida + imoveis + auto;
+    const compr = C.comprometimentoGasto(soma);
+
+    return parseFloat(compr * 100, 10).toFixed(1).replace('.', ',');
+  }
+
+  calculaPatrimProt() {
+    const conv = this.state.saude;
+    return C.patrimonioProt(conv);
+  }
+
+  comprometimento(valor) {
+    const compr = C.comprometimentoGasto(valor);
+
+    return compr;
+  }
+
+  proxTela(tela) {
+    // Função que valida os campos e submete os dados para registro na classe de negócio.
+    // Em caso de algum retorno com erro, executa a abertura da tela de erros.
+    const { navigate } = this.props.navigation;
+
+    const saude = this.state.saude;
+
+    // Validação das regras de negócio, registro e gravação de log
+    if (!Controle(this.abreErro, C, C.setSaude, saude)) { return false; }
+
+    navigate(tela);
+  }
+
   render() {
     return (
       <ScrollView 
         style={styles.scroll}
         contentContainerStyle={styles.container}
       >
-        <Text>Seguranca</Text>
-        <Button 
-          title='Próximo'
-          onPress={() => {}}
+        {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
+        <ModalErro 
+          visivel={this.state.modalErro}
+          fechar={this.fechaErro}
+          objErro={objErro}
         />
+        {/* **************************************************************************** */}
+        
+        <View style={styles.viewTitulo}>
+          <Text style={styles.titulo}>Segurança</Text>
+        </View>
+
+        <View style={styles.viewHorizontal}>
+          <View style={styles.viewCompHoriz}>
+            <Text style={[styles.segur_lbCalculo, styles.label]}>Sugestão de limite mensal:</Text>
+          </View>
+          <View style={styles.viewCompHoriz}>
+            <Text style={styles.segur_txDireita}>
+              {`${this.comprometimento(this.sugestLim()) * 100}%`}
+            </Text>
+            <Text style={styles.segur_txDireita}>{monetizar(this.sugestLim())}</Text>
+          </View>
+        </View>
+
+        <View style={styles.espacador} />
+        <View style={styles.separador} />
+        <View style={styles.espacador} />
+
+        <View style={styles.viewHorizontal}>
+          <View style={styles.viewIcone}>
+            <Image 
+              style={styles.imgIcone}
+              source={imgConvenio}
+            />
+          </View>
+          <View style={styles.viewPosIcone}>
+            <View style={styles.viewVertical}>
+              <Text style={styles.label}>Convênios de saúde:</Text>
+              <TextInput
+                ref='saude'
+                style={styles.segur_input}
+                keyboardType='numeric'
+                maxLength={10}
+                autoCorrect={false}
+                underlineColorAndroid='#EAEAEA'
+                onChangeText={(text) => this.setState({ saude: desmonetizar(text) })}
+                value={monetizar(this.state.saude)}
+              />
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.espacador} />
+        <View style={styles.separador} />
+        <View style={styles.espacador} />
+
+        <Text style={styles.label}>Seguros (valor por mês)</Text>
+
+        <View style={styles.espacador} />
+
+        <View style={styles.viewVertical}>
+          <View style={styles.viewHorizontal}>
+            <View style={styles.viewIcone}>
+              <Image 
+                style={styles.imgIcone}
+                source={imgVida}
+              />
+            </View>
+            <View style={styles.viewPosIcone}>
+              <View style={styles.viewHorizontal}>
+                <Text style={[styles.label, styles.lbSeguridade]}>Vida (24x salário bruto):</Text>
+                <Text style={styles.segur_txValor}>{monetizar(this.calculaVida())}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.viewVertical}>
+          <View style={styles.viewHorizontal}>
+            <View style={styles.viewIcone}>
+              <Image 
+                style={styles.imgIcone}
+                source={imgImoveis}
+              />
+            </View>
+            <View style={styles.viewPosIcone}>
+              <View style={styles.viewHorizontal}>
+                <Text style={[styles.label, styles.lbSeguridade]}>Residencial:</Text>
+                <Text style={styles.segur_txValor}>{monetizar(this.calculaImoveis())}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.viewVertical}>
+          <View style={styles.viewHorizontal}>
+            <View style={styles.viewIcone}>
+              <Image 
+                style={styles.imgIcone}
+                source={imgAuto}
+              />
+            </View>
+            <View style={styles.viewPosIcone}>
+              <View style={styles.viewHorizontal}>
+                <Text style={[styles.label, styles.lbSeguridade]}>Auto:</Text>
+                <Text style={styles.segur_txValor}>{monetizar(this.calculaAuto())}</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.espacador} />
+        <View style={styles.separador} />
+
+        <View style={styles.viewHorizontal}>
+          <View style={styles.viewCompHoriz}>
+            <Text style={[styles.segur_lbCalculo, styles.label, styles.segur_lbTotal]}>
+              Comprometimento total:
+            </Text>
+          </View>
+          <View style={styles.viewCompHoriz}>
+            <Text style={[styles.segur_txDireita, styles.segur_lbTotal]}>
+              {`${this.calculaComprTotal()}%`}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.viewHorizontal}>
+          <View style={styles.viewCompHoriz}>
+            <Text style={[styles.segur_lbCalculo, styles.label, styles.segur_lbTotal]}>
+              Patrimônio protegido:
+            </Text>
+          </View>
+          <View style={styles.viewCompHoriz}>
+            <Text style={[styles.segur_txDireita, styles.segur_lbTotal]}>
+              {monetizar(this.calculaPatrimProt())}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.separador} />
+
+        <View style={styles.viewBotoes}>
+          <TouchableOpacity 
+            style={styles.botao}
+            onPress={() => this.proxTela('Consumo')}
+          >
+            <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
+          </TouchableOpacity>
+        </View>
+
       </ScrollView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  scroll: {
-    flex: 1
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    paddingTop: 10,
-    paddingBottom: 20,
-    paddingHorizontal: 10,
-  },
-});

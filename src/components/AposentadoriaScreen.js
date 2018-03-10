@@ -13,7 +13,7 @@ import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
-//import Controle from './functions/Controle';
+import Controle from './functions/Controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
 import desmonetizar from './functions/desmonetizar';
@@ -35,10 +35,10 @@ export default class AposentadoriaScreen extends React.Component {
     super(props);
     this.state = {
       modalErro: false, 
-      Disponib: Math.ceil(this.rendaPercentual() / 50) * 50,
-      ReservaPrev: 0,
-      IdadeAposent: 50,
-      Rentab: 0,
+      disponib: Math.ceil(this.rendaPercentual() / 50) * 50,
+      reservaPrev: 0,
+      idadeAposent: 50,
+      rentab: 0,
       tmpDisponib: Math.ceil(this.rendaPercentual() / 50) * 50,
       tmpIdadeAposent: 50,
       tmpRentab: 0,
@@ -71,7 +71,7 @@ export default class AposentadoriaScreen extends React.Component {
   }
 
   sugestaoReserva() {
-    const sugestaoReserva = C.getSugestReserv();
+    const sugestaoReserva = C.sugestReserv();
 
     return sugestaoReserva;
   }
@@ -105,36 +105,50 @@ export default class AposentadoriaScreen extends React.Component {
   }
 
   reservaTotal() {
-    const Disponib = this.state.Disponib;
-    const ReservaPrev = this.state.ReservaPrev;
-    const Rentab = this.state.Rentab.toFixed(1);
-    const RentabMM = this.taxaMensal(Rentab);
-    const IdadeAtual = C.idadeAtual();
-    const IdadeAposent = this.state.IdadeAposent;
-    const PrazoAA = IdadeAposent - IdadeAtual;
-    const PrazoMM = PrazoAA * 12;
-    let MontReserva = Disponib;
-    let MontReservaPrev = ReservaPrev;
+    const disponib = this.state.disponib;
+    const reservaPrev = this.state.reservaPrev;
+    const rentab = this.state.rentab.toFixed(1);
+    const rentabMM = this.taxaMensal(rentab);
+    const idadeAtual = C.idadeAtual();
+    const idadeAposent = this.state.idadeAposent;
+    const prazoAA = idadeAposent - idadeAtual;
+    const prazoMM = prazoAA * 12;
+    let montReserva = disponib;
+    let montReservaPrev = reservaPrev;
 
 
     //Cálculo de juros da disponibilidade de reserva
-    for (let i = 1; i <= PrazoMM; i++) {
-      MontReserva *= (1 + (RentabMM / 100));
-      MontReserva += Disponib;
+    for (let i = 1; i <= prazoMM; i++) {
+      montReserva *= (1 + (rentabMM / 100));
+      montReserva += disponib;
     }
 
     //Cálculo de juros da previdência já existente
-    for (let i = 1; i <= PrazoAA; i++) {
-      MontReservaPrev *= (1 + (Rentab / 100));
+    for (let i = 1; i <= prazoAA; i++) {
+      montReservaPrev *= (1 + (rentab / 100));
     }
 
-    const ReservaTotal = MontReservaPrev + MontReserva;
+    const reservaTotal = montReservaPrev + montReserva;
 
-    return parseInt(ReservaTotal, 10);
+    return parseInt(reservaTotal, 10);
   }
 
   proxTela(tela) {
+    // Função que valida os campos e submete os dados para registro na classe de negócio.
+    // Em caso de algum retorno com erro, executa a abertura da tela de erros.
     const { navigate } = this.props.navigation;
+
+    const disponib = this.state.disponib;
+    const reservaPrev = this.state.reservaPrev;
+    const idadeAposent = this.state.idadeAposent;
+    const rentab = this.state.rentab;
+
+    // Validação das regras de negócio, registro e gravação de log
+    if (!Controle(this.abreErro, C, C.setDisponib, disponib)) { return false; }
+    if (!Controle(this.abreErro, C, C.setReservaPrev, reservaPrev)) { return false; }
+    if (!Controle(this.abreErro, C, C.setIdadeAposent, idadeAposent)) { return false; }
+    if (!Controle(this.abreErro, C, C.setRentab, rentab)) { return false; }
+
     navigate(tela);
   }
 
@@ -203,7 +217,7 @@ export default class AposentadoriaScreen extends React.Component {
               thumbTintColor='#14567A'
               value={this.state.tmpDisponib}
               onValueChange={(value) => this.setState({ tmpDisponib: value })}
-              onSlidingComplete={(value) => this.setState({ Disponib: value })}
+              onSlidingComplete={(value) => this.setState({ disponib: value })}
             />
             <View style={styles.aposent_viewCentral}>
               <Text style={styles.aposent_txDireita}>
@@ -218,13 +232,13 @@ export default class AposentadoriaScreen extends React.Component {
           <Text style={styles.label}>Reserva existente em plano previdenciário privado:</Text>
             <TextInput
               ref='reservaPrev'
-              style={styles.aposent_Input}
+              style={styles.aposent_input}
               keyboardType='numeric'
               maxLength={10}
               autoCorrect={false}
               underlineColorAndroid='#EAEAEA'
-              onChangeText={(text) => this.setState({ ReservaPrev: desmonetizar(text) })}
-              value={monetizar(this.state.ReservaPrev)}
+              onChangeText={(text) => this.setState({ reservaPrev: desmonetizar(text) })}
+              value={monetizar(this.state.reservaPrev)}
             />
         </View>
 
@@ -248,7 +262,7 @@ export default class AposentadoriaScreen extends React.Component {
               thumbTintColor='#14567A'
               value={this.state.tmpIdadeAposent}
               onValueChange={(value) => this.setState({ tmpIdadeAposent: value })}
-              onSlidingComplete={(value) => this.setState({ IdadeAposent: value })}
+              onSlidingComplete={(value) => this.setState({ idadeAposent: value })}
             />
             <View style={styles.aposent_viewCentral}>
               <Text style={styles.aposent_txDireita}>{this.state.tmpIdadeAposent}</Text>
@@ -270,7 +284,7 @@ export default class AposentadoriaScreen extends React.Component {
               thumbTintColor='#14567A'
               value={this.state.tmpRentab}
               onValueChange={(value) => this.setState({ tmpRentab: value })}
-              onSlidingComplete={(value) => this.setState({ Rentab: value })}
+              onSlidingComplete={(value) => this.setState({ rentab: value })}
             />
             <View style={styles.aposent_viewCentral}>
               <Text style={styles.aposent_txDireita}>{this.state.tmpRentab.toFixed(1)}%</Text>

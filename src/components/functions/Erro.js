@@ -34,6 +34,37 @@ const Erro = {
     descricao: 'Valor de veículos inválido.',
     solucao: 'Tente informar um número sem casas decimais.',
   },
+  e08: {
+    titulo: 'Erro',
+    descricao: 'Valor dos gastos mensais inválido.',
+    solucao: 'Tente informar um valor maior que zero.',
+  },
+  e09: {
+    titulo: 'Erro',
+    descricao: 'Valor para reserva inválido.',
+    solucao: 'Tente rever o valor informado.',
+  },
+  e10: {
+    titulo: 'Erro',
+    descricao: 'Valor da reseva existente inválido.',
+    solucao: 'Tente informar um número sem casas decimais.',
+  },
+  e11: {
+    titulo: 'Erro',
+    descricao: 'Idade para aposentadoria inválida.',
+    solucao: 'Tente informar uma idade superior à atual.',
+  },
+  e12: {
+    titulo: 'Erro',
+    descricao: 'Taxa de rentabilidade inválida.',
+    solucao: 'Tente informar um valor superior a zero.',
+  },
+  e13: {
+    titulo: 'Erro',
+    descricao: 'Valor dedicado a convênio de saúde inválido.',
+    solucao: 'Uma boa saúde é primordial para alcançar seus tão sonhados objetivos. ' + 
+             'Tente informar um valor superior a zero.',
+  },
   t01: {
     titulo: 'Ops',
     descricao: 'O nome informado é curto demais.',
@@ -74,15 +105,10 @@ const Erro = {
     descricao: 'Quantidade de filhos inválida.',
     solucao: 'Certifique-se de ter informado apenas números.',
   },
-  e13: {
-    titulo: '',
-    descricao: '',
-    solucao: '',
-  },
-  e14: {
-    titulo: '',
-    descricao: '',
-    solucao: '',
+  t09: {
+    titulo: 'Ops',
+    descricao: 'É importante garantir seu futuro.',
+    solucao: 'Informe uma disponiblidade mensal para sua aposentadoria.',
   },
 };
 

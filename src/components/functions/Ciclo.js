@@ -33,7 +33,6 @@
 // ReservaPrev  = Reserva existente em plano previdenciário privado
 // IdadeAposent = Idade desejada para aposentadoria (em anos)
 // Rentab       = Taxa de Rentabilidade (% a.a.)
-// SugestReserv = Sugestão de reserva mensal
 // 
 // - Segurança
 // Saude        = Gasto mensal com convênios de saúde/odontolôgico/funerário
@@ -88,10 +87,18 @@
 // - sugestaoLimSeg (nihil)
 //       Retorna sugestão de limite mensal para aplicação em seguridade.
 // 
-// - comprometSeg (nihil)
-//       Retorna o percentual de comprometimento da renda líquida com itens de 
-//       seguridade.
+// - seguroVida (nihil)
+//       Retorna o valor alvo de gastos mensais em relação a seguro de vida com cobertura
+//       de 24 salários brutos.
 // 
+// - seguroImoveis (nihil)
+//       Retorna o valor alvo de gastos mensais em relação a seguro de imoveis com cobertura
+//       do patrimonio informado.
+//
+// - seguroAuto (nihil)
+//       Retorna o valor alvo de gastos mensais em relação a seguro auto com cobertura
+//       do patriomônio informado.
+//
 // - patrimonioProt (nihil)
 //       Retorna o valor total do patrimônio protegido de acordo com as coberturas 
 //       registradas em seguridade.
@@ -212,20 +219,68 @@ export default class Ciclo {
     return this;
   }
 
-  sugestaoReserva() {
-    return this;
+  // SugestReserv
+  sugestReserv() {
+    // Executa o cálculo de faixa etária, que atribui automaticamente o atributo SugestReserv
+    this.faixaEtaria();
+    return this.SugestReserv;
   }
 
   sugestaoLimSeg() {
-    return this;
+    if (this.SalLiq > 0) {
+      const segur = this.getSalLiq() * 0.3;
+      return parseInt(segur, 10);
+    }
+    return 0;
   }
 
-  comprometSeg() {
-    return this;
+  coberturaVida() {
+    if (this.getSalLiq() > 0) {
+      return parseInt(this.getSalLiq() * 24, 10);
+    }
+    return 0;
   }
 
-  patrimonioProt() {
-    return this;
+  seguroVida() {
+    if (this.getSalLiq() > 0) {
+      const patr = this.coberturaVida();
+      const premio = patr * 0.0016;
+
+      return parseInt(premio, 10);
+    }
+    return 0;
+  }
+
+  seguroImoveis() {
+    if (this.getImoveis() > 0) {
+      const patr = this.getImoveis();
+      const premio = (patr * 0.003) / 10;
+
+      return parseInt(premio, 10);
+    }
+    return 0;
+  }
+
+  seguroAuto() {
+    if (this.getVeiculos() > 0) {
+      const patr = this.getVeiculos();
+      const premio = (patr * 0.05) / 10;
+
+      return parseInt(premio, 10);
+    }
+    return 0;
+  }
+
+  patrimonioProt(convenio) {
+    if (this.getSalLiq() > 0) {
+      const vida = this.coberturaVida();
+      const imoveis = this.getImoveis();
+      const auto = this.getVeiculos();
+      const soma = vida + imoveis + auto + convenio;
+
+      return parseInt(soma, 10);
+    }
+    return 0;
   }
 
   imovelInvest() {
@@ -384,11 +439,16 @@ export default class Ciclo {
 
   // Getter e Setter - Gasto
   getGasto() {
-    return this.Gasto;
+    if (this.gasto) {
+      return this.Gasto;
+    }
+    return 0;
   }
   setGasto(str) {
-    if (str) {
+    if (str > 0) {
       this.Gasto = str;
+    } else {
+      throw Erro.e08;
     }
   }
 
@@ -400,8 +460,10 @@ export default class Ciclo {
     return 0;
   }
   setReserva(str) {
-    if (str) {
+    if (str >= 0) {
       this.Reserva = str;
+    } else {
+      throw Erro.e09;
     }
   }
 
@@ -410,8 +472,10 @@ export default class Ciclo {
     return this.Disponib;
   }
   setDisponib(str) {
-    if (str) {
+    if (str > 0) {
       this.Disponib = str;
+    } else {
+      throw Erro.t09;
     }
   }
 
@@ -420,8 +484,10 @@ export default class Ciclo {
     return this.ReservaPrev;
   }
   setReservaPrev(str) {
-    if (str) {
+    if (str >= 0) {
       this.ReservaPrev = str;
+    } else {
+      throw Erro.e10;
     }
   }
 
@@ -430,8 +496,11 @@ export default class Ciclo {
     return this.IdadeAposent;
   }
   setIdadeAposent(str) {
-    if (str) {
+    const idadeAtual = this.idadeAtual();
+    if (str >= idadeAtual) {
       this.IdadeAposent = str;
+    } else {
+      throw Erro.e11;
     }
   }
 
@@ -440,20 +509,10 @@ export default class Ciclo {
     return this.Rentab;
   }
   setRentab(str) {
-    if (str) {
+    if (str > 0) {
       this.Rentab = str;
-    }
-  }
-
-  // Getter e Setter - SugestReserv
-  getSugestReserv() {
-    // Executa o cálculo de faixa etária, que atribui automaticamente o atributo SugestReserv
-    this.faixaEtaria();
-    return this.SugestReserv;
-  }
-  setSugestReserv(str) {
-    if (str) {
-      this.SugestReserv = str;
+    } else {
+      throw Erro.e12;
     }
   }
 
@@ -462,8 +521,14 @@ export default class Ciclo {
     return this.Saude;
   }
   setSaude(str) {
-    if (str) {
+    console.log(str);
+    if (str > 0) {
       this.Saude = str;
+      console.log('sim');
+    } else {
+      console.log('nao');
+      console.log(Erro.e13);
+      throw Erro.e13;
     }
   }
 

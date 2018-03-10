@@ -311,7 +311,41 @@ const styles = StyleSheet.create({
     width: '70%',
     height: 40,
   },
-  aposent_Input: {
+  aposent_input: {
+    width: '100%',
+    height: 30,
+    borderBottomWidth: 1,
+    borderBottomColor: '#AAA', //#5BA849
+    paddingHorizontal: 5,
+  },
+  //***********************************
+  //* SEGURANCA_SCREEN                *
+  //***********************************
+  segur_txDireita: {
+    width: '100%',
+    alignSelf: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  segur_txValor: {
+    width: '30%',
+    alignSelf: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  segur_lbSeguridade: {
+    width: '70%',
+  },
+  segur_lbCalculo: {
+    alignSelf: 'center',
+    textAlignVertical: 'center',
+    textAlign: 'center',
+  },
+  segur_lbTotal: {
+    height: 30,
+    fontWeight: 'bold',
+  },
+  segur_input: {
     width: '100%',
     height: 30,
     borderBottomWidth: 1,
