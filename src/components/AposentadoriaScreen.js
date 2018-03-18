@@ -236,6 +236,7 @@ export default class AposentadoriaScreen extends React.Component {
               keyboardType='numeric'
               maxLength={10}
               autoCorrect={false}
+              selectTextOnFocus
               underlineColorAndroid='#EAEAEA'
               onChangeText={(text) => this.setState({ reservaPrev: desmonetizar(text) })}
               value={monetizar(this.state.reservaPrev)}

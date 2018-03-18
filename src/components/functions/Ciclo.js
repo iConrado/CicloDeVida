@@ -102,6 +102,12 @@
 // - patrimonioProt (nihil)
 //       Retorna o valor total do patrimônio protegido de acordo com as coberturas 
 //       registradas em seguridade.
+//
+// - planoImovel (nihil)
+//       Retorna o valor da parcela sugerida para investimento em imóvel.
+//
+// - planoAuto (nihil)
+//       Retorna o valor da parcela sugerida para investimento em automóvel.
 // 
 // - imovelInvest (nihil)
 //       Retorna o valor de imóvel para investimento de acordo com um prazo pré-
@@ -283,12 +289,40 @@ export default class Ciclo {
     return 0;
   }
 
+  planoImovel() {
+    if (this.getSalLiq() > 0) {
+      const plano = this.getSalLiq() * 0.1;
+
+      return parseInt(plano, 10);
+    }
+    return 0;
+  }
+
+  planoAuto() {
+    if (this.getSalLiq() > 0) {
+      const plano = this.getSalLiq() * 0.1;
+
+      return parseInt(plano, 10);
+    }
+    return 0;
+  }
+
   imovelInvest() {
-    return this;
+    if (this.planoImovel() > 0) {
+      const invest = this.planoImovel() * 180; // plano de 15 anos
+
+      return parseInt(invest, 10);
+    }
+    return 0;
   }
 
   autoInvest() {
-    return this;
+    if (this.planoAuto() > 0) {
+      const invest = this.planoAuto() * 84; // plano de 7 anos
+
+      return parseInt(invest, 10);
+    }
+    return 0;
   }
 
   resultadoGrafico() {
@@ -524,10 +558,7 @@ export default class Ciclo {
     console.log(str);
     if (str > 0) {
       this.Saude = str;
-      console.log('sim');
     } else {
-      console.log('nao');
-      console.log(Erro.e13);
       throw Erro.e13;
     }
   }

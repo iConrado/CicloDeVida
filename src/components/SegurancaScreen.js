@@ -143,7 +143,6 @@ export default class SegurancaScreen extends React.Component {
 
         <View style={styles.espacador} />
         <View style={styles.separador} />
-        <View style={styles.espacador} />
 
         <View style={styles.viewHorizontal}>
           <View style={styles.viewIcone}>
@@ -161,6 +160,7 @@ export default class SegurancaScreen extends React.Component {
                 keyboardType='numeric'
                 maxLength={10}
                 autoCorrect={false}
+                selectTextOnFocus
                 underlineColorAndroid='#EAEAEA'
                 onChangeText={(text) => this.setState({ saude: desmonetizar(text) })}
                 value={monetizar(this.state.saude)}
@@ -168,14 +168,23 @@ export default class SegurancaScreen extends React.Component {
             </View>
           </View>
         </View>
-
-        <View style={styles.espacador} />
         <View style={styles.separador} />
         <View style={styles.espacador} />
 
-        <Text style={styles.label}>Seguros (valor por mês)</Text>
-
-        <View style={styles.espacador} />
+        <View style={styles.viewVertical}>
+          <View style={styles.viewHorizontal}>
+            <View style={styles.segur_viewEsquerda} />
+            <View style={styles.viewPosIcone}>
+              <View style={styles.viewHorizontal}>
+                <Text style={[styles.label, styles.segur_lbSeguridade]}>
+                  Seguros
+                </Text>
+                <Text style={styles.segur_txValor}>Valor mensal</Text>
+                <Text style={styles.segur_txValor}>Patrimonio protegido</Text>
+              </View>
+            </View>
+          </View>
+        </View>
 
         <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>
@@ -187,8 +196,11 @@ export default class SegurancaScreen extends React.Component {
             </View>
             <View style={styles.viewPosIcone}>
               <View style={styles.viewHorizontal}>
-                <Text style={[styles.label, styles.lbSeguridade]}>Vida (24x salário bruto):</Text>
+                <Text style={[styles.label, styles.segur_lbSeguridade]}>
+                  Vida (24x salário bruto):
+                </Text>
                 <Text style={styles.segur_txValor}>{monetizar(this.calculaVida())}</Text>
+                <Text style={styles.segur_txValor}>{monetizar(C.getSalLiq() * 24)}</Text>
               </View>
             </View>
           </View>
@@ -204,8 +216,9 @@ export default class SegurancaScreen extends React.Component {
             </View>
             <View style={styles.viewPosIcone}>
               <View style={styles.viewHorizontal}>
-                <Text style={[styles.label, styles.lbSeguridade]}>Residencial:</Text>
+                <Text style={[styles.label, styles.segur_lbSeguridade]}>Residencial:</Text>
                 <Text style={styles.segur_txValor}>{monetizar(this.calculaImoveis())}</Text>
+                <Text style={styles.segur_txValor}>{monetizar(C.getImoveis())}</Text>
               </View>
             </View>
           </View>
@@ -221,8 +234,9 @@ export default class SegurancaScreen extends React.Component {
             </View>
             <View style={styles.viewPosIcone}>
               <View style={styles.viewHorizontal}>
-                <Text style={[styles.label, styles.lbSeguridade]}>Auto:</Text>
+                <Text style={[styles.label, styles.segur_lbSeguridade]}>Auto:</Text>
                 <Text style={styles.segur_txValor}>{monetizar(this.calculaAuto())}</Text>
+                <Text style={styles.segur_txValor}>{monetizar(C.getVeiculos())}</Text>
               </View>
             </View>
           </View>
@@ -234,7 +248,7 @@ export default class SegurancaScreen extends React.Component {
         <View style={styles.viewHorizontal}>
           <View style={styles.viewCompHoriz}>
             <Text style={[styles.segur_lbCalculo, styles.label, styles.segur_lbTotal]}>
-              Comprometimento total:
+              Comprometimento com segurança:
             </Text>
           </View>
           <View style={styles.viewCompHoriz}>

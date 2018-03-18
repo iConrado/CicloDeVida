@@ -8,14 +8,14 @@ const styles = StyleSheet.create({
     //flex: 1, // Não permite a scroolview rolar a tela
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    paddingTop: 10,
+    paddingTop: 5,
     paddingBottom: 20,
     paddingHorizontal: 10,
   },
   viewTitulo: {
     width: '100%',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 5,
   },
   viewBotoes: {
     width: '100%',
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     color: '#14567A',
+    textAlign: 'center',
   },
   label: {
     color: '#666',
@@ -321,6 +322,9 @@ const styles = StyleSheet.create({
   //***********************************
   //* SEGURANCA_SCREEN                *
   //***********************************
+  segur_viewEsquerda: {
+    width: 40,
+  },
   segur_txDireita: {
     width: '100%',
     alignSelf: 'center',
@@ -334,7 +338,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
   },
   segur_lbSeguridade: {
-    width: '70%',
+    width: '40%',
   },
   segur_lbCalculo: {
     alignSelf: 'center',
@@ -342,7 +346,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   segur_lbTotal: {
-    height: 30,
+    height: 35,
     fontWeight: 'bold',
   },
   segur_input: {
@@ -351,6 +355,20 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#AAA', //#5BA849
     paddingHorizontal: 5,
+  },
+  //***********************************
+  //* CONSUMO_SCREEN                *
+  //***********************************
+  consumo_viewLabel: {
+    width: '70%',
+  },
+  consumo_viewValor: {
+    width: '30%',
+  },
+  consumo_txValor: {
+    alignSelf: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
 });
 

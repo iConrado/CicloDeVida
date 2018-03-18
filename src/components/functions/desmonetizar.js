@@ -1,7 +1,13 @@
 
 const desmonetizar = (quantia) => {
   const filtro = quantia.replace('.', '').replace(',', '');
-  const num = parseInt(filtro.substring(3, 12), 10);
+  let num;
+  if (Number.isNaN(parseFloat(filtro))) {
+    num = parseInt(filtro.substring(3, 12), 10);
+  } else {
+    num = parseInt(filtro, 10);
+  }
+
   if (Number.isInteger(num)) {
     return num;
   }
