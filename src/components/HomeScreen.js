@@ -21,6 +21,9 @@ import monetizar from './functions/monetizar';
 import validaEmail from './functions/validaEmail';
 import Ciclo from './functions/Ciclo';
 
+import SliderFilhos from './home/SliderFilhos';
+import SliderSalario from './home/SliderSalario';
+
 const C = new Ciclo();
 let objErro = {};
 
@@ -46,6 +49,9 @@ export default class HomeScreen extends React.Component {
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+
+    this.defFilhos = this.defFilhos.bind(this);
+    this.defSalario = this.defSalario.bind(this);
   }
 
   componentWillMount() {
@@ -81,6 +87,14 @@ export default class HomeScreen extends React.Component {
     objErro = {};
   }
   //************************************************************
+
+  defFilhos(valor) {
+    this.setState({ filhos: valor });
+  }
+
+  defSalario(valor) {
+    this.setState({ salLiq: valor });
+  }
 
   proxTela(tela) {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
@@ -242,23 +256,12 @@ export default class HomeScreen extends React.Component {
             </View>
           </View>
         </View>
-        <View style={styles.viewVertical}>
-          <Text style={styles.label}>Filhos:</Text>
-          <View style={styles.viewHorizontal}>
-            <Slider 
-              style={styles.home_slFilhos}
-              minimumValue={0}
-              maximumValue={10}
-              step={1}
-              minimumTrackTintColor='#14567A'
-              thumbTintColor='#14567A'
-              value={this.state.filhos}
-              onValueChange={(value) => this.setState({ filhos: value })}
-            />
-            <Text style={styles.home_txFilhos}>{this.state.filhos}</Text>
-          </View>
-        </View>
-        {/*Teste com salário com slider*/}
+
+        <SliderFilhos
+          inicial={this.state.filhos}
+          retorno={this.defFilhos}
+        />
+
         <View style={styles.viewVertical}>
           <Text style={styles.label}>Início da carreira:</Text>
           <DatePicker
@@ -280,22 +283,12 @@ export default class HomeScreen extends React.Component {
             onDateChange={(iniCarr) => { this.setState({ iniCarr }); }}
           />
         </View>
-        <View style={styles.viewVertical}>
-          <Text style={styles.label}>Salário Bruto:</Text>
-          <View style={styles.viewHorizontal}>
-              <Slider 
-                style={styles.home_slSalLiq}
-                minimumValue={0}
-                maximumValue={50000}
-                step={100}
-                minimumTrackTintColor='#14567A'
-                thumbTintColor='#14567A'
-                value={this.state.salLiq}
-                onValueChange={(value) => this.setState({ salLiq: value })}
-              />
-            <Text style={styles.home_txSalLiq}>{monetizar(this.state.salLiq)}</Text>
-          </View>
-        </View>
+
+        <SliderSalario
+          inicial={this.state.salLiq}
+          retorno={this.defSalario}
+        />
+
         {/*Código antigo - salário em TextInput*/}
         {/*<View style={styles.viewHorizontal}>
           <View style={styles.viewCompHoriz}>

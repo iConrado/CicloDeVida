@@ -16,7 +16,10 @@ import Controle from './functions/Controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
 
-const imgMoney = require('../imgs/ic_money_white.png');
+import SliderInvestimentos from './patrimonio/SliderInvestimentos';
+import SliderImoveis from './patrimonio/SliderImoveis';
+import SliderVeiculos from './patrimonio/SliderVeiculos';
+
 const imgHome = require('../imgs/ic_home_white.png');
 const imgCar = require('../imgs/ic_car_white.png');
 
@@ -39,12 +42,13 @@ export default class PatrimonioScreen extends React.Component {
       invest: 0,
       imoveis: 0,
       veiculos: 0,
-      tmpInvest: 0,
-      tmpImoveis: 0,
-      tmpVeiculos: 0, 
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+
+    this.defInvest = this.defInvest.bind(this);
+    this.defImoveis = this.defImoveis.bind(this);
+    this.defVeiculos = this.defVeiculos.bind(this);
   }
 
   componentWillMount() {
@@ -113,6 +117,18 @@ export default class PatrimonioScreen extends React.Component {
     return (<Text style={styles.txValor}>{(percPatr * 100).toFixed(1).replace('.', ',')}%</Text>);
   }
 
+  defInvest(valor) {
+    this.setState({ invest: valor });
+  }
+
+  defImoveis(valor) {
+    this.setState({ imoveis: valor });
+  }
+
+  defVeiculos(valor) {
+    this.setState({ veiculos: valor });
+  }
+
   proxTela(tela) {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
@@ -147,88 +163,31 @@ export default class PatrimonioScreen extends React.Component {
         <View style={styles.viewTitulo}>
           <Text style={styles.titulo}>Patrimônio</Text>
         </View>
+
         {/*View Investimento*/}
-        <View style={styles.viewVertical}>
-          <Text style={styles.label}>Investimentos (aplicações, poupança, etc):</Text>
-          <View style={styles.viewHorizontal}>
-            <View style={styles.viewIcone}>
-              <Image 
-                style={styles.imgIcone}
-                source={imgMoney}
-              />
-            </View>
-            <View style={styles.viewPosIcone}>
-              <Slider
-                style={styles.patrim_slIcone}
-                minimumValue={0}
-                maximumValue={2000000}
-                step={5000}
-                minimumTrackTintColor='#14567A'
-                thumbTintColor='#14567A'
-                value={this.state.tmpInvest}
-                onValueChange={(value) => this.setState({ tmpInvest: value })}
-                onSlidingComplete={(value) => this.setState({ invest: value })}
-              />
-              <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpInvest)}</Text>
-            </View>
-          </View>
-        </View>
+        <SliderInvestimentos 
+          inicial={this.state.invest}
+          retorno={this.defInvest}
+        />
+
         {/*View Imóveis*/}
-        <View style={[styles.viewVertical, styles.espacador]}>
-          <Text style={styles.label}>Imóveis (valor total - financiados ou não):</Text>
-          <View style={styles.viewHorizontal}>
-            <View style={styles.viewIcone}>
-              <Image 
-                style={styles.imgIcone}
-                source={imgHome}
-              />
-            </View>
-            <View style={styles.viewPosIcone}>
-              <Slider
-                style={styles.patrim_slIcone}
-                minimumValue={0}
-                maximumValue={5000000}
-                step={10000}
-                minimumTrackTintColor='#14567A'
-                thumbTintColor='#14567A'
-                value={this.state.tmpImoveis}
-                onValueChange={(value) => this.setState({ tmpImoveis: value })}
-                onSlidingComplete={(value) => this.setState({ imoveis: value })}
-              />
-              <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpImoveis)}</Text>
-            </View>
-          </View>
-        </View>
-      {/*View Veículos*/}
-        <View style={[styles.viewVertical, styles.espacador]}>
-          <Text style={styles.label}>Veículos (valor total - financiados ou não):</Text>
-          <View style={styles.viewHorizontal}>
-            <View style={styles.viewIcone}>
-              <Image 
-                style={styles.imgIcone}
-                source={imgCar}
-              />
-            </View>
-            <View style={styles.viewPosIcone}>
-              <Slider
-                style={styles.patrim_slIcone}
-                minimumValue={0}
-                maximumValue={500000}
-                step={2000}
-                minimumTrackTintColor='#14567A'
-                thumbTintColor='#14567A'
-                value={this.state.tmpVeiculos}
-                onValueChange={(value) => this.setState({ tmpVeiculos: value })}
-                onSlidingComplete={(value) => this.setState({ veiculos: value })}
-              />
-              <Text style={styles.patrim_txIcone}>{monetizar(this.state.tmpVeiculos)}</Text>
-            </View>
-          </View>
-        </View>
+        <SliderImoveis
+          inicial={this.state.imoveis}
+          retorno={this.defImoveis}
+        />
+
+        {/*View Veículos*/}
+        <SliderVeiculos
+          inicial={this.state.veiculos}
+          retorno={this.defVeiculos}
+        />
+
         <View style={styles.espacador} />
+
         {/*View Calculos*/}
         <View style={styles.separador} />
         <View style={styles.espacador} />
+
         <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>
             <View style={styles.viewCompHoriz}>
@@ -255,7 +214,9 @@ export default class PatrimonioScreen extends React.Component {
             </View>
           </View>
         </View>
+
         <View style={styles.espacador} />
+
         <View style={styles.viewBotoes}>
           <TouchableOpacity 
             style={styles.botao}

@@ -1,18 +1,18 @@
 import React from 'react';
 import { 
-  StyleSheet, 
   ScrollView, 
   View, 
   Text, 
   Button } from 'react-native';
 
+import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import EstiloVoltar from './functions/EstiloVoltar';
-import Controle from './functions/Controle';
-import Ciclo from './functions/Ciclo';
+//import Controle from './functions/Controle';
+//import Ciclo from './functions/Ciclo';
 
-const C = new Ciclo();
-let objErro = {};
+//const C = new Ciclo();
+//let objErro = {};
 
 export default class ResultadoScreen extends React.Component {
   static navigationOptions = { //eslint-disable-line
@@ -27,12 +27,12 @@ export default class ResultadoScreen extends React.Component {
     this.state = {
       modalErro: false, 
     };
-    this.fechaErro = this.fechaErro.bind(this);
-    this.abreErro = this.abreErro.bind(this);
+    //this.fechaErro = this.fechaErro.bind(this);
+    //this.abreErro = this.abreErro.bind(this);
   }
 
   abreErro(e, tipo) {
-    objErro = e;
+    //objErro = e;
     this.setState({ modalErro: true });
     switch (tipo) {
       case 0:
@@ -45,7 +45,7 @@ export default class ResultadoScreen extends React.Component {
 
   fechaErro() {
     this.setState({ modalErro: false });
-    objErro = {};
+    //objErro = {};
   }
 
   render() {
@@ -55,25 +55,8 @@ export default class ResultadoScreen extends React.Component {
         contentContainerStyle={styles.container}
       >
         <Text>Resultado</Text>
-        <Button 
-          title='Recomeçar'
-          onPress={() => goBack({ routeName: 'Home' })}
-        />
+        
       </ScrollView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  scroll: {
-    flex: 1
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    paddingTop: 10,
-    paddingBottom: 20,
-    paddingHorizontal: 10,
-  },
-});

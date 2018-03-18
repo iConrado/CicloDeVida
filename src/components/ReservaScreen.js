@@ -4,7 +4,6 @@ import {
   View, 
   Text, 
   TouchableOpacity } from 'react-native';
-import Slider from 'react-native-slider';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
@@ -14,6 +13,9 @@ import Controle from './functions/Controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
 import desmonetizar from './functions/desmonetizar';
+
+import SliderGasto from './reserva/SliderGasto';
+import SliderReserva from './reserva/SliderReserva';
 
 const C = new Ciclo();
 let objErro = {};
@@ -32,11 +34,12 @@ export default class ReservaScreen extends React.Component {
       modalErro: false, 
       gasto: 0,
       reserva: C.getReserva() === 0 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
-      tmpGasto: 0,
-      tmpReserva: C.getReserva() === 0 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+
+    this.defGasto = this.defGasto.bind(this);
+    this.defReserva = this.defReserva.bind(this);
   }
 
   abreErro(e, tipo) {
@@ -122,6 +125,14 @@ export default class ReservaScreen extends React.Component {
     );
   }
 
+  defGasto(valor) {
+    this.setState({ gasto: valor });
+  }
+
+  defReserva(valor) {
+    this.setState({ reserva: valor });
+  }
+
   proxTela(tela) {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
@@ -153,27 +164,12 @@ export default class ReservaScreen extends React.Component {
         <View style={styles.viewTitulo}>
           <Text style={styles.titulo}>Reserva de Emergência</Text>
         </View>
-        <View style={styles.viewVertical}>
-          <View style={styles.viewHorizontal}>
-            <Text style={styles.label}>Informe seu gasto mensal: </Text>
-          </View>
-          <View style={styles.viewHorizontal}>
-            <Slider
-              style={styles.reserva_slider}
-              minimumValue={0}
-              maximumValue={C.getSalLiq()}
-              step={100}
-              minimumTrackTintColor='#14567A'
-              thumbTintColor='#14567A'
-              value={this.state.tmpGasto}
-              onValueChange={(value) => this.setState({ tmpGasto: value })}
-              onSlidingComplete={(value) => this.setState({ gasto: value })}
-            />
-            <View style={styles.reserva_viewCentral}>
-              <Text style={styles.reserva_txDireita}>{monetizar(this.state.tmpGasto)}</Text>
-            </View>
-          </View>
-        </View>
+
+        <SliderGasto 
+          inicial={this.state.gasto}
+          retorno={this.defGasto} 
+        />
+
         <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>
             <Text style={[styles.label, styles.reserva_lbGasto]}>
@@ -184,6 +180,7 @@ export default class ReservaScreen extends React.Component {
             </View>
           </View>
         </View>
+
         <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>
             <Text style={[styles.label, styles.reserva_lbGasto]}>Poupança (12x gastos):</Text>
@@ -192,33 +189,16 @@ export default class ReservaScreen extends React.Component {
             </View>
           </View>
         </View>
-        <View style={styles.viewVertical}>
-          <View style={styles.viewHorizontal}>
-            <Text style={styles.label}>Faça sua reserva (sugestão 10%): </Text>
-          </View>
-          <View style={styles.viewHorizontal}>
-            <Slider
-              style={styles.reserva_slider}
-              minimumValue={0}
-              maximumValue={Number.parseInt(C.getSalLiq() * 0.3, 10)}
-              step={50}
-              minimumTrackTintColor='#14567A'
-              thumbTintColor='#14567A'
-              value={this.state.tmpReserva}
-              onValueChange={(value) => this.setState({ tmpReserva: value })}
-              onSlidingComplete={(value) => this.setState({ reserva: value })}
-            />
-            <View style={styles.reserva_viewCentral}>
-              <Text style={styles.reserva_txDireita}>
-                {this.percentualRenda(this.state.tmpReserva)}%
-              </Text>
-              <Text style={styles.reserva_txDireita}>{monetizar(this.state.tmpReserva)}</Text>
-            </View>
-          </View>
-        </View>
+
+        <SliderReserva 
+          inicial={this.state.reserva}
+          retorno={this.defReserva} 
+        />
+
         <View style={styles.espacador} />
         <View style={styles.separador} />
         <View style={styles.espacador} />
+
         <View style={styles.viewVertical}>
           <View style={styles.viewHorizontal}>
             <View style={styles.reserva_viewCalculo}>
@@ -231,6 +211,7 @@ export default class ReservaScreen extends React.Component {
             </View>
           </View>
         </View>
+
         <View style={styles.viewVertical}>
           <View style={styles.espacador} />
           <View style={styles.viewHorizontal}>
@@ -242,7 +223,9 @@ export default class ReservaScreen extends React.Component {
             </View>
           </View>
         </View>
+
         <View style={styles.espacador} />
+
         <View style={styles.viewBotoes}>
           <TouchableOpacity 
             style={styles.botao}

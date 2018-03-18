@@ -6,8 +6,6 @@ import {
   Text, 
   TextInput,
   TouchableOpacity } from 'react-native';
-import Slider from 'react-native-slider';
-//import moment from 'moment';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
@@ -17,6 +15,10 @@ import Controle from './functions/Controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
 import desmonetizar from './functions/desmonetizar';
+
+import SliderTaxa from './aposentadoria/SliderTaxa';
+import SliderIdade from './aposentadoria/SliderIdade';
+import SliderDisponib from './aposentadoria/SliderDisponib';
 
 const star = require('../imgs/ic_stars_white.png');
 
@@ -39,12 +41,13 @@ export default class AposentadoriaScreen extends React.Component {
       reservaPrev: 0,
       idadeAposent: 50,
       rentab: 0,
-      tmpDisponib: Math.ceil(this.rendaPercentual() / 50) * 50,
-      tmpIdadeAposent: 50,
-      tmpRentab: 0,
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+
+    this.defRentab = this.defRentab.bind(this);
+    this.defIdadeAposent = this.defIdadeAposent.bind(this);
+    this.defDisponib = this.defDisponib.bind(this);
   }
 
   abreErro(e, tipo) {
@@ -133,6 +136,18 @@ export default class AposentadoriaScreen extends React.Component {
     return parseInt(reservaTotal, 10);
   }
 
+  defRentab(valor) {
+    this.setState({ rentab: valor });
+  }
+
+  defIdadeAposent(valor) {
+    this.setState({ idadeAposent: valor });
+  }
+
+  defDisponib(valor) {
+    this.setState({ disponib: valor });
+  }
+
   proxTela(tela) {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
@@ -203,30 +218,10 @@ export default class AposentadoriaScreen extends React.Component {
           <Text style={styles.aposent_vinheta}>Faça seu cálculo</Text>
         </View>
 
-        <View style={styles.viewVertical}>
-          <View style={styles.viewHorizontal}>
-            <Text style={styles.label}>Sua disponibilidade mensal: </Text>
-          </View>
-          <View style={styles.viewHorizontal}>
-            <Slider
-              style={styles.aposent_slider}
-              minimumValue={0}
-              maximumValue={Number.parseInt(C.getSalLiq() * 0.3, 10)}
-              step={50}
-              minimumTrackTintColor='#14567A'
-              thumbTintColor='#14567A'
-              value={this.state.tmpDisponib}
-              onValueChange={(value) => this.setState({ tmpDisponib: value })}
-              onSlidingComplete={(value) => this.setState({ disponib: value })}
-            />
-            <View style={styles.aposent_viewCentral}>
-              <Text style={styles.aposent_txDireita}>
-                {this.percentualRenda(this.state.tmpDisponib)}%
-              </Text>
-              <Text style={styles.aposent_txDireita}>{monetizar(this.state.tmpDisponib)}</Text>
-             </View>
-          </View>
-        </View>
+        <SliderDisponib 
+          inicial={this.state.disponib}
+          retorno={this.defDisponib} 
+        />
 
         <View style={styles.viewVertical}>
           <Text style={styles.label}>Reserva existente em plano previdenciário privado:</Text>
@@ -249,50 +244,16 @@ export default class AposentadoriaScreen extends React.Component {
           <Text style={styles.label}>Simulação</Text>
         </View>
 
-        <View style={styles.viewVertical}>
-          <View style={styles.viewHorizontal}>
-            <Text style={styles.label}>Idade desejada para aposentadoria (em anos):</Text>
-          </View>
-          <View style={styles.viewHorizontal}>
-            <Slider
-              style={styles.aposent_slider}
-              minimumValue={C.idadeAtual()}
-              maximumValue={80}
-              step={1}
-              minimumTrackTintColor='#14567A'
-              thumbTintColor='#14567A'
-              value={this.state.tmpIdadeAposent}
-              onValueChange={(value) => this.setState({ tmpIdadeAposent: value })}
-              onSlidingComplete={(value) => this.setState({ idadeAposent: value })}
-            />
-            <View style={styles.aposent_viewCentral}>
-              <Text style={styles.aposent_txDireita}>{this.state.tmpIdadeAposent}</Text>
-            </View>
-          </View>
-        </View>
+        <SliderIdade 
+          inicial={this.state.idadeAposent}
+          retorno={this.defIdadeAposent} 
+        />
 
-        <View style={styles.viewVertical}>
-          <View style={styles.viewHorizontal}>
-            <Text style={styles.label}>Taxa de rentabilidade estimada (a.a.):</Text>
-          </View>
-          <View style={styles.viewHorizontal}>
-            <Slider
-              style={styles.aposent_slider}
-              minimumValue={0}
-              maximumValue={20}
-              step={0.1}
-              minimumTrackTintColor='#14567A'
-              thumbTintColor='#14567A'
-              value={this.state.tmpRentab}
-              onValueChange={(value) => this.setState({ tmpRentab: value })}
-              onSlidingComplete={(value) => this.setState({ rentab: value })}
-            />
-            <View style={styles.aposent_viewCentral}>
-              <Text style={styles.aposent_txDireita}>{this.state.tmpRentab.toFixed(1)}%</Text>
-            </View>
-          </View>
-        </View>
-
+        <SliderTaxa 
+          inicial={this.state.rentab}
+          retorno={this.defRentab} 
+        />
+        
         <View style={styles.separador} />
 
         <View style={styles.viewVertical}>
