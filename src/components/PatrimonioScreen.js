@@ -3,10 +3,8 @@ import {
   ScrollView, 
   View, 
   Text, 
-  Image,
   TouchableOpacity,
 } from 'react-native';
-import Slider from 'react-native-slider';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
@@ -20,12 +18,10 @@ import SliderInvestimentos from './patrimonio/SliderInvestimentos';
 import SliderImoveis from './patrimonio/SliderImoveis';
 import SliderVeiculos from './patrimonio/SliderVeiculos';
 
-const imgHome = require('../imgs/ic_home_white.png');
-const imgCar = require('../imgs/ic_car_white.png');
-
 const C = new Ciclo();
 let patrForm = 0;
 let objErro = {};
+const tmpComprometimento = [];
 
 export default class PatrimonioScreen extends React.Component {
   static navigationOptions = { //eslint-disable-line
@@ -42,6 +38,7 @@ export default class PatrimonioScreen extends React.Component {
       invest: 0,
       imoveis: 0,
       veiculos: 0,
+      comprometimento: 0,
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
@@ -52,7 +49,7 @@ export default class PatrimonioScreen extends React.Component {
   }
 
   componentWillMount() {
-
+    this.comprometimentoAtual();
   }
 
   abreErro(e, tipo) {
@@ -129,6 +126,14 @@ export default class PatrimonioScreen extends React.Component {
     this.setState({ veiculos: valor });
   }
 
+  comprometimentoAtual() {
+    if (tmpComprometimento[0] !== undefined) {
+      const valor = tmpComprometimento.reduce((prevVal, elem) => prevVal + elem);
+      const compr = C.comprometimentoAtual('Patrimonio', valor);
+      this.setState({ comprometimento: compr });
+    }
+  }
+
   proxTela(tela) {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
@@ -149,83 +154,99 @@ export default class PatrimonioScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView 
-        style={styles.scroll}
-        contentContainerStyle={styles.container}
-      >
-        {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-        <ModalErro 
-          visivel={this.state.modalErro}
-          fechar={this.fechaErro}
-          objErro={objErro}
-        />
-        {/* **************************************************************************** */}
-        <View style={styles.viewTitulo}>
-          <Text style={styles.titulo}>Patrimônio</Text>
-        </View>
+      <View style={styles.tela}>
+        <ScrollView 
+          style={styles.scroll}
+          contentContainerStyle={styles.container}
+        >
+          {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
+          <ModalErro 
+            visivel={this.state.modalErro}
+            fechar={this.fechaErro}
+            objErro={objErro}
+          />
+          {/* **************************************************************************** */}
+          <View style={styles.viewTitulo}>
+            <Text style={styles.titulo}>Patrimônio</Text>
+          </View>
 
-        {/*View Investimento*/}
-        <SliderInvestimentos 
-          inicial={this.state.invest}
-          retorno={this.defInvest}
-        />
+          {/*View Investimento*/}
+          <SliderInvestimentos 
+            inicial={this.state.invest}
+            retorno={this.defInvest}
+          />
 
-        {/*View Imóveis*/}
-        <SliderImoveis
-          inicial={this.state.imoveis}
-          retorno={this.defImoveis}
-        />
+          {/*View Imóveis*/}
+          <SliderImoveis
+            inicial={this.state.imoveis}
+            retorno={this.defImoveis}
+          />
 
-        {/*View Veículos*/}
-        <SliderVeiculos
-          inicial={this.state.veiculos}
-          retorno={this.defVeiculos}
-        />
+          {/*View Veículos*/}
+          <SliderVeiculos
+            inicial={this.state.veiculos}
+            retorno={this.defVeiculos}
+          />
 
-        <View style={styles.espacador} />
+          <View style={styles.espacador} />
 
-        {/*View Calculos*/}
-        <View style={styles.separador} />
-        <View style={styles.espacador} />
+          {/*View Calculos*/}
+          <View style={styles.separador} />
+          <View style={styles.espacador} />
 
-        <View style={styles.viewVertical}>
-          <View style={styles.viewHorizontal}>
-            <View style={styles.viewCompHoriz}>
-              <Text style={styles.label}>Patrimônio formado:</Text>
+          <View style={styles.viewVertical}>
+            <View style={styles.viewHorizontal}>
+              <View style={styles.viewCompHoriz}>
+                <Text style={styles.label}>Patrimônio formado:</Text>
+              </View>
+              <View style={styles.viewCompHoriz}>
+                {this.patrimonioFormado()}
+              </View>
             </View>
-            <View style={styles.viewCompHoriz}>
-              {this.patrimonioFormado()}
+            <View style={[styles.viewHorizontal, styles.espacador]}>
+              <View style={styles.viewCompHoriz}>
+                <Text style={styles.label}>Patrimônio esperado:</Text>
+              </View> 
+              <View style={styles.viewCompHoriz}>
+                {this.patrimonioEsperado()}
+              </View>
+            </View>
+            <View style={[styles.viewHorizontal, styles.espacador]}>
+              <View style={styles.viewCompHoriz}>
+                <Text style={styles.label}>Resultado:</Text>
+              </View>
+              <View style={styles.viewCompHoriz}>
+                {this.percentualPatrimonio()}
+              </View>
             </View>
           </View>
-          <View style={[styles.viewHorizontal, styles.espacador]}>
-            <View style={styles.viewCompHoriz}>
-              <Text style={styles.label}>Patrimônio esperado:</Text>
-            </View> 
-            <View style={styles.viewCompHoriz}>
-              {this.patrimonioEsperado()}
+
+          <View style={styles.espacador} />
+        </ScrollView>
+
+        <View style={styles.viewRodape}>
+          
+          <View style={styles.viewRodapeResumo}>
+            <View style={styles.viewRodapeResumoLabel}>
+              <Text style={styles.rodape}>Comprometimento de renda atual:</Text>
+            </View>
+            <View style={styles.viewRodapeResumoValor}>
+              <Text style={styles.rodape}>{this.state.comprometimento}%</Text>
             </View>
           </View>
-          <View style={[styles.viewHorizontal, styles.espacador]}>
-            <View style={styles.viewCompHoriz}>
-              <Text style={styles.label}>Resultado:</Text>
-            </View>
-            <View style={styles.viewCompHoriz}>
-              {this.percentualPatrimonio()}
-            </View>
+
+          <View style={styles.viewRodapeBotao}>
+            <TouchableOpacity 
+              style={styles.botao}
+              onPress={() => this.proxTela('Reserva')}
+            >
+              <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
+            </TouchableOpacity>
           </View>
-        </View>
 
-        <View style={styles.espacador} />
-
-        <View style={styles.viewBotoes}>
-          <TouchableOpacity 
-            style={styles.botao}
-            onPress={() => this.proxTela('Reserva')}
-          >
-            <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
-          </TouchableOpacity>
         </View>
-      </ScrollView>
+        
+      </View>
     );
   }
 }

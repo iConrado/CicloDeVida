@@ -63,6 +63,10 @@
 //       Deve permitir salvar a consultoria a qualquer momento, independente da 
 //       quantidade de informações registradas.
 // 
+// - comprometimentoAtual (tela)
+//       Retorna o comprometimento da renda baseado no estágio da tela em que o
+//       usuário se encontra. Deve retornar cálculos parciais respectivos.
+//
 // - idadeAtual (nihil)
 //       Retorna a idade atual do usuário (em anos completos).
 // 
@@ -176,6 +180,63 @@ export default class Ciclo {
     }
 
     return 0;
+  }
+
+  comprometimentoAtual(tela, valorAdd) {
+    // calcula o comprometimento com os atributos da tela imediatamente anterior
+    // o valor da tela atual deve ser repassado na assinatura do método via valorAdd
+    let valor = 0;
+    let compr = 0;
+
+    console.log(tela, valor);
+    
+    // switch implementado com base na ordem das telas. caso haja alteração, refatorar
+    if (tela) {
+      switch (tela.toLowerCase()) {
+        case 'resultado': 
+          valor += this.getSalLiq() * 0.1;
+          valor += this.getSalLiq() * 0.1;
+          console.log('resultado', valor);
+
+        case 'consumo': //eslint-disable-line
+          valor += this.getSaude();
+          
+          console.log('consumo', valor);
+
+        case 'seguranca': //eslint-disable-line
+          valor += this.getDisponib();
+
+          valor += this.seguroVida();
+          valor += this.seguroImoveis();
+          valor += this.seguroAuto();
+
+          console.log('seguranca', valor);
+
+        case 'aposentadoria': //eslint-disable-line
+          valor += this.getGasto();
+          valor += this.getReserva();
+          console.log('aposentadoria', this.getGasto());
+
+        case 'reserva': //eslint-disable-line
+          // sem calculos a realizar
+          console.log('reserva', valor);
+
+        case 'patrimonio': //eslint-disable-line
+          // sem calculos a realizar
+          console.log('patrimonio', valor);
+
+        case 'home': //eslint-disable-line
+          // sem calculos a realizar
+          console.log('home', valor);
+          break;
+        default: 
+
+      }
+    }
+
+    compr += this.comprometimentoGasto(valor + valorAdd) * 100;
+    console.log(compr);
+    return parseInt(compr, 10);
   }
 
   idadeAtual() {
@@ -473,7 +534,7 @@ export default class Ciclo {
 
   // Getter e Setter - Gasto
   getGasto() {
-    if (this.gasto) {
+    if (this.Gasto) {
       return this.Gasto;
     }
     return 0;
@@ -488,7 +549,7 @@ export default class Ciclo {
 
   // Getter e Setter - Reserva
   getReserva() {
-    if (this.reserva) {
+    if (this.Reserva) {
       return this.Reserva;
     }
     return 0;

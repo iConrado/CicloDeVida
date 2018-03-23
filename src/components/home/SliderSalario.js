@@ -19,7 +19,7 @@ export default class SliderSalario extends React.Component {
   render() {
     return (
       <View style={styles.viewVertical}>
-        <Text style={styles.label}>Salário Bruto:</Text>
+        <Text style={styles.label}>Salário Líquido:</Text>
         <View style={styles.viewHorizontal}>
             <Slider 
               style={styles.home_slSalLiq}

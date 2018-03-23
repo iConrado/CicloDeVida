@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 // Cabeçalho padrão. EXPORT PADRÃO
 const Cabecalho = (texto) => 
   (<View style={styles.cab}>
-    <Text style={styles.tex}>{texto} 0.1.19</Text>
+    <Text style={styles.tex}>{texto} 0.1.20</Text>
   </View>
 ); 
 

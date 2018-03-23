@@ -1,8 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  tela: {
+    flex: 1,
+  }, 
   scroll: {
-    flex: 1
+    flexShrink: 1
   },
   container: {
     //flex: 1, // Não permite a scroolview rolar a tela
@@ -21,6 +24,33 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginTop: 0,
+  },
+  viewRodape: {
+    flexDirection: 'row',
+    height: 60,
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 0,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  viewRodapeResumo: {
+    flexDirection: 'row',
+    flex: 6,
+    alignItems: 'center',
+    paddingHorizontal: 8,
+  },
+  viewRodapeResumoLabel: {
+    flex: 7,
+    alignItems: 'center',
+  },
+  viewRodapeResumoValor: {
+    flex: 3,
+    alignItems: 'center',
+  },
+  viewRodapeBotao: {
+    flex: 4,
+    alignItems: 'center',
   },
   viewHorizontal: {
     width: '100%',
@@ -85,6 +115,11 @@ const styles = StyleSheet.create({
   label: {
     color: '#666',
   },
+  rodape: {
+    textAlign: 'center',
+    color: '#666',
+    fontWeight: 'bold',
+  },
   espacador: {
     marginTop: 15,
   },
@@ -95,12 +130,11 @@ const styles = StyleSheet.create({
   },
   botao: {
     height: 35,
-    alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     minWidth: '80%',
+    maxWidth: '90%',
     paddingVertical: 4,
-    marginTop: 10,
     borderRadius: 2,
     elevation: 4,
     backgroundColor: '#5C86F5'

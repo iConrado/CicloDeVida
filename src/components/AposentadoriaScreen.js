@@ -24,6 +24,7 @@ const star = require('../imgs/ic_stars_white.png');
 
 const C = new Ciclo();
 let objErro = {};
+const tmpComprometimento = [];
 
 export default class AposentadoriaScreen extends React.Component {
   static navigationOptions = { //eslint-disable-line
@@ -41,6 +42,7 @@ export default class AposentadoriaScreen extends React.Component {
       reservaPrev: 0,
       idadeAposent: 50,
       rentab: 0,
+      comprometimento: 0,
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
@@ -48,6 +50,11 @@ export default class AposentadoriaScreen extends React.Component {
     this.defRentab = this.defRentab.bind(this);
     this.defIdadeAposent = this.defIdadeAposent.bind(this);
     this.defDisponib = this.defDisponib.bind(this);
+  }
+
+  componentWillMount() {
+    tmpComprometimento[0] = this.state.disponib;
+    this.comprometimentoAtual();
   }
 
   abreErro(e, tipo) {
@@ -136,16 +143,26 @@ export default class AposentadoriaScreen extends React.Component {
     return parseInt(reservaTotal, 10);
   }
 
-  defRentab(valor) {
-    this.setState({ rentab: valor });
+  defDisponib(valor) {
+    this.setState({ disponib: valor });
+    tmpComprometimento[0] = valor;
+    this.comprometimentoAtual();
   }
 
   defIdadeAposent(valor) {
     this.setState({ idadeAposent: valor });
   }
 
-  defDisponib(valor) {
-    this.setState({ disponib: valor });
+  defRentab(valor) {
+    this.setState({ rentab: valor });
+  }
+
+  comprometimentoAtual() {
+    if (tmpComprometimento[0] !== undefined) {
+      const valor = tmpComprometimento.reduce((prevVal, elem) => prevVal + elem);
+      const compr = C.comprometimentoAtual('Aposentadoria', valor);
+      this.setState({ comprometimento: compr });
+    }
   }
 
   proxTela(tela) {
@@ -169,115 +186,132 @@ export default class AposentadoriaScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView 
-        style={styles.scroll}
-        contentContainerStyle={styles.container}
-      >
-        {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-        <ModalErro 
-          visivel={this.state.modalErro}
-          fechar={this.fechaErro}
-          objErro={objErro}
-        />
-        {/* **************************************************************************** */}
-        
-        <View style={styles.viewTitulo}>
-          <Text style={styles.titulo}>Aposentadoria</Text>
-        </View>
+      <View style={styles.tela}>
+        <ScrollView 
+          style={styles.scroll}
+          contentContainerStyle={styles.container}
+        >
+          {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
+          <ModalErro 
+            visivel={this.state.modalErro}
+            fechar={this.fechaErro}
+            objErro={objErro}
+          />
+          {/* **************************************************************************** */}
+          
+          <View style={styles.viewTitulo}>
+            <Text style={styles.titulo}>Aposentadoria</Text>
+          </View>
 
-        <View style={styles.viewVertical}>
-          <View style={styles.viewHorizontal}>
-            <View style={styles.viewLogo}>
-              <Image 
-                style={styles.imgLogo}
-                source={star}
+          <View style={styles.viewVertical}>
+            <View style={styles.viewHorizontal}>
+              <View style={styles.viewLogo}>
+                <Image 
+                  style={styles.imgLogo}
+                  source={star}
+                />
+              </View>
+              <View style={styles.viewPosLogo}>
+                <Text style={styles.aposent_vinheta}>Nossa sugestão para começar agora!</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.viewVertical}>
+            <View style={styles.viewHorizontal}>
+              <View style={styles.aposent_viewCalculo}>
+                <Text style={[styles.label, styles.aposent_lbCalculo]}>Sua faixa estária:</Text>
+                <Text style={[styles.label, styles.aposent_lbCalculo]}>{this.faixaEtaria()}</Text>
+              </View>
+              <View style={styles.aposent_viewCentral}>
+                <Text style={styles.aposent_txDireita}>
+                  {`${monetizar(this.rendaPercentual())} (${this.sugestaoReserva() * 100}%)`}
+                </Text>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.separador} />
+          
+          <View style={styles.viewCentral}>
+            <Text style={styles.aposent_vinheta}>Faça seu cálculo</Text>
+          </View>
+
+          <SliderDisponib 
+            inicial={this.state.disponib}
+            retorno={this.defDisponib} 
+          />
+
+          <View style={styles.viewVertical}>
+            <Text style={styles.label}>Reserva existente em plano previdenciário privado:</Text>
+              <TextInput
+                ref='reservaPrev'
+                style={styles.aposent_input}
+                keyboardType='numeric'
+                maxLength={10}
+                autoCorrect={false}
+                selectTextOnFocus
+                underlineColorAndroid='#EAEAEA'
+                onChangeText={(text) => this.setState({ reservaPrev: desmonetizar(text) })}
+                value={monetizar(this.state.reservaPrev)}
               />
-            </View>
-            <View style={styles.viewPosLogo}>
-              <Text style={styles.aposent_vinheta}>Nossa sugestão para começar agora!</Text>
+          </View>
+
+          <View style={styles.espacador} />
+          
+          <View style={styles.viewVertical}>
+            <Text style={styles.label}>Simulação</Text>
+          </View>
+
+          <SliderIdade 
+            inicial={this.state.idadeAposent}
+            retorno={this.defIdadeAposent} 
+          />
+
+          <SliderTaxa 
+            inicial={this.state.rentab}
+            retorno={this.defRentab} 
+          />
+          
+          <View style={styles.separador} />
+
+          <View style={styles.viewVertical}>
+            <View style={styles.viewHorizontal}>
+              <View style={styles.aposent_viewReserva}>
+                <Text style={[styles.label, styles.aposent_lbReserva]}>Reserva total:</Text>
+              </View>
+              <View style={styles.aposent_viewReserva}>
+                <Text style={styles.aposent_txResTotal}>{monetizar(this.reservaTotal())}</Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.viewVertical}>
-          <View style={styles.viewHorizontal}>
-            <View style={styles.aposent_viewCalculo}>
-              <Text style={[styles.label, styles.aposent_lbCalculo]}>Sua faixa estária:</Text>
-              <Text style={[styles.label, styles.aposent_lbCalculo]}>{this.faixaEtaria()}</Text>
+
+          <View style={styles.separador} />
+
+        </ScrollView>
+
+        <View style={styles.viewRodape}>
+          
+          <View style={styles.viewRodapeResumo}>
+            <View style={styles.viewRodapeResumoLabel}>
+              <Text style={styles.rodape}>Comprometimento de renda atual:</Text>
             </View>
-            <View style={styles.aposent_viewCentral}>
-              <Text style={styles.aposent_txDireita}>
-                {`${monetizar(this.rendaPercentual())} (${this.sugestaoReserva() * 100}%)`}
-              </Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.separador} />
-        
-        <View style={styles.viewCentral}>
-          <Text style={styles.aposent_vinheta}>Faça seu cálculo</Text>
-        </View>
-
-        <SliderDisponib 
-          inicial={this.state.disponib}
-          retorno={this.defDisponib} 
-        />
-
-        <View style={styles.viewVertical}>
-          <Text style={styles.label}>Reserva existente em plano previdenciário privado:</Text>
-            <TextInput
-              ref='reservaPrev'
-              style={styles.aposent_input}
-              keyboardType='numeric'
-              maxLength={10}
-              autoCorrect={false}
-              selectTextOnFocus
-              underlineColorAndroid='#EAEAEA'
-              onChangeText={(text) => this.setState({ reservaPrev: desmonetizar(text) })}
-              value={monetizar(this.state.reservaPrev)}
-            />
-        </View>
-
-        <View style={styles.espacador} />
-        
-        <View style={styles.viewVertical}>
-          <Text style={styles.label}>Simulação</Text>
-        </View>
-
-        <SliderIdade 
-          inicial={this.state.idadeAposent}
-          retorno={this.defIdadeAposent} 
-        />
-
-        <SliderTaxa 
-          inicial={this.state.rentab}
-          retorno={this.defRentab} 
-        />
-        
-        <View style={styles.separador} />
-
-        <View style={styles.viewVertical}>
-          <View style={styles.viewHorizontal}>
-            <View style={styles.aposent_viewReserva}>
-              <Text style={[styles.label, styles.aposent_lbReserva]}>Reserva total:</Text>
-            </View>
-            <View style={styles.aposent_viewReserva}>
-              <Text style={styles.aposent_txResTotal}>{monetizar(this.reservaTotal())}</Text>
+            <View style={styles.viewRodapeResumoValor}>
+              <Text style={styles.rodape}>{this.state.comprometimento}%</Text>
             </View>
           </View>
-        </View>
 
-        <View style={styles.separador} />
+          <View style={styles.viewRodapeBotao}>
+            <TouchableOpacity 
+              style={styles.botao}
+              onPress={() => this.proxTela('Seguranca')}
+            >
+              <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.viewBotoes}>
-          <TouchableOpacity 
-            style={styles.botao}
-            onPress={() => this.proxTela('Seguranca')}
-          >
-            <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
-          </TouchableOpacity>
         </View>
-      </ScrollView>
+        
+      </View>
     );
   }
 }
