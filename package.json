@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "jest-expo": "25.0.0",
     "react-native-scripts": "1.11.1"
   },
