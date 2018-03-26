@@ -1,4 +1,4 @@
-## Projeto Ciclo de Vida
+## Projeto Ciclo de Vida [![Build Status](https://travis-ci.org/iConrado/CicloDeVida.svg?branch=master)](https://travis-ci.org/iConrado/CicloDeVida) [![Coverage Status](https://coveralls.io/repos/github/iConrado/CicloDeVida/badge.svg)](https://coveralls.io/github/iConrado/CicloDeVida)
 
 Projeto em React Native (Android e IOS) de um aplicativo para apoio à análise financeira durante o ciclo de vida de cada indivíduo.
 
