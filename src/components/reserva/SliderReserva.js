@@ -26,6 +26,14 @@ export default class SliderReserva extends React.Component {
     return perc.toFixed(1).replace('.', ',');
   }
 
+  maximumSlider() {
+    const max = parseInt(C.getSalLiq() * 0.3, 10);
+    if (Number.isNaN(max)) {
+      return 0;
+    }
+    return max;
+  }
+
   render() {
     return (
       <View style={styles.viewVertical}>
@@ -36,7 +44,7 @@ export default class SliderReserva extends React.Component {
           <Slider
             style={styles.reserva_slider}
             minimumValue={0}
-            maximumValue={Number.parseInt(C.getSalLiq() * 0.3, 10)}
+            maximumValue={this.maximumSlider()}
             step={50}
             minimumTrackTintColor='#14567A'
             thumbTintColor='#14567A'

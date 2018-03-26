@@ -4,13 +4,13 @@ import {
   ScrollView,
   Text, 
   TextInput,
-  Picker, 
-  TouchableOpacity,
+  Picker,
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
+import Rodape from './functions/Rodape';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
 import Erro from './functions/Erro';
@@ -48,6 +48,7 @@ export default class HomeScreen extends React.Component {
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+    this.proxTela = this.proxTela.bind(this);
 
     this.defFilhos = this.defFilhos.bind(this);
     this.defSalario = this.defSalario.bind(this);
@@ -250,6 +251,7 @@ export default class HomeScreen extends React.Component {
                 <View style={styles.home_viewEstCiv}>
                   <Picker
                     style={styles.home_pkEstCiv}
+                    itemStyle={styles.home_pkItemEstCiv}
                     selectedValue={this.state.estCiv}
                     onValueChange={(itemValue) => this.setState({ estCiv: itemValue })}
                     prompt='Selecione'
@@ -337,29 +339,13 @@ export default class HomeScreen extends React.Component {
             </View>
           </View>*/}
         </ScrollView>
-
-        <View style={styles.viewRodape}>
-
-          <View style={styles.viewRodapeResumo}>
-            <View style={styles.viewRodapeResumoLabel}>
-              <Text style={styles.rodape}>Comprometimento de renda atual:</Text>
-            </View>
-            <View style={styles.viewRodapeResumoValor}>
-              <Text style={styles.rodape}>{this.state.comprometimento}%</Text>
-            </View>
-          </View>
-
-          <View style={styles.viewRodapeBotao}>
-            <TouchableOpacity 
-              style={styles.botao}
-              onPress={() => this.proxTela('Patrimonio')}
-            >
-              <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
-            </TouchableOpacity>
-          </View>
-
-        </View>
-
+        
+        <Rodape
+          valor={this.state.comprometimento}
+          funcProxTela={this.proxTela}
+          tela='Patrimonio'
+        />
+        
       </View>
     );
   }

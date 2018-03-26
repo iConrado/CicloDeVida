@@ -43,6 +43,14 @@ export default class SliderDisponib extends React.Component {
     return parseInt(valor, 10);    
   }
 
+  maximumSlider() {
+    const max = parseInt(C.getSalLiq() * 0.3, 10);
+    if (Number.isNaN(max)) {
+      return 0;
+    }
+    return max;
+  }
+
   render() {
     return (
       <View style={styles.viewVertical}>
@@ -53,7 +61,7 @@ export default class SliderDisponib extends React.Component {
           <Slider
             style={styles.aposent_slider}
             minimumValue={0}
-            maximumValue={Number.parseInt(C.getSalLiq() * 0.3, 10)}
+            maximumValue={this.maximumSlider()}
             step={50}
             minimumTrackTintColor='#14567A'
             thumbTintColor='#14567A'

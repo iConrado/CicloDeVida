@@ -3,11 +3,11 @@ import {
   ScrollView, 
   View, 
   Text, 
-  TouchableOpacity,
 } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
+import Rodape from './functions/Rodape';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
 import Controle from './functions/Controle';
@@ -42,6 +42,7 @@ export default class PatrimonioScreen extends React.Component {
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+    this.proxTela = this.proxTela.bind(this);
 
     this.defInvest = this.defInvest.bind(this);
     this.defImoveis = this.defImoveis.bind(this);
@@ -224,27 +225,11 @@ export default class PatrimonioScreen extends React.Component {
           <View style={styles.espacador} />
         </ScrollView>
 
-        <View style={styles.viewRodape}>
-          
-          <View style={styles.viewRodapeResumo}>
-            <View style={styles.viewRodapeResumoLabel}>
-              <Text style={styles.rodape}>Comprometimento de renda atual:</Text>
-            </View>
-            <View style={styles.viewRodapeResumoValor}>
-              <Text style={styles.rodape}>{this.state.comprometimento}%</Text>
-            </View>
-          </View>
-
-          <View style={styles.viewRodapeBotao}>
-            <TouchableOpacity 
-              style={styles.botao}
-              onPress={() => this.proxTela('Reserva')}
-            >
-              <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
-            </TouchableOpacity>
-          </View>
-
-        </View>
+        <Rodape
+          valor={this.state.comprometimento}
+          funcProxTela={this.proxTela}
+          tela='Reserva'
+        />
         
       </View>
     );

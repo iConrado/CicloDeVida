@@ -4,13 +4,14 @@ import {
   ScrollView, 
   View, 
   Text, 
-  TextInput,
-  TouchableOpacity } from 'react-native';
+  TextInput, } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
+import Rodape from './functions/Rodape';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
+import LimiteDeErro from './functions/LimiteDeErro';
 import Controle from './functions/Controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
@@ -46,6 +47,7 @@ export default class AposentadoriaScreen extends React.Component {
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+    this.proxTela = this.proxTela.bind(this);
 
     this.defRentab = this.defRentab.bind(this);
     this.defIdadeAposent = this.defIdadeAposent.bind(this);
@@ -236,10 +238,12 @@ export default class AposentadoriaScreen extends React.Component {
             <Text style={styles.aposent_vinheta}>Faça seu cálculo</Text>
           </View>
 
-          <SliderDisponib 
-            inicial={this.state.disponib}
-            retorno={this.defDisponib} 
-          />
+          <LimiteDeErro>
+            <SliderDisponib 
+              inicial={this.state.disponib}
+              retorno={this.defDisponib} 
+            />
+          </LimiteDeErro>
 
           <View style={styles.viewVertical}>
             <Text style={styles.label}>Reserva existente em plano previdenciário privado:</Text>
@@ -289,27 +293,11 @@ export default class AposentadoriaScreen extends React.Component {
 
         </ScrollView>
 
-        <View style={styles.viewRodape}>
-          
-          <View style={styles.viewRodapeResumo}>
-            <View style={styles.viewRodapeResumoLabel}>
-              <Text style={styles.rodape}>Comprometimento de renda atual:</Text>
-            </View>
-            <View style={styles.viewRodapeResumoValor}>
-              <Text style={styles.rodape}>{this.state.comprometimento}%</Text>
-            </View>
-          </View>
-
-          <View style={styles.viewRodapeBotao}>
-            <TouchableOpacity 
-              style={styles.botao}
-              onPress={() => this.proxTela('Seguranca')}
-            >
-              <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
-            </TouchableOpacity>
-          </View>
-
-        </View>
+        <Rodape
+          valor={this.state.comprometimento}
+          funcProxTela={this.proxTela}
+          tela='Seguranca'
+        />
         
       </View>
     );

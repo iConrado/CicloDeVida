@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginTop: 0,
-    borderColor: 'black',
-    borderWidth: 1
+    borderTopColor: '#D0D0D0',
+    borderTopWidth: 1,
   },
   viewRodapeResumo: {
     flexDirection: 'row',
@@ -217,6 +217,8 @@ const styles = StyleSheet.create({
   home_pkEstCiv: {
     width: '100%',
     height: 38,
+  },
+  home_pkItemEstCiv: {
     color: '#5E5E5E',
   },
   home_viewEstCiv: {

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    Object {
+      "alignItems": "flex-start",
+      "justifyContent": "space-between",
+      "paddingBottom": 20,
+      "paddingHorizontal": 10,
+      "paddingTop": 5,
+    }
+  }
+  style={
+    Object {
+      "flexShrink": 1,
+    }
+  }
+>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Resultado
+    </Text>
+  </View>
+</RCTScrollView>
+`;

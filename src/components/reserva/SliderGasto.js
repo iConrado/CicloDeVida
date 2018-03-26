@@ -14,7 +14,15 @@ const C = new Ciclo();
 export default class SliderGasto extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { tmpGasto: props.inicial }; 
+    this.state = { tmpGasto: props.inicial ? props.inicial : 0 }; 
+  }
+
+  maximumSlider() {
+    const max = parseInt(C.getSalLiq(), 10);
+    if (Number.isNaN(max)) {
+      return 0;
+    }
+    return max;
   }
 
   render() {
@@ -27,7 +35,7 @@ export default class SliderGasto extends React.Component {
           <Slider
             style={styles.reserva_slider}
             minimumValue={0}
-            maximumValue={C.getSalLiq()}
+            maximumValue={this.maximumSlider()}
             step={100}
             minimumTrackTintColor='#14567A'
             thumbTintColor='#14567A'

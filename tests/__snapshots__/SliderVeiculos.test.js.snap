@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "flex-start",
+        "flexDirection": "column",
+        "justifyContent": "space-between",
+        "marginBottom": 8,
+        "width": "100%",
+      },
+      Object {
+        "marginTop": 15,
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#666",
+      }
+    }
+  >
+    Veículos (valor total - financiados ou não):
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignContent": "center",
+          "alignItems": "center",
+          "backgroundColor": "#48AEB5",
+          "borderRadius": 13,
+          "height": 40,
+          "justifyContent": "center",
+          "width": 40,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/imgs/ic_car_white.png",
+          }
+        }
+        style={
+          Object {
+            "height": 35,
+            "width": 35,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "flexShrink": 1,
+          "justifyContent": "space-between",
+          "paddingLeft": 10,
+        }
+      }
+    >
+      <View
+        animationType="timing"
+        onLayout={[Function]}
+        onSlidingComplete={[Function]}
+        onValueChange={[Function]}
+        step={2000}
+        style={
+          Array [
+            Object {
+              "height": 40,
+              "justifyContent": "center",
+            },
+            Object {
+              "height": 40,
+              "width": "65%",
+            },
+          ]
+        }
+        thumbTouchSize={
+          Object {
+            "height": 40,
+            "width": 40,
+          }
+        }
+        value={0}
+      >
+        <View
+          onLayout={[Function]}
+          renderToHardwareTextureAndroid={true}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#b3b3b3",
+              },
+              Object {
+                "borderRadius": 2,
+                "height": 4,
+              },
+              undefined,
+            ]
+          }
+        />
+        <View
+          collapsable={undefined}
+          renderToHardwareTextureAndroid={true}
+          style={
+            Object {
+              "backgroundColor": "#14567A",
+              "borderRadius": 2,
+              "height": 4,
+              "opacity": 0,
+              "position": "absolute",
+              "width": 0,
+            }
+          }
+        />
+        <View
+          collapsable={undefined}
+          onLayout={[Function]}
+          renderToHardwareTextureAndroid={true}
+          style={
+            Object {
+              "backgroundColor": "#14567A",
+              "borderRadius": 10,
+              "height": 20,
+              "opacity": 0,
+              "position": "absolute",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+                Object {
+                  "translateY": 0,
+                },
+              ],
+              "width": 20,
+            }
+          }
+        />
+        <View
+          onMoveShouldSetResponder={[Function]}
+          onMoveShouldSetResponderCapture={[Function]}
+          onResponderEnd={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderReject={[Function]}
+          onResponderRelease={[Function]}
+          onResponderStart={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          renderToHardwareTextureAndroid={true}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {},
+            ]
+          }
+        />
+      </View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "height": 40,
+            "textAlign": "center",
+            "textAlignVertical": "center",
+            "width": "35%",
+          }
+        }
+      >
+        R$ 
+      </Text>
+    </View>
+  </View>
+</View>
+`;

@@ -1,0 +1,1129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "alignItems": "flex-start",
+        "justifyContent": "space-between",
+        "paddingBottom": 20,
+        "paddingHorizontal": 10,
+        "paddingTop": 5,
+      }
+    }
+    style={
+      Object {
+        "flexShrink": 1,
+      }
+    }
+  >
+    <View>
+      <Modal
+        animationType="fade"
+        hardwareAccelerated={false}
+        onRequestClose={[Function]}
+        transparent={true}
+        visible={false}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#000",
+                "flex": 1,
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 0.8,
+                "position": "absolute",
+                "width": "100%",
+                "zIndex": 1,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFF",
+                "borderRadius": 10,
+                "justifyContent": "center",
+                "paddingHorizontal": 5,
+                "paddingVertical": 10,
+                "position": "absolute",
+                "width": "80%",
+                "zIndex": 2,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "fontSize": 18,
+                  "fontWeight": "bold",
+                  "marginBottom": 5,
+                }
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "fontSize": 14,
+                  "marginBottom": 5,
+                }
+              }
+            />
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "fontSize": 14,
+                }
+              }
+            />
+            <View
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              collapsable={undefined}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "center",
+                  "backgroundColor": "#5C86F5",
+                  "borderRadius": 2,
+                  "elevation": 4,
+                  "marginTop": 10,
+                  "minWidth": "30%",
+                  "opacity": 1,
+                  "paddingVertical": 4,
+                }
+              }
+              testID={undefined}
+              tvParallaxProperties={undefined}
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Object {
+                    "color": "#FFF",
+                    "fontSize": 16,
+                    "fontWeight": "bold",
+                    "marginHorizontal": 5,
+                  }
+                }
+              >
+                OK
+              </Text>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "marginBottom": 5,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#14567A",
+              "fontSize": 20,
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Patrimônio
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "marginBottom": 8,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#666",
+            }
+          }
+        >
+          Investimentos (aplicações, poupança, etc):
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "backgroundColor": "#48AEB5",
+                "borderRadius": 13,
+                "height": 40,
+                "justifyContent": "center",
+                "width": 40,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/imgs/ic_money_white.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 35,
+                  "width": 35,
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "flexShrink": 1,
+                "justifyContent": "space-between",
+                "paddingLeft": 10,
+              }
+            }
+          >
+            <View
+              animationType="timing"
+              onLayout={[Function]}
+              onSlidingComplete={[Function]}
+              onValueChange={[Function]}
+              step={5000}
+              style={
+                Array [
+                  Object {
+                    "height": 40,
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 40,
+                    "width": "65%",
+                  },
+                ]
+              }
+              thumbTouchSize={
+                Object {
+                  "height": 40,
+                  "width": 40,
+                }
+              }
+              value={0}
+            >
+              <View
+                onLayout={[Function]}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#b3b3b3",
+                    },
+                    Object {
+                      "borderRadius": 2,
+                      "height": 4,
+                    },
+                    undefined,
+                  ]
+                }
+              />
+              <View
+                collapsable={undefined}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Object {
+                    "backgroundColor": "#14567A",
+                    "borderRadius": 2,
+                    "height": 4,
+                    "opacity": 0,
+                    "position": "absolute",
+                    "width": 0,
+                  }
+                }
+              />
+              <View
+                collapsable={undefined}
+                onLayout={[Function]}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Object {
+                    "backgroundColor": "#14567A",
+                    "borderRadius": 10,
+                    "height": 20,
+                    "opacity": 0,
+                    "position": "absolute",
+                    "transform": Array [
+                      Object {
+                        "translateX": 0,
+                      },
+                      Object {
+                        "translateY": 0,
+                      },
+                    ],
+                    "width": 20,
+                  }
+                }
+              />
+              <View
+                onMoveShouldSetResponder={[Function]}
+                onMoveShouldSetResponderCapture={[Function]}
+                onResponderEnd={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderReject={[Function]}
+                onResponderRelease={[Function]}
+                onResponderStart={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                onStartShouldSetResponderCapture={[Function]}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {},
+                  ]
+                }
+              />
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "height": 40,
+                  "textAlign": "center",
+                  "textAlignVertical": "center",
+                  "width": "35%",
+                }
+              }
+            >
+              R$ 0
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-start",
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginBottom": 8,
+              "width": "100%",
+            },
+            Object {
+              "marginTop": 15,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#666",
+            }
+          }
+        >
+          Imóveis (valor total - financiados ou não):
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "backgroundColor": "#48AEB5",
+                "borderRadius": 13,
+                "height": 40,
+                "justifyContent": "center",
+                "width": 40,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/imgs/ic_home_white.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 35,
+                  "width": 35,
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "flexShrink": 1,
+                "justifyContent": "space-between",
+                "paddingLeft": 10,
+              }
+            }
+          >
+            <View
+              animationType="timing"
+              onLayout={[Function]}
+              onSlidingComplete={[Function]}
+              onValueChange={[Function]}
+              step={10000}
+              style={
+                Array [
+                  Object {
+                    "height": 40,
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 40,
+                    "width": "65%",
+                  },
+                ]
+              }
+              thumbTouchSize={
+                Object {
+                  "height": 40,
+                  "width": 40,
+                }
+              }
+              value={0}
+            >
+              <View
+                onLayout={[Function]}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#b3b3b3",
+                    },
+                    Object {
+                      "borderRadius": 2,
+                      "height": 4,
+                    },
+                    undefined,
+                  ]
+                }
+              />
+              <View
+                collapsable={undefined}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Object {
+                    "backgroundColor": "#14567A",
+                    "borderRadius": 2,
+                    "height": 4,
+                    "opacity": 0,
+                    "position": "absolute",
+                    "width": 0,
+                  }
+                }
+              />
+              <View
+                collapsable={undefined}
+                onLayout={[Function]}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Object {
+                    "backgroundColor": "#14567A",
+                    "borderRadius": 10,
+                    "height": 20,
+                    "opacity": 0,
+                    "position": "absolute",
+                    "transform": Array [
+                      Object {
+                        "translateX": 0,
+                      },
+                      Object {
+                        "translateY": 0,
+                      },
+                    ],
+                    "width": 20,
+                  }
+                }
+              />
+              <View
+                onMoveShouldSetResponder={[Function]}
+                onMoveShouldSetResponderCapture={[Function]}
+                onResponderEnd={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderReject={[Function]}
+                onResponderRelease={[Function]}
+                onResponderStart={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                onStartShouldSetResponderCapture={[Function]}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {},
+                  ]
+                }
+              />
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "height": 40,
+                  "textAlign": "center",
+                  "textAlignVertical": "center",
+                  "width": "35%",
+                }
+              }
+            >
+              R$ 0
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "flex-start",
+              "flexDirection": "column",
+              "justifyContent": "space-between",
+              "marginBottom": 8,
+              "width": "100%",
+            },
+            Object {
+              "marginTop": 15,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#666",
+            }
+          }
+        >
+          Veículos (valor total - financiados ou não):
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "backgroundColor": "#48AEB5",
+                "borderRadius": 13,
+                "height": 40,
+                "justifyContent": "center",
+                "width": 40,
+              }
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/imgs/ic_car_white.png",
+                }
+              }
+              style={
+                Object {
+                  "height": 35,
+                  "width": 35,
+                }
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "flexShrink": 1,
+                "justifyContent": "space-between",
+                "paddingLeft": 10,
+              }
+            }
+          >
+            <View
+              animationType="timing"
+              onLayout={[Function]}
+              onSlidingComplete={[Function]}
+              onValueChange={[Function]}
+              step={2000}
+              style={
+                Array [
+                  Object {
+                    "height": 40,
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 40,
+                    "width": "65%",
+                  },
+                ]
+              }
+              thumbTouchSize={
+                Object {
+                  "height": 40,
+                  "width": 40,
+                }
+              }
+              value={0}
+            >
+              <View
+                onLayout={[Function]}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#b3b3b3",
+                    },
+                    Object {
+                      "borderRadius": 2,
+                      "height": 4,
+                    },
+                    undefined,
+                  ]
+                }
+              />
+              <View
+                collapsable={undefined}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Object {
+                    "backgroundColor": "#14567A",
+                    "borderRadius": 2,
+                    "height": 4,
+                    "opacity": 0,
+                    "position": "absolute",
+                    "width": 0,
+                  }
+                }
+              />
+              <View
+                collapsable={undefined}
+                onLayout={[Function]}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Object {
+                    "backgroundColor": "#14567A",
+                    "borderRadius": 10,
+                    "height": 20,
+                    "opacity": 0,
+                    "position": "absolute",
+                    "transform": Array [
+                      Object {
+                        "translateX": 0,
+                      },
+                      Object {
+                        "translateY": 0,
+                      },
+                    ],
+                    "width": 20,
+                  }
+                }
+              />
+              <View
+                onMoveShouldSetResponder={[Function]}
+                onMoveShouldSetResponderCapture={[Function]}
+                onResponderEnd={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderReject={[Function]}
+                onResponderRelease={[Function]}
+                onResponderStart={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                onStartShouldSetResponderCapture={[Function]}
+                renderToHardwareTextureAndroid={true}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {},
+                  ]
+                }
+              />
+            </View>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "height": 40,
+                  "textAlign": "center",
+                  "textAlignVertical": "center",
+                  "width": "35%",
+                }
+              }
+            >
+              R$ 0
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "marginTop": 15,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#14567A",
+            "borderBottomWidth": 1,
+            "width": "100%",
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "marginTop": 15,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "marginBottom": 8,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "width": "50%",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#666",
+                }
+              }
+            >
+              Patrimônio formado:
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "width": "50%",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "color": "green",
+                  "textAlign": "center",
+                }
+              }
+            >
+              R$ 0
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "width": "100%",
+              },
+              Object {
+                "marginTop": 15,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "width": "50%",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#666",
+                }
+              }
+            >
+              Patrimônio esperado:
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "width": "50%",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "textAlign": "center",
+                }
+              }
+            >
+              R$ 0
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "width": "100%",
+              },
+              Object {
+                "marginTop": 15,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "width": "50%",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#666",
+                }
+              }
+            >
+              Resultado:
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "width": "50%",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "textAlign": "center",
+                }
+              }
+            >
+              0,0
+              %
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "marginTop": 15,
+          }
+        }
+      />
+    </View>
+  </RCTScrollView>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderTopColor": "#D0D0D0",
+        "borderTopWidth": 1,
+        "flexDirection": "row",
+        "height": 60,
+        "marginTop": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 6,
+          "flexDirection": "row",
+          "paddingHorizontal": 8,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 7,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#666",
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          Comprometimento de renda atual:
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 3,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#666",
+              "fontWeight": "bold",
+              "textAlign": "center",
+            }
+          }
+        >
+          0
+          %
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 4,
+        }
+      }
+    >
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        collapsable={undefined}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#5C86F5",
+            "borderRadius": 2,
+            "elevation": 4,
+            "height": 35,
+            "justifyContent": "center",
+            "maxWidth": "90%",
+            "minWidth": "80%",
+            "opacity": 1,
+            "paddingVertical": 4,
+          }
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#FFF",
+              "fontSize": 14,
+              "fontWeight": "bold",
+              "marginHorizontal": 5,
+            }
+          }
+        >
+          PRÓXIMA ETAPA
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

@@ -2,13 +2,14 @@ import React from 'react';
 import { 
   ScrollView, 
   View, 
-  Text, 
-  TouchableOpacity } from 'react-native';
+  Text, } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
+import Rodape from './functions/Rodape';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
+import LimiteDeErro from './functions/LimiteDeErro';
 import Controle from './functions/Controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
@@ -39,6 +40,7 @@ export default class ReservaScreen extends React.Component {
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+    this.proxTela = this.proxTela.bind(this);
 
     this.defGasto = this.defGasto.bind(this);
     this.defReserva = this.defReserva.bind(this);
@@ -186,10 +188,12 @@ export default class ReservaScreen extends React.Component {
             <Text style={styles.titulo}>Reserva de Emergência</Text>
           </View>
 
-          <SliderGasto 
-            inicial={this.state.gasto}
-            retorno={this.defGasto} 
-          />
+          <LimiteDeErro>
+            <SliderGasto 
+              inicial={this.state.gasto}
+              retorno={this.defGasto} 
+            />
+          </LimiteDeErro>
 
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
@@ -211,10 +215,12 @@ export default class ReservaScreen extends React.Component {
             </View>
           </View>
 
-          <SliderReserva 
-            inicial={this.state.reserva}
-            retorno={this.defReserva} 
-          />
+          <LimiteDeErro>
+            <SliderReserva 
+              inicial={this.state.reserva}
+              retorno={this.defReserva} 
+            />
+          </LimiteDeErro>
 
           <View style={styles.espacador} />
           <View style={styles.separador} />
@@ -248,27 +254,11 @@ export default class ReservaScreen extends React.Component {
           <View style={styles.espacador} />
         </ScrollView>
 
-        <View style={styles.viewRodape}>
-
-          <View style={styles.viewRodapeResumo}>
-            <View style={styles.viewRodapeResumoLabel}>
-              <Text style={styles.rodape}>Comprometimento de renda atual:</Text>
-            </View>
-            <View style={styles.viewRodapeResumoValor}>
-              <Text style={styles.rodape}>{this.state.comprometimento}%</Text>
-            </View>
-          </View>
-
-          <View style={styles.viewRodapeBotao}>
-            <TouchableOpacity 
-              style={styles.botao}
-              onPress={() => this.proxTela('Aposentadoria')}
-            >
-              <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
-            </TouchableOpacity>
-          </View>
-
-        </View>
+        <Rodape
+          valor={this.state.comprometimento}
+          funcProxTela={this.proxTela}
+          tela='Aposentadoria'
+        />
         
       </View>
     );
