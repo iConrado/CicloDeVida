@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1522039504629" clover="3.2.0">
-  <project timestamp="1522039504629" name="All files">
+<coverage generated="1522041507006" clover="3.2.0">
+  <project timestamp="1522041507006" name="All files">
     <metrics statements="721" coveredstatements="366" conditionals="252" coveredconditionals="64" methods="223" coveredmethods="115" elements="1196" coveredelements="545" complexity="0" loc="721" ncloc="721" packages="8" files="38" classes="38">
       <package name="CicloDeVida">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>

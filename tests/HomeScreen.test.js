@@ -6,5 +6,5 @@ import HomeScreen from '../src/components/HomeScreen';
 
 it('renders without crashing', () => {
   const rendered = renderer.create(<HomeScreen />).toJSON();
-  expect(rendered).toMatchSnapshot();
+  expect(rendered).toBeTruthy();
 });
