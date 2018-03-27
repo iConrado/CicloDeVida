@@ -10,13 +10,14 @@
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "coverage": "jest --colors --coverage",
-    "coveralls": "npm run coverage && cat ./coverage/lcov.info | coveralls",
+    "coveralls": "yarn coverage && cat ./coverage/lcov.info | coveralls",
     "jest": "jest --colors --verbose",
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js"
+    "test": "yarn coverage && cat ./coverage/lcov.info | coveralls",
+    "test2": "node node_modules/jest/bin/jest.js"
   },
   "jest": {
     "preset": "jest-expo"
