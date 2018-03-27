@@ -16,8 +16,7 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "yarn coverage && cat ./coverage/lcov.info | coveralls",
-    "test2": "node node_modules/jest/bin/jest.js"
+    "test": "node node_modules/jest/bin/jest.js"
   },
   "jest": {
     "preset": "jest-expo"
