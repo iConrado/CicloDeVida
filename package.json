@@ -1,12 +1,16 @@
 {
-  "name": "CicloDeVida",
-  "version": "0.1.0",
+  "name": "ciclodevida",
+  "version": "0.1.21",
   "private": true,
   "devDependencies": {
     "coveralls": "^3.0.0",
     "jest-expo": "25.0.0",
-    "react-native-scripts": "1.11.1"
+    "pre-commit": "^1.2.2",
+    "react-native-scripts": "^1.11.1"
   },
+  "pre-commit": [
+    "test"
+  ],
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "coverage": "jest --colors --coverage",
@@ -16,7 +20,8 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js"
+    "test": "jest --colors --coverage",
+    "test-basico": "node node_modules/jest/bin/jest.js"
   },
   "jest": {
     "preset": "jest-expo"

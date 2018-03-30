@@ -154,7 +154,7 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      R$ 
+      R$ 0
     </Text>
   </View>
 </View>

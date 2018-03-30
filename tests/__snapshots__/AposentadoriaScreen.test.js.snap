@@ -324,7 +324,7 @@ exports[`renders correctly 1`] = `
                 ]
               }
             >
-              Até 30 anos
+              Idade inválida ou não definida
             </Text>
           </View>
           <View
@@ -349,7 +349,7 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              R$  (10%)
+              R$ 0 (0%)
             </Text>
           </View>
         </View>
@@ -456,7 +456,7 @@ exports[`renders correctly 1`] = `
                 "width": 40,
               }
             }
-            value={NaN}
+            value={0}
           >
             <View
               onLayout={[Function]}
@@ -562,7 +562,7 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              NaN
+              0
               %
             </Text>
             <Text
@@ -578,7 +578,7 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              R$ 
+              R$ 0
             </Text>
           </View>
         </View>
@@ -1010,7 +1010,7 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              0.0
+              0,0
               %
             </Text>
           </View>
@@ -1104,7 +1104,7 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              R$ 
+              R$ 0
             </Text>
           </View>
         </View>

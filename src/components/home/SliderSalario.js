@@ -12,7 +12,7 @@ export default class SliderSalario extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      tmpSalLiq: props.inicial 
+      tmpSalLiq: props.inicial ? props.inicial : 0
     }; 
   }
 

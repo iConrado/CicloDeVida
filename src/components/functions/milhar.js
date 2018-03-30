@@ -4,7 +4,7 @@ const milhar = (numero) => {
   let num = numero.toString();
   const str = [];
   
-  if (!num.length) { return 0; }
+  if (!num.length) { return ''; }
   
   for (let i = Math.ceil(num.length / 3); i > 0; i--) {
     if (Math.ceil(num.length / 3) > 1) {

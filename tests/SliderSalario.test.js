@@ -6,6 +6,6 @@ import SliderSalario from '../src/components/home/SliderSalario';
 
 
 it('renders correctly', () => {
-  const rendered = renderer.create(<SliderSalario />).toJSON();
+  const rendered = renderer.create(<SliderSalario inicial={0} />).toJSON();
   expect(rendered).toMatchSnapshot();
 });

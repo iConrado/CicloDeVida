@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import packageJson from '../../../package.json';
 
 // Estilo a ser usado no componente principal do cabeçalho. INTERNO
 const styles = StyleSheet.create({
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
 // Cabeçalho padrão. EXPORT PADRÃO
 const Cabecalho = (texto) => 
   (<View style={styles.cab}>
-    <Text style={styles.tex}>{texto} 0.1.21</Text>
+    <Text style={styles.tex}>{`${texto} ${packageJson.version}`}</Text>
   </View>
 ); 
 

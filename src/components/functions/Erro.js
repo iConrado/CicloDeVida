@@ -65,6 +65,11 @@ const Erro = {
     solucao: 'Uma boa saúde é primordial para alcançar seus tão sonhados objetivos. ' + 
              'Tente informar um valor superior a zero.',
   },
+  e14: {
+    titulo: 'Erro',
+    descricao: 'Email inválido.',
+    solucao: 'Verifique o email informado e tente novamente.',
+  },
   t01: {
     titulo: 'Ops',
     descricao: 'O nome informado é curto demais.',

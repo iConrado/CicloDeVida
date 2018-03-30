@@ -80,10 +80,6 @@
 //       Retorna o percentual de comprometimento da renda em relação ao gasto mensal 
 //       informado.
 // 
-// - saldoReserva (nihil)
-//       Retorna o resto da subtração do valor em investimento - poupança de emergencia 
-//       ideal. Retorno pode ser negativo.
-// 
 // - sugestaoReserva (nihil)
 //       Retorna a sugestão de reserva para aposentadoria de acordo com a idade e renda
 //       do usuário.
@@ -145,11 +141,11 @@ export default class Ciclo {
     return Ciclo.instance;
   }
 
-  recuperar(email) {
+  async recuperar(email) {
     return email;
   }
 
-  salvar() {
+  async salvar() {
     return this;
   }
 
@@ -187,9 +183,9 @@ export default class Ciclo {
     // o valor da tela atual deve ser repassado na assinatura do método via valorAdd
     let valor = 0;
     let compr = 0;
-    
+
     // switch implementado com base na ordem das telas. caso haja alteração, refatorar
-    if (tela) {
+    if (typeof tela === 'string') {
       switch (tela.toLowerCase()) {
         case 'resultado': 
           valor += this.getSalLiq() * 0.1;
@@ -219,13 +215,12 @@ export default class Ciclo {
           // sem calculos a realizar
           break;
         default: 
-
+          return 0;
       }
+      compr += this.comprometimentoGasto(valor + valorAdd) * 100;
+      return parseInt(compr, 10);
     }
-
-    compr += this.comprometimentoGasto(valor + valorAdd) * 100;
-    
-    return parseInt(compr, 10);
+    return 0;    
   }
 
   idadeAtual() {
@@ -233,12 +228,12 @@ export default class Ciclo {
   }
 
   faixaEtaria() {
-    if (this.idadeAtual() <= 30) {
+    if (this.idadeAtual() > 0 && this.idadeAtual() <= 30) {
       this.SugestReserv = 0.1;
       return 'Até 30 anos';
     }
 
-    if (this.idadeAtual() > 30) {
+    if (this.idadeAtual() > 30 && this.idadeAtual() <= 45) {
       this.SugestReserv = 0.2;
       return 'Acima de 30 anos';
     }
@@ -265,14 +260,10 @@ export default class Ciclo {
   }
 
   comprometimentoGasto(gasto) {
-    if (this.SalLiq > 0) {
+    if (typeof gasto === 'number' && this.SalLiq > 0 && gasto > 0) {
       return gasto / this.SalLiq;
     }
     return 0;
-  }
-
-  saldoReserva() {
-    return this;
   }
 
   // SugestReserv
@@ -328,7 +319,7 @@ export default class Ciclo {
   }
 
   patrimonioProt(convenio) {
-    if (this.getSalLiq() > 0) {
+    if (typeof convenio === 'number' && this.getSalLiq() > 0) {
       const vida = this.coberturaVida();
       const imoveis = this.getImoveis();
       const auto = this.getVeiculos();
@@ -339,36 +330,37 @@ export default class Ciclo {
     return 0;
   }
 
-  planoImovel() {
-    if (this.getSalLiq() > 0) {
-      const plano = this.getSalLiq() * 0.1;
+  planoImovel(perc) {
+    if (typeof perc === 'number' && perc > 0 && perc <= 1 && this.getSalLiq() > 0) {
+      const plano = this.getSalLiq() * perc;
+      this.percPlanoImovel = perc;
 
       return parseInt(plano, 10);
     }
     return 0;
   }
 
-  planoAuto() {
-    if (this.getSalLiq() > 0) {
-      const plano = this.getSalLiq() * 0.1;
-
+  planoAuto(perc) {
+    if (typeof perc === 'number' && perc > 0 && perc <= 1 && this.getSalLiq() > 0) {
+      const plano = this.getSalLiq() * perc;
+      this.percPlanoAuto = perc;
       return parseInt(plano, 10);
     }
     return 0;
   }
 
-  imovelInvest() {
-    if (this.planoImovel() > 0) {
-      const invest = this.planoImovel() * 180; // plano de 15 anos
+  imovelInvest(anos) {
+    if (typeof anos === 'number' && anos > 0 && this.planoImovel(this.percPlanoImovel) > 0) {
+      const invest = this.planoImovel(this.percPlanoImovel) * anos * 12;
 
       return parseInt(invest, 10);
     }
     return 0;
   }
 
-  autoInvest() {
-    if (this.planoAuto() > 0) {
-      const invest = this.planoAuto() * 84; // plano de 7 anos
+  autoInvest(anos) {
+    if (typeof anos === 'number' && anos > 0 && this.planoAuto(this.percPlanoAuto) > 0) {
+      const invest = this.planoAuto(this.percPlanoAuto) * anos * 12;
 
       return parseInt(invest, 10);
     }
@@ -390,17 +382,27 @@ export default class Ciclo {
 
   // Getter e Setter - Email
   getEmail() {
-    return this.Email.toLowerCase();
+    if (this.Email) {
+      return this.Email.toLowerCase();
+    }
+    return '';
   }
   setEmail(str) {
+    if (!str) {
+      throw Erro.e14;
+    }
     if (str) {
       this.Email = str.toLowerCase();
+      return true;
     }
   }
 
   // Getter e Setter - Nome
   getNome() {
-    return this.Nome;
+    if (this.Nome) {
+      return this.Nome;
+    }
+    return '';
   }
   setNome(str) {
     if (!str) {
@@ -413,25 +415,30 @@ export default class Ciclo {
       throw Erro.t02;
     }
     this.Nome = str;
+    return true;
   }
 
   // Getter e Setter - Nasc
   getNasc() {
-    return this.Nasc;
+    if (this.Nasc) {
+      return this.Nasc;
+    }
+    return '';
   }
   setNasc(str) {
     if (!str) {
       throw Erro.t03;
     }
-    if (str === '') {
-      throw Erro.t03; 
-    }
     this.Nasc = str;
+    return true;
   }
 
   // Getter e Setter - EstCivil
   getEstCivil() {
-    return this.EstCivil;
+    if (this.EstCivil) {
+      return this.EstCivil;
+    }
+    return 0;
   }
   setEstCivil(str) {
     if (!str) {
@@ -441,84 +448,103 @@ export default class Ciclo {
       throw Erro.t04;
     }
     this.EstCivil = str;
+    return true;
   }
 
   // Getter e Setter - Filhos
   getFilhos() {
-    return this.Filhos;
+    if (this.Filhos) {
+      return this.Filhos;
+    }
+    return 0;
   }
   setFilhos(str) {
-    if (!str) {
-      throw Erro.t07;
+    if (typeof str === 'number' && str >= 0 && str <= 10) {
+      this.Filhos = str;
+      return true;
     }
-    if (str < 1 || str > 10) {
-      throw Erro.t07;
-    }
-    this.Filhos = str;
+    throw Erro.t07;
   }
 
   // Getter e Setter - SalLiq
   getSalLiq() {
-    return Number.parseInt(this.SalLiq, 10);
+    if (this.SalLiq) {
+      return parseInt(this.SalLiq, 10);
+    }
+    return 0;
   }
   setSalLiq(str) {
     if (!str) {
-      throw Erro.t05;
+      throw Erro.t04;
     }
     if (!Number.isInteger(str)) {
       throw Erro.e04;
     }
+    if (str < 0) {
+      throw Erro.e04;
+    }
     this.SalLiq = str;
+    return true;
   }
 
   // Getter e Setter - IniCarreira
   getIniCarreira() {
-    return this.IniCarreira;
+    if (this.IniCarreira) {
+      return this.IniCarreira;
+    }
+    return '';
   }
   setIniCarreira(str) {
     if (!str) {
       throw Erro.t06;
     }
-    if (str === '') {
-      throw Erro.t06;
-    }
     this.IniCarreira = str;
+    return true;
   }
 
   // Getter e Setter - Invest
   getInvest() {
-    return this.Invest;
+    if (this.Invest) {
+      return this.Invest;
+    }
+    return 0;
   }
   setInvest(str) {
-    if (str >= 0) {
+    if (typeof str === 'number' && str >= 0) {
       this.Invest = str;
-    } else {
-      throw Erro.e05;
+      return true;
     }
+    throw Erro.e05;
   }
 
   // Getter e Setter - Imoveis
   getImoveis() {
-    return this.Imoveis;
+    if (this.Imoveis) {
+      return this.Imoveis;
+    }
+    return 0;
   }
   setImoveis(str) {
-    if (str >= 0) {
+    if (typeof str === 'number' && str >= 0) {
       this.Imoveis = str;
-    } else {
-      throw Erro.e06;
+      return true;
     }
+    throw Erro.e06;
   }
 
   // Getter e Setter - Veiculos
   getVeiculos() {
-    return this.Veiculos;
+    if (this.Veiculos) {
+      return this.Veiculos;  
+    }
+    return 0;
   }
   setVeiculos(str) {
-    if (str >= 0) {
+    if (typeof str === 'number' && str >= 0) {
       this.Veiculos = str;
-    } else {
-      throw Erro.e07;
+      return true;
     }
+    throw Erro.e07;
   }
 
   // Getter e Setter - Gasto
@@ -529,11 +555,11 @@ export default class Ciclo {
     return 0;
   }
   setGasto(str) {
-    if (str > 0) {
+    if (typeof str === 'number' && str > 0) {
       this.Gasto = str;
-    } else {
-      throw Erro.e08;
-    }
+      return true;
+    } 
+    throw Erro.e08;
   }
 
   // Getter e Setter - Reserva
@@ -544,102 +570,86 @@ export default class Ciclo {
     return 0;
   }
   setReserva(str) {
-    if (str >= 0) {
+    if (typeof str === 'number' && str >= 0) {
       this.Reserva = str;
-    } else {
-      throw Erro.e09;
-    }
+      return true;
+    } 
+    throw Erro.e09;
   }
 
   // Getter e Setter - Disponib
   getDisponib() {
-    return this.Disponib;
+    if (this.Disponib) {
+      return this.Disponib;
+    }
+    return 0;
   }
   setDisponib(str) {
-    if (str > 0) {
+    if (typeof str === 'number' && str > 0) {
       this.Disponib = str;
-    } else {
-      throw Erro.t09;
-    }
+      return true;
+    } 
+    throw Erro.t09;
   }
 
   // Getter e Setter - ReservaPrev
   getReservaPrev() {
-    return this.ReservaPrev;
+    if (this.ReservaPrev) {
+      return this.ReservaPrev;
+    }
+    return 0;
   }
   setReservaPrev(str) {
-    if (str >= 0) {
+    if (typeof str === 'number' && str >= 0) {
       this.ReservaPrev = str;
-    } else {
-      throw Erro.e10;
-    }
+      return true;
+    } 
+    throw Erro.e10;
   }
 
   // Getter e Setter - IdadeAposent
   getIdadeAposent() {
-    return this.IdadeAposent;
+    if (this.IdadeAposent) {
+      return this.IdadeAposent;
+    }
+    return 0;
   }
   setIdadeAposent(str) {
     const idadeAtual = this.idadeAtual();
-    if (str >= idadeAtual) {
+    if (typeof str === 'number' && str >= idadeAtual && str <= 99) {
       this.IdadeAposent = str;
-    } else {
-      throw Erro.e11;
-    }
+      return true;
+    } 
+    throw Erro.e11;
   }
 
   // Getter e Setter - Rentab
   getRentab() {
-    return this.Rentab;
+    if (this.Rentab) {
+      return this.Rentab;
+    }
+    return 0;
   }
   setRentab(str) {
-    if (str > 0) {
+    if (typeof str === 'number' && str > 0) {
       this.Rentab = str;
-    } else {
-      throw Erro.e12;
+      return true;
     }
+    throw Erro.e12;
   }
 
   // Getter e Setter - Saude
   getSaude() {
-    return this.Saude;
+    if (this.Saude) {
+      return this.Saude;
+    }
+    return 0;
   }
   setSaude(str) {
-    console.log(str);
-    if (str > 0) {
+    if (typeof str === 'number' && str > 0) {
       this.Saude = str;
-    } else {
-      throw Erro.e13;
-    }
-  }
-
-  // Getter e Setter - SegVida
-  getSegVida() {
-    return this.SegVida;
-  }
-  setSegVida(str) {
-    if (str) {
-      this.SegVida = str;
-    }
-  }
-
-  // Getter e Setter - SegImov
-  getSegImov() {
-    return this.SegImov;
-  }
-  setSegImov(str) {
-    if (str) {
-      this.SegImov = str;
-    }
-  }
-
-  // Getter e Setter - SegAuto
-  getSegAuto() {
-    return this.SegAuto;
-  }
-  setSegAuto(str) {
-    if (str) {
-      this.SegAuto = str;
-    }
+      return true;
+    } 
+    throw Erro.e13;
   }
 }

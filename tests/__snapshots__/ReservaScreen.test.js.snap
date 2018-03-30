@@ -564,7 +564,7 @@ exports[`renders without crashing 1`] = `
                 "width": 40,
               }
             }
-            value={NaN}
+            value={0}
           >
             <View
               onLayout={[Function]}
@@ -671,7 +671,7 @@ exports[`renders without crashing 1`] = `
                 }
               }
             >
-              NaN
+              0
               %
             </Text>
             <Text
@@ -687,7 +687,7 @@ exports[`renders without crashing 1`] = `
                 }
               }
             >
-              R$ 
+              R$ 0
             </Text>
           </View>
         </View>
@@ -821,14 +821,13 @@ exports[`renders without crashing 1`] = `
               style={
                 Object {
                   "alignSelf": "center",
-                  "color": "red",
                   "textAlign": "center",
                   "textAlignVertical": "center",
                   "width": "100%",
                 }
               }
             >
-              R$ 
+              R$ 0
             </Text>
           </View>
         </View>

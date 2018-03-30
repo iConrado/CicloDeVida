@@ -597,7 +597,7 @@ exports[`renders without crashing 1`] = `
                   }
                 }
               >
-                R$ 
+                R$ 0
               </Text>
             </View>
           </View>
@@ -717,7 +717,7 @@ exports[`renders without crashing 1`] = `
                   }
                 }
               >
-                R$ 
+                R$ 0
               </Text>
             </View>
           </View>
@@ -837,7 +837,7 @@ exports[`renders without crashing 1`] = `
                   }
                 }
               >
-                R$ 
+                R$ 0
               </Text>
             </View>
           </View>
