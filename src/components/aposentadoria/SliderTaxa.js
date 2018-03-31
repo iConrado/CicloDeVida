@@ -32,7 +32,9 @@ export default class SliderTaxa extends React.Component {
             onSlidingComplete={(value) => this.props.retorno(value)}
           />
           <View style={styles.aposent_viewCentral}>
-            <Text style={styles.aposent_txDireita}>{this.state.tmpRentab.toFixed(1).replace('.', ',')}%</Text>
+            <Text style={styles.aposent_txDireita}>
+              {this.state.tmpRentab.toFixed(1).replace('.', ',')}%
+            </Text>
           </View>
         </View>
       </View>

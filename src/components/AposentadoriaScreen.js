@@ -108,39 +108,17 @@ export default class AposentadoriaScreen extends React.Component {
     return parseInt(valor, 10);    
   }
 
-  taxaMensal(taxaAnual) {
-    const taxaMensal = ((1 + taxaAnual) / 12) - 1;
-    if (taxaAnual > 0) {
-      return taxaMensal;
-    } 
-    return 0;
-  }
-
   reservaTotal() {
     const disponib = this.state.disponib;
     const reservaPrev = this.state.reservaPrev;
-    const rentab = this.state.rentab.toFixed(1);
-    const rentabMM = this.taxaMensal(rentab);
+    const rentab = this.state.rentab;
+    const rentabMM = C.taxaMensal(rentab);
     const idadeAtual = C.idadeAtual();
     const idadeAposent = this.state.idadeAposent;
     const prazoAA = idadeAposent - idadeAtual;
     const prazoMM = prazoAA * 12;
-    let montReserva = disponib;
-    let montReservaPrev = reservaPrev;
 
-
-    //Cálculo de juros da disponibilidade de reserva
-    for (let i = 1; i <= prazoMM; i++) {
-      montReserva *= (1 + (rentabMM / 100));
-      montReserva += disponib;
-    }
-
-    //Cálculo de juros da previdência já existente
-    for (let i = 1; i <= prazoAA; i++) {
-      montReservaPrev *= (1 + (rentab / 100));
-    }
-
-    const reservaTotal = montReservaPrev + montReserva;
+    const reservaTotal = C.montante(reservaPrev, disponib, prazoMM, rentabMM);
 
     return parseInt(reservaTotal, 10);
   }
@@ -260,10 +238,8 @@ export default class AposentadoriaScreen extends React.Component {
               />
           </View>
 
-          <View style={styles.espacador} />
-          
-          <View style={styles.viewVertical}>
-            <Text style={styles.label}>Simulação</Text>
+          <View style={styles.viewCentral}>
+            <Text style={styles.aposent_vinheta}>Simulação</Text>
           </View>
 
           <SliderIdade 

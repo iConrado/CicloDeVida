@@ -103,6 +103,14 @@
 //       Retorna o valor total do patrimônio protegido de acordo com as coberturas 
 //       registradas em seguridade.
 //
+// - montante(vp, parcela, prazo, taxaMM)
+//       Retorna o valor de investimentos periódicos após o prazo determinado
+//       vp (Valor Presente), parcela (depósito mensal), 
+//       prazo (em meses), taxaMM (XX% ao mês)
+//
+// - taxaMensal(taxaAnual)
+//       Retorna o valor da taxa mensal a partir do valor da taxa anualizada.
+//
 // - planoImovel (nihil)
 //       Retorna o valor da parcela sugerida para investimento em imóvel.
 //
@@ -330,10 +338,36 @@ export default class Ciclo {
     return 0;
   }
 
+  montante(vp, parcela, prazo, rentabMM) {
+    if (typeof vp === 'number' && 
+        typeof parcela === 'number' && 
+        typeof prazo === 'number' && 
+        typeof rentabMM === 'number') {
+      let montante = vp;
+
+      // Cálculo de juros compostos com adição de depósito mensal
+      for (let i = 1; i <= prazo; i++) {
+        montante += parcela;
+        montante *= (1 + (rentabMM / 100));
+      }
+
+      return parseInt(montante, 10);
+    }
+    return 0;
+  }
+
+  taxaMensal(taxaAnual) {
+    if (typeof taxaAnual === 'number' && taxaAnual > 0) {
+      const tmpTaxa = 1 + ((taxaAnual * 1) / 100);
+      const taxaMensal = (Math.pow(tmpTaxa, (1 / 12)) - 1) * 100;
+      return taxaMensal;
+    } 
+    return 0;
+  }
+
   planoImovel(perc) {
     if (typeof perc === 'number' && perc > 0 && perc <= 1 && this.getSalLiq() > 0) {
       const plano = this.getSalLiq() * perc;
-      this.percPlanoImovel = perc;
 
       return parseInt(plano, 10);
     }
@@ -343,24 +377,26 @@ export default class Ciclo {
   planoAuto(perc) {
     if (typeof perc === 'number' && perc > 0 && perc <= 1 && this.getSalLiq() > 0) {
       const plano = this.getSalLiq() * perc;
-      this.percPlanoAuto = perc;
+      
       return parseInt(plano, 10);
     }
     return 0;
   }
 
-  imovelInvest(anos) {
-    if (typeof anos === 'number' && anos > 0 && this.planoImovel(this.percPlanoImovel) > 0) {
-      const invest = this.planoImovel(this.percPlanoImovel) * anos * 12;
+  imovelInvest(anos, perc) {
+    if (typeof anos === 'number' && anos > 0 && this.planoImovel(perc) > 0) {
+      const invest = this.montante(0, 
+        this.planoImovel(perc), 
+        anos * 12, this.taxaMensal(this.getRentab()));
 
       return parseInt(invest, 10);
     }
     return 0;
   }
 
-  autoInvest(anos) {
-    if (typeof anos === 'number' && anos > 0 && this.planoAuto(this.percPlanoAuto) > 0) {
-      const invest = this.planoAuto(this.percPlanoAuto) * anos * 12;
+  autoInvest(anos, perc) {
+    if (typeof anos === 'number' && anos > 0 && this.planoAuto(perc) > 0) {
+      const invest = this.montante(0, this.planoAuto(perc), anos * 12, this.taxaMensal(this.getRentab()));
 
       return parseInt(invest, 10);
     }

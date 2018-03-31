@@ -139,6 +139,9 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: '#5C86F5'
   },
+  negrito: {
+    fontWeight: 'bold'
+  },
   txtBotao: {
     fontSize: 14,
     fontWeight: 'bold',
@@ -398,13 +401,33 @@ const styles = StyleSheet.create({
   consumo_viewLabel: {
     width: '70%',
   },
+  consumo_viewPicker: {
+    width: '90%',
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: '#C1C1C1',
+  },
   consumo_viewValor: {
     width: '30%',
+  },
+  consumo_vinheta: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#666',
   },
   consumo_txValor: {
     alignSelf: 'center',
     textAlign: 'center',
     textAlignVertical: 'center',
+  },
+  consumo_pkEstCiv: {
+    width: '100%',
+    height: 38,
+    borderColor: '#5E5E5E',
+    borderWidth: 1,
+  },
+  consumo_pkItemEstCiv: {
+    color: '#5E5E5E',
   },
 });
 

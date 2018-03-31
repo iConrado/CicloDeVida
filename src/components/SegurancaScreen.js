@@ -200,11 +200,15 @@ export default class SegurancaScreen extends React.Component {
               <View style={styles.segur_viewEsquerda} />
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
-                  <Text style={[styles.label, styles.segur_lbSeguridade]}>
+                  <Text style={[styles.label, styles.negrito, styles.segur_lbSeguridade]}>
                     Seguros
                   </Text>
-                  <Text style={styles.segur_txValor}>Valor mensal</Text>
-                  <Text style={styles.segur_txValor}>Patrimonio protegido</Text>
+                  <Text style={[styles.label, styles.negrito, styles.segur_txValor]}>
+                    Valor mensal
+                  </Text>
+                  <Text style={[styles.label, styles.negrito, styles.segur_txValor]}>
+                    Patrimonio protegido
+                  </Text>
                 </View>
               </View>
             </View>

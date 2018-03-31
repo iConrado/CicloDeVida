@@ -206,13 +206,6 @@ exports[`renders without crashing 1`] = `
       <View
         style={
           Object {
-            "marginTop": 15,
-          }
-        }
-      />
-      <View
-        style={
-          Object {
             "alignItems": "flex-start",
             "flexDirection": "column",
             "justifyContent": "space-between",
@@ -272,9 +265,10 @@ exports[`renders without crashing 1`] = `
             <View
               style={
                 Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
+                  "alignItems": "flex-start",
+                  "flexDirection": "column",
                   "justifyContent": "space-between",
+                  "marginBottom": 8,
                   "width": "100%",
                 }
               }
@@ -282,70 +276,331 @@ exports[`renders without crashing 1`] = `
               <View
                 style={
                   Object {
-                    "width": "70%",
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "width": "100%",
                   }
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                <View
                   style={
                     Object {
-                      "color": "#666",
+                      "width": "70%",
                     }
                   }
                 >
-                  Imóvel para investimento:
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Object {
+                        "color": "#666",
+                      }
+                    }
+                  >
+                    Imóvel para investimento:
+                  </Text>
+                </View>
+                <View
                   style={
                     Object {
-                      "color": "#666",
+                      "width": "30%",
                     }
                   }
                 >
-                  Plano de 15 anos (10% da renda):
-                </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "textAlign": "center",
+                        "textAlignVertical": "center",
+                      }
+                    }
+                  >
+                    R$ 0
+                  </Text>
+                </View>
               </View>
               <View
                 style={
                   Object {
-                    "width": "30%",
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "width": "100%",
                   }
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                <View
                   style={
                     Object {
-                      "alignSelf": "center",
-                      "textAlign": "center",
-                      "textAlignVertical": "center",
+                      "width": "70%",
                     }
                   }
                 >
-                  R$ 0
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "width": "50%",
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Object {
+                            "color": "#666",
+                          }
+                        }
+                      >
+                        Prazo:
+                      </Text>
+                      <View
+                        style={
+                          Object {
+                            "borderColor": "#C1C1C1",
+                            "borderRadius": 5,
+                            "borderWidth": 1,
+                            "width": "90%",
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Object {
+                              "borderColor": "#5E5E5E",
+                              "borderWidth": 1,
+                              "height": 38,
+                              "width": "100%",
+                            }
+                          }
+                        >
+                          <RCTPicker
+                            items={
+                              Array [
+                                Object {
+                                  "label": "2",
+                                  "textColor": undefined,
+                                  "value": 2,
+                                },
+                                Object {
+                                  "label": "4",
+                                  "textColor": undefined,
+                                  "value": 4,
+                                },
+                                Object {
+                                  "label": "6",
+                                  "textColor": undefined,
+                                  "value": 6,
+                                },
+                                Object {
+                                  "label": "8",
+                                  "textColor": undefined,
+                                  "value": 8,
+                                },
+                                Object {
+                                  "label": "10",
+                                  "textColor": undefined,
+                                  "value": 10,
+                                },
+                                Object {
+                                  "label": "12",
+                                  "textColor": undefined,
+                                  "value": 12,
+                                },
+                                Object {
+                                  "label": "14",
+                                  "textColor": undefined,
+                                  "value": 14,
+                                },
+                                Object {
+                                  "label": "16",
+                                  "textColor": undefined,
+                                  "value": 16,
+                                },
+                                Object {
+                                  "label": "18",
+                                  "textColor": undefined,
+                                  "value": 18,
+                                },
+                                Object {
+                                  "label": "20",
+                                  "textColor": undefined,
+                                  "value": 20,
+                                },
+                              ]
+                            }
+                            onChange={[Function]}
+                            onResponderTerminationRequest={[Function]}
+                            onStartShouldSetResponder={[Function]}
+                            selectedIndex={0}
+                            style={
+                              Array [
+                                Object {
+                                  "height": 216,
+                                },
+                                Object {
+                                  "color": "#5E5E5E",
+                                },
+                              ]
+                            }
+                          />
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "width": "50%",
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Object {
+                            "color": "#666",
+                          }
+                        }
+                      >
+                        % da renda:
+                      </Text>
+                      <View
+                        style={
+                          Object {
+                            "borderColor": "#C1C1C1",
+                            "borderRadius": 5,
+                            "borderWidth": 1,
+                            "width": "90%",
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Object {
+                              "borderColor": "#5E5E5E",
+                              "borderWidth": 1,
+                              "height": 38,
+                              "width": "100%",
+                            }
+                          }
+                        >
+                          <RCTPicker
+                            items={
+                              Array [
+                                Object {
+                                  "label": "1",
+                                  "textColor": undefined,
+                                  "value": 0.01,
+                                },
+                                Object {
+                                  "label": "2",
+                                  "textColor": undefined,
+                                  "value": 0.02,
+                                },
+                                Object {
+                                  "label": "3",
+                                  "textColor": undefined,
+                                  "value": 0.03,
+                                },
+                                Object {
+                                  "label": "4",
+                                  "textColor": undefined,
+                                  "value": 0.04,
+                                },
+                                Object {
+                                  "label": "5",
+                                  "textColor": undefined,
+                                  "value": 0.05,
+                                },
+                                Object {
+                                  "label": "6",
+                                  "textColor": undefined,
+                                  "value": 0.06,
+                                },
+                                Object {
+                                  "label": "7",
+                                  "textColor": undefined,
+                                  "value": 0.07,
+                                },
+                                Object {
+                                  "label": "8",
+                                  "textColor": undefined,
+                                  "value": 0.08,
+                                },
+                                Object {
+                                  "label": "9",
+                                  "textColor": undefined,
+                                  "value": 0.09,
+                                },
+                                Object {
+                                  "label": "10",
+                                  "textColor": undefined,
+                                  "value": 0.1,
+                                },
+                              ]
+                            }
+                            onChange={[Function]}
+                            onResponderTerminationRequest={[Function]}
+                            onStartShouldSetResponder={[Function]}
+                            selectedIndex={0}
+                            style={
+                              Array [
+                                Object {
+                                  "height": 216,
+                                },
+                                Object {
+                                  "color": "#5E5E5E",
+                                },
+                              ]
+                            }
+                          />
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
                   style={
                     Object {
-                      "alignSelf": "center",
-                      "textAlign": "center",
-                      "textAlignVertical": "center",
+                      "width": "30%",
                     }
                   }
                 >
-                  R$ 0
-                </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "textAlign": "center",
+                        "textAlignVertical": "center",
+                      }
+                    }
+                  >
+                    R$ 0
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -436,9 +691,10 @@ exports[`renders without crashing 1`] = `
             <View
               style={
                 Object {
-                  "alignItems": "center",
-                  "flexDirection": "row",
+                  "alignItems": "flex-start",
+                  "flexDirection": "column",
                   "justifyContent": "space-between",
+                  "marginBottom": 8,
                   "width": "100%",
                 }
               }
@@ -446,70 +702,316 @@ exports[`renders without crashing 1`] = `
               <View
                 style={
                   Object {
-                    "width": "70%",
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "width": "100%",
                   }
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                <View
                   style={
                     Object {
-                      "color": "#666",
+                      "width": "70%",
                     }
                   }
                 >
-                  Carro novo ou troca:
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Object {
+                        "color": "#666",
+                      }
+                    }
+                  >
+                    Carro novo ou troca:
+                  </Text>
+                </View>
+                <View
                   style={
                     Object {
-                      "color": "#666",
+                      "width": "30%",
                     }
                   }
                 >
-                  Plano de 7 anos (10% da renda):
-                </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "textAlign": "center",
+                        "textAlignVertical": "center",
+                      }
+                    }
+                  >
+                    R$ 0
+                  </Text>
+                </View>
               </View>
               <View
                 style={
                   Object {
-                    "width": "30%",
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "width": "100%",
                   }
                 }
               >
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                <View
                   style={
                     Object {
-                      "alignSelf": "center",
-                      "textAlign": "center",
-                      "textAlignVertical": "center",
+                      "width": "70%",
                     }
                   }
                 >
-                  R$ 0
-                </Text>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "width": "50%",
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Object {
+                            "color": "#666",
+                          }
+                        }
+                      >
+                        Prazo:
+                      </Text>
+                      <View
+                        style={
+                          Object {
+                            "borderColor": "#C1C1C1",
+                            "borderRadius": 5,
+                            "borderWidth": 1,
+                            "width": "90%",
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Object {
+                              "borderColor": "#5E5E5E",
+                              "borderWidth": 1,
+                              "height": 38,
+                              "width": "100%",
+                            }
+                          }
+                        >
+                          <RCTPicker
+                            items={
+                              Array [
+                                Object {
+                                  "label": "1",
+                                  "textColor": undefined,
+                                  "value": 1,
+                                },
+                                Object {
+                                  "label": "2",
+                                  "textColor": undefined,
+                                  "value": 2,
+                                },
+                                Object {
+                                  "label": "3",
+                                  "textColor": undefined,
+                                  "value": 3,
+                                },
+                                Object {
+                                  "label": "4",
+                                  "textColor": undefined,
+                                  "value": 4,
+                                },
+                                Object {
+                                  "label": "5",
+                                  "textColor": undefined,
+                                  "value": 5,
+                                },
+                                Object {
+                                  "label": "6",
+                                  "textColor": undefined,
+                                  "value": 6,
+                                },
+                                Object {
+                                  "label": "7",
+                                  "textColor": undefined,
+                                  "value": 7,
+                                },
+                              ]
+                            }
+                            onChange={[Function]}
+                            onResponderTerminationRequest={[Function]}
+                            onStartShouldSetResponder={[Function]}
+                            selectedIndex={0}
+                            style={
+                              Array [
+                                Object {
+                                  "height": 216,
+                                },
+                                Object {
+                                  "color": "#5E5E5E",
+                                },
+                              ]
+                            }
+                          />
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "width": "50%",
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Object {
+                            "color": "#666",
+                          }
+                        }
+                      >
+                        % da renda:
+                      </Text>
+                      <View
+                        style={
+                          Object {
+                            "borderColor": "#C1C1C1",
+                            "borderRadius": 5,
+                            "borderWidth": 1,
+                            "width": "90%",
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Object {
+                              "borderColor": "#5E5E5E",
+                              "borderWidth": 1,
+                              "height": 38,
+                              "width": "100%",
+                            }
+                          }
+                        >
+                          <RCTPicker
+                            items={
+                              Array [
+                                Object {
+                                  "label": "1",
+                                  "textColor": undefined,
+                                  "value": 0.01,
+                                },
+                                Object {
+                                  "label": "2",
+                                  "textColor": undefined,
+                                  "value": 0.02,
+                                },
+                                Object {
+                                  "label": "3",
+                                  "textColor": undefined,
+                                  "value": 0.03,
+                                },
+                                Object {
+                                  "label": "4",
+                                  "textColor": undefined,
+                                  "value": 0.04,
+                                },
+                                Object {
+                                  "label": "5",
+                                  "textColor": undefined,
+                                  "value": 0.05,
+                                },
+                                Object {
+                                  "label": "6",
+                                  "textColor": undefined,
+                                  "value": 0.06,
+                                },
+                                Object {
+                                  "label": "7",
+                                  "textColor": undefined,
+                                  "value": 0.07,
+                                },
+                                Object {
+                                  "label": "8",
+                                  "textColor": undefined,
+                                  "value": 0.08,
+                                },
+                                Object {
+                                  "label": "9",
+                                  "textColor": undefined,
+                                  "value": 0.09,
+                                },
+                                Object {
+                                  "label": "10",
+                                  "textColor": undefined,
+                                  "value": 0.1,
+                                },
+                              ]
+                            }
+                            onChange={[Function]}
+                            onResponderTerminationRequest={[Function]}
+                            onStartShouldSetResponder={[Function]}
+                            selectedIndex={0}
+                            style={
+                              Array [
+                                Object {
+                                  "height": 216,
+                                },
+                                Object {
+                                  "color": "#5E5E5E",
+                                },
+                              ]
+                            }
+                          />
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
                   style={
                     Object {
-                      "alignSelf": "center",
-                      "textAlign": "center",
-                      "textAlignVertical": "center",
+                      "width": "30%",
                     }
                   }
                 >
-                  R$ 0
-                </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "textAlign": "center",
+                        "textAlignVertical": "center",
+                      }
+                    }
+                  >
+                    R$ 0
+                  </Text>
+                </View>
               </View>
             </View>
           </View>
@@ -541,17 +1043,9 @@ exports[`renders without crashing 1`] = `
       <View
         style={
           Object {
-            "marginTop": 15,
-          }
-        }
-      />
-      <View
-        style={
-          Object {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexDirection": "column",
-            "justifyContent": "space-between",
-            "marginBottom": 8,
+            "justifyContent": "center",
             "width": "100%",
           }
         }
@@ -563,10 +1057,12 @@ exports[`renders without crashing 1`] = `
           style={
             Object {
               "color": "#666",
+              "fontSize": 16,
+              "fontWeight": "bold",
             }
           }
         >
-          Gastos totais:
+          Resumo
         </Text>
       </View>
       <View
@@ -715,6 +1211,15 @@ exports[`renders without crashing 1`] = `
         style={
           Object {
             "marginTop": 15,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#14567A",
+            "borderBottomWidth": 1,
+            "width": "100%",
           }
         }
       />

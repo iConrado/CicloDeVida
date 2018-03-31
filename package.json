@@ -20,7 +20,7 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "jest --colors --coverage",
+    "test": "jest --colors --coverage --logHeapUsage",
     "test-basico": "node node_modules/jest/bin/jest.js"
   },
   "jest": {

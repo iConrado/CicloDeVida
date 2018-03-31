@@ -442,6 +442,9 @@ exports[`renders without crashing 1`] = `
                       "color": "#666",
                     },
                     Object {
+                      "fontWeight": "bold",
+                    },
+                    Object {
                       "width": "40%",
                     },
                   ]
@@ -454,12 +457,20 @@ exports[`renders without crashing 1`] = `
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
-                  Object {
-                    "alignSelf": "center",
-                    "textAlign": "center",
-                    "textAlignVertical": "center",
-                    "width": "30%",
-                  }
+                  Array [
+                    Object {
+                      "color": "#666",
+                    },
+                    Object {
+                      "fontWeight": "bold",
+                    },
+                    Object {
+                      "alignSelf": "center",
+                      "textAlign": "center",
+                      "textAlignVertical": "center",
+                      "width": "30%",
+                    },
+                  ]
                 }
               >
                 Valor mensal
@@ -469,12 +480,20 @@ exports[`renders without crashing 1`] = `
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
-                  Object {
-                    "alignSelf": "center",
-                    "textAlign": "center",
-                    "textAlignVertical": "center",
-                    "width": "30%",
-                  }
+                  Array [
+                    Object {
+                      "color": "#666",
+                    },
+                    Object {
+                      "fontWeight": "bold",
+                    },
+                    Object {
+                      "alignSelf": "center",
+                      "textAlign": "center",
+                      "textAlignVertical": "center",
+                      "width": "30%",
+                    },
+                  ]
                 }
               >
                 Patrimonio protegido

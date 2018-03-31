@@ -853,6 +853,36 @@ describe('Classe de negócio Ciclo', () => {
     c.setSalLiq(tmp); //retorna para o valor definido inicialmente
   });
 
+  // montante
+  test('montante retorno válido', () => {
+    expect(c.montante(0, 85, 24, 0.6434)).toBe(2212);
+  });
+
+  test('montante retorno inválido', () => {
+    expect(c.montante(0)).toBeFalsy();
+  });
+
+  test('montante retorno inválido', () => {
+    expect(c.montante(0, 0, 0, 0)).toBeFalsy();
+  });
+
+  test('montante retorno inválido', () => {
+    expect(c.montante('asd')).toBeFalsy();
+  });
+
+  // taxaMensal
+  test('taxaMensal retorno válido', () => {
+    expect(c.taxaMensal(8)).toBe(0.643403011000343);
+  });
+
+  test('taxaMensal retorno inválido', () => {
+    expect(c.taxaMensal(0)).toBeFalsy();
+  });
+
+  test('taxaMensal retorno inválido', () => {
+    expect(c.taxaMensal('asd')).toBeFalsy();
+  });
+
   // planoImovel
   test('planoImovel retorno válido', () => {
     expect(c.planoImovel(0.1)).toBe(855);
@@ -895,15 +925,15 @@ describe('Classe de negócio Ciclo', () => {
 
   // imovelInvest
   test('imovelInvest retorno válido', () => {
-    expect(c.imovelInvest(15)).toBe(153900);
+    expect(c.imovelInvest(15, 0.1)).toBe(155300);
   });
 
   test('imovelInvest retorno inválido', () => {
-    expect(c.imovelInvest(-15)).toBeFalsy();
+    expect(c.imovelInvest(-15, 0.1)).toBeFalsy();
   });
 
   test('imovelInvest retorno inválido', () => {
-    expect(c.imovelInvest(0)).toBeFalsy();
+    expect(c.imovelInvest(0, 0.1)).toBeFalsy();
   });
 
   test('imovelInvest retorno inválido', () => {
@@ -912,15 +942,15 @@ describe('Classe de negócio Ciclo', () => {
 
   // autoInvest
   test('autoInvest retorno válido', () => {
-    expect(c.autoInvest(7)).toBe(71820);
+    expect(c.autoInvest(7, 0.1)).toBe(72125);
   });
 
   test('autoInvest retorno inválido', () => {
-    expect(c.autoInvest(-15)).toBeFalsy();
+    expect(c.autoInvest(-15, 0.1)).toBeFalsy();
   });
 
   test('autoInvest retorno inválido', () => {
-    expect(c.autoInvest(0)).toBeFalsy();
+    expect(c.autoInvest(0, 0.1)).toBeFalsy();
   });
 
   test('autoInvest retorno inválido', () => {

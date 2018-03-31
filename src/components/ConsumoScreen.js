@@ -3,7 +3,8 @@ import {
   ScrollView, 
   View, 
   Text, 
-  Image, } from 'react-native';
+  Image,
+  Picker, } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
@@ -33,6 +34,10 @@ export default class ConsumoScreen extends React.Component {
     super(props);
     this.state = {
       modalErro: false, 
+      imovelPrazo: 2,
+      imovelRenda: 0.01,
+      autoPrazo: 1,
+      autoRenda: 0.01,
       comprometimento: 0,
     };
     this.fechaErro = this.fechaErro.bind(this);
@@ -64,25 +69,31 @@ export default class ConsumoScreen extends React.Component {
   }
 
   planoImovel() {
-    const plano = C.planoImovel();
+    const renda = this.state.imovelRenda;
+    const plano = C.planoImovel(renda);
 
     return plano;
   }
 
   planoAuto() {
-    const plano = C.planoAuto();
+    const renda = this.state.autoRenda;
+    const plano = C.planoAuto(renda);
 
     return plano;
   }
 
   imovelInvest() {
-    const invest = C.imovelInvest();
+    const prazo = this.state.imovelPrazo;
+    const renda = this.state.imovelRenda;
+    const invest = C.imovelInvest(prazo, renda);
 
     return invest;
   }
 
   autoInvest() {
-    const invest = C.autoInvest();
+    const prazo = this.state.autoPrazo;
+    const renda = this.state.autoRenda;
+    const invest = C.autoInvest(prazo, renda);
 
     return invest;
   }
@@ -102,6 +113,36 @@ export default class ConsumoScreen extends React.Component {
     const { navigate } = this.props.navigation;
 
     navigate(tela);
+  }
+
+  renderPickerItem(step, max, tipo) {
+    const comp = [];
+    for (let i = step; i <= max; i += step) {
+      switch (tipo.toLowerCase()) {
+        case 'perc':
+          comp.push((<Picker.Item key={i} label={`${i}`} value={i / 100} />));
+          break;
+        default:
+        comp.push((<Picker.Item key={i} label={`${i}`} value={i} />));
+      }
+    }
+    return comp;
+  }
+
+  renderImoveisPrazo() {
+    return this.renderPickerItem(2, 20, 'prazo');
+  }
+
+  renderImoveisPerc() {
+    return this.renderPickerItem(1, 10, 'perc');
+  }
+
+  renderAutoPrazo() {
+    return this.renderPickerItem(1, 7, 'prazo');
+  }
+
+  renderAutoPerc() {
+    return this.renderPickerItem(1, 10, 'perc');
   }
 
   render() {
@@ -125,7 +166,6 @@ export default class ConsumoScreen extends React.Component {
           </View>
 
           <View style={styles.espacador} />
-          <View style={styles.espacador} />
           
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
@@ -135,16 +175,63 @@ export default class ConsumoScreen extends React.Component {
                   source={imgImoveis}
                 />
               </View>
+
               <View style={styles.viewPosIcone}>
-                <View style={styles.viewHorizontal}>
-                  <View style={styles.consumo_viewLabel}>
-                    <Text style={styles.label}>Imóvel para investimento:</Text>
-                    <Text style={styles.label}>Plano de 15 anos (10% da renda):</Text>
+                <View style={styles.viewVertical}>
+
+                  <View style={styles.viewHorizontal}>
+                    <View style={styles.consumo_viewLabel}>
+                      <Text style={styles.label}>Imóvel para investimento:</Text>
+                    </View>
+                    <View style={styles.consumo_viewValor}>
+                      <Text style={styles.consumo_txValor}>{monetizar(this.imovelInvest())}</Text>
+                    </View>
                   </View>
-                  <View style={styles.consumo_viewValor}>
-                    <Text style={styles.consumo_txValor}>{monetizar(this.imovelInvest())}</Text>
-                    <Text style={styles.consumo_txValor}>{monetizar(this.planoImovel())}</Text>
+
+                  <View style={styles.viewHorizontal}>
+                    <View style={styles.consumo_viewLabel}>
+                      <View style={styles.viewHorizontal}>
+                        <View style={styles.viewCompHoriz}>
+                          <Text style={styles.label}>Prazo:</Text>
+                          <View style={styles.consumo_viewPicker}>
+                            <Picker
+                              style={styles.consumo_pkEstCiv}
+                              itemStyle={styles.consumo_pkItemEstCiv}
+                              selectedValue={this.state.imovelPrazo}
+                              onValueChange={(itemValue) => 
+                                this.setState({ imovelPrazo: itemValue })
+                              }
+                              prompt='Selecione a qtde. de anos'
+                              mode='dialog'
+                            >
+                              {this.renderImoveisPrazo()}
+                            </Picker>
+                          </View>
+                        </View>
+                        <View style={styles.viewCompHoriz}>
+                          <Text style={styles.label}>% da renda:</Text>
+                          <View style={styles.consumo_viewPicker}>
+                            <Picker
+                              style={styles.consumo_pkEstCiv}
+                              itemStyle={styles.consumo_pkItemEstCiv}
+                              selectedValue={this.state.imovelRenda}
+                              onValueChange={(itemValue) => 
+                                this.setState({ imovelRenda: itemValue })
+                              }
+                              prompt='Selecione a qtde. de anos'
+                              mode='dialog'
+                            >
+                              {this.renderImoveisPerc()}
+                            </Picker>
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                    <View style={styles.consumo_viewValor}>
+                      <Text style={styles.consumo_txValor}>{monetizar(this.planoImovel())}</Text>
+                    </View>
                   </View>
+
                 </View>
               </View>
             </View>
@@ -163,16 +250,61 @@ export default class ConsumoScreen extends React.Component {
                 />
               </View>
               <View style={styles.viewPosIcone}>
-                <View style={styles.viewHorizontal}>
-                  <View style={styles.consumo_viewLabel}>
-                    <Text style={styles.label}>Carro novo ou troca:</Text>
-                    <Text style={styles.label}>Plano de 7 anos (10% da renda):</Text>
+                <View style={styles.viewVertical}>
+                  <View style={styles.viewHorizontal}>
+                    <View style={styles.consumo_viewLabel}>
+                      <Text style={styles.label}>Carro novo ou troca:</Text>
+                    </View>
+                    <View style={styles.consumo_viewValor}>
+                      <Text style={styles.consumo_txValor}>{monetizar(this.autoInvest())}</Text>
+                    </View>
                   </View>
-                  <View style={styles.consumo_viewValor}>
-                    <Text style={styles.consumo_txValor}>{monetizar(this.autoInvest())}</Text>
-                    <Text style={styles.consumo_txValor}>{monetizar(this.planoAuto())}</Text>
+
+                  <View style={styles.viewHorizontal}>
+                    <View style={styles.consumo_viewLabel}>
+                      <View style={styles.viewHorizontal}>
+                        <View style={styles.viewCompHoriz}>
+                          <Text style={styles.label}>Prazo:</Text>
+                          <View style={styles.consumo_viewPicker}>
+                            <Picker
+                              style={styles.consumo_pkEstCiv}
+                              itemStyle={styles.consumo_pkItemEstCiv}
+                              selectedValue={this.state.autoPrazo}
+                              onValueChange={(itemValue) => 
+                                this.setState({ autoPrazo: itemValue })
+                              }
+                              prompt='Selecione a qtde. de anos'
+                              mode='dialog'
+                            >
+                              {this.renderAutoPrazo()}
+                            </Picker>
+                          </View>
+                        </View>
+                        <View style={styles.viewCompHoriz}>
+                          <Text style={styles.label}>% da renda:</Text>
+                          <View style={styles.consumo_viewPicker}>
+                            <Picker
+                              style={styles.consumo_pkEstCiv}
+                              itemStyle={styles.consumo_pkItemEstCiv}
+                              selectedValue={this.state.autoRenda}
+                              onValueChange={(itemValue) => 
+                                this.setState({ autoRenda: itemValue })
+                              }
+                              prompt='Selecione a qtde. de anos'
+                              mode='dialog'
+                            >
+                              {this.renderAutoPerc()}
+                            </Picker>
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                    <View style={styles.consumo_viewValor}>
+                      <Text style={styles.consumo_txValor}>{monetizar(this.planoAuto())}</Text>
+                    </View>
                   </View>
                 </View>
+                
               </View>
             </View>
           </View>
@@ -180,10 +312,9 @@ export default class ConsumoScreen extends React.Component {
           <View style={styles.espacador} />
           <View style={styles.separador} />
           <View style={styles.espacador} />
-          <View style={styles.espacador} />
 
-          <View style={styles.viewVertical}>
-            <Text style={styles.label}>Gastos totais:</Text>
+          <View style={styles.viewCentral}>
+            <Text style={styles.aposent_vinheta}>Resumo</Text>
           </View>
 
           <View style={styles.viewHorizontal}>
@@ -213,6 +344,7 @@ export default class ConsumoScreen extends React.Component {
           </View>
 
           <View style={styles.espacador} />
+          <View style={styles.separador} />
 
         </ScrollView>
 

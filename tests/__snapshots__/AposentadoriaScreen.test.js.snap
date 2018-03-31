@@ -629,17 +629,9 @@ exports[`renders correctly 1`] = `
       <View
         style={
           Object {
-            "marginTop": 15,
-          }
-        }
-      />
-      <View
-        style={
-          Object {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexDirection": "column",
-            "justifyContent": "space-between",
-            "marginBottom": 8,
+            "justifyContent": "center",
             "width": "100%",
           }
         }
@@ -651,6 +643,8 @@ exports[`renders correctly 1`] = `
           style={
             Object {
               "color": "#666",
+              "fontSize": 16,
+              "fontWeight": "bold",
             }
           }
         >
