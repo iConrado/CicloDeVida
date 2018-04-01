@@ -629,6 +629,170 @@ describe('Classe de negócio Ciclo', () => {
     expect(c.getSaude()).toBe(265);
   });
 
+  // ImovelInvestPrazo
+  test('Get ImovelInvestPrazo com retorno vazio', () => {
+    expect(c.getImovelInvestPrazo()).toBeFalsy();
+  });
+
+  test('ImovelInvestPrazo válido', () => {
+    expect(c.setImovelInvestPrazo(180)).toBeTruthy();
+  });
+
+  test('ImovelInvestPrazo inválido', () => {
+    function func() {
+      c.setImovelInvestPrazo('');
+    }
+    expect(func).toThrowError();
+  });
+
+  test('ImovelInvestPrazo inválido', () => {
+    function func() {
+      c.setImovelInvestPrazo();
+    }
+    expect(func).toThrowError();
+  });
+
+  test('ImovelInvestPrazo inválido', () => {
+    function func() {
+      c.setImovelInvestPrazo(-12);
+    }
+    expect(func).toThrowError();
+  });
+
+  test('ImovelInvestPrazo inválido', () => {
+    function func() {
+      c.setImovelInvestPrazo('12550');
+    }
+    expect(func).toThrowError();
+  });
+
+  test('Get ImovelInvestPrazo com retorno preenchido', () => {
+    expect(c.getImovelInvestPrazo()).toBe(180);
+  });
+
+  // ImovelInvestPerc
+  test('Get ImovelInvestPerc com retorno vazio', () => {
+    expect(c.getImovelInvestPerc()).toBeFalsy();
+  });
+
+  test('ImovelInvestPerc válido', () => {
+    expect(c.setImovelInvestPerc(0.1)).toBeTruthy();
+  });
+
+  test('ImovelInvestPerc inválido', () => {
+    function func() {
+      c.setImovelInvestPerc('');
+    }
+    expect(func).toThrowError();
+  });
+
+  test('ImovelInvestPerc inválido', () => {
+    function func() {
+      c.setImovelInvestPerc();
+    }
+    expect(func).toThrowError();
+  });
+
+  test('ImovelInvestPerc inválido', () => {
+    function func() {
+      c.setImovelInvestPerc(-12);
+    }
+    expect(func).toThrowError();
+  });
+
+  test('ImovelInvestPerc inválido', () => {
+    function func() {
+      c.setImovelInvestPerc('12550');
+    }
+    expect(func).toThrowError();
+  });
+
+  test('Get ImovelInvestPerc com retorno preenchido', () => {
+    expect(c.getImovelInvestPerc()).toBe(0.1);
+  });
+
+  // AutoInvestPrazo
+  test('Get AutoInvestPrazo com retorno vazio', () => {
+    expect(c.getAutoInvestPrazo()).toBeFalsy();
+  });
+
+  test('AutoInvestPrazo válido', () => {
+    expect(c.setAutoInvestPrazo(72)).toBeTruthy();
+  });
+
+  test('AutoInvestPrazo inválido', () => {
+    function func() {
+      c.setAutoInvestPrazo('');
+    }
+    expect(func).toThrowError();
+  });
+
+  test('AutoInvestPrazo inválido', () => {
+    function func() {
+      c.setAutoInvestPrazo();
+    }
+    expect(func).toThrowError();
+  });
+
+  test('AutoInvestPrazo inválido', () => {
+    function func() {
+      c.setAutoInvestPrazo(-12);
+    }
+    expect(func).toThrowError();
+  });
+
+  test('AutoInvestPrazo inválido', () => {
+    function func() {
+      c.setAutoInvestPrazo('12550');
+    }
+    expect(func).toThrowError();
+  });
+
+  test('Get AutoInvestPrazo com retorno preenchido', () => {
+    expect(c.getAutoInvestPrazo()).toBe(72);
+  });
+
+  // AutoInvestPerc
+  test('Get AutoInvestPerc com retorno vazio', () => {
+    expect(c.getAutoInvestPerc()).toBeFalsy();
+  });
+
+  test('AutoInvestPerc válido', () => {
+    expect(c.setAutoInvestPerc(0.1)).toBeTruthy();
+  });
+
+  test('AutoInvestPerc inválido', () => {
+    function func() {
+      c.setAutoInvestPerc('');
+    }
+    expect(func).toThrowError();
+  });
+
+  test('AutoInvestPerc inválido', () => {
+    function func() {
+      c.setAutoInvestPerc();
+    }
+    expect(func).toThrowError();
+  });
+
+  test('AutoInvestPerc inválido', () => {
+    function func() {
+      c.setAutoInvestPerc(-12);
+    }
+    expect(func).toThrowError();
+  });
+
+  test('AutoInvestPerc inválido', () => {
+    function func() {
+      c.setAutoInvestPerc('12550');
+    }
+    expect(func).toThrowError();
+  });
+
+  test('Get AutoInvestPerc com retorno preenchido', () => {
+    expect(c.getAutoInvestPerc()).toBe(0.1);
+  });
+
   // ************************************************
   // *                  METODOS                     *
   // ************************************************

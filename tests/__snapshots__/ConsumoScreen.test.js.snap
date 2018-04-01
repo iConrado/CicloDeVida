@@ -396,6 +396,11 @@ exports[`renders without crashing 1`] = `
                             items={
                               Array [
                                 Object {
+                                  "label": "0",
+                                  "textColor": undefined,
+                                  "value": 0,
+                                },
+                                Object {
                                   "label": "2",
                                   "textColor": undefined,
                                   "value": 2,
@@ -507,6 +512,11 @@ exports[`renders without crashing 1`] = `
                           <RCTPicker
                             items={
                               Array [
+                                Object {
+                                  "label": "0",
+                                  "textColor": undefined,
+                                  "value": 0,
+                                },
                                 Object {
                                   "label": "1",
                                   "textColor": undefined,
@@ -822,6 +832,11 @@ exports[`renders without crashing 1`] = `
                             items={
                               Array [
                                 Object {
+                                  "label": "0",
+                                  "textColor": undefined,
+                                  "value": 0,
+                                },
+                                Object {
                                   "label": "1",
                                   "textColor": undefined,
                                   "value": 1,
@@ -918,6 +933,11 @@ exports[`renders without crashing 1`] = `
                           <RCTPicker
                             items={
                               Array [
+                                Object {
+                                  "label": "0",
+                                  "textColor": undefined,
+                                  "value": 0,
+                                },
                                 Object {
                                   "label": "1",
                                   "textColor": undefined,

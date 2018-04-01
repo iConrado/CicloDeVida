@@ -70,6 +70,26 @@ const Erro = {
     descricao: 'Email inválido.',
     solucao: 'Verifique o email informado e tente novamente.',
   },
+  e15: {
+    titulo: 'Ops',
+    descricao: 'Prazo para investimento em imóveis inválido.',
+    solucao: 'É importante pensar no futuro. Selecione um valor na lista para simulação.',
+  },
+  e16: {
+    titulo: 'Ops',
+    descricao: '% da renda para investimento em imóveis inválido.',
+    solucao: 'É importante pensar no futuro. Selecione um percentual na lista para simulação.',
+  },
+  e17: {
+    titulo: 'Ops',
+    descricao: 'Prazo para compra ou troca do veículo inválido.',
+    solucao: 'É importante pensar no futuro. Selecione um valor na lista para simulação.',
+  },
+  e18: {
+    titulo: 'Ops',
+    descricao: '% para compra ou troca do veículo inválido.',
+    solucao: 'É importante pensar no futuro. Selecione um percentual na lista para simulação.',
+  },
   t01: {
     titulo: 'Ops',
     descricao: 'O nome informado é curto demais.',

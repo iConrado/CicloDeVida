@@ -34,10 +34,10 @@ export default class ConsumoScreen extends React.Component {
     super(props);
     this.state = {
       modalErro: false, 
-      imovelPrazo: 2,
-      imovelRenda: 0.01,
-      autoPrazo: 1,
-      autoRenda: 0.01,
+      imovelPrazo: 0,
+      imovelPerc: 0,
+      autoPrazo: 0,
+      autoPerc: 0,
       comprometimento: 0,
     };
     this.fechaErro = this.fechaErro.bind(this);
@@ -69,14 +69,14 @@ export default class ConsumoScreen extends React.Component {
   }
 
   planoImovel() {
-    const renda = this.state.imovelRenda;
+    const renda = this.state.imovelPerc;
     const plano = C.planoImovel(renda);
 
     return plano;
   }
 
   planoAuto() {
-    const renda = this.state.autoRenda;
+    const renda = this.state.autoPerc;
     const plano = C.planoAuto(renda);
 
     return plano;
@@ -84,7 +84,7 @@ export default class ConsumoScreen extends React.Component {
 
   imovelInvest() {
     const prazo = this.state.imovelPrazo;
-    const renda = this.state.imovelRenda;
+    const renda = this.state.imovelPerc;
     const invest = C.imovelInvest(prazo, renda);
 
     return invest;
@@ -92,7 +92,7 @@ export default class ConsumoScreen extends React.Component {
 
   autoInvest() {
     const prazo = this.state.autoPrazo;
-    const renda = this.state.autoRenda;
+    const renda = this.state.autoPerc;
     const invest = C.autoInvest(prazo, renda);
 
     return invest;
@@ -112,11 +112,23 @@ export default class ConsumoScreen extends React.Component {
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
     const { navigate } = this.props.navigation;
 
+    const ImovelPrazo = this.state.imovelPrazo;
+    const ImovelPerc = this.state.imovelPerc;
+    const AutoPrazo = this.state.autoPrazo;
+    const AutoPerc = this.state.autoPerc;
+
+    // Validação das regras de negócio, registro e gravação de log
+    if (!Controle(this.abreErro, C, C.setImovelInvestPrazo, ImovelPrazo)) { return false; }
+    if (!Controle(this.abreErro, C, C.setImovelInvestPerc, ImovelPerc)) { return false; }
+    if (!Controle(this.abreErro, C, C.setAutoInvestPrazo, AutoPrazo)) { return false; }
+    if (!Controle(this.abreErro, C, C.setAutoInvestPerc, AutoPerc)) { return false; }
+
     navigate(tela);
   }
 
   renderPickerItem(step, max, tipo) {
     const comp = [];
+    comp.push((<Picker.Item key={0} label='0' value={0} />));
     for (let i = step; i <= max; i += step) {
       switch (tipo.toLowerCase()) {
         case 'perc':
@@ -214,9 +226,9 @@ export default class ConsumoScreen extends React.Component {
                             <Picker
                               style={styles.consumo_pkEstCiv}
                               itemStyle={styles.consumo_pkItemEstCiv}
-                              selectedValue={this.state.imovelRenda}
+                              selectedValue={this.state.imovelPerc}
                               onValueChange={(itemValue) => 
-                                this.setState({ imovelRenda: itemValue })
+                                this.setState({ imovelPerc: itemValue })
                               }
                               prompt='Selecione a qtde. de anos'
                               mode='dialog'
@@ -286,9 +298,9 @@ export default class ConsumoScreen extends React.Component {
                             <Picker
                               style={styles.consumo_pkEstCiv}
                               itemStyle={styles.consumo_pkItemEstCiv}
-                              selectedValue={this.state.autoRenda}
+                              selectedValue={this.state.autoPerc}
                               onValueChange={(itemValue) => 
-                                this.setState({ autoRenda: itemValue })
+                                this.setState({ autoPerc: itemValue })
                               }
                               prompt='Selecione a qtde. de anos'
                               mode='dialog'

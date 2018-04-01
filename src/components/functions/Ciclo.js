@@ -41,7 +41,10 @@
 // SegAuto      = Gasto mensal com seguro de automóveis
 // 
 // - Consumo
-// nihil
+// ImovelInvestPrazo = Prazo para poupar e investir na compra de um imóvel como investimento
+// ImovelInvesPerc   = Percentual da renda dedicado para o investimento em imóvel
+// AutoInvestPrazo   = Prazo para poupar e investir na compra ou troca de um novo veículo
+// AutoInvestPerc    = Percentual da renda dedicado para a compra de um novo veículo
 // 
 // - Resultado
 // nihil
@@ -396,7 +399,10 @@ export default class Ciclo {
 
   autoInvest(anos, perc) {
     if (typeof anos === 'number' && anos > 0 && this.planoAuto(perc) > 0) {
-      const invest = this.montante(0, this.planoAuto(perc), anos * 12, this.taxaMensal(this.getRentab()));
+      const invest = this.montante(0, 
+        this.planoAuto(perc), 
+        anos * 12, 
+        this.taxaMensal(this.getRentab()));
 
       return parseInt(invest, 10);
     }
@@ -688,4 +694,65 @@ export default class Ciclo {
     } 
     throw Erro.e13;
   }
+  
+  // Getter e Setter - ImovelInvestPrazo
+  getImovelInvestPrazo() {
+    if (this.ImovelInvestPrazo) {
+      return this.ImovelInvestPrazo;
+    }
+    return 0;
+  }
+  setImovelInvestPrazo(str) {
+    if (typeof str === 'number' && str > 0) {
+      this.ImovelInvestPrazo = str;
+      return true;
+    } 
+    throw Erro.e15;
+  }
+
+  // Getter e Setter - ImovelInvestPerc
+  getImovelInvestPerc() {
+    if (this.ImovelInvestPerc) {
+      return this.ImovelInvestPerc;
+    }
+    return 0;
+  }
+  setImovelInvestPerc(str) {
+    if (typeof str === 'number' && str > 0) {
+      this.ImovelInvestPerc = str;
+      return true;
+    } 
+    throw Erro.e16;
+  }
+
+  // Getter e Setter - AutoInvestPrazo
+  getAutoInvestPrazo() {
+    if (this.AutoInvestPrazo) {
+      return this.AutoInvestPrazo;
+    }
+    return 0;
+  }
+  setAutoInvestPrazo(str) {
+    if (typeof str === 'number' && str > 0) {
+      this.AutoInvestPrazo = str;
+      return true;
+    } 
+    throw Erro.e17;
+  }
+
+  // Getter e Setter - AutoInvesPerc
+  getAutoInvestPerc() {
+    if (this.AutoInvesPerc) {
+      return this.AutoInvesPerc;
+    }
+    return 0;
+  }
+  setAutoInvestPerc(str) {
+    if (typeof str === 'number' && str > 0) {
+      this.AutoInvesPerc = str;
+      return true;
+    } 
+    throw Erro.e18;
+  }
+
 }

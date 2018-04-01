@@ -2,17 +2,18 @@ import React from 'react';
 import { 
   ScrollView, 
   View, 
-  Text, 
-  Button } from 'react-native';
+  Text, } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
+import Rodape from './functions/Rodape';
 import EstiloVoltar from './functions/EstiloVoltar';
+import ModalErro from './functions/ModalErro';
 //import Controle from './functions/Controle';
-//import Ciclo from './functions/Ciclo';
+import Ciclo from './functions/Ciclo';
 
-//const C = new Ciclo();
-//let objErro = {};
+const C = new Ciclo();
+let objErro = {};
 
 export default class ResultadoScreen extends React.Component {
   static navigationOptions = { //eslint-disable-line
@@ -27,8 +28,8 @@ export default class ResultadoScreen extends React.Component {
     this.state = {
       modalErro: false, 
     };
-    //this.fechaErro = this.fechaErro.bind(this);
-    //this.abreErro = this.abreErro.bind(this);
+    this.fechaErro = this.fechaErro.bind(this);
+    this.abreErro = this.abreErro.bind(this);
   }
 
   abreErro(e, tipo) {
@@ -50,13 +51,33 @@ export default class ResultadoScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView 
-        style={styles.scroll}
-        contentContainerStyle={styles.container}
-      >
-        <Text>Resultado</Text>
-        
-      </ScrollView>
+      <View style={styles.tela}>
+        <ScrollView 
+          style={styles.scroll}
+          contentContainerStyle={styles.container}
+        >
+          {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
+          <ModalErro 
+            visivel={this.state.modalErro}
+            fechar={this.fechaErro}
+            objErro={objErro}
+          />
+          {/* **************************************************************************** */}
+          
+          <View style={styles.viewTitulo}>
+            <Text style={styles.titulo}>Consumo e</Text>
+            <Text style={styles.titulo}>Amplicação do Patrimônio</Text>
+          </View>
+          
+        </ScrollView>
+
+        <Rodape
+        valor={this.state.comprometimento}
+        funcProxTela={this.proxTela}
+        tela='Resultado'
+        />
+
+      </View>
     );
   }
 }

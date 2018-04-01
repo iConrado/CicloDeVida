@@ -24,7 +24,7 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    teste 0.1.21
+    teste 0.1.22
   </Text>
 </View>
 `;
