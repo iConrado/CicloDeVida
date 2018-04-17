@@ -9,9 +9,10 @@ import {
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
+import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
-import Controle from './functions/Controle';
+import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
 import desmonetizar from './functions/desmonetizar';
@@ -36,6 +37,7 @@ export default class SegurancaScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      carregado: false,
       modalErro: false, 
       saude: 0,
       comprometimento: 0,
@@ -46,9 +48,14 @@ export default class SegurancaScreen extends React.Component {
     this.proxTela = this.proxTela.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.montagem();
+  }
+
+  montagem() {
     tmpComprometimento[0] = this.state.saude;
     this.comprometimentoAtual();
+    this.setState({ carregado: true });
   }
 
   abreErro(e, tipo) {
@@ -128,12 +135,17 @@ export default class SegurancaScreen extends React.Component {
     const saude = this.state.saude;
 
     // Validação das regras de negócio, registro e gravação de log
-    if (!Controle(this.abreErro, C, C.setSaude, saude)) { return false; }
+    if (!controle(this.abreErro, C, C.setSaude, saude)) { return false; }
 
     navigate(tela);
   }
 
   render() {
+    if (!this.state.carregado) {
+      return (
+        <Carregando />
+      );
+    }
     return (
       <View style={styles.tela}>
         <ScrollView 

@@ -9,10 +9,11 @@ import {
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
+import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
 import LimiteDeErro from './functions/LimiteDeErro';
-import Controle from './functions/Controle';
+import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
 import desmonetizar from './functions/desmonetizar';
@@ -38,6 +39,7 @@ export default class AposentadoriaScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      carregado: false,
       modalErro: false, 
       disponib: Math.ceil(this.rendaPercentual() / 50) * 50,
       reservaPrev: 0,
@@ -54,9 +56,14 @@ export default class AposentadoriaScreen extends React.Component {
     this.defDisponib = this.defDisponib.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.montagem();
+  }
+
+  montagem() {
     tmpComprometimento[0] = this.state.disponib;
     this.comprometimentoAtual();
+    this.setState({ carregado: true });
   }
 
   abreErro(e, tipo) {
@@ -156,15 +163,20 @@ export default class AposentadoriaScreen extends React.Component {
     const rentab = this.state.rentab;
 
     // Validação das regras de negócio, registro e gravação de log
-    if (!Controle(this.abreErro, C, C.setDisponib, disponib)) { return false; }
-    if (!Controle(this.abreErro, C, C.setReservaPrev, reservaPrev)) { return false; }
-    if (!Controle(this.abreErro, C, C.setIdadeAposent, idadeAposent)) { return false; }
-    if (!Controle(this.abreErro, C, C.setRentab, rentab)) { return false; }
+    if (!controle(this.abreErro, C, C.setDisponib, disponib)) { return false; }
+    if (!controle(this.abreErro, C, C.setReservaPrev, reservaPrev)) { return false; }
+    if (!controle(this.abreErro, C, C.setIdadeAposent, idadeAposent)) { return false; }
+    if (!controle(this.abreErro, C, C.setRentab, rentab)) { return false; }
 
     navigate(tela);
   }
 
   render() {
+    if (!this.state.carregado) {
+      return (
+        <Carregando />
+      );
+    }
     return (
       <View style={styles.tela}>
         <ScrollView 

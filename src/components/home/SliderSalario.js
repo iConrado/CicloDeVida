@@ -11,9 +11,7 @@ import monetizar from '../functions/monetizar';
 export default class SliderSalario extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      tmpSalLiq: props.inicial ? props.inicial : 0
-    }; 
+    this.state = { tmpSalLiq: props.inicial ? props.inicial : 0 }; 
   }
 
   render() {
@@ -30,6 +28,7 @@ export default class SliderSalario extends React.Component {
               thumbTintColor='#14567A'
               value={this.state.tmpSalLiq}
               onValueChange={(value) => this.setState({ tmpSalLiq: value })}
+              onSlidingComplete={(value) => this.props.retorno(value)}
             />
           <Text style={styles.home_txSalLiq}>{monetizar(this.state.tmpSalLiq)}</Text>
         </View>

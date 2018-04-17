@@ -11,4 +11,8 @@ describe('monetizar corretamente', () => {
   test('numero invalido', () => {
     expect(monetizar('ab')).toBe('R$ ');
   });
+
+  test('numero invalido', () => {
+    expect(monetizar(75.1)).toBe('R$ ');
+  });
 });

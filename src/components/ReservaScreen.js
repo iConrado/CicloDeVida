@@ -7,10 +7,11 @@ import {
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
+import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
 import LimiteDeErro from './functions/LimiteDeErro';
-import Controle from './functions/Controle';
+import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
 import desmonetizar from './functions/desmonetizar';
@@ -33,6 +34,7 @@ export default class ReservaScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      carregado: false,
       modalErro: false, 
       gasto: 0,
       reserva: C.getReserva() === 0 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
@@ -46,10 +48,15 @@ export default class ReservaScreen extends React.Component {
     this.defReserva = this.defReserva.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.montagem();
+  }
+
+  montagem() {
     tmpComprometimento[0] = this.state.gasto;
     tmpComprometimento[1] = this.state.reserva;
     this.comprometimentoAtual();
+    this.setState({ carregado: true });
   }
 
   abreErro(e, tipo) {
@@ -164,13 +171,18 @@ export default class ReservaScreen extends React.Component {
     const reserva = this.state.reserva;
 
     // Validação das regras de negócio, registro e gravação de log
-    if (!Controle(this.abreErro, C, C.setGasto, gasto)) { return false; }
-    if (!Controle(this.abreErro, C, C.setReserva, reserva)) { return false; }
+    if (!controle(this.abreErro, C, C.setGasto, gasto)) { return false; }
+    if (!controle(this.abreErro, C, C.setReserva, reserva)) { return false; }
 
     navigate(tela);
   }
 
   render() {
+    if (!this.state.carregado) {
+      return (
+        <Carregando />
+      );
+    }
     return (
       <View style={styles.tela}>
         <ScrollView 

@@ -10,9 +10,7 @@ import styles from '../functions/styles';
 export default class SliderFilhos extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      tmpFilhos: props.inicial 
-    }; 
+    this.state = { tmpFilhos: props.inicial }; 
   }
 
   render() {

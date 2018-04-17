@@ -7,6 +7,7 @@ import {
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
+import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
 //import Controle from './functions/Controle';
@@ -26,10 +27,19 @@ export default class ResultadoScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      carregado: false,
       modalErro: false, 
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+  }
+
+  componentDidMount() {
+    this.montagem();
+  }
+
+  montagem() {
+    this.setState({ carregado: true });
   }
 
   abreErro(e, tipo) {
@@ -50,6 +60,11 @@ export default class ResultadoScreen extends React.Component {
   }
 
   render() {
+    if (!this.state.carregado) {
+      return (
+        <Carregando />
+      );
+    }
     return (
       <View style={styles.tela}>
         <ScrollView 
@@ -72,9 +87,9 @@ export default class ResultadoScreen extends React.Component {
         </ScrollView>
 
         <Rodape
-        valor={this.state.comprometimento}
-        funcProxTela={this.proxTela}
-        tela='Resultado'
+          valor={this.state.comprometimento}
+          funcProxTela={this.proxTela}
+          tela='Resultado'
         />
 
       </View>

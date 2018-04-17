@@ -10,6 +10,9 @@ import SegurancaScreen from './src/components/SegurancaScreen';
 import ConsumoScreen from './src/components/ConsumoScreen';
 import ResultadoScreen from './src/components/ResultadoScreen';
 
+// Dados de mock para abertura mais rápida
+import mock from './src/components/functions/mock';
+
 const AppNav = StackNavigator({
   Home: { screen: HomeScreen },
   Patrimonio: { screen: PatrimonioScreen },
@@ -20,6 +23,7 @@ const AppNav = StackNavigator({
   Resultado: { screen: ResultadoScreen },
   }, {
     initialRouteName: 'Home',
+    initialRouteParams: mock,
     headerMode: 'float',
   }
 );

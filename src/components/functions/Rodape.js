@@ -36,8 +36,18 @@ export default props => {
 };
 
 // export default class Rodape extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.funcao = _.debounce(this.funcao, 250);
+//   }
+
+//   funcao() {
+//     const { funcProxTela, tela } = this.props;
+//     funcProxTela(tela);
+//   }
+
 //   render() {
-//     const { valor, funcProxTela, tela } = this.props;
+//     const { valor } = this.props;
 //     return (
 //       <View style={styles.viewRodape}>
 //         <View style={styles.viewRodapeResumo}>
@@ -52,7 +62,9 @@ export default props => {
 //         <View style={styles.viewRodapeBotao}>
 //           <TouchableOpacity 
 //             style={styles.botao}
-//             onPress={() => funcProxTela(tela)}
+//             onPress={() => {
+//               this.funcao();
+//             }}
 //           >
 //             <Text style={styles.txtBotao}>PRÓXIMA ETAPA</Text>
 //           </TouchableOpacity>

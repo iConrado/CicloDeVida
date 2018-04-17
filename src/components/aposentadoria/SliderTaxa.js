@@ -10,7 +10,7 @@ import styles from '../functions/styles';
 export default class SliderTaxa extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { tmpRentab: props.inicial };
+    this.state = { tmpRentab: props.inicial ? props.inicial : 0 };
   }
 
   render() {

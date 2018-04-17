@@ -14,9 +14,7 @@ const imgHome = require('../../imgs/ic_home_white.png');
 export default class SliderImoveis extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      tmpImoveis: props.inicial 
-    }; 
+    this.state = { tmpImoveis: props.inicial ? props.inicial : 0 }; 
   }
 
   render() {

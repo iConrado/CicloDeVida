@@ -19,9 +19,6 @@ export default class SliderGasto extends React.Component {
 
   maximumSlider() {
     const max = parseInt(C.getSalLiq(), 10);
-    if (Number.isNaN(max)) {
-      return 0;
-    }
     return max;
   }
 

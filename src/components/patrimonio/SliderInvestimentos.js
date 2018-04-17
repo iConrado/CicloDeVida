@@ -14,9 +14,7 @@ const imgMoney = require('../../imgs/ic_money_white.png');
 export default class SliderInvestimentos extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      tmpInvest: props.inicial 
-    }; 
+    this.state = { tmpInvest: props.inicial ? props.inicial : 0 }; 
   }
   
   render() {

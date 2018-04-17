@@ -15,6 +15,11 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingHorizontal: 10,
   },
+  loading: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center'
+  },
   viewTitulo: {
     width: '100%',
     alignItems: 'center',

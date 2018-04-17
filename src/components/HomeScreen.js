@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-  View, 
+  View,
   ScrollView,
   Text, 
   TextInput,
@@ -11,10 +11,11 @@ import DatePicker from 'react-native-datepicker';
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
+import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
 import Erro from './functions/Erro';
-import Controle from './functions/Controle';
+import controle from './functions/controle';
 import validaEmail from './functions/validaEmail';
 import Ciclo from './functions/Ciclo';
 
@@ -23,7 +24,6 @@ import SliderSalario from './home/SliderSalario';
 
 const C = new Ciclo();
 let objErro = {};
-const tmpComprometimento = [];
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = { //eslint-disable-line
@@ -36,16 +36,25 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      carregado: false,
       modalErro: false, 
       nome: '',
       nasc: '',
-      estCiv: 0,
+      estCiv: 1,
       filhos: 0,
       salLiq: 0,
       iniCarr: '',
       email: '',
       comprometimento: 0,
     };
+
+    this.nome = null;
+    this.email = null;
+    this.refNome = elem => { this.nome = elem; };
+    this.refEmail = elem => { this.email = elem; };
+    this.focusNome = () => { if (this.nome) { this.nome.focus(); } };
+    this.focusEmail = () => { if (this.email) { this.email.focus(); } };
+
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
     this.proxTela = this.proxTela.bind(this);
@@ -54,17 +63,19 @@ export default class HomeScreen extends React.Component {
     this.defSalario = this.defSalario.bind(this);
   }
 
-  componentWillMount() {
-    this.setState({
-      nome: 'BRUNO P. SIQUEIRA',
-      nasc: '01/01/1980',
-      estCiv: 2,
-      filhos: 1,
-      salLiq: 8550,
-      iniCarr: '05/06/2000',
-      email: 'brunop@gmail.com'
-    });
-    this.comprometimentoAtual();
+  componentDidMount() {
+    this.montagem();
+  }
+
+  async montagem() {
+    // mock para carregamento mais rápido
+    if (this.props.navigation) {
+      const { params } = this.props.navigation.state;
+      if (params) {
+        this.setState(params);
+      }  
+    }
+    this.setState({ carregado: true });
   }
 
   //************************************************************
@@ -72,17 +83,11 @@ export default class HomeScreen extends React.Component {
   // os componentes de tela para possibilitar o funcionamento 
   // da tela personalizada de erros.
   //************************************************************
-  abreErro(e, tipo) {
+  abreErro(e) {
     objErro = e;
     this.setState({ modalErro: true });
-    switch (tipo) {
-      case 0:
-        console.log('Retorno 0');
-        break;
-      default:
-        console.log('Retorno default');
-    }
   }
+
   fechaErro() {
     this.setState({ modalErro: false });
     objErro = {};
@@ -95,14 +100,6 @@ export default class HomeScreen extends React.Component {
 
   defSalario(valor) {
     this.setState({ salLiq: valor });
-  }
-
-  comprometimentoAtual() {
-    if (tmpComprometimento[0] !== undefined) {
-      const valor = tmpComprometimento.reduce((prevVal, elem) => prevVal + elem);
-      const compr = C.comprometimentoAtual('Home', valor);
-      this.setState({ comprometimento: compr });
-    }
   }
 
   proxTela(tela) {
@@ -123,12 +120,12 @@ export default class HomeScreen extends React.Component {
     // Nome
     if (nome.trim().length < 6) {
       this.abreErro(Erro.t01, 0);
-      this.refs.nome.focus();
+      this.focusNome();
       return false;
     }
     if (!nome.match(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ. -]+$/)) {
       this.abreErro(Erro.t02, 0);
-      this.refs.nome.focus();
+      this.focusNome();
       return false;
     }
 
@@ -149,7 +146,6 @@ export default class HomeScreen extends React.Component {
     // Salário Líquido
     if (salLiq <= 0 || salLiq >= 1000000) {
       this.abreErro(Erro.t05, 0);
-      this.refs.salLiq.focus();
       return false;
     }
 
@@ -162,24 +158,29 @@ export default class HomeScreen extends React.Component {
     // Email
     if (!validaEmail(email)) { 
       this.abreErro(Erro.t07, 0);
-      this.refs.email.focus();
+      this.focusEmail();
       return false;
     }
     
     // Validação das regras de negócio, registro e gravação de log
-    if (!Controle(this.abreErro, C, C.setNome, nome)) { return false; }
-    if (!Controle(this.abreErro, C, C.setNasc, nasc)) { return false; }
-    if (!Controle(this.abreErro, C, C.setEstCivil, estCiv)) { return false; }
-    if (!Controle(this.abreErro, C, C.setFilhos, filhos)) { return false; }
-    if (!Controle(this.abreErro, C, C.setSalLiq, salLiq)) { return false; }
-    if (!Controle(this.abreErro, C, C.setIniCarreira, iniCarr)) { return false; }
-    if (!Controle(this.abreErro, C, C.setEmail, email)) { return false; }
+    if (!controle(this.abreErro, C, C.setNome, nome)) { return false; }
+    if (!controle(this.abreErro, C, C.setNasc, nasc)) { return false; }
+    if (!controle(this.abreErro, C, C.setEstCivil, estCiv)) { return false; }
+    if (!controle(this.abreErro, C, C.setFilhos, filhos)) { return false; }
+    if (!controle(this.abreErro, C, C.setSalLiq, salLiq)) { return false; }
+    if (!controle(this.abreErro, C, C.setIniCarreira, iniCarr)) { return false; }
+    if (!controle(this.abreErro, C, C.setEmail, email)) { return false; }
 
     // Após passar em todos os teste, abre a próxima tela do formulário
     navigate(tela);
   }
   
   render() {
+    if (!this.state.carregado) {
+      return (
+        <Carregando />
+      );
+    }
     return (
       <View style={styles.tela}>
         <ScrollView 
@@ -199,21 +200,21 @@ export default class HomeScreen extends React.Component {
           <View style={styles.viewVertical}>
             <Text style={styles.label}>Nome completo:</Text>
             <TextInput
-              ref='nome'
+              ref={this.refNome}
               style={styles.home_inpNome}
               autoCapitalize='characters'
               maxLength={50}
               selectTextOnFocus
               autoCorrect={false}
               underlineColorAndroid='#EAEAEA'
-              onChangeText={(text) => this.setState({ nome: text })}
+              onChangeText={(text) => this.setState({ nome: text.toUpperCase() })}
               value={this.state.nome}
             />
           </View>
           <View style={styles.viewVertical}>
             <Text style={styles.label}>E-mail:</Text>
             <TextInput
-              ref='email'
+              ref={this.refEmail}
               style={styles.home_inpEmail}
               keyboardType='email-address'
               maxLength={40}
@@ -305,7 +306,7 @@ export default class HomeScreen extends React.Component {
             <View style={styles.viewCompHoriz}>
               <Text style={styles.label}>Salário Líquido:</Text>
               <TextInput
-                ref='salLiq'
+                ref={this.salLiq}
                 style={styles.home_inpSal}
                 keyboardType='numeric'
                 maxLength={10}

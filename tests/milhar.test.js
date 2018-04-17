@@ -1,5 +1,4 @@
 import 'react-native';
-import renderer from 'react-test-renderer';
 
 import milhar from '../src/components/functions/milhar';
 

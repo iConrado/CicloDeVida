@@ -14,7 +14,7 @@ const C = new Ciclo();
 export default class SliderReserva extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { tmpReserva: props.inicial }; 
+    this.state = { tmpReserva: props.inicial ? props.inicial : 0 }; 
   }
 
   percentualRenda(valor) {
@@ -28,9 +28,6 @@ export default class SliderReserva extends React.Component {
 
   maximumSlider() {
     const max = parseInt(C.getSalLiq() * 0.3, 10);
-    if (Number.isNaN(max)) {
-      return 0;
-    }
     return max;
   }
 
@@ -42,6 +39,7 @@ export default class SliderReserva extends React.Component {
         </View>
         <View style={styles.viewHorizontal}>
           <Slider
+            testID='slider'
             style={styles.reserva_slider}
             minimumValue={0}
             maximumValue={this.maximumSlider()}

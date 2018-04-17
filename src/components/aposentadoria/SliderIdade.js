@@ -13,7 +13,7 @@ const C = new Ciclo();
 export default class SliderIdade extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { tmpIdadeAposent: props.inicial };
+    this.state = { tmpIdadeAposent: props.inicial ? props.inicial : 0 };
   }
 
   render() {

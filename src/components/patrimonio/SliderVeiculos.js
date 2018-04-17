@@ -14,9 +14,7 @@ const imgCar = require('../../imgs/ic_car_white.png');
 export default class SliderVeiculos extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      tmpVeiculos: props.inicial 
-    }; 
+    this.state = { tmpVeiculos: props.inicial ? props.inicial : 0 }; 
   }
 
   render() {

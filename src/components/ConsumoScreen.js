@@ -9,9 +9,10 @@ import {
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
+import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
-import Controle from './functions/Controle';
+import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
 
@@ -33,6 +34,7 @@ export default class ConsumoScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      carregado: false,
       modalErro: false, 
       imovelPrazo: 0,
       imovelPerc: 0,
@@ -45,10 +47,15 @@ export default class ConsumoScreen extends React.Component {
     this.proxTela = this.proxTela.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    this.montagem();
+  }
+
+  montagem() {
     tmpComprometimento[0] = C.getSalLiq() * 0.1;
     tmpComprometimento[1] = C.getSalLiq() * 0.1;
     this.comprometimentoAtual();
+    this.setState({ carregado: true });
   }
 
   abreErro(e, tipo) {
@@ -118,10 +125,10 @@ export default class ConsumoScreen extends React.Component {
     const AutoPerc = this.state.autoPerc;
 
     // Validação das regras de negócio, registro e gravação de log
-    if (!Controle(this.abreErro, C, C.setImovelInvestPrazo, ImovelPrazo)) { return false; }
-    if (!Controle(this.abreErro, C, C.setImovelInvestPerc, ImovelPerc)) { return false; }
-    if (!Controle(this.abreErro, C, C.setAutoInvestPrazo, AutoPrazo)) { return false; }
-    if (!Controle(this.abreErro, C, C.setAutoInvestPerc, AutoPerc)) { return false; }
+    if (!controle(this.abreErro, C, C.setImovelInvestPrazo, ImovelPrazo)) { return false; }
+    if (!controle(this.abreErro, C, C.setImovelInvestPerc, ImovelPerc)) { return false; }
+    if (!controle(this.abreErro, C, C.setAutoInvestPrazo, AutoPrazo)) { return false; }
+    if (!controle(this.abreErro, C, C.setAutoInvestPerc, AutoPerc)) { return false; }
 
     navigate(tela);
   }
@@ -158,6 +165,11 @@ export default class ConsumoScreen extends React.Component {
   }
 
   render() {
+    if (!this.state.carregado) {
+      return (
+        <Carregando />
+      );
+    }
     return (
       <View style={styles.tela}>
         <ScrollView 

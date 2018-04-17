@@ -14,7 +14,7 @@ const C = new Ciclo();
 export default class SliderDisponib extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { tmpDisponib: props.inicial };
+    this.state = { tmpDisponib: props.inicial ? props.inicial : 0 };
   }
 
   sugestaoReserva() {

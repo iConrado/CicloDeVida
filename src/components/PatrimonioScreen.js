@@ -8,9 +8,10 @@ import {
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
+import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalErro from './functions/ModalErro';
-import Controle from './functions/Controle';
+import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
 
@@ -21,7 +22,6 @@ import SliderVeiculos from './patrimonio/SliderVeiculos';
 const C = new Ciclo();
 let patrForm = 0;
 let objErro = {};
-const tmpComprometimento = [];
 
 export default class PatrimonioScreen extends React.Component {
   static navigationOptions = { //eslint-disable-line
@@ -34,6 +34,7 @@ export default class PatrimonioScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      carregado: false,
       modalErro: false,
       invest: 0,
       imoveis: 0,
@@ -49,20 +50,17 @@ export default class PatrimonioScreen extends React.Component {
     this.defVeiculos = this.defVeiculos.bind(this);
   }
 
-  componentWillMount() {
-    this.comprometimentoAtual();
+  componentDidMount() {
+    this.montagem();
   }
 
-  abreErro(e, tipo) {
+  montagem() {
+    this.setState({ carregado: true });
+  }
+
+  abreErro(e) {
     objErro = e;
     this.setState({ modalErro: true });
-    switch (tipo) {
-      case 0:
-        console.log('Retorno 0');
-        break;
-      default:
-        console.log('Retorno default');
-    }
   }
 
   fechaErro() {
@@ -127,14 +125,6 @@ export default class PatrimonioScreen extends React.Component {
     this.setState({ veiculos: valor });
   }
 
-  comprometimentoAtual() {
-    if (tmpComprometimento[0] !== undefined) {
-      const valor = tmpComprometimento.reduce((prevVal, elem) => prevVal + elem);
-      const compr = C.comprometimentoAtual('Patrimonio', valor);
-      this.setState({ comprometimento: compr });
-    }
-  }
-
   proxTela(tela) {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
@@ -146,14 +136,19 @@ export default class PatrimonioScreen extends React.Component {
     const veiculos = this.state.veiculos;
 
     // Validação das regras de negócio, registro e gravação de log
-    if (!Controle(this.abreErro, C, C.setInvest, invest)) { return false; }
-    if (!Controle(this.abreErro, C, C.setImoveis, imoveis)) { return false; }
-    if (!Controle(this.abreErro, C, C.setVeiculos, veiculos)) { return false; }
+    if (!controle(this.abreErro, C, C.setInvest, invest)) { return false; }
+    if (!controle(this.abreErro, C, C.setImoveis, imoveis)) { return false; }
+    if (!controle(this.abreErro, C, C.setVeiculos, veiculos)) { return false; }
 
     navigate(tela);
   }
 
   render() {
+    if (!this.state.carregado) {
+      return (
+        <Carregando />
+      );
+    }
     return (
       <View style={styles.tela}>
         <ScrollView 
