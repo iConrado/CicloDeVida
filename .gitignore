@@ -24,3 +24,6 @@ yarn-error.log*
 
 # TODOLIST
 TODOLIST.txt
+
+#CONSTANTES COM IDs do APP
+/src/components/functions/constantes.js

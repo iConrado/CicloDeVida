@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator, ImageBackground } from 'react-native';
 import firebase from 'firebase';
 
 import styles from './functions/styles';
+import CONST from './functions/constantes';
 
 const planoDeFundo = require('../imgs/fundo.jpg');
 
@@ -15,14 +16,7 @@ export default class SplashScreen extends React.Component {
   async carregarApp() {
     const { navigate } = this.props.navigation;
 
-    const config = {
-      apiKey: 'AIzaSyDVu1Zy3URetKUTX-TlwE0MBUAsah9mhtg',
-      authDomain: 'ciclo-de-vida.firebaseapp.com',
-      databaseURL: 'https://ciclo-de-vida.firebaseio.com',
-      projectId: 'ciclo-de-vida',
-      storageBucket: 'ciclo-de-vida.appspot.com',
-      messagingSenderId: '1006672678699',
-    };
+    const config = CONST.configFirebase;
 
     await firebase.initializeApp(config);
 

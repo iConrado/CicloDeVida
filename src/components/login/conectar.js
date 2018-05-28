@@ -2,6 +2,8 @@ import { AsyncStorage } from 'react-native';
 import firebase from 'firebase';
 import Expo from 'expo';
 
+import CONST from '../functions/constantes';
+
 export const conectar = async (email, senha) => {
   const erro = {};
   try {
@@ -57,8 +59,8 @@ export const conectarComGoogle = async () => {
 
   try {
     const { type, idToken, accessToken } = await Expo.Google.logInAsync({
-      androidClientId: '1006672678699-gj46b3uj8gm8a150901ncii5q2f7lcii.apps.googleusercontent.com',
-      iosClientId: '1006672678699-9djeighe2pacik381kujvpam10ln92bg.apps.googleusercontent.com',
+      androidClientId: CONST.androidClientId,
+      iosClientId: CONST.iosClientId,
       scopes: ['profile', 'email'],
     });
 
@@ -130,7 +132,7 @@ export const conectarComGoogle = async () => {
 export const conectarComFacebook = async () => {
   const erro = {};
   try {
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('208784913257977', { permissions: ['public_profile', 'email'] });
+    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(CONST.facebookID, { permissions: ['public_profile', 'email'] });
 
     if (type === 'success') {
       // Build Firebase credential with the Facebook access token.
