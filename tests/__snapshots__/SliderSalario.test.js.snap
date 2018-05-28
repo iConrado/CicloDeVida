@@ -33,7 +33,7 @@ ShallowWrapper {
         >
           Salário Líquido:
         </Text>,
-        <View
+        <Component
           style={
             Object {
               "alignItems": "center",
@@ -83,7 +83,7 @@ ShallowWrapper {
           >
             R$ 50
           </Text>
-        </View>,
+        </Component>,
       ],
       "style": Object {
         "alignItems": "flex-start",
@@ -242,7 +242,7 @@ ShallowWrapper {
           >
             Salário Líquido:
           </Text>,
-          <View
+          <Component
             style={
               Object {
                 "alignItems": "center",
@@ -292,7 +292,7 @@ ShallowWrapper {
             >
               R$ 50
             </Text>
-          </View>,
+          </Component>,
         ],
         "style": Object {
           "alignItems": "flex-start",

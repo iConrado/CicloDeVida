@@ -1,22 +1,20 @@
 {
   "name": "ciclodevida",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "private": true,
   "devDependencies": {
     "coveralls": "^3.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-rallycoding": "^3.2.0",
-    "jest-expo": "25.0.0",
+    "jest-expo": "~27.0.0",
     "pre-commit": "^1.2.2",
     "react-dom": "16.2.0",
     "react-native-mock": "^0.3.1",
-    "react-native-scripts": "^1.11.1",
-    "react-test-renderer": "16.2.0"
+    "react-native-scripts": "1.14.0",
+    "react-test-renderer": "16.3.1"
   },
-  "pre-commit": [
-    "test"
-  ],
+  "pre-commit": ["test"],
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "coverage": "jest --colors --coverage",
@@ -34,13 +32,14 @@
     "setupTestFrameworkScriptFile": "./src/setupTests.js"
   },
   "dependencies": {
-    "expo": "^25.0.0",
+    "expo": "^27.0.1",
+    "firebase": "^5.0.4",
     "moment": "^2.20.1",
-    "react": "16.2.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
     "react-native-datepicker": "^1.6.0",
     "react-native-slider": "^0.11.0",
-    "react-navigation": "^1.1.2",
+    "react-navigation": "^2.0.1",
     "sinon": "^4.5.0"
   }
 }

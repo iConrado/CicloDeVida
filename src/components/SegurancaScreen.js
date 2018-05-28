@@ -1,10 +1,5 @@
 import React from 'react';
-import { 
-  ScrollView, 
-  View, 
-  Text, 
-  TextInput,
-  Image } from 'react-native';
+import { ScrollView, View, Text, TextInput, Image } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
@@ -27,18 +22,19 @@ let objErro = {};
 const tmpComprometimento = [];
 
 export default class SegurancaScreen extends React.Component {
-  static navigationOptions = { //eslint-disable-line
+  static navigationOptions = {
+    //eslint-disable-line
     headerTitle: Cabecalho('Consultoria Ciclo de Vida'),
     headerBackTitle: 'Voltar',
     headerTintColor: EstiloVoltar.hTintColor,
     headerStyle: EstiloVoltar.hStyle,
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
       carregado: false,
-      modalErro: false, 
+      modalErro: false,
       saude: 0,
       comprometimento: 0,
     };
@@ -99,7 +95,9 @@ export default class SegurancaScreen extends React.Component {
     const soma = convenio + vida + imoveis + auto;
     const compr = C.comprometimentoGasto(soma);
 
-    return parseFloat(compr * 100, 10).toFixed(1).replace('.', ',');
+    return parseFloat(compr * 100, 10)
+      .toFixed(1)
+      .replace('.', ',');
   }
 
   calculaPatrimProt() {
@@ -135,31 +133,24 @@ export default class SegurancaScreen extends React.Component {
     const saude = this.state.saude;
 
     // Validação das regras de negócio, registro e gravação de log
-    if (!controle(this.abreErro, C, C.setSaude, saude)) { return false; }
+    if (!controle(this.abreErro, C, C.setSaude, saude)) {
+      return false;
+    }
 
     navigate(tela);
   }
 
   render() {
     if (!this.state.carregado) {
-      return (
-        <Carregando />
-      );
+      return <Carregando />;
     }
     return (
       <View style={styles.tela}>
-        <ScrollView 
-          style={styles.scroll}
-          contentContainerStyle={styles.container}
-        >
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-          <ModalErro 
-            visivel={this.state.modalErro}
-            fechar={this.fechaErro}
-            objErro={objErro}
-          />
+          <ModalErro visivel={this.state.modalErro} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}
-          
+
           <View style={styles.viewTitulo}>
             <Text style={styles.titulo}>Segurança</Text>
           </View>
@@ -169,9 +160,7 @@ export default class SegurancaScreen extends React.Component {
               <Text style={[styles.segur_lbCalculo, styles.label]}>Sugestão de limite mensal:</Text>
             </View>
             <View style={styles.viewCompHoriz}>
-              <Text style={styles.segur_txDireita}>
-                {`${this.comprometimento(this.sugestLim()) * 100}%`}
-              </Text>
+              <Text style={styles.segur_txDireita}>{`${this.comprometimento(this.sugestLim()) * 100}%`}</Text>
               <Text style={styles.segur_txDireita}>{monetizar(this.sugestLim())}</Text>
             </View>
           </View>
@@ -181,23 +170,20 @@ export default class SegurancaScreen extends React.Component {
 
           <View style={styles.viewHorizontal}>
             <View style={styles.viewIcone}>
-              <Image 
-                style={styles.imgIcone}
-                source={imgConvenio}
-              />
+              <Image style={styles.imgIcone} source={imgConvenio} />
             </View>
             <View style={styles.viewPosIcone}>
               <View style={styles.viewVertical}>
                 <Text style={styles.label}>Convênios de saúde:</Text>
                 <TextInput
-                  ref='saude'
+                  ref="saude"
                   style={styles.segur_input}
-                  keyboardType='numeric'
+                  keyboardType="numeric"
                   maxLength={10}
                   autoCorrect={false}
                   selectTextOnFocus
-                  underlineColorAndroid='#EAEAEA'
-                  onChangeText={(text) => this.setState({ saude: desmonetizar(text) })}
+                  underlineColorAndroid="#EAEAEA"
+                  onChangeText={text => this.setState({ saude: desmonetizar(text) })}
                   onEndEditing={() => this.calculaCompromSaude()}
                   value={monetizar(this.state.saude)}
                 />
@@ -212,15 +198,9 @@ export default class SegurancaScreen extends React.Component {
               <View style={styles.segur_viewEsquerda} />
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
-                  <Text style={[styles.label, styles.negrito, styles.segur_lbSeguridade]}>
-                    Seguros
-                  </Text>
-                  <Text style={[styles.label, styles.negrito, styles.segur_txValor]}>
-                    Valor mensal
-                  </Text>
-                  <Text style={[styles.label, styles.negrito, styles.segur_txValor]}>
-                    Patrimonio protegido
-                  </Text>
+                  <Text style={[styles.label, styles.negrito, styles.segur_lbSeguridade]}>Seguros</Text>
+                  <Text style={[styles.label, styles.negrito, styles.segur_txValor]}>Valor mensal</Text>
+                  <Text style={[styles.label, styles.negrito, styles.segur_txValor]}>Patrimonio protegido</Text>
                 </View>
               </View>
             </View>
@@ -229,16 +209,11 @@ export default class SegurancaScreen extends React.Component {
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
               <View style={styles.viewIcone}>
-                <Image 
-                  style={styles.imgIcone}
-                  source={imgVida}
-                />
+                <Image style={styles.imgIcone} source={imgVida} />
               </View>
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
-                  <Text style={[styles.label, styles.segur_lbSeguridade]}>
-                    Vida (24x salário bruto):
-                  </Text>
+                  <Text style={[styles.label, styles.segur_lbSeguridade]}>Vida (24x renda):</Text>
                   <Text style={styles.segur_txValor}>{monetizar(this.calculaVida())}</Text>
                   <Text style={styles.segur_txValor}>{monetizar(C.getSalLiq() * 24)}</Text>
                 </View>
@@ -249,10 +224,7 @@ export default class SegurancaScreen extends React.Component {
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
               <View style={styles.viewIcone}>
-                <Image 
-                  style={styles.imgIcone}
-                  source={imgImoveis}
-                />
+                <Image style={styles.imgIcone} source={imgImoveis} />
               </View>
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
@@ -267,10 +239,7 @@ export default class SegurancaScreen extends React.Component {
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
               <View style={styles.viewIcone}>
-                <Image 
-                  style={styles.imgIcone}
-                  source={imgAuto}
-                />
+                <Image style={styles.imgIcone} source={imgAuto} />
               </View>
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
@@ -287,40 +256,26 @@ export default class SegurancaScreen extends React.Component {
 
           <View style={styles.viewHorizontal}>
             <View style={styles.viewCompHoriz}>
-              <Text style={[styles.segur_lbCalculo, styles.label, styles.segur_lbTotal]}>
-                Comprometimento com segurança:
-              </Text>
+              <Text style={[styles.segur_lbCalculo, styles.label, styles.segur_lbTotal]}>Comprometimento com segurança:</Text>
             </View>
             <View style={styles.viewCompHoriz}>
-              <Text style={[styles.segur_txDireita, styles.segur_lbTotal]}>
-                {`${this.calculaComprTotal()}%`}
-              </Text>
+              <Text style={[styles.segur_txDireita, styles.segur_lbTotal]}>{`${this.calculaComprTotal()}%`}</Text>
             </View>
           </View>
 
           <View style={styles.viewHorizontal}>
             <View style={styles.viewCompHoriz}>
-              <Text style={[styles.segur_lbCalculo, styles.label, styles.segur_lbTotal]}>
-                Patrimônio protegido:
-              </Text>
+              <Text style={[styles.segur_lbCalculo, styles.label, styles.segur_lbTotal]}>Patrimônio protegido:</Text>
             </View>
             <View style={styles.viewCompHoriz}>
-              <Text style={[styles.segur_txDireita, styles.segur_lbTotal]}>
-                {monetizar(this.calculaPatrimProt())}
-              </Text>
+              <Text style={[styles.segur_txDireita, styles.segur_lbTotal]}>{monetizar(this.calculaPatrimProt())}</Text>
             </View>
           </View>
 
           <View style={styles.separador} />
-
         </ScrollView>
 
-        <Rodape
-          valor={this.state.comprometimento}
-          funcProxTela={this.proxTela}
-          tela='Consumo'
-        />
-        
+        <Rodape valor={this.state.comprometimento} funcProxTela={this.proxTela} tela="Consumo" />
       </View>
     );
   }

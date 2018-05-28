@@ -3,9 +3,9 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   tela: {
     flex: 1,
-  }, 
+  },
   scroll: {
-    flexShrink: 1
+    flexShrink: 1,
   },
   container: {
     //flex: 1, // Não permite a scroolview rolar a tela
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   loading: {
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   viewTitulo: {
     width: '100%',
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     borderRadius: 13,
-    backgroundColor: '#48AEB5'
+    backgroundColor: '#48AEB5',
   },
   viewPosIcone: {
     flexShrink: 1,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     borderRadius: 12,
-    backgroundColor: '#E7A730'
+    backgroundColor: '#E7A730',
   },
   viewPosLogo: {
     flex: 1,
@@ -110,6 +110,20 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingLeft: 10,
+  },
+  viewSplash: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginTop: 200,
+  },
+  splash: {
+    width: '100%',
+    fontSize: 48,
+    fontWeight: 'bold',
+    color: '#FFF',
+    textAlign: 'center',
+    marginBottom: 15,
   },
   titulo: {
     fontWeight: 'bold',
@@ -142,10 +156,10 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 2,
     elevation: 4,
-    backgroundColor: '#5C86F5'
+    backgroundColor: '#5C86F5',
   },
   negrito: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   txtBotao: {
     fontSize: 14,
@@ -174,6 +188,166 @@ const styles = StyleSheet.create({
   imgLogo: {
     height: 24,
     width: 24,
+  },
+  //***********************************
+  //* LOGIN_SCREEN                    *
+  //***********************************
+  login_viewContainer: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#FFF',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  login_viewPrincipal: {
+    flexShrink: 1,
+    height: '100%',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  login_viewRodape: {
+    height: 40,
+    marginBottom: 5,
+    width: '100%',
+    alignItems: 'center',
+  },
+  login_viewTitulo: {
+    width: '90%',
+    marginBottom: 30,
+  },
+  login_viewOpcoes: {
+    width: '90%',
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  login_botao: {
+    width: '90%',
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 10,
+    borderRadius: 5,
+  },
+  login_facebook: {
+    backgroundColor: '#2561C7',
+  },
+  login_google: {
+    backgroundColor: '#FFF',
+    borderWidth: 1,
+    borderColor: '#CCC',
+  },
+  login_cadastrar: {
+    backgroundColor: '#5BA849',
+  },
+  login_imgGoogle: {
+    height: 25,
+    width: 25,
+    marginRight: 10,
+  },
+  login_imgFacebook: {
+    height: 26,
+    width: 13,
+    marginRight: 10,
+  },
+  login_textoBotao: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  login_textoBotaoGoogle: {
+    color: '#666',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  login_textoLink: {
+    color: '#2561C7',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  login_textoErro: {
+    width: '90%',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#E10404',
+    fontWeight: 'bold',
+  },
+  login_textoTitulo: {
+    textAlign: 'center',
+    color: '#052F76',
+    fontSize: 36,
+    fontWeight: 'bold',
+  },
+  login_textoSubTitulo: {
+    textAlign: 'center',
+    color: '#052F76',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  login_texto: {
+    width: '90%',
+    color: '#666',
+    textAlign: 'center',
+  },
+  //***********************************
+  //* Cadastro                        *
+  //***********************************
+  cadastro_viewContainer: {
+    flex: 1,
+    width: '100%',
+    backgroundColor: '#FFF',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 60,
+  },
+  cadastro_botao: {
+    width: '90%',
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 20,
+    borderRadius: 5,
+  },
+  cadastro_criarConta: {
+    backgroundColor: '#2561C7',
+  },
+  cadastro_cancelar: {
+    marginTop: 0,
+    backgroundColor: '#B7B6B6',
+  },
+  cadastro_textoBotao: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  cadastro_input: {
+    width: '90%',
+    height: 40,
+    borderBottomWidth: 1,
+    borderBottomColor: '#AAA',
+    paddingHorizontal: 5,
+  },
+  cadastro_label: {
+    width: '90%',
+    marginTop: 15,
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#666',
+  },
+  cadastro_textoErro: {
+    width: '90%',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#E10404',
+    fontWeight: 'bold',
+  },
+  cadastro_textoSucesso: {
+    width: '90%',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#666',
+    fontWeight: 'bold',
   },
   //***********************************
   //* HOME_SCREEN                     *

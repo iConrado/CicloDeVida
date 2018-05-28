@@ -39,7 +39,7 @@ ShallowWrapper {
             objErro={Object {}}
             visivel={false}
           />
-          <View
+          <Component
             style={
               Object {
                 "alignItems": "center",
@@ -63,8 +63,8 @@ ShallowWrapper {
             >
               Dados básicos
             </Text>
-          </View>
-          <View
+          </Component>
+          <Component
             style={
               Object {
                 "alignItems": "flex-start",
@@ -107,8 +107,8 @@ ShallowWrapper {
               underlineColorAndroid="#EAEAEA"
               value=""
             />
-          </View>
-          <View
+          </Component>
+          <Component
             style={
               Object {
                 "alignItems": "flex-start",
@@ -150,8 +150,8 @@ ShallowWrapper {
               underlineColorAndroid="#EAEAEA"
               value=""
             />
-          </View>
-          <View
+          </Component>
+          <Component
             style={
               Object {
                 "alignItems": "flex-start",
@@ -162,7 +162,7 @@ ShallowWrapper {
               }
             }
           >
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -172,7 +172,7 @@ ShallowWrapper {
                 }
               }
             >
-              <View
+              <Component
                 style={
                   Object {
                     "width": "50%",
@@ -193,6 +193,7 @@ ShallowWrapper {
                 </Text>
                 <DatePicker
                   TouchableComponent={[Function]}
+                  allowFontScaling={true}
                   androidMode="default"
                   cancelBtnText="Cancelar"
                   confirmBtnText="Ok"
@@ -209,11 +210,7 @@ ShallowWrapper {
                   format="DD/MM/YYYY"
                   height={259}
                   hideText={false}
-                  iconSource={
-                    Object {
-                      "testUri": "../../react-native-datepicker/date_icon.png",
-                    }
-                  }
+                  iconSource={1}
                   maxDate="31/12/2050"
                   minDate="01/01/1900"
                   modalOnResponderTerminationRequest={[Function]}
@@ -227,8 +224,8 @@ ShallowWrapper {
                     }
                   }
                 />
-              </View>
-              <View
+              </Component>
+              <Component
                 style={
                   Object {
                     "width": "50%",
@@ -247,7 +244,7 @@ ShallowWrapper {
                 >
                   Estado Civil:
                 </Text>
-                <View
+                <Component
                   style={
                     Object {
                       "borderColor": "#C1C1C1",
@@ -294,15 +291,15 @@ ShallowWrapper {
                       value={5}
                     />
                   </Picker>
-                </View>
-              </View>
-            </View>
-          </View>
+                </Component>
+              </Component>
+            </Component>
+          </Component>
           <SliderFilhos
             inicial={0}
             retorno={[Function]}
           />
-          <View
+          <Component
             style={
               Object {
                 "alignItems": "flex-start",
@@ -327,6 +324,7 @@ ShallowWrapper {
             </Text>
             <DatePicker
               TouchableComponent={[Function]}
+              allowFontScaling={true}
               androidMode="default"
               cancelBtnText="Cancelar"
               confirmBtnText="Ok"
@@ -343,11 +341,7 @@ ShallowWrapper {
               format="DD/MM/YYYY"
               height={259}
               hideText={false}
-              iconSource={
-                Object {
-                  "testUri": "../../react-native-datepicker/date_icon.png",
-                }
-              }
+              iconSource={1}
               maxDate="31/12/2050"
               minDate="01/01/1900"
               modalOnResponderTerminationRequest={[Function]}
@@ -361,7 +355,7 @@ ShallowWrapper {
                 }
               }
             />
-          </View>
+          </Component>
           <SliderSalario
             inicial={0}
             retorno={[Function]}
@@ -390,7 +384,7 @@ ShallowWrapper {
               objErro={Object {}}
               visivel={false}
             />,
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -414,8 +408,8 @@ ShallowWrapper {
               >
                 Dados básicos
               </Text>
-            </View>,
-            <View
+            </Component>,
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -458,8 +452,8 @@ ShallowWrapper {
                 underlineColorAndroid="#EAEAEA"
                 value=""
               />
-            </View>,
-            <View
+            </Component>,
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -501,8 +495,8 @@ ShallowWrapper {
                 underlineColorAndroid="#EAEAEA"
                 value=""
               />
-            </View>,
-            <View
+            </Component>,
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -513,7 +507,7 @@ ShallowWrapper {
                 }
               }
             >
-              <View
+              <Component
                 style={
                   Object {
                     "alignItems": "center",
@@ -523,7 +517,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -544,6 +538,7 @@ ShallowWrapper {
                   </Text>
                   <DatePicker
                     TouchableComponent={[Function]}
+                    allowFontScaling={true}
                     androidMode="default"
                     cancelBtnText="Cancelar"
                     confirmBtnText="Ok"
@@ -560,11 +555,7 @@ ShallowWrapper {
                     format="DD/MM/YYYY"
                     height={259}
                     hideText={false}
-                    iconSource={
-                      Object {
-                        "testUri": "../../react-native-datepicker/date_icon.png",
-                      }
-                    }
+                    iconSource={1}
                     maxDate="31/12/2050"
                     minDate="01/01/1900"
                     modalOnResponderTerminationRequest={[Function]}
@@ -578,8 +569,8 @@ ShallowWrapper {
                       }
                     }
                   />
-                </View>
-                <View
+                </Component>
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -598,7 +589,7 @@ ShallowWrapper {
                   >
                     Estado Civil:
                   </Text>
-                  <View
+                  <Component
                     style={
                       Object {
                         "borderColor": "#C1C1C1",
@@ -645,15 +636,15 @@ ShallowWrapper {
                         value={5}
                       />
                     </Picker>
-                  </View>
-                </View>
-              </View>
-            </View>,
+                  </Component>
+                </Component>
+              </Component>
+            </Component>,
             <SliderFilhos
               inicial={0}
               retorno={[Function]}
             />,
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -678,6 +669,7 @@ ShallowWrapper {
               </Text>
               <DatePicker
                 TouchableComponent={[Function]}
+                allowFontScaling={true}
                 androidMode="default"
                 cancelBtnText="Cancelar"
                 confirmBtnText="Ok"
@@ -694,11 +686,7 @@ ShallowWrapper {
                 format="DD/MM/YYYY"
                 height={259}
                 hideText={false}
-                iconSource={
-                  Object {
-                    "testUri": "../../react-native-datepicker/date_icon.png",
-                  }
-                }
+                iconSource={1}
                 maxDate="31/12/2050"
                 minDate="01/01/1900"
                 modalOnResponderTerminationRequest={[Function]}
@@ -712,7 +700,7 @@ ShallowWrapper {
                   }
                 }
               />
-            </View>,
+            </Component>,
             <SliderSalario
               inicial={0}
               retorno={[Function]}
@@ -986,7 +974,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": <View
+              "children": <Component
                 style={
                   Object {
                     "alignItems": "center",
@@ -996,7 +984,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -1017,6 +1005,7 @@ ShallowWrapper {
                   </Text>
                   <DatePicker
                     TouchableComponent={[Function]}
+                    allowFontScaling={true}
                     androidMode="default"
                     cancelBtnText="Cancelar"
                     confirmBtnText="Ok"
@@ -1033,11 +1022,7 @@ ShallowWrapper {
                     format="DD/MM/YYYY"
                     height={259}
                     hideText={false}
-                    iconSource={
-                      Object {
-                        "testUri": "../../react-native-datepicker/date_icon.png",
-                      }
-                    }
+                    iconSource={1}
                     maxDate="31/12/2050"
                     minDate="01/01/1900"
                     modalOnResponderTerminationRequest={[Function]}
@@ -1051,8 +1036,8 @@ ShallowWrapper {
                       }
                     }
                   />
-                </View>
-                <View
+                </Component>
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -1071,7 +1056,7 @@ ShallowWrapper {
                   >
                     Estado Civil:
                   </Text>
-                  <View
+                  <Component
                     style={
                       Object {
                         "borderColor": "#C1C1C1",
@@ -1118,9 +1103,9 @@ ShallowWrapper {
                         value={5}
                       />
                     </Picker>
-                  </View>
-                </View>
-              </View>,
+                  </Component>
+                </Component>
+              </Component>,
               "style": Object {
                 "alignItems": "flex-start",
                 "flexDirection": "column",
@@ -1136,7 +1121,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": Array [
-                  <View
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -1157,6 +1142,7 @@ ShallowWrapper {
                     </Text>
                     <DatePicker
                       TouchableComponent={[Function]}
+                      allowFontScaling={true}
                       androidMode="default"
                       cancelBtnText="Cancelar"
                       confirmBtnText="Ok"
@@ -1173,11 +1159,7 @@ ShallowWrapper {
                       format="DD/MM/YYYY"
                       height={259}
                       hideText={false}
-                      iconSource={
-                        Object {
-                          "testUri": "../../react-native-datepicker/date_icon.png",
-                        }
-                      }
+                      iconSource={1}
                       maxDate="31/12/2050"
                       minDate="01/01/1900"
                       modalOnResponderTerminationRequest={[Function]}
@@ -1191,8 +1173,8 @@ ShallowWrapper {
                         }
                       }
                     />
-                  </View>,
-                  <View
+                  </Component>,
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -1211,7 +1193,7 @@ ShallowWrapper {
                     >
                       Estado Civil:
                     </Text>
-                    <View
+                    <Component
                       style={
                         Object {
                           "borderColor": "#C1C1C1",
@@ -1258,8 +1240,8 @@ ShallowWrapper {
                           value={5}
                         />
                       </Picker>
-                    </View>
-                  </View>,
+                    </Component>
+                  </Component>,
                 ],
                 "style": Object {
                   "alignItems": "center",
@@ -1290,6 +1272,7 @@ ShallowWrapper {
                       </Text>,
                       <DatePicker
                         TouchableComponent={[Function]}
+                        allowFontScaling={true}
                         androidMode="default"
                         cancelBtnText="Cancelar"
                         confirmBtnText="Ok"
@@ -1306,11 +1289,7 @@ ShallowWrapper {
                         format="DD/MM/YYYY"
                         height={259}
                         hideText={false}
-                        iconSource={
-                          Object {
-                            "testUri": "../../react-native-datepicker/date_icon.png",
-                          }
-                        }
+                        iconSource={1}
                         maxDate="31/12/2050"
                         minDate="01/01/1900"
                         modalOnResponderTerminationRequest={[Function]}
@@ -1354,6 +1333,7 @@ ShallowWrapper {
                       "nodeType": "class",
                       "props": Object {
                         "TouchableComponent": [Function],
+                        "allowFontScaling": true,
                         "androidMode": "default",
                         "cancelBtnText": "Cancelar",
                         "confirmBtnText": "Ok",
@@ -1368,9 +1348,7 @@ ShallowWrapper {
                         "format": "DD/MM/YYYY",
                         "height": 259,
                         "hideText": false,
-                        "iconSource": Object {
-                          "testUri": "../../react-native-datepicker/date_icon.png",
-                        },
+                        "iconSource": 1,
                         "maxDate": "31/12/2050",
                         "minDate": "01/01/1900",
                         "modalOnResponderTerminationRequest": [Function],
@@ -1407,7 +1385,7 @@ ShallowWrapper {
                       >
                         Estado Civil:
                       </Text>,
-                      <View
+                      <Component
                         style={
                           Object {
                             "borderColor": "#C1C1C1",
@@ -1454,7 +1432,7 @@ ShallowWrapper {
                             value={5}
                           />
                         </Picker>
-                      </View>,
+                      </Component>,
                     ],
                     "style": Object {
                       "width": "50%",
@@ -1675,6 +1653,7 @@ ShallowWrapper {
                 </Text>,
                 <DatePicker
                   TouchableComponent={[Function]}
+                  allowFontScaling={true}
                   androidMode="default"
                   cancelBtnText="Cancelar"
                   confirmBtnText="Ok"
@@ -1691,11 +1670,7 @@ ShallowWrapper {
                   format="DD/MM/YYYY"
                   height={259}
                   hideText={false}
-                  iconSource={
-                    Object {
-                      "testUri": "../../react-native-datepicker/date_icon.png",
-                    }
-                  }
+                  iconSource={1}
                   maxDate="31/12/2050"
                   minDate="01/01/1900"
                   modalOnResponderTerminationRequest={[Function]}
@@ -1743,6 +1718,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "TouchableComponent": [Function],
+                  "allowFontScaling": true,
                   "androidMode": "default",
                   "cancelBtnText": "Cancelar",
                   "confirmBtnText": "Ok",
@@ -1757,9 +1733,7 @@ ShallowWrapper {
                   "format": "DD/MM/YYYY",
                   "height": 259,
                   "hideText": false,
-                  "iconSource": Object {
-                    "testUri": "../../react-native-datepicker/date_icon.png",
-                  },
+                  "iconSource": 1,
                   "maxDate": "31/12/2050",
                   "minDate": "01/01/1900",
                   "modalOnResponderTerminationRequest": [Function],
@@ -1837,7 +1811,7 @@ ShallowWrapper {
               objErro={Object {}}
               visivel={false}
             />
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -1861,8 +1835,8 @@ ShallowWrapper {
               >
                 Dados básicos
               </Text>
-            </View>
-            <View
+            </Component>
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -1905,8 +1879,8 @@ ShallowWrapper {
                 underlineColorAndroid="#EAEAEA"
                 value=""
               />
-            </View>
-            <View
+            </Component>
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -1948,8 +1922,8 @@ ShallowWrapper {
                 underlineColorAndroid="#EAEAEA"
                 value=""
               />
-            </View>
-            <View
+            </Component>
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -1960,7 +1934,7 @@ ShallowWrapper {
                 }
               }
             >
-              <View
+              <Component
                 style={
                   Object {
                     "alignItems": "center",
@@ -1970,7 +1944,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -1991,6 +1965,7 @@ ShallowWrapper {
                   </Text>
                   <DatePicker
                     TouchableComponent={[Function]}
+                    allowFontScaling={true}
                     androidMode="default"
                     cancelBtnText="Cancelar"
                     confirmBtnText="Ok"
@@ -2007,11 +1982,7 @@ ShallowWrapper {
                     format="DD/MM/YYYY"
                     height={259}
                     hideText={false}
-                    iconSource={
-                      Object {
-                        "testUri": "../../react-native-datepicker/date_icon.png",
-                      }
-                    }
+                    iconSource={1}
                     maxDate="31/12/2050"
                     minDate="01/01/1900"
                     modalOnResponderTerminationRequest={[Function]}
@@ -2025,8 +1996,8 @@ ShallowWrapper {
                       }
                     }
                   />
-                </View>
-                <View
+                </Component>
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -2045,7 +2016,7 @@ ShallowWrapper {
                   >
                     Estado Civil:
                   </Text>
-                  <View
+                  <Component
                     style={
                       Object {
                         "borderColor": "#C1C1C1",
@@ -2092,15 +2063,15 @@ ShallowWrapper {
                         value={5}
                       />
                     </Picker>
-                  </View>
-                </View>
-              </View>
-            </View>
+                  </Component>
+                </Component>
+              </Component>
+            </Component>
             <SliderFilhos
               inicial={0}
               retorno={[Function]}
             />
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -2125,6 +2096,7 @@ ShallowWrapper {
               </Text>
               <DatePicker
                 TouchableComponent={[Function]}
+                allowFontScaling={true}
                 androidMode="default"
                 cancelBtnText="Cancelar"
                 confirmBtnText="Ok"
@@ -2141,11 +2113,7 @@ ShallowWrapper {
                 format="DD/MM/YYYY"
                 height={259}
                 hideText={false}
-                iconSource={
-                  Object {
-                    "testUri": "../../react-native-datepicker/date_icon.png",
-                  }
-                }
+                iconSource={1}
                 maxDate="31/12/2050"
                 minDate="01/01/1900"
                 modalOnResponderTerminationRequest={[Function]}
@@ -2159,7 +2127,7 @@ ShallowWrapper {
                   }
                 }
               />
-            </View>
+            </Component>
             <SliderSalario
               inicial={0}
               retorno={[Function]}
@@ -2188,7 +2156,7 @@ ShallowWrapper {
                 objErro={Object {}}
                 visivel={false}
               />,
-              <View
+              <Component
                 style={
                   Object {
                     "alignItems": "center",
@@ -2212,8 +2180,8 @@ ShallowWrapper {
                 >
                   Dados básicos
                 </Text>
-              </View>,
-              <View
+              </Component>,
+              <Component
                 style={
                   Object {
                     "alignItems": "flex-start",
@@ -2256,8 +2224,8 @@ ShallowWrapper {
                   underlineColorAndroid="#EAEAEA"
                   value=""
                 />
-              </View>,
-              <View
+              </Component>,
+              <Component
                 style={
                   Object {
                     "alignItems": "flex-start",
@@ -2299,8 +2267,8 @@ ShallowWrapper {
                   underlineColorAndroid="#EAEAEA"
                   value=""
                 />
-              </View>,
-              <View
+              </Component>,
+              <Component
                 style={
                   Object {
                     "alignItems": "flex-start",
@@ -2311,7 +2279,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "alignItems": "center",
@@ -2321,7 +2289,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <View
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -2342,6 +2310,7 @@ ShallowWrapper {
                     </Text>
                     <DatePicker
                       TouchableComponent={[Function]}
+                      allowFontScaling={true}
                       androidMode="default"
                       cancelBtnText="Cancelar"
                       confirmBtnText="Ok"
@@ -2358,11 +2327,7 @@ ShallowWrapper {
                       format="DD/MM/YYYY"
                       height={259}
                       hideText={false}
-                      iconSource={
-                        Object {
-                          "testUri": "../../react-native-datepicker/date_icon.png",
-                        }
-                      }
+                      iconSource={1}
                       maxDate="31/12/2050"
                       minDate="01/01/1900"
                       modalOnResponderTerminationRequest={[Function]}
@@ -2376,8 +2341,8 @@ ShallowWrapper {
                         }
                       }
                     />
-                  </View>
-                  <View
+                  </Component>
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -2396,7 +2361,7 @@ ShallowWrapper {
                     >
                       Estado Civil:
                     </Text>
-                    <View
+                    <Component
                       style={
                         Object {
                           "borderColor": "#C1C1C1",
@@ -2443,15 +2408,15 @@ ShallowWrapper {
                           value={5}
                         />
                       </Picker>
-                    </View>
-                  </View>
-                </View>
-              </View>,
+                    </Component>
+                  </Component>
+                </Component>
+              </Component>,
               <SliderFilhos
                 inicial={0}
                 retorno={[Function]}
               />,
-              <View
+              <Component
                 style={
                   Object {
                     "alignItems": "flex-start",
@@ -2476,6 +2441,7 @@ ShallowWrapper {
                 </Text>
                 <DatePicker
                   TouchableComponent={[Function]}
+                  allowFontScaling={true}
                   androidMode="default"
                   cancelBtnText="Cancelar"
                   confirmBtnText="Ok"
@@ -2492,11 +2458,7 @@ ShallowWrapper {
                   format="DD/MM/YYYY"
                   height={259}
                   hideText={false}
-                  iconSource={
-                    Object {
-                      "testUri": "../../react-native-datepicker/date_icon.png",
-                    }
-                  }
+                  iconSource={1}
                   maxDate="31/12/2050"
                   minDate="01/01/1900"
                   modalOnResponderTerminationRequest={[Function]}
@@ -2510,7 +2472,7 @@ ShallowWrapper {
                     }
                   }
                 />
-              </View>,
+              </Component>,
               <SliderSalario
                 inicial={0}
                 retorno={[Function]}
@@ -2784,7 +2746,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <View
+                "children": <Component
                   style={
                     Object {
                       "alignItems": "center",
@@ -2794,7 +2756,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <View
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -2815,6 +2777,7 @@ ShallowWrapper {
                     </Text>
                     <DatePicker
                       TouchableComponent={[Function]}
+                      allowFontScaling={true}
                       androidMode="default"
                       cancelBtnText="Cancelar"
                       confirmBtnText="Ok"
@@ -2831,11 +2794,7 @@ ShallowWrapper {
                       format="DD/MM/YYYY"
                       height={259}
                       hideText={false}
-                      iconSource={
-                        Object {
-                          "testUri": "../../react-native-datepicker/date_icon.png",
-                        }
-                      }
+                      iconSource={1}
                       maxDate="31/12/2050"
                       minDate="01/01/1900"
                       modalOnResponderTerminationRequest={[Function]}
@@ -2849,8 +2808,8 @@ ShallowWrapper {
                         }
                       }
                     />
-                  </View>
-                  <View
+                  </Component>
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -2869,7 +2828,7 @@ ShallowWrapper {
                     >
                       Estado Civil:
                     </Text>
-                    <View
+                    <Component
                       style={
                         Object {
                           "borderColor": "#C1C1C1",
@@ -2916,9 +2875,9 @@ ShallowWrapper {
                           value={5}
                         />
                       </Picker>
-                    </View>
-                  </View>
-                </View>,
+                    </Component>
+                  </Component>
+                </Component>,
                 "style": Object {
                   "alignItems": "flex-start",
                   "flexDirection": "column",
@@ -2934,7 +2893,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <View
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -2955,6 +2914,7 @@ ShallowWrapper {
                       </Text>
                       <DatePicker
                         TouchableComponent={[Function]}
+                        allowFontScaling={true}
                         androidMode="default"
                         cancelBtnText="Cancelar"
                         confirmBtnText="Ok"
@@ -2971,11 +2931,7 @@ ShallowWrapper {
                         format="DD/MM/YYYY"
                         height={259}
                         hideText={false}
-                        iconSource={
-                          Object {
-                            "testUri": "../../react-native-datepicker/date_icon.png",
-                          }
-                        }
+                        iconSource={1}
                         maxDate="31/12/2050"
                         minDate="01/01/1900"
                         modalOnResponderTerminationRequest={[Function]}
@@ -2989,8 +2945,8 @@ ShallowWrapper {
                           }
                         }
                       />
-                    </View>,
-                    <View
+                    </Component>,
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -3009,7 +2965,7 @@ ShallowWrapper {
                       >
                         Estado Civil:
                       </Text>
-                      <View
+                      <Component
                         style={
                           Object {
                             "borderColor": "#C1C1C1",
@@ -3056,8 +3012,8 @@ ShallowWrapper {
                             value={5}
                           />
                         </Picker>
-                      </View>
-                    </View>,
+                      </Component>
+                    </Component>,
                   ],
                   "style": Object {
                     "alignItems": "center",
@@ -3088,6 +3044,7 @@ ShallowWrapper {
                         </Text>,
                         <DatePicker
                           TouchableComponent={[Function]}
+                          allowFontScaling={true}
                           androidMode="default"
                           cancelBtnText="Cancelar"
                           confirmBtnText="Ok"
@@ -3104,11 +3061,7 @@ ShallowWrapper {
                           format="DD/MM/YYYY"
                           height={259}
                           hideText={false}
-                          iconSource={
-                            Object {
-                              "testUri": "../../react-native-datepicker/date_icon.png",
-                            }
-                          }
+                          iconSource={1}
                           maxDate="31/12/2050"
                           minDate="01/01/1900"
                           modalOnResponderTerminationRequest={[Function]}
@@ -3152,6 +3105,7 @@ ShallowWrapper {
                         "nodeType": "class",
                         "props": Object {
                           "TouchableComponent": [Function],
+                          "allowFontScaling": true,
                           "androidMode": "default",
                           "cancelBtnText": "Cancelar",
                           "confirmBtnText": "Ok",
@@ -3166,9 +3120,7 @@ ShallowWrapper {
                           "format": "DD/MM/YYYY",
                           "height": 259,
                           "hideText": false,
-                          "iconSource": Object {
-                            "testUri": "../../react-native-datepicker/date_icon.png",
-                          },
+                          "iconSource": 1,
                           "maxDate": "31/12/2050",
                           "minDate": "01/01/1900",
                           "modalOnResponderTerminationRequest": [Function],
@@ -3205,7 +3157,7 @@ ShallowWrapper {
                         >
                           Estado Civil:
                         </Text>,
-                        <View
+                        <Component
                           style={
                             Object {
                               "borderColor": "#C1C1C1",
@@ -3252,7 +3204,7 @@ ShallowWrapper {
                               value={5}
                             />
                           </Picker>
-                        </View>,
+                        </Component>,
                       ],
                       "style": Object {
                         "width": "50%",
@@ -3473,6 +3425,7 @@ ShallowWrapper {
                   </Text>,
                   <DatePicker
                     TouchableComponent={[Function]}
+                    allowFontScaling={true}
                     androidMode="default"
                     cancelBtnText="Cancelar"
                     confirmBtnText="Ok"
@@ -3489,11 +3442,7 @@ ShallowWrapper {
                     format="DD/MM/YYYY"
                     height={259}
                     hideText={false}
-                    iconSource={
-                      Object {
-                        "testUri": "../../react-native-datepicker/date_icon.png",
-                      }
-                    }
+                    iconSource={1}
                     maxDate="31/12/2050"
                     minDate="01/01/1900"
                     modalOnResponderTerminationRequest={[Function]}
@@ -3541,6 +3490,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "TouchableComponent": [Function],
+                    "allowFontScaling": true,
                     "androidMode": "default",
                     "cancelBtnText": "Cancelar",
                     "confirmBtnText": "Ok",
@@ -3555,9 +3505,7 @@ ShallowWrapper {
                     "format": "DD/MM/YYYY",
                     "height": 259,
                     "hideText": false,
-                    "iconSource": Object {
-                      "testUri": "../../react-native-datepicker/date_icon.png",
-                    },
+                    "iconSource": 1,
                     "maxDate": "31/12/2050",
                     "minDate": "01/01/1900",
                     "modalOnResponderTerminationRequest": [Function],

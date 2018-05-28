@@ -21,7 +21,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <View
+        <Component
           style={
             Object {
               "alignItems": "center",
@@ -43,8 +43,8 @@ ShallowWrapper {
           >
             Informe seu gasto mensal: 
           </Text>
-        </View>,
-        <View
+        </Component>,
+        <Component
           style={
             Object {
               "alignItems": "center",
@@ -79,7 +79,7 @@ ShallowWrapper {
             }
             value={50}
           />
-          <View
+          <Component
             style={
               Object {
                 "alignItems": "center",
@@ -104,8 +104,8 @@ ShallowWrapper {
             >
               R$ 50
             </Text>
-          </View>
-        </View>,
+          </Component>
+        </Component>,
       ],
       "style": Object {
         "alignItems": "flex-start",
@@ -192,7 +192,7 @@ ShallowWrapper {
               }
               value={50}
             />,
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -217,7 +217,7 @@ ShallowWrapper {
               >
                 R$ 50
               </Text>
-            </View>,
+            </Component>,
           ],
           "style": Object {
             "alignItems": "center",
@@ -320,7 +320,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <View
+          <Component
             style={
               Object {
                 "alignItems": "center",
@@ -342,8 +342,8 @@ ShallowWrapper {
             >
               Informe seu gasto mensal: 
             </Text>
-          </View>,
-          <View
+          </Component>,
+          <Component
             style={
               Object {
                 "alignItems": "center",
@@ -378,7 +378,7 @@ ShallowWrapper {
               }
               value={50}
             />
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -403,8 +403,8 @@ ShallowWrapper {
               >
                 R$ 50
               </Text>
-            </View>
-          </View>,
+            </Component>
+          </Component>,
         ],
         "style": Object {
           "alignItems": "flex-start",
@@ -491,7 +491,7 @@ ShallowWrapper {
                 }
                 value={50}
               />,
-              <View
+              <Component
                 style={
                   Object {
                     "alignItems": "center",
@@ -516,7 +516,7 @@ ShallowWrapper {
                 >
                   R$ 50
                 </Text>
-              </View>,
+              </Component>,
             ],
             "style": Object {
               "alignItems": "center",

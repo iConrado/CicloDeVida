@@ -39,7 +39,7 @@ ShallowWrapper {
             objErro={Object {}}
             visivel={false}
           />
-          <View
+          <Component
             style={
               Object {
                 "alignItems": "center",
@@ -63,7 +63,7 @@ ShallowWrapper {
             >
               Patrimônio
             </Text>
-          </View>
+          </Component>
           <SliderInvestimentos
             inicial={0}
             retorno={[Function]}
@@ -76,14 +76,14 @@ ShallowWrapper {
             inicial={0}
             retorno={[Function]}
           />
-          <View
+          <Component
             style={
               Object {
                 "marginTop": 15,
               }
             }
           />
-          <View
+          <Component
             style={
               Object {
                 "borderBottomColor": "#14567A",
@@ -92,14 +92,14 @@ ShallowWrapper {
               }
             }
           />
-          <View
+          <Component
             style={
               Object {
                 "marginTop": 15,
               }
             }
           />
-          <View
+          <Component
             style={
               Object {
                 "alignItems": "flex-start",
@@ -110,7 +110,7 @@ ShallowWrapper {
               }
             }
           >
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -120,7 +120,7 @@ ShallowWrapper {
                 }
               }
             >
-              <View
+              <Component
                 style={
                   Object {
                     "width": "50%",
@@ -139,8 +139,8 @@ ShallowWrapper {
                 >
                   Patrimônio formado:
                 </Text>
-              </View>
-              <View
+              </Component>
+              <Component
                 style={
                   Object {
                     "width": "50%",
@@ -161,9 +161,9 @@ ShallowWrapper {
                 >
                   R$ 0
                 </Text>
-              </View>
-            </View>
-            <View
+              </Component>
+            </Component>
+            <Component
               style={
                 Array [
                   Object {
@@ -178,7 +178,7 @@ ShallowWrapper {
                 ]
               }
             >
-              <View
+              <Component
                 style={
                   Object {
                     "width": "50%",
@@ -197,8 +197,8 @@ ShallowWrapper {
                 >
                   Patrimônio esperado:
                 </Text>
-              </View>
-              <View
+              </Component>
+              <Component
                 style={
                   Object {
                     "width": "50%",
@@ -218,9 +218,9 @@ ShallowWrapper {
                 >
                   R$ 0
                 </Text>
-              </View>
-            </View>
-            <View
+              </Component>
+            </Component>
+            <Component
               style={
                 Array [
                   Object {
@@ -235,7 +235,7 @@ ShallowWrapper {
                 ]
               }
             >
-              <View
+              <Component
                 style={
                   Object {
                     "width": "50%",
@@ -254,8 +254,8 @@ ShallowWrapper {
                 >
                   Resultado:
                 </Text>
-              </View>
-              <View
+              </Component>
+              <Component
                 style={
                   Object {
                     "width": "50%",
@@ -276,10 +276,10 @@ ShallowWrapper {
                   0,0
                   %
                 </Text>
-              </View>
-            </View>
-          </View>
-          <View
+              </Component>
+            </Component>
+          </Component>
+          <Component
             style={
               Object {
                 "marginTop": 15,
@@ -310,7 +310,7 @@ ShallowWrapper {
               objErro={Object {}}
               visivel={false}
             />,
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -334,7 +334,7 @@ ShallowWrapper {
               >
                 Patrimônio
               </Text>
-            </View>,
+            </Component>,
             <SliderInvestimentos
               inicial={0}
               retorno={[Function]}
@@ -347,14 +347,14 @@ ShallowWrapper {
               inicial={0}
               retorno={[Function]}
             />,
-            <View
+            <Component
               style={
                 Object {
                   "marginTop": 15,
                 }
               }
             />,
-            <View
+            <Component
               style={
                 Object {
                   "borderBottomColor": "#14567A",
@@ -363,14 +363,14 @@ ShallowWrapper {
                 }
               }
             />,
-            <View
+            <Component
               style={
                 Object {
                   "marginTop": 15,
                 }
               }
             />,
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -381,7 +381,7 @@ ShallowWrapper {
                 }
               }
             >
-              <View
+              <Component
                 style={
                   Object {
                     "alignItems": "center",
@@ -391,7 +391,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -410,8 +410,8 @@ ShallowWrapper {
                   >
                     Patrimônio formado:
                   </Text>
-                </View>
-                <View
+                </Component>
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -432,9 +432,9 @@ ShallowWrapper {
                   >
                     R$ 0
                   </Text>
-                </View>
-              </View>
-              <View
+                </Component>
+              </Component>
+              <Component
                 style={
                   Array [
                     Object {
@@ -449,7 +449,7 @@ ShallowWrapper {
                   ]
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -468,8 +468,8 @@ ShallowWrapper {
                   >
                     Patrimônio esperado:
                   </Text>
-                </View>
-                <View
+                </Component>
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -489,9 +489,9 @@ ShallowWrapper {
                   >
                     R$ 0
                   </Text>
-                </View>
-              </View>
-              <View
+                </Component>
+              </Component>
+              <Component
                 style={
                   Array [
                     Object {
@@ -506,7 +506,7 @@ ShallowWrapper {
                   ]
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -525,8 +525,8 @@ ShallowWrapper {
                   >
                     Resultado:
                   </Text>
-                </View>
-                <View
+                </Component>
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -547,10 +547,10 @@ ShallowWrapper {
                     0,0
                     %
                   </Text>
-                </View>
-              </View>
-            </View>,
-            <View
+                </Component>
+              </Component>
+            </Component>,
+            <Component
               style={
                 Object {
                   "marginTop": 15,
@@ -716,7 +716,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": Array [
-                <View
+                <Component
                   style={
                     Object {
                       "alignItems": "center",
@@ -726,7 +726,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <View
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -745,8 +745,8 @@ ShallowWrapper {
                     >
                       Patrimônio formado:
                     </Text>
-                  </View>
-                  <View
+                  </Component>
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -767,9 +767,9 @@ ShallowWrapper {
                     >
                       R$ 0
                     </Text>
-                  </View>
-                </View>,
-                <View
+                  </Component>
+                </Component>,
+                <Component
                   style={
                     Array [
                       Object {
@@ -784,7 +784,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  <View
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -803,8 +803,8 @@ ShallowWrapper {
                     >
                       Patrimônio esperado:
                     </Text>
-                  </View>
-                  <View
+                  </Component>
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -824,9 +824,9 @@ ShallowWrapper {
                     >
                       R$ 0
                     </Text>
-                  </View>
-                </View>,
-                <View
+                  </Component>
+                </Component>,
+                <Component
                   style={
                     Array [
                       Object {
@@ -841,7 +841,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  <View
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -860,8 +860,8 @@ ShallowWrapper {
                     >
                       Resultado:
                     </Text>
-                  </View>
-                  <View
+                  </Component>
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -882,8 +882,8 @@ ShallowWrapper {
                       0,0
                       %
                     </Text>
-                  </View>
-                </View>,
+                  </Component>
+                </Component>,
               ],
               "style": Object {
                 "alignItems": "flex-start",
@@ -901,7 +901,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <View
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -920,8 +920,8 @@ ShallowWrapper {
                       >
                         Patrimônio formado:
                       </Text>
-                    </View>,
-                    <View
+                    </Component>,
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -942,7 +942,7 @@ ShallowWrapper {
                       >
                         R$ 0
                       </Text>
-                    </View>,
+                    </Component>,
                   ],
                   "style": Object {
                     "alignItems": "center",
@@ -1048,7 +1048,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <View
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -1067,8 +1067,8 @@ ShallowWrapper {
                       >
                         Patrimônio esperado:
                       </Text>
-                    </View>,
-                    <View
+                    </Component>,
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -1088,7 +1088,7 @@ ShallowWrapper {
                       >
                         R$ 0
                       </Text>
-                    </View>,
+                    </Component>,
                   ],
                   "style": Array [
                     Object {
@@ -1197,7 +1197,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "children": Array [
-                    <View
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -1216,8 +1216,8 @@ ShallowWrapper {
                       >
                         Resultado:
                       </Text>
-                    </View>,
-                    <View
+                    </Component>,
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -1238,7 +1238,7 @@ ShallowWrapper {
                         0,0
                         %
                       </Text>
-                    </View>,
+                    </Component>,
                   ],
                   "style": Array [
                     Object {
@@ -1411,7 +1411,7 @@ ShallowWrapper {
               objErro={Object {}}
               visivel={false}
             />
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -1435,7 +1435,7 @@ ShallowWrapper {
               >
                 Patrimônio
               </Text>
-            </View>
+            </Component>
             <SliderInvestimentos
               inicial={0}
               retorno={[Function]}
@@ -1448,14 +1448,14 @@ ShallowWrapper {
               inicial={0}
               retorno={[Function]}
             />
-            <View
+            <Component
               style={
                 Object {
                   "marginTop": 15,
                 }
               }
             />
-            <View
+            <Component
               style={
                 Object {
                   "borderBottomColor": "#14567A",
@@ -1464,14 +1464,14 @@ ShallowWrapper {
                 }
               }
             />
-            <View
+            <Component
               style={
                 Object {
                   "marginTop": 15,
                 }
               }
             />
-            <View
+            <Component
               style={
                 Object {
                   "alignItems": "flex-start",
@@ -1482,7 +1482,7 @@ ShallowWrapper {
                 }
               }
             >
-              <View
+              <Component
                 style={
                   Object {
                     "alignItems": "center",
@@ -1492,7 +1492,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -1511,8 +1511,8 @@ ShallowWrapper {
                   >
                     Patrimônio formado:
                   </Text>
-                </View>
-                <View
+                </Component>
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -1533,9 +1533,9 @@ ShallowWrapper {
                   >
                     R$ 0
                   </Text>
-                </View>
-              </View>
-              <View
+                </Component>
+              </Component>
+              <Component
                 style={
                   Array [
                     Object {
@@ -1550,7 +1550,7 @@ ShallowWrapper {
                   ]
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -1569,8 +1569,8 @@ ShallowWrapper {
                   >
                     Patrimônio esperado:
                   </Text>
-                </View>
-                <View
+                </Component>
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -1590,9 +1590,9 @@ ShallowWrapper {
                   >
                     R$ 0
                   </Text>
-                </View>
-              </View>
-              <View
+                </Component>
+              </Component>
+              <Component
                 style={
                   Array [
                     Object {
@@ -1607,7 +1607,7 @@ ShallowWrapper {
                   ]
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -1626,8 +1626,8 @@ ShallowWrapper {
                   >
                     Resultado:
                   </Text>
-                </View>
-                <View
+                </Component>
+                <Component
                   style={
                     Object {
                       "width": "50%",
@@ -1648,10 +1648,10 @@ ShallowWrapper {
                     0,0
                     %
                   </Text>
-                </View>
-              </View>
-            </View>
-            <View
+                </Component>
+              </Component>
+            </Component>
+            <Component
               style={
                 Object {
                   "marginTop": 15,
@@ -1682,7 +1682,7 @@ ShallowWrapper {
                 objErro={Object {}}
                 visivel={false}
               />,
-              <View
+              <Component
                 style={
                   Object {
                     "alignItems": "center",
@@ -1706,7 +1706,7 @@ ShallowWrapper {
                 >
                   Patrimônio
                 </Text>
-              </View>,
+              </Component>,
               <SliderInvestimentos
                 inicial={0}
                 retorno={[Function]}
@@ -1719,14 +1719,14 @@ ShallowWrapper {
                 inicial={0}
                 retorno={[Function]}
               />,
-              <View
+              <Component
                 style={
                   Object {
                     "marginTop": 15,
                   }
                 }
               />,
-              <View
+              <Component
                 style={
                   Object {
                     "borderBottomColor": "#14567A",
@@ -1735,14 +1735,14 @@ ShallowWrapper {
                   }
                 }
               />,
-              <View
+              <Component
                 style={
                   Object {
                     "marginTop": 15,
                   }
                 }
               />,
-              <View
+              <Component
                 style={
                   Object {
                     "alignItems": "flex-start",
@@ -1753,7 +1753,7 @@ ShallowWrapper {
                   }
                 }
               >
-                <View
+                <Component
                   style={
                     Object {
                       "alignItems": "center",
@@ -1763,7 +1763,7 @@ ShallowWrapper {
                     }
                   }
                 >
-                  <View
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -1782,8 +1782,8 @@ ShallowWrapper {
                     >
                       Patrimônio formado:
                     </Text>
-                  </View>
-                  <View
+                  </Component>
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -1804,9 +1804,9 @@ ShallowWrapper {
                     >
                       R$ 0
                     </Text>
-                  </View>
-                </View>
-                <View
+                  </Component>
+                </Component>
+                <Component
                   style={
                     Array [
                       Object {
@@ -1821,7 +1821,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  <View
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -1840,8 +1840,8 @@ ShallowWrapper {
                     >
                       Patrimônio esperado:
                     </Text>
-                  </View>
-                  <View
+                  </Component>
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -1861,9 +1861,9 @@ ShallowWrapper {
                     >
                       R$ 0
                     </Text>
-                  </View>
-                </View>
-                <View
+                  </Component>
+                </Component>
+                <Component
                   style={
                     Array [
                       Object {
@@ -1878,7 +1878,7 @@ ShallowWrapper {
                     ]
                   }
                 >
-                  <View
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -1897,8 +1897,8 @@ ShallowWrapper {
                     >
                       Resultado:
                     </Text>
-                  </View>
-                  <View
+                  </Component>
+                  <Component
                     style={
                       Object {
                         "width": "50%",
@@ -1919,10 +1919,10 @@ ShallowWrapper {
                       0,0
                       %
                     </Text>
-                  </View>
-                </View>
-              </View>,
-              <View
+                  </Component>
+                </Component>
+              </Component>,
+              <Component
                 style={
                   Object {
                     "marginTop": 15,
@@ -2088,7 +2088,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": Array [
-                  <View
+                  <Component
                     style={
                       Object {
                         "alignItems": "center",
@@ -2098,7 +2098,7 @@ ShallowWrapper {
                       }
                     }
                   >
-                    <View
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -2117,8 +2117,8 @@ ShallowWrapper {
                       >
                         Patrimônio formado:
                       </Text>
-                    </View>
-                    <View
+                    </Component>
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -2139,9 +2139,9 @@ ShallowWrapper {
                       >
                         R$ 0
                       </Text>
-                    </View>
-                  </View>,
-                  <View
+                    </Component>
+                  </Component>,
+                  <Component
                     style={
                       Array [
                         Object {
@@ -2156,7 +2156,7 @@ ShallowWrapper {
                       ]
                     }
                   >
-                    <View
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -2175,8 +2175,8 @@ ShallowWrapper {
                       >
                         Patrimônio esperado:
                       </Text>
-                    </View>
-                    <View
+                    </Component>
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -2196,9 +2196,9 @@ ShallowWrapper {
                       >
                         R$ 0
                       </Text>
-                    </View>
-                  </View>,
-                  <View
+                    </Component>
+                  </Component>,
+                  <Component
                     style={
                       Array [
                         Object {
@@ -2213,7 +2213,7 @@ ShallowWrapper {
                       ]
                     }
                   >
-                    <View
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -2232,8 +2232,8 @@ ShallowWrapper {
                       >
                         Resultado:
                       </Text>
-                    </View>
-                    <View
+                    </Component>
+                    <Component
                       style={
                         Object {
                           "width": "50%",
@@ -2254,8 +2254,8 @@ ShallowWrapper {
                         0,0
                         %
                       </Text>
-                    </View>
-                  </View>,
+                    </Component>
+                  </Component>,
                 ],
                 "style": Object {
                   "alignItems": "flex-start",
@@ -2273,7 +2273,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
-                      <View
+                      <Component
                         style={
                           Object {
                             "width": "50%",
@@ -2292,8 +2292,8 @@ ShallowWrapper {
                         >
                           Patrimônio formado:
                         </Text>
-                      </View>,
-                      <View
+                      </Component>,
+                      <Component
                         style={
                           Object {
                             "width": "50%",
@@ -2314,7 +2314,7 @@ ShallowWrapper {
                         >
                           R$ 0
                         </Text>
-                      </View>,
+                      </Component>,
                     ],
                     "style": Object {
                       "alignItems": "center",
@@ -2420,7 +2420,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
-                      <View
+                      <Component
                         style={
                           Object {
                             "width": "50%",
@@ -2439,8 +2439,8 @@ ShallowWrapper {
                         >
                           Patrimônio esperado:
                         </Text>
-                      </View>,
-                      <View
+                      </Component>,
+                      <Component
                         style={
                           Object {
                             "width": "50%",
@@ -2460,7 +2460,7 @@ ShallowWrapper {
                         >
                           R$ 0
                         </Text>
-                      </View>,
+                      </Component>,
                     ],
                     "style": Array [
                       Object {
@@ -2569,7 +2569,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "children": Array [
-                      <View
+                      <Component
                         style={
                           Object {
                             "width": "50%",
@@ -2588,8 +2588,8 @@ ShallowWrapper {
                         >
                           Resultado:
                         </Text>
-                      </View>,
-                      <View
+                      </Component>,
+                      <Component
                         style={
                           Object {
                             "width": "50%",
@@ -2610,7 +2610,7 @@ ShallowWrapper {
                           0,0
                           %
                         </Text>
-                      </View>,
+                      </Component>,
                     ],
                     "style": Array [
                       Object {

@@ -1,8 +1,5 @@
 import React from 'react';
-import { 
-  ScrollView, 
-  View, 
-  Text, } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
@@ -24,18 +21,19 @@ let objErro = {};
 const tmpComprometimento = [];
 
 export default class ReservaScreen extends React.Component {
-  static navigationOptions = { //eslint-disable-line
+  static navigationOptions = {
+    //eslint-disable-line
     headerTitle: Cabecalho('Consultoria Ciclo de Vida'),
     headerBackTitle: 'Voltar',
     headerTintColor: EstiloVoltar.hTintColor,
     headerStyle: EstiloVoltar.hStyle,
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
       carregado: false,
-      modalErro: false, 
+      modalErro: false,
       gasto: 0,
       reserva: C.getReserva() === 0 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
       comprometimento: 0,
@@ -77,10 +75,12 @@ export default class ReservaScreen extends React.Component {
   }
 
   percentualRenda(valor) {
-    if (valor === 0) { return 0; }
-    
+    if (valor === 0) {
+      return 0;
+    }
+
     const salario = C.getSalLiq();
-    const perc = (valor / salario) * 100;
+    const perc = valor / salario * 100;
 
     return perc.toFixed(1).replace('.', ',');
   }
@@ -90,16 +90,16 @@ export default class ReservaScreen extends React.Component {
     if (gasto > 0) {
       const compr = C.comprometimentoGasto(gasto) * 100;
       return compr.toFixed(1).replace('.', ',');
-    } 
+    }
     return 0.0;
   }
 
   poupanca() {
-    const gasto = this.state.gasto;
+    const salario = C.getSalLiq();
 
-    if (gasto > 0) {
+    if (salario > 0) {
       // Inserir este código na regra de negócio
-      return monetizar(gasto * 12);
+      return monetizar(salario * 12);
     }
     return monetizar(0);
   }
@@ -126,20 +126,14 @@ export default class ReservaScreen extends React.Component {
   montaResultadoCalculo() {
     const calc = this.calculoNecessario();
     if (calc === 0) {
-      return (
-        <Text style={styles.reserva_txDireita}>{monetizar(calc)}</Text>
-      );
+      return <Text style={styles.reserva_txDireita}>{monetizar(calc)}</Text>;
     }
 
     if (calc > 0) {
-      return (
-        <Text style={styles.reserva_txPositivo}>{monetizar(calc)}</Text>
-      );
+      return <Text style={styles.reserva_txPositivo}>{monetizar(calc)}</Text>;
     }
 
-    return (
-      <Text style={styles.reserva_txNegativo}>{monetizar(calc)}</Text>
-    );
+    return <Text style={styles.reserva_txNegativo}>{monetizar(calc)}</Text>;
   }
 
   defGasto(valor) {
@@ -171,47 +165,37 @@ export default class ReservaScreen extends React.Component {
     const reserva = this.state.reserva;
 
     // Validação das regras de negócio, registro e gravação de log
-    if (!controle(this.abreErro, C, C.setGasto, gasto)) { return false; }
-    if (!controle(this.abreErro, C, C.setReserva, reserva)) { return false; }
+    if (!controle(this.abreErro, C, C.setGasto, gasto)) {
+      return false;
+    }
+    if (!controle(this.abreErro, C, C.setReserva, reserva)) {
+      return false;
+    }
 
     navigate(tela);
   }
 
   render() {
     if (!this.state.carregado) {
-      return (
-        <Carregando />
-      );
+      return <Carregando />;
     }
     return (
       <View style={styles.tela}>
-        <ScrollView 
-          style={styles.scroll}
-          contentContainerStyle={styles.container}
-        >
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-          <ModalErro 
-            visivel={this.state.modalErro}
-            fechar={this.fechaErro}
-            objErro={objErro}
-          />
+          <ModalErro visivel={this.state.modalErro} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}
           <View style={styles.viewTitulo}>
             <Text style={styles.titulo}>Reserva de Emergência</Text>
           </View>
 
           <LimiteDeErro>
-            <SliderGasto 
-              inicial={this.state.gasto}
-              retorno={this.defGasto} 
-            />
+            <SliderGasto inicial={this.state.gasto} retorno={this.defGasto} />
           </LimiteDeErro>
 
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
-              <Text style={[styles.label, styles.reserva_lbGasto]}>
-                Comprometimento da renda com gastos mensais: 
-              </Text>
+              <Text style={[styles.label, styles.reserva_lbGasto]}>Comprometimento da renda com gastos mensais:</Text>
               <View style={styles.reserva_viewCentral}>
                 <Text style={styles.reserva_txDireita}>{this.comprometimento()}%</Text>
               </View>
@@ -220,7 +204,7 @@ export default class ReservaScreen extends React.Component {
 
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
-              <Text style={[styles.label, styles.reserva_lbGasto]}>Poupança (12x gastos):</Text>
+              <Text style={[styles.label, styles.reserva_lbGasto]}>Poupança (12x renda):</Text>
               <View style={styles.reserva_viewCentral}>
                 <Text style={styles.reserva_txDireita}>{this.poupanca()}</Text>
               </View>
@@ -228,10 +212,7 @@ export default class ReservaScreen extends React.Component {
           </View>
 
           <LimiteDeErro>
-            <SliderReserva 
-              inicial={this.state.reserva}
-              retorno={this.defReserva} 
-            />
+            <SliderReserva inicial={this.state.reserva} retorno={this.defReserva} />
           </LimiteDeErro>
 
           <View style={styles.espacador} />
@@ -245,9 +226,7 @@ export default class ReservaScreen extends React.Component {
                 <Text style={[styles.label, styles.reserva_lbCalculo]}>-</Text>
                 <Text style={[styles.label, styles.reserva_lbCalculo]}>Poupança emergencial</Text>
               </View>
-              <View style={styles.reserva_viewCentral}>
-                {this.montaResultadoCalculo()}
-              </View>
+              <View style={styles.reserva_viewCentral}>{this.montaResultadoCalculo()}</View>
             </View>
           </View>
 
@@ -266,12 +245,7 @@ export default class ReservaScreen extends React.Component {
           <View style={styles.espacador} />
         </ScrollView>
 
-        <Rodape
-          valor={this.state.comprometimento}
-          funcProxTela={this.proxTela}
-          tela='Aposentadoria'
-        />
-        
+        <Rodape valor={this.state.comprometimento} funcProxTela={this.proxTela} tela="Aposentadoria" />
       </View>
     );
   }

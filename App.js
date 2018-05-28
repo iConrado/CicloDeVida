@@ -1,45 +1,19 @@
-import React from 'react';
-import { StackNavigator } from 'react-navigation';
-import { StyleSheet, View } from 'react-native';
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
-import HomeScreen from './src/components/HomeScreen';
-import PatrimonioScreen from './src/components/PatrimonioScreen';
-import ReservaScreen from './src/components/ReservaScreen';
-import AposentadoriaScreen from './src/components/AposentadoriaScreen';
-import SegurancaScreen from './src/components/SegurancaScreen';
-import ConsumoScreen from './src/components/ConsumoScreen';
-import ResultadoScreen from './src/components/ResultadoScreen';
+import { routesApp, routesAuth } from './src/routes';
+import routesConfig from './src/routesConfig';
+import SplashScreen from './src/components/SplashScreen';
 
-// Dados de mock para abertura mais rápida
-import mock from './src/components/functions/mock';
+const AppStack = createStackNavigator(routesApp, routesConfig.App);
+const AuthStack = createStackNavigator(routesAuth, routesConfig.Auth);
 
-const AppNav = StackNavigator({
-  Home: { screen: HomeScreen },
-  Patrimonio: { screen: PatrimonioScreen },
-  Reserva: { screen: ReservaScreen },
-  Aposentadoria: { screen: AposentadoriaScreen },
-  Seguranca: { screen: SegurancaScreen },
-  Consumo: { screen: ConsumoScreen },
-  Resultado: { screen: ResultadoScreen },
-  }, {
-    initialRouteName: 'Home',
-    initialRouteParams: mock,
-    headerMode: 'float',
-  }
-);
-
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <AppNav />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+export default createSwitchNavigator(
+  {
+    Splash: SplashScreen,
+    App: AppStack,
+    Auth: AuthStack,
   },
-});
+  {
+    initialRouteName: 'Splash',
+  },
+);

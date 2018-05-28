@@ -33,7 +33,7 @@ ShallowWrapper {
         >
           Veículos (valor total - financiados ou não):
         </Text>,
-        <View
+        <Component
           style={
             Object {
               "alignItems": "center",
@@ -43,7 +43,7 @@ ShallowWrapper {
             }
           }
         >
-          <View
+          <Component
             style={
               Object {
                 "alignContent": "center",
@@ -57,11 +57,7 @@ ShallowWrapper {
             }
           >
             <Image
-              source={
-                Object {
-                  "testUri": "../../../src/imgs/ic_car_white.png",
-                }
-              }
+              source={1}
               style={
                 Object {
                   "height": 35,
@@ -69,8 +65,8 @@ ShallowWrapper {
                 }
               }
             />
-          </View>
-          <View
+          </Component>
+          <Component
             style={
               Object {
                 "alignItems": "center",
@@ -121,8 +117,8 @@ ShallowWrapper {
             >
               R$ 50
             </Text>
-          </View>
-        </View>,
+          </Component>
+        </Component>,
       ],
       "style": Array [
         Object {
@@ -162,7 +158,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <View
+            <Component
               style={
                 Object {
                   "alignContent": "center",
@@ -176,11 +172,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/imgs/ic_car_white.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 35,
@@ -188,8 +180,8 @@ ShallowWrapper {
                   }
                 }
               />
-            </View>,
-            <View
+            </Component>,
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -240,7 +232,7 @@ ShallowWrapper {
               >
                 R$ 50
               </Text>
-            </View>,
+            </Component>,
           ],
           "style": Object {
             "alignItems": "center",
@@ -257,11 +249,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/imgs/ic_car_white.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 35,
@@ -285,9 +273,7 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": Object {
-                  "testUri": "../../../src/imgs/ic_car_white.png",
-                },
+                "source": 1,
                 "style": Object {
                   "height": 35,
                   "width": 35,
@@ -433,7 +419,7 @@ ShallowWrapper {
           >
             Veículos (valor total - financiados ou não):
           </Text>,
-          <View
+          <Component
             style={
               Object {
                 "alignItems": "center",
@@ -443,7 +429,7 @@ ShallowWrapper {
               }
             }
           >
-            <View
+            <Component
               style={
                 Object {
                   "alignContent": "center",
@@ -457,11 +443,7 @@ ShallowWrapper {
               }
             >
               <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/imgs/ic_car_white.png",
-                  }
-                }
+                source={1}
                 style={
                   Object {
                     "height": 35,
@@ -469,8 +451,8 @@ ShallowWrapper {
                   }
                 }
               />
-            </View>
-            <View
+            </Component>
+            <Component
               style={
                 Object {
                   "alignItems": "center",
@@ -521,8 +503,8 @@ ShallowWrapper {
               >
                 R$ 50
               </Text>
-            </View>
-          </View>,
+            </Component>
+          </Component>,
         ],
         "style": Array [
           Object {
@@ -562,7 +544,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <View
+              <Component
                 style={
                   Object {
                     "alignContent": "center",
@@ -576,11 +558,7 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/imgs/ic_car_white.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 35,
@@ -588,8 +566,8 @@ ShallowWrapper {
                     }
                   }
                 />
-              </View>,
-              <View
+              </Component>,
+              <Component
                 style={
                   Object {
                     "alignItems": "center",
@@ -640,7 +618,7 @@ ShallowWrapper {
                 >
                   R$ 50
                 </Text>
-              </View>,
+              </Component>,
             ],
             "style": Object {
               "alignItems": "center",
@@ -657,11 +635,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Image
-                  source={
-                    Object {
-                      "testUri": "../../../src/imgs/ic_car_white.png",
-                    }
-                  }
+                  source={1}
                   style={
                     Object {
                       "height": 35,
@@ -685,9 +659,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "source": Object {
-                    "testUri": "../../../src/imgs/ic_car_white.png",
-                  },
+                  "source": 1,
                   "style": Object {
                     "height": 35,
                     "width": 35,

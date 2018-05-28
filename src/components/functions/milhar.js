@@ -1,22 +1,34 @@
-
-const milhar = (numero) => {
+const milhar = numero => {
   // Transforma números inteiros em strings separadas pela milhar com o ponto(.)
-  let num = numero.toString();
+  let num;
+  let sinal = '';
   const str = [];
-  
-  if (!num.length) { return ''; }
-  
+
+  if (numero < 0 || parseInt(numero, 10) < 0) {
+    num = Math.abs(parseInt(numero, 10)).toString();
+    sinal = '-';
+  } else {
+    num = numero.toString();
+  }
+
+  if (!num.length) {
+    return '';
+  }
+
   for (let i = Math.ceil(num.length / 3); i > 0; i--) {
     if (Math.ceil(num.length / 3) > 1) {
       str[i] = `.${num.slice(-3)}`;
     } else {
       str[i] = num;
     }
-    num = num.slice(num.length - (num.length * 2), -3);
+    num = num.slice(num.length - num.length * 2, -3);
   }
 
   str.push(num);
 
+  if (sinal === '-') {
+    return sinal + str.join('');
+  }
   return str.join('');
 };
 

@@ -8,6 +8,10 @@ describe('monetizar corretamente', () => {
     expect(monetizar(500)).toBe('R$ 500');
   });
 
+  test('numero valido', () => {
+    expect(monetizar(-106500)).toBe('R$ -106.500');
+  });
+
   test('numero invalido', () => {
     expect(monetizar('ab')).toBe('R$ ');
   });

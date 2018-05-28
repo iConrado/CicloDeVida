@@ -21,3 +21,6 @@ yarn-error.log*
 
 # planilhas
 /src/prototipo/*ods*
+
+# TODOLIST
+TODOLIST.txt
