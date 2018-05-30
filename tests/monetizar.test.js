@@ -1,5 +1,4 @@
 import 'react-native';
-import renderer from 'react-test-renderer';
 
 import monetizar from '../src/components/functions/monetizar';
 

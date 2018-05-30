@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { 
-  View, 
-  Text } from 'react-native';
+import { View, Text } from 'react-native';
 import Slider from 'react-native-slider';
 
 import styles from '../functions/styles';
@@ -28,11 +26,11 @@ export default class SliderIdade extends React.Component {
             minimumValue={C.idadeAtual()}
             maximumValue={80}
             step={1}
-            minimumTrackTintColor='#14567A'
-            thumbTintColor='#14567A'
+            minimumTrackTintColor="#14567A"
+            thumbTintColor="#14567A"
             value={this.state.tmpIdadeAposent}
-            onValueChange={(value) => this.setState({ tmpIdadeAposent: value })}
-            onSlidingComplete={(value) => this.props.retorno(value)}
+            onValueChange={value => this.setState({ tmpIdadeAposent: value })}
+            onSlidingComplete={value => this.props.retorno(value)}
           />
           <View style={styles.aposent_viewCentral}>
             <Text style={styles.aposent_txDireita}>{this.state.tmpIdadeAposent}</Text>

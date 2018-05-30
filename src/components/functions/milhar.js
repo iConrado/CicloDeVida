@@ -15,7 +15,7 @@ const milhar = numero => {
     return '';
   }
 
-  for (let i = Math.ceil(num.length / 3); i > 0; i--) {
+  for (let i = Math.ceil(num.length / 3); i > 0; i -= 1) {
     if (Math.ceil(num.length / 3) > 1) {
       str[i] = `.${num.slice(-3)}`;
     } else {

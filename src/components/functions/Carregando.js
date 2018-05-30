@@ -5,9 +5,6 @@ import styles from './styles';
 
 export default () => (
   <View style={styles.loading}>
-    <ActivityIndicator 
-        size={80}
-        color='#0A2955'
-    />
+    <ActivityIndicator size={80} color="#0A2955" />
   </View>
 );

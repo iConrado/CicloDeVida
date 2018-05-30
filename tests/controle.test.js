@@ -1,10 +1,9 @@
 import controle from '../src/components/functions/controle';
-import Erro from '../src/components/functions/Erro';
 import Ciclo from '../src/components/functions/Ciclo';
 
 const C = new Ciclo();
 
-const retornoErro = (e) => {
+const retornoErro = e => {
   console.log(e);
 };
 

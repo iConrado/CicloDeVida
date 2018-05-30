@@ -1,8 +1,7 @@
-
 const controle = (retErro, obj, funcao, ...args) => {
   try {
     funcao.call(obj, ...args);
-    //console.log('Controle - executou com sucesso.');
+    // console.log('Controle - executou com sucesso.');
     return true;
   } catch (e) {
     retErro(e);

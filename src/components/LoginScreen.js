@@ -34,6 +34,7 @@ export default class SignInScreen extends React.Component {
       this.setState({ status: 'logar', atualizando: false });
       return false;
     }
+    return true;
   }
 
   async entrarGoogle() {
@@ -49,6 +50,7 @@ export default class SignInScreen extends React.Component {
       this.setState({ status: 'logar', atualizando: false });
       return false;
     }
+    return true;
   }
 
   render() {
@@ -75,7 +77,7 @@ export default class SignInScreen extends React.Component {
 
           <TouchableOpacity
             style={[styles.login_botao, styles.login_facebook]}
-            onPress={async () => await this.entrarFacebook()}
+            onPress={() => this.entrarFacebook()}
             disabled={this.state.atualizando}
           >
             <View style={{ flexDirection: 'row' }}>

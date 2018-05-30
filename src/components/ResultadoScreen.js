@@ -1,18 +1,17 @@
 import React from 'react';
 import { ScrollView, View, Text } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
-import ModalErro from './functions/ModalErro';
-//import Controle from './functions/Controle';
-import Ciclo from './functions/Ciclo';
+import ModalMsg from './functions/ModalMsg';
+// import Controle from './functions/Controle';
+// import Ciclo from './functions/Ciclo';
 
-const C = new Ciclo();
-let objErro = {};
+// const C = new Ciclo();
+const objErro = {};
 
 export default class ResultadoScreen extends React.Component {
   static navigationOptions = {
@@ -27,7 +26,7 @@ export default class ResultadoScreen extends React.Component {
     super(props);
     this.state = {
       carregado: false,
-      modalErro: false,
+      modalMsg: false,
     };
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
@@ -43,29 +42,24 @@ export default class ResultadoScreen extends React.Component {
     this.setState({ carregado: true });
   }
 
-  abreErro(e, tipo) {
-    //objErro = e;
-    this.setState({ modalErro: true });
-    switch (tipo) {
-      case 0:
-        console.log('Retorno 0');
-        break;
-      default:
-        console.log('Retorno default');
-    }
+  abreErro() {
+    // objErro = e;
+    this.setState({ modalMsg: true });
   }
 
   fechaErro() {
-    this.setState({ modalErro: false });
-    //objErro = {};
+    this.setState({ modalMsg: false });
+    // objErro = {};
   }
 
-  proxTela(tela) {
+  proxTela() {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
     // Validação das regras de negócio, registro e gravação de log
     this.props.navigation.popToTop();
     // navigate(tela);
+
+    return true;
   }
 
   render() {
@@ -76,7 +70,7 @@ export default class ResultadoScreen extends React.Component {
       <View style={styles.tela}>
         <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-          <ModalErro visivel={this.state.modalErro} fechar={this.fechaErro} objErro={objErro} />
+          <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}
 
           <View style={styles.viewTitulo}>

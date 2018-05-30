@@ -15,7 +15,6 @@ export default class Esqueci extends React.Component {
     this.state = {
       status: 'esqueci',
       email: '',
-      senha: '',
       atualizando: false,
     };
   }
@@ -51,6 +50,8 @@ export default class Esqueci extends React.Component {
         const message = 'Não existe conta vinculada ao email informado.';
         await this.setState({ status: 'erro', atualizando: false, erro: message });
       });
+
+    return true;
   }
 
   render() {

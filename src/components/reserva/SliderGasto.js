@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { 
-  View, 
-  Text } from 'react-native';
+import { View, Text } from 'react-native';
 import Slider from 'react-native-slider';
 
 import styles from '../functions/styles';
@@ -12,14 +10,14 @@ import monetizar from '../functions/monetizar';
 const C = new Ciclo();
 
 export default class SliderGasto extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { tmpGasto: props.inicial ? props.inicial : 0 }; 
-  }
-
-  maximumSlider() {
+  static maximumSlider() {
     const max = parseInt(C.getSalLiq(), 10);
     return max;
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = { tmpGasto: props.inicial ? props.inicial : 0 };
   }
 
   render() {
@@ -32,13 +30,13 @@ export default class SliderGasto extends React.Component {
           <Slider
             style={styles.reserva_slider}
             minimumValue={0}
-            maximumValue={this.maximumSlider()}
+            maximumValue={SliderGasto.maximumSlider()}
             step={100}
-            minimumTrackTintColor='#14567A'
-            thumbTintColor='#14567A'
+            minimumTrackTintColor="#14567A"
+            thumbTintColor="#14567A"
             value={this.state.tmpGasto}
-            onValueChange={(value) => this.setState({ tmpGasto: value })}
-            onSlidingComplete={(value) => this.props.retorno(value)}
+            onValueChange={value => this.setState({ tmpGasto: value })}
+            onSlidingComplete={value => this.props.retorno(value)}
           />
           <View style={styles.reserva_viewCentral}>
             <Text style={styles.reserva_txDireita}>{monetizar(this.state.tmpGasto)}</Text>

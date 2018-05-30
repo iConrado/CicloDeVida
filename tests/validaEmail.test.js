@@ -10,7 +10,7 @@ describe('validaEmail corretamente', () => {
   test('Email válido email@provedor.com', () => {
     expect(validaEmail('email@provedor.com')).toBeTruthy();
   });
-  
+
   test('Email válido a@a.com', () => {
     expect(validaEmail('a@a.com')).toBeTruthy();
   });

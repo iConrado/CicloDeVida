@@ -6,7 +6,7 @@ import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
-import ModalErro from './functions/ModalErro';
+import ModalMsg from './functions/ModalMsg';
 import LimiteDeErro from './functions/LimiteDeErro';
 import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
@@ -29,11 +29,40 @@ export default class ReservaScreen extends React.Component {
     headerStyle: EstiloVoltar.hStyle,
   };
 
+  static poupanca() {
+    const salario = C.getSalLiq();
+
+    if (salario > 0) {
+      // Inserir este código na regra de negócio
+      return monetizar(salario * 12);
+    }
+    return monetizar(0);
+  }
+
+  static calculoNecessario() {
+    const calc = C.getInvest() - desmonetizar(ReservaScreen.poupanca());
+
+    return calc;
+  }
+
+  static montaResultadoCalculo() {
+    const calc = ReservaScreen.calculoNecessario();
+    if (calc === 0) {
+      return <Text style={styles.reserva_txDireita}>{monetizar(calc)}</Text>;
+    }
+
+    if (calc > 0) {
+      return <Text style={styles.reserva_txPositivo}>{monetizar(calc)}</Text>;
+    }
+
+    return <Text style={styles.reserva_txNegativo}>{monetizar(calc)}</Text>;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       carregado: false,
-      modalErro: false,
+      modalMsg: false,
       gasto: 0,
       reserva: C.getReserva() === 0 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
       comprometimento: 0,
@@ -57,36 +86,18 @@ export default class ReservaScreen extends React.Component {
     this.setState({ carregado: true });
   }
 
-  abreErro(e, tipo) {
+  abreErro(e) {
     objErro = e;
-    this.setState({ modalErro: true });
-    switch (tipo) {
-      case 0:
-        console.log('Retorno 0');
-        break;
-      default:
-        console.log('Retorno default');
-    }
+    this.setState({ modalMsg: true });
   }
 
   fechaErro() {
-    this.setState({ modalErro: false });
+    this.setState({ modalMsg: false });
     objErro = {};
   }
 
-  percentualRenda(valor) {
-    if (valor === 0) {
-      return 0;
-    }
-
-    const salario = C.getSalLiq();
-    const perc = valor / salario * 100;
-
-    return perc.toFixed(1).replace('.', ',');
-  }
-
   comprometimento() {
-    const gasto = this.state.gasto;
+    const { gasto } = this.state;
     if (gasto > 0) {
       const compr = C.comprometimentoGasto(gasto) * 100;
       return compr.toFixed(1).replace('.', ',');
@@ -94,25 +105,9 @@ export default class ReservaScreen extends React.Component {
     return 0.0;
   }
 
-  poupanca() {
-    const salario = C.getSalLiq();
-
-    if (salario > 0) {
-      // Inserir este código na regra de negócio
-      return monetizar(salario * 12);
-    }
-    return monetizar(0);
-  }
-
-  calculoNecessario() {
-    const calc = C.getInvest() - desmonetizar(this.poupanca());
-
-    return calc;
-  }
-
   tempoNecessario() {
-    const necessario = this.calculoNecessario();
-    const reserva = this.state.reserva;
+    const necessario = ReservaScreen.calculoNecessario();
+    const { reserva } = this.state;
     if (necessario < 0) {
       const abs = Math.abs(necessario);
       const meses = Math.ceil(abs / reserva);
@@ -121,19 +116,6 @@ export default class ReservaScreen extends React.Component {
       }
     }
     return 0;
-  }
-
-  montaResultadoCalculo() {
-    const calc = this.calculoNecessario();
-    if (calc === 0) {
-      return <Text style={styles.reserva_txDireita}>{monetizar(calc)}</Text>;
-    }
-
-    if (calc > 0) {
-      return <Text style={styles.reserva_txPositivo}>{monetizar(calc)}</Text>;
-    }
-
-    return <Text style={styles.reserva_txNegativo}>{monetizar(calc)}</Text>;
   }
 
   defGasto(valor) {
@@ -160,9 +142,7 @@ export default class ReservaScreen extends React.Component {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
     const { navigate } = this.props.navigation;
-
-    const gasto = this.state.gasto;
-    const reserva = this.state.reserva;
+    const { gasto, reserva } = this.state;
 
     // Validação das regras de negócio, registro e gravação de log
     if (!controle(this.abreErro, C, C.setGasto, gasto)) {
@@ -173,6 +153,8 @@ export default class ReservaScreen extends React.Component {
     }
 
     navigate(tela);
+
+    return true;
   }
 
   render() {
@@ -183,7 +165,7 @@ export default class ReservaScreen extends React.Component {
       <View style={styles.tela}>
         <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-          <ModalErro visivel={this.state.modalErro} fechar={this.fechaErro} objErro={objErro} />
+          <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}
           <View style={styles.viewTitulo}>
             <Text style={styles.titulo}>Reserva de Emergência</Text>
@@ -206,7 +188,7 @@ export default class ReservaScreen extends React.Component {
             <View style={styles.viewHorizontal}>
               <Text style={[styles.label, styles.reserva_lbGasto]}>Poupança (12x renda):</Text>
               <View style={styles.reserva_viewCentral}>
-                <Text style={styles.reserva_txDireita}>{this.poupanca()}</Text>
+                <Text style={styles.reserva_txDireita}>{ReservaScreen.poupanca()}</Text>
               </View>
             </View>
           </View>
@@ -226,7 +208,7 @@ export default class ReservaScreen extends React.Component {
                 <Text style={[styles.label, styles.reserva_lbCalculo]}>-</Text>
                 <Text style={[styles.label, styles.reserva_lbCalculo]}>Poupança emergencial</Text>
               </View>
-              <View style={styles.reserva_viewCentral}>{this.montaResultadoCalculo()}</View>
+              <View style={styles.reserva_viewCentral}>{ReservaScreen.montaResultadoCalculo()}</View>
             </View>
           </View>
 

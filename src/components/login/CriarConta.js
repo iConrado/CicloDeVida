@@ -1,9 +1,9 @@
 import React from 'react';
-import firebase from 'firebase';
 import { View, ScrollView, ActivityIndicator, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import styles from '../functions/styles';
 import validaEmail from '../functions/validaEmail';
+import { cadastrarComEmailESenha } from '../login/conectar';
 
 export default class CriarConta extends React.Component {
   static navigationOptions = {
@@ -41,7 +41,7 @@ export default class CriarConta extends React.Component {
 
   async criarConta() {
     const { email, senha } = this.state;
-    const erro = {};
+
     const validacao = this.validar();
 
     if (validacao !== true) {
@@ -51,41 +51,10 @@ export default class CriarConta extends React.Component {
 
     this.setState({ status: 'criar', atualizando: true });
 
-    await firebase
-      .auth()
-      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-      .then(async () => {
-        await firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, senha)
-          .catch(error => {
-            erro.code = error.code;
+    const cadastro = await cadastrarComEmailESenha(email, senha);
 
-            switch (error.code) {
-              case 'auth/invalid-email':
-                erro.msg = 'Endereço de email inválido.';
-                break;
-
-              case 'auth/email-already-in-use':
-                erro.msg = 'Email já cadastrado.';
-                break;
-
-              case 'auth/operation-not-allowed':
-                erro.msg = 'Operação não permitida no momento. Tente novamente mais tarde.';
-                break;
-
-              case 'auth/weak-password':
-                erro.msg = 'Senha muito simples. Tente usar uma senha com pelo menos 6 caracteres entre letras e números.';
-                break;
-
-              default:
-                erro.msg = error.message;
-            }
-          });
-      });
-
-    if (erro.code) {
-      await this.setState({ status: 'erro', atualizando: false, erro: erro.msg });
+    if (cadastro !== true) {
+      await this.setState({ status: 'erro', atualizando: false, erro: cadastro.msg });
       return false;
     }
 
@@ -129,7 +98,6 @@ export default class CriarConta extends React.Component {
         <Text style={styles.cadastro_label}>Email:</Text>
         <TextInput
           selectTextOnFocus
-          ref="email"
           style={styles.cadastro_input}
           keyboardType="email-address"
           maxLength={50}
@@ -137,7 +105,6 @@ export default class CriarConta extends React.Component {
           underlineColorAndroid="#FFF"
           editable={!this.state.atualizando}
           placeholder="email"
-          underlineColorAndroid="#EAEAEA"
           onChangeText={text => this.setState({ email: text })}
           value={this.state.email}
         />
@@ -146,7 +113,6 @@ export default class CriarConta extends React.Component {
         <TextInput
           selectTextOnFocus
           secureTextEntry
-          ref="senha"
           style={styles.cadastro_input}
           keyboardType="default"
           maxLength={20}
@@ -154,7 +120,6 @@ export default class CriarConta extends React.Component {
           underlineColorAndroid="#FFF"
           editable={!this.state.atualizando}
           placeholder="senha"
-          underlineColorAndroid="#EAEAEA"
           onChangeText={text => this.setState({ senha: text })}
           value={this.state.senha}
         />
@@ -163,7 +128,6 @@ export default class CriarConta extends React.Component {
         <TextInput
           selectTextOnFocus
           secureTextEntry
-          ref="confirmarSenha"
           style={styles.cadastro_input}
           keyboardType="default"
           maxLength={20}
@@ -171,7 +135,6 @@ export default class CriarConta extends React.Component {
           underlineColorAndroid="#FFF"
           editable={!this.state.atualizando}
           placeholder="confirmar senha"
-          underlineColorAndroid="#EAEAEA"
           onChangeText={text => this.setState({ confirmarSenha: text })}
           value={this.state.confirmarSenha}
         />

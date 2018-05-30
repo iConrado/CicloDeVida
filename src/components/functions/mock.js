@@ -5,7 +5,7 @@ const mock = {
   filhos: 1,
   salLiq: 8550,
   iniCarr: '05/06/2000',
-  email: 'brunop@gmail.com'
+  email: 'brunop@gmail.com',
 };
 
 export default mock;

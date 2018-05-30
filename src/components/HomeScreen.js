@@ -7,7 +7,7 @@ import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
-import ModalErro from './functions/ModalErro';
+import ModalMsg from './functions/ModalMsg';
 import Erro from './functions/Erro';
 import controle from './functions/controle';
 import validaEmail from './functions/validaEmail';
@@ -42,7 +42,7 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.state = {
       carregado: false,
-      modalErro: false,
+      modalMsg: false,
       nome: '',
       nasc: '',
       estCiv: 1,
@@ -95,21 +95,21 @@ export default class HomeScreen extends React.Component {
     await this.setState({ carregado: true });
   }
 
-  //************************************************************
+  // ************************************************************
   // Funções abreErro() e fechaErro devem ser incluídas em todos
   // os componentes de tela para possibilitar o funcionamento
   // da tela personalizada de erros.
-  //************************************************************
+  // ************************************************************
   abreErro(e) {
     objErro = e;
-    this.setState({ modalErro: true });
+    this.setState({ modalMsg: true });
   }
 
   fechaErro() {
-    this.setState({ modalErro: false });
+    this.setState({ modalMsg: false });
     objErro = {};
   }
-  //************************************************************
+  // ************************************************************
 
   defFilhos(valor) {
     this.setState({ filhos: valor });
@@ -125,13 +125,7 @@ export default class HomeScreen extends React.Component {
 
     const { navigate } = this.props.navigation;
 
-    const nome = this.state.nome;
-    const nasc = this.state.nasc;
-    const estCiv = this.state.estCiv;
-    const filhos = this.state.filhos;
-    const salLiq = this.state.salLiq;
-    const iniCarr = this.state.iniCarr;
-    const email = this.state.email;
+    const { nome, nasc, estCiv, filhos, salLiq, iniCarr, email } = this.state;
 
     // -- Validações primária dos campos --
     // Nome
@@ -204,6 +198,8 @@ export default class HomeScreen extends React.Component {
 
     // Após passar em todos os teste, abre a próxima tela do formulário
     navigate(tela);
+
+    return true;
   }
 
   render() {
@@ -214,7 +210,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.tela}>
         <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-          <ModalErro visivel={this.state.modalErro} fechar={this.fechaErro} objErro={objErro} />
+          <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}
           <View style={styles.viewTitulo}>
             <Text style={styles.titulo}>Dados básicos</Text>
@@ -321,8 +317,8 @@ export default class HomeScreen extends React.Component {
 
           <SliderSalario inicial={this.state.salLiq} retorno={this.defSalario} />
 
-          {/*Código antigo - salário em TextInput*/}
-          {/*<View style={styles.viewHorizontal}>
+          {/* Código antigo - salário em TextInput */}
+          {/* <View style={styles.viewHorizontal}>
             <View style={styles.viewCompHoriz}>
               <Text style={styles.label}>Salário Líquido:</Text>
               <TextInput
@@ -358,7 +354,7 @@ export default class HomeScreen extends React.Component {
                 onDateChange={(iniCarr) => { this.setState({ iniCarr }); }}
               />
             </View>
-          </View>*/}
+          </View> */}
         </ScrollView>
 
         <Rodape valor={this.state.comprometimento} funcProxTela={this.proxTela} tela="Patrimonio" />

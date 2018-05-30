@@ -6,7 +6,7 @@ import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
-import ModalErro from './functions/ModalErro';
+import ModalMsg from './functions/ModalMsg';
 import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
@@ -31,7 +31,7 @@ export default class ConsumoScreen extends React.Component {
     super(props);
     this.state = {
       carregado: false,
-      modalErro: false,
+      modalMsg: false,
       imovelPrazo: 15,
       imovelPerc: 0.07,
       autoPrazo: 7,
@@ -54,20 +54,13 @@ export default class ConsumoScreen extends React.Component {
     this.setState({ carregado: true });
   }
 
-  abreErro(e, tipo) {
+  abreErro(e) {
     objErro = e;
-    this.setState({ modalErro: true });
-    switch (tipo) {
-      case 0:
-        console.log('Retorno 0');
-        break;
-      default:
-        console.log('Retorno default');
-    }
+    this.setState({ modalMsg: true });
   }
 
   fechaErro() {
-    this.setState({ modalErro: false });
+    this.setState({ modalMsg: false });
     objErro = {};
   }
 
@@ -135,9 +128,11 @@ export default class ConsumoScreen extends React.Component {
     }
 
     navigate(tela);
+
+    return true;
   }
 
-  renderPickerItem(step, max, tipo) {
+  static renderPickerItem(step, max, tipo) {
     const comp = [];
     comp.push(<Picker.Item key={0} label="0" value={0} />);
     for (let i = step; i <= max; i += step) {
@@ -152,20 +147,20 @@ export default class ConsumoScreen extends React.Component {
     return comp;
   }
 
-  renderImoveisPrazo() {
-    return this.renderPickerItem(1, 15, 'prazo');
+  static renderImoveisPrazo() {
+    return ConsumoScreen.renderPickerItem(1, 15, 'prazo');
   }
 
-  renderImoveisPerc() {
-    return this.renderPickerItem(1, 10, 'perc');
+  static renderImoveisPerc() {
+    return ConsumoScreen.renderPickerItem(1, 10, 'perc');
   }
 
-  renderAutoPrazo() {
-    return this.renderPickerItem(1, 7, 'prazo');
+  static renderAutoPrazo() {
+    return ConsumoScreen.renderPickerItem(1, 7, 'prazo');
   }
 
-  renderAutoPerc() {
-    return this.renderPickerItem(1, 10, 'perc');
+  static renderAutoPerc() {
+    return ConsumoScreen.renderPickerItem(1, 10, 'perc');
   }
 
   render() {
@@ -176,7 +171,7 @@ export default class ConsumoScreen extends React.Component {
       <View style={styles.tela}>
         <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-          <ModalErro visivel={this.state.modalErro} fechar={this.fechaErro} objErro={objErro} />
+          <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}
 
           <View style={styles.viewTitulo}>
@@ -217,7 +212,7 @@ export default class ConsumoScreen extends React.Component {
                               prompt="Selecione a qtde. de anos"
                               mode="dialog"
                             >
-                              {this.renderImoveisPrazo()}
+                              {ConsumoScreen.renderImoveisPrazo()}
                             </Picker>
                           </View>
                         </View>
@@ -232,7 +227,7 @@ export default class ConsumoScreen extends React.Component {
                               prompt="Selecione o percentual da renda líquida"
                               mode="dialog"
                             >
-                              {this.renderImoveisPerc()}
+                              {ConsumoScreen.renderImoveisPerc()}
                             </Picker>
                           </View>
                         </View>
@@ -281,7 +276,7 @@ export default class ConsumoScreen extends React.Component {
                               prompt="Selecione a qtde. de anos"
                               mode="dialog"
                             >
-                              {this.renderAutoPrazo()}
+                              {ConsumoScreen.renderAutoPrazo()}
                             </Picker>
                           </View>
                         </View>
@@ -296,7 +291,7 @@ export default class ConsumoScreen extends React.Component {
                               prompt="Selecione o percentual da renda líquida"
                               mode="dialog"
                             >
-                              {this.renderAutoPerc()}
+                              {ConsumoScreen.renderAutoPerc()}
                             </Picker>
                           </View>
                         </View>

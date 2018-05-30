@@ -1,7 +1,7 @@
 import 'react-native';
 
 import Ciclo from '../src/components/functions/Ciclo';
-//import Erro from '../src/components/functions/Erro';
+// import Erro from '../src/components/functions/Erro';
 
 describe('Classe de negócio Ciclo', () => {
   const c = new Ciclo();
@@ -546,7 +546,7 @@ describe('Classe de negócio Ciclo', () => {
   test('Get IdadeAposent com retorno preenchido', () => {
     expect(c.getIdadeAposent()).toBe(55);
   });
-  
+
   // Rentab
   test('Get Rentab com retorno vazio', () => {
     expect(c.getRentab()).toBeFalsy();
@@ -796,7 +796,7 @@ describe('Classe de negócio Ciclo', () => {
   // ************************************************
   // *                  METODOS                     *
   // ************************************************
-  
+
   // recuperar
   test.skip('recuperar', () => {
     expect(c.recuperar('teste@teste.com.br')).toBeTruthy();
@@ -809,19 +809,19 @@ describe('Classe de negócio Ciclo', () => {
 
   // tempoDecorridoAnos (teste válido para execução entre 05/03/2018 a 04/03/2019)
   test('tempoDecorridoAnos retorno válido', () => {
-    expect(c.tempoDecorridoAnos('05/03/2017')).toBe(1);
+    expect(Ciclo.tempoDecorridoAnos('05/03/2017')).toBe(1);
   });
 
   test('tempoDecorridoAnos retorno válido', () => {
-    expect(c.tempoDecorridoAnos('05/11/2017')).toBe(0);
+    expect(Ciclo.tempoDecorridoAnos('05/11/2017')).toBe(0);
   });
 
   test('tempoDecorridoAnos retorno inválido', () => {
-    expect(c.tempoDecorridoAnos()).toBeFalsy();
+    expect(Ciclo.tempoDecorridoAnos()).toBeFalsy();
   });
 
   test('tempoDecorridoAnos retorno inválido', () => {
-    expect(c.tempoDecorridoAnos(512)).toBeFalsy();
+    expect(Ciclo.tempoDecorridoAnos(512)).toBeFalsy();
   });
 
   // comprometimentoAtual
@@ -886,17 +886,17 @@ describe('Classe de negócio Ciclo', () => {
     expect(c.faixaEtaria()).toBe('Acima de 30 anos');
     c.setNasc('14/07/1970');
     expect(c.faixaEtaria()).toBe('Acima de 45 anos');
-    c.setNasc(tmp); //retorna para o valor definido inicialmente
+    c.setNasc(tmp); // retorna para o valor definido inicialmente
   });
 
   test('faixaEtaria retorno inválido', () => {
     const tmp = c.getNasc();
     c.Nasc = 0;
     expect(c.faixaEtaria()).toBe('Idade inválida ou não definida');
-    c.setNasc(tmp); //retorna para o valor definido inicialmente
+    c.setNasc(tmp); // retorna para o valor definido inicialmente
   });
 
-  // patrimonioEsperado 
+  // patrimonioEsperado
   test('patrimonioEsperado retorno válido', () => {
     expect(c.patrimonioEsperado()).toBe(179550);
   });
@@ -905,7 +905,7 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getSalLiq();
     c.SalLiq = 0;
     expect(c.patrimonioEsperado()).toBeFalsy();
-    c.setSalLiq(tmp); //retorna para o valor definido inicialmente
+    c.setSalLiq(tmp); // retorna para o valor definido inicialmente
   });
 
   // comprometimentoGasto
@@ -925,7 +925,7 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getSalLiq();
     c.SalLiq = 0;
     expect(c.comprometimentoGasto()).toBeFalsy();
-    c.setSalLiq(tmp); //retorna para o valor definido inicialmente
+    c.setSalLiq(tmp); // retorna para o valor definido inicialmente
   });
 
   // sugestReserv
@@ -942,7 +942,7 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getSalLiq();
     c.SalLiq = 0;
     expect(c.sugestaoLimSeg()).toBeFalsy();
-    c.setSalLiq(tmp); //retorna para o valor definido inicialmente
+    c.setSalLiq(tmp); // retorna para o valor definido inicialmente
   });
 
   // coberturaVida
@@ -954,7 +954,7 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getSalLiq();
     c.SalLiq = 0;
     expect(c.coberturaVida()).toBeFalsy();
-    c.setSalLiq(tmp); //retorna para o valor definido inicialmente
+    c.setSalLiq(tmp); // retorna para o valor definido inicialmente
   });
 
   // seguroVida
@@ -966,7 +966,7 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getSalLiq();
     c.SalLiq = 0;
     expect(c.seguroVida()).toBeFalsy();
-    c.setSalLiq(tmp); //retorna para o valor definido inicialmente
+    c.setSalLiq(tmp); // retorna para o valor definido inicialmente
   });
 
   // seguroImoveis
@@ -978,7 +978,7 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getImoveis();
     c.setImoveis(0);
     expect(c.seguroImoveis()).toBeFalsy();
-    c.setImoveis(tmp); //retorna para o valor definido inicialmente
+    c.setImoveis(tmp); // retorna para o valor definido inicialmente
   });
 
   // seguroAuto
@@ -990,7 +990,7 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getVeiculos();
     c.setVeiculos(0);
     expect(c.seguroAuto()).toBeFalsy();
-    c.setVeiculos(tmp); //retorna para o valor definido inicialmente
+    c.setVeiculos(tmp); // retorna para o valor definido inicialmente
   });
 
   // patrimonioProt
@@ -1014,37 +1014,38 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getSalLiq();
     c.SalLiq = 0;
     expect(c.patrimonioProt(328)).toBeFalsy();
-    c.setSalLiq(tmp); //retorna para o valor definido inicialmente
+    c.setSalLiq(tmp); // retorna para o valor definido inicialmente
   });
 
   // montante
   test('montante retorno válido', () => {
-    expect(c.montante(0, 85, 24, 0.6434)).toBe(2212);
+    const mont = Ciclo.montante(0, 85, 24, 0.6434);
+    expect(mont).toBe(2212);
   });
 
   test('montante retorno inválido', () => {
-    expect(c.montante(0)).toBeFalsy();
+    expect(Ciclo.montante(0)).toBeFalsy();
   });
 
   test('montante retorno inválido', () => {
-    expect(c.montante(0, 0, 0, 0)).toBeFalsy();
+    expect(Ciclo.montante(0, 0, 0, 0)).toBeFalsy();
   });
 
   test('montante retorno inválido', () => {
-    expect(c.montante('asd')).toBeFalsy();
+    expect(Ciclo.montante('asd')).toBeFalsy();
   });
 
   // taxaMensal
   test('taxaMensal retorno válido', () => {
-    expect(c.taxaMensal(8)).toBe(0.643403011000343);
+    expect(Ciclo.taxaMensal(8)).toBe(0.643403011000343);
   });
 
   test('taxaMensal retorno inválido', () => {
-    expect(c.taxaMensal(0)).toBeFalsy();
+    expect(Ciclo.taxaMensal(0)).toBeFalsy();
   });
 
   test('taxaMensal retorno inválido', () => {
-    expect(c.taxaMensal('asd')).toBeFalsy();
+    expect(Ciclo.taxaMensal('asd')).toBeFalsy();
   });
 
   // planoImovel
@@ -1064,7 +1065,7 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getSalLiq();
     c.SalLiq = 0;
     expect(c.planoImovel(0.1)).toBeFalsy();
-    c.setSalLiq(tmp); //retorna para o valor definido inicialmente
+    c.setSalLiq(tmp); // retorna para o valor definido inicialmente
   });
 
   // planoAuto
@@ -1084,7 +1085,7 @@ describe('Classe de negócio Ciclo', () => {
     const tmp = c.getSalLiq();
     c.SalLiq = 0;
     expect(c.planoAuto(0.1)).toBeFalsy();
-    c.setSalLiq(tmp); //retorna para o valor definido inicialmente
+    c.setSalLiq(tmp); // retorna para o valor definido inicialmente
   });
 
   // imovelInvest
@@ -1130,5 +1131,4 @@ describe('Classe de negócio Ciclo', () => {
   test.skip('resultadoAnalise retorno válido', () => {
     expect(c.resultadoAnalise(7)).toBe(71820);
   });
-
 });

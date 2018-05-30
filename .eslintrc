@@ -1,6 +1,24 @@
 {
-  "extends": "rallycoding",
+  "extends": ["airbnb", "prettier/react"],
+  "plugins": ["prettier"],
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
   "rules": {
-    "max-len": [2, { "code": 149 }]
+    "no-mixed-operators": "warn",
+    "arrow-parens": ["error", "as-needed"],
+    "react/prop-types": [0],
+    "max-len": [2, { "code": 149 }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "prettier/prettier": ["error", { "singleQuote": true, "trailingComma": "all", "printWidth": 149 }],
+    "linebreak-style": ["error", "unix"],
+    "object-curly-newline": [
+      "error",
+      { "ObjectExpression": { "multiline": true, "consistent": true }, "ObjectPattern": { "multiline": false, "consistent": true } }
+    ],
+    "react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }]
   }
 }

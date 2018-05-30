@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   container: {
-    //flex: 1, // Não permite a scroolview rolar a tela
+    // flex: 1, // Não permite a scroolview rolar a tela
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     paddingTop: 5,
@@ -189,9 +189,9 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
   },
-  //***********************************
-  //* LOGIN_SCREEN                    *
-  //***********************************
+  // ***********************************
+  // * LOGIN_SCREEN                    *
+  // ***********************************
   login_viewContainer: {
     height: '100%',
     width: '100%',
@@ -290,9 +290,9 @@ const styles = StyleSheet.create({
     color: '#666',
     textAlign: 'center',
   },
-  //***********************************
-  //* Cadastro                        *
-  //***********************************
+  // ***********************************
+  // * Cadastro                        *
+  // ***********************************
   cadastro_viewContainer: {
     flex: 1,
     width: '100%',
@@ -349,9 +349,70 @@ const styles = StyleSheet.create({
     color: '#666',
     fontWeight: 'bold',
   },
-  //***********************************
-  //* HOME_SCREEN                     *
-  //***********************************
+  // ***********************************
+  // * MODALMSG                        *
+  // ***********************************
+  modalMsg_viewContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalMsg_viewFundo: {
+    position: 'absolute',
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000',
+    opacity: 0.8,
+    zIndex: 1,
+  },
+  modalMsg_viewCaixa: {
+    position: 'absolute',
+    width: '80%',
+    justifyContent: 'center',
+    backgroundColor: '#FFF',
+    borderRadius: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+    zIndex: 2,
+  },
+  modalMsg_viewBotoes: {
+    flexDirection: 'row',
+  },
+  modalMsg_titulo: {
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 5,
+  },
+  modalMsg_descricao: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  modalMsg_solucao: {
+    fontSize: 14,
+  },
+  modalMsg_textoBotao: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFF',
+    marginHorizontal: 5,
+  },
+  modalMsg_botao: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    minWidth: '30%',
+    paddingVertical: 4,
+    marginTop: 10,
+    borderRadius: 2,
+    elevation: 4,
+    backgroundColor: '#5C86F5',
+  },
+  // ***********************************
+  // * HOME_SCREEN                     *
+  // ***********************************
   home_txFilhos: {
     width: '20%',
     alignSelf: 'center',
@@ -414,9 +475,9 @@ const styles = StyleSheet.create({
   home_dtIniCarr: {
     width: '42.5%',
   },
-  //***********************************
-  //* PATRIMONIO_SCREEN               *
-  //***********************************
+  // ***********************************
+  // * PATRIMONIO_SCREEN               *
+  // ***********************************
   patrim_slIcone: {
     width: '65%',
     height: 40,
@@ -427,9 +488,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
   },
-  //***********************************
-  //* RESERVA_SCREEN                  *
-  //***********************************
+  // ***********************************
+  // * RESERVA_SCREEN                  *
+  // ***********************************
   reserva_viewCalculo: {
     width: '70%',
     flexDirection: 'column',
@@ -475,9 +536,9 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     textAlign: 'center',
   },
-  //***********************************
-  //* APOSENTADORIA_SCREEN            *
-  //***********************************
+  // ***********************************
+  // * APOSENTADORIA_SCREEN            *
+  // ***********************************
   aposent_viewCentral: {
     width: '30%',
     height: 40,
@@ -534,12 +595,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 30,
     borderBottomWidth: 1,
-    borderBottomColor: '#AAA', //#5BA849
+    borderBottomColor: '#AAA', // #5BA849
     paddingHorizontal: 5,
   },
-  //***********************************
-  //* SEGURANCA_SCREEN                *
-  //***********************************
+  // ***********************************
+  // * SEGURANCA_SCREEN                *
+  // ***********************************
   segur_viewEsquerda: {
     width: 40,
   },
@@ -571,12 +632,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 30,
     borderBottomWidth: 1,
-    borderBottomColor: '#AAA', //#5BA849
+    borderBottomColor: '#AAA', // #5BA849
     paddingHorizontal: 5,
   },
-  //***********************************
-  //* CONSUMO_SCREEN                *
-  //***********************************
+  // ***********************************
+  // * CONSUMO_SCREEN                *
+  // ***********************************
   consumo_viewLabel: {
     width: '70%',
   },

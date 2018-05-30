@@ -46,13 +46,7 @@ export default class Entrar extends React.Component {
       return false;
     }
 
-    // if (conexao === true) {
-    //   navigate('App');
-    //   return true;
-    // }
-
-    // this.setState({ status: 'erro', atualizando: false, erro: conexao.msg });
-    // return false;
+    return true;
   }
 
   render() {
@@ -98,7 +92,6 @@ export default class Entrar extends React.Component {
           underlineColorAndroid="#FFF"
           editable={!this.state.atualizando}
           placeholder="email"
-          underlineColorAndroid="#EAEAEA"
           onChangeText={text => this.setState({ email: text })}
           value={this.state.email}
         />
@@ -113,7 +106,6 @@ export default class Entrar extends React.Component {
           underlineColorAndroid="#FFF"
           editable={!this.state.atualizando}
           placeholder="senha"
-          underlineColorAndroid="#EAEAEA"
           onChangeText={text => this.setState({ senha: text })}
           value={this.state.senha}
         />

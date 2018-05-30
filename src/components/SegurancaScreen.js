@@ -6,7 +6,7 @@ import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
-import ModalErro from './functions/ModalErro';
+import ModalMsg from './functions/ModalMsg';
 import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
 import monetizar from './functions/monetizar';
@@ -30,11 +30,33 @@ export default class SegurancaScreen extends React.Component {
     headerStyle: EstiloVoltar.hStyle,
   };
 
+  static sugestLim() {
+    return C.sugestaoLimSeg();
+  }
+
+  static calculaVida() {
+    return C.seguroVida();
+  }
+
+  static calculaImoveis() {
+    return C.seguroImoveis();
+  }
+
+  static calculaAuto() {
+    return C.seguroAuto();
+  }
+
+  static comprometimento(valor) {
+    const compr = C.comprometimentoGasto(valor);
+
+    return compr;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       carregado: false,
-      modalErro: false,
+      modalMsg: false,
       saude: 0,
       comprometimento: 0,
     };
@@ -54,44 +76,21 @@ export default class SegurancaScreen extends React.Component {
     this.setState({ carregado: true });
   }
 
-  abreErro(e, tipo) {
+  abreErro(e) {
     objErro = e;
-    this.setState({ modalErro: true });
-    switch (tipo) {
-      case 0:
-        console.log('Retorno 0');
-        break;
-      default:
-        console.log('Retorno default');
-    }
+    this.setState({ modalMsg: true });
   }
 
   fechaErro() {
-    this.setState({ modalErro: false });
+    this.setState({ modalMsg: false });
     objErro = {};
-  }
-
-  sugestLim() {
-    return C.sugestaoLimSeg();
-  }
-
-  calculaVida() {
-    return C.seguroVida();
-  }
-
-  calculaImoveis() {
-    return C.seguroImoveis();
-  }
-
-  calculaAuto() {
-    return C.seguroAuto();
   }
 
   calculaComprTotal() {
     const convenio = this.state.saude;
-    const vida = this.calculaVida();
-    const imoveis = this.calculaImoveis();
-    const auto = this.calculaAuto();
+    const vida = SegurancaScreen.calculaVida();
+    const imoveis = SegurancaScreen.calculaImoveis();
+    const auto = SegurancaScreen.calculaAuto();
     const soma = convenio + vida + imoveis + auto;
     const compr = C.comprometimentoGasto(soma);
 
@@ -103,12 +102,6 @@ export default class SegurancaScreen extends React.Component {
   calculaPatrimProt() {
     const conv = this.state.saude;
     return C.patrimonioProt(conv);
-  }
-
-  comprometimento(valor) {
-    const compr = C.comprometimentoGasto(valor);
-
-    return compr;
   }
 
   calculaCompromSaude() {
@@ -130,7 +123,7 @@ export default class SegurancaScreen extends React.Component {
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
     const { navigate } = this.props.navigation;
 
-    const saude = this.state.saude;
+    const { saude } = this.state;
 
     // Validação das regras de negócio, registro e gravação de log
     if (!controle(this.abreErro, C, C.setSaude, saude)) {
@@ -138,6 +131,8 @@ export default class SegurancaScreen extends React.Component {
     }
 
     navigate(tela);
+
+    return true;
   }
 
   render() {
@@ -148,7 +143,7 @@ export default class SegurancaScreen extends React.Component {
       <View style={styles.tela}>
         <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-          <ModalErro visivel={this.state.modalErro} fechar={this.fechaErro} objErro={objErro} />
+          <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}
 
           <View style={styles.viewTitulo}>
@@ -160,8 +155,8 @@ export default class SegurancaScreen extends React.Component {
               <Text style={[styles.segur_lbCalculo, styles.label]}>Sugestão de limite mensal:</Text>
             </View>
             <View style={styles.viewCompHoriz}>
-              <Text style={styles.segur_txDireita}>{`${this.comprometimento(this.sugestLim()) * 100}%`}</Text>
-              <Text style={styles.segur_txDireita}>{monetizar(this.sugestLim())}</Text>
+              <Text style={styles.segur_txDireita}>{`${SegurancaScreen.comprometimento(SegurancaScreen.sugestLim()) * 100}%`}</Text>
+              <Text style={styles.segur_txDireita}>{monetizar(SegurancaScreen.sugestLim())}</Text>
             </View>
           </View>
 
@@ -176,7 +171,6 @@ export default class SegurancaScreen extends React.Component {
               <View style={styles.viewVertical}>
                 <Text style={styles.label}>Convênios de saúde:</Text>
                 <TextInput
-                  ref="saude"
                   style={styles.segur_input}
                   keyboardType="numeric"
                   maxLength={10}
@@ -214,7 +208,7 @@ export default class SegurancaScreen extends React.Component {
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
                   <Text style={[styles.label, styles.segur_lbSeguridade]}>Vida (24x renda):</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(this.calculaVida())}</Text>
+                  <Text style={styles.segur_txValor}>{monetizar(SegurancaScreen.calculaVida())}</Text>
                   <Text style={styles.segur_txValor}>{monetizar(C.getSalLiq() * 24)}</Text>
                 </View>
               </View>
@@ -229,7 +223,7 @@ export default class SegurancaScreen extends React.Component {
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
                   <Text style={[styles.label, styles.segur_lbSeguridade]}>Residencial:</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(this.calculaImoveis())}</Text>
+                  <Text style={styles.segur_txValor}>{monetizar(SegurancaScreen.calculaImoveis())}</Text>
                   <Text style={styles.segur_txValor}>{monetizar(C.getImoveis())}</Text>
                 </View>
               </View>
@@ -244,7 +238,7 @@ export default class SegurancaScreen extends React.Component {
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
                   <Text style={[styles.label, styles.segur_lbSeguridade]}>Auto:</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(this.calculaAuto())}</Text>
+                  <Text style={styles.segur_txValor}>{monetizar(SegurancaScreen.calculaAuto())}</Text>
                   <Text style={styles.segur_txValor}>{monetizar(C.getVeiculos())}</Text>
                 </View>
               </View>

@@ -16,7 +16,7 @@ describe('desmonetizar corretamente', () => {
   });
 
   test('numero valido 5000.40', () => {
-    expect(desmonetizar(5000.40)).toBe(5000);
+    expect(desmonetizar(5000.4)).toBe(5000);
   });
 
   test('string invalida', () => {

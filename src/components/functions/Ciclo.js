@@ -4,96 +4,96 @@
 // CARACTERÍSTICAS ESPECIAIS
 // Somente deverá haver apenas um objeto instanciado por sessão do app, entretanto, po-
 // dem ser gravados em asyncStorage ou outro banco de dados para recuperação futura.
-// 
+//
 // ATRIBUTOS
-// 
+//
 // - Básicas
 // Timestamp    = Data/Hora da gravação
 // Email        = PK - e-mail do usuário para gravação/recuperação da consultoria
 // Nome         = Nome do usuário
 // Nasc         = Data de nascimento
 // EstCivil     = Estado Civil
-//                Domínio (1 - Solteiro | 2 - Casado/União Est. | 3 - Divorciado | 
+//                Domínio (1 - Solteiro | 2 - Casado/União Est. | 3 - Divorciado |
 //                         4 - Viuvo | 5 - Separado)
 // Filhos       = Quantidade de filhos
 // SalLiq       = Salário líquido atual em R$
 // IniCarreira  = Data de início da carreira
-// 
+//
 // - Patrimônio
 // Invest       = Investimentos atuais (aplicações/poupança/etc...)
 // Imoveis      = Imóveis próprios ou financiados
 // Veiculos     = Veículos próprios ou financiados
-// 
+//
 // - Reserva
 // Gasto        = Gasto mensal estimado
 // Reserva      = Sugestão de reserva
-// 
+//
 // - Aposentadoria
 // Disponib     = Disponibilidade mensal para previdência privada
 // ReservaPrev  = Reserva existente em plano previdenciário privado
 // IdadeAposent = Idade desejada para aposentadoria (em anos)
 // Rentab       = Taxa de Rentabilidade (% a.a.)
-// 
+//
 // - Segurança
 // Saude        = Gasto mensal com convênios de saúde/odontolôgico/funerário
 // SegVida      = Gasto mensal com seguro de vida individual ou coletivo
 // SegImov      = Gasto mensal com seguro residencial
 // SegAuto      = Gasto mensal com seguro de automóveis
-// 
+//
 // - Consumo
 // ImovelInvestPrazo = Prazo para poupar e investir na compra de um imóvel como investimento
 // ImovelInvesPerc   = Percentual da renda dedicado para o investimento em imóvel
 // AutoInvestPrazo   = Prazo para poupar e investir na compra ou troca de um novo veículo
 // AutoInvestPerc    = Percentual da renda dedicado para a compra de um novo veículo
-// 
+//
 // - Resultado
 // nihil
-// 
-// 
+//
+//
 // MÉTODOS
-// 
+//
 // - constructor (nihil)
-//       Inicializa a instância da classe com o app, certificando que não haverá mais 
+//       Inicializa a instância da classe com o app, certificando que não haverá mais
 //       de uma instância por sessão.
-// 
+//
 // - recuperar (email)
 //       Recupera uma consultoria através de um endereço de e-mail.
-//       Limpa a instância e refaz todos os campos de acordo com o obtido no objeto 
+//       Limpa a instância e refaz todos os campos de acordo com o obtido no objeto
 //       armazenado.
-// 
+//
 // - salvar (nihil)
 //       Armazena a consultoria para que possa ser recuperada posteriormente.
-//       Deve permitir salvar a consultoria a qualquer momento, independente da 
+//       Deve permitir salvar a consultoria a qualquer momento, independente da
 //       quantidade de informações registradas.
-// 
+//
 // - comprometimentoAtual (tela)
 //       Retorna o comprometimento da renda baseado no estágio da tela em que o
 //       usuário se encontra. Deve retornar cálculos parciais respectivos.
 //
 // - idadeAtual (nihil)
 //       Retorna a idade atual do usuário (em anos completos).
-// 
+//
 // - faixaEtaria (nihil)
 //       Retorna string com a faixa etária atual do usuário.
-// 
+//
 // - patrimonioEsperado (nihil)
 //       Retorna o valor de patrimônio referência de acordo com a idade e renda.
-// 
+//
 // - comprometimentoGasto (Gasto)
-//       Retorna o percentual de comprometimento da renda em relação ao gasto mensal 
+//       Retorna o percentual de comprometimento da renda em relação ao gasto mensal
 //       informado.
-// 
+//
 // - sugestaoReserva (nihil)
 //       Retorna a sugestão de reserva para aposentadoria de acordo com a idade e renda
 //       do usuário.
-// 
+//
 // - sugestaoLimSeg (nihil)
 //       Retorna sugestão de limite mensal para aplicação em seguridade.
-// 
+//
 // - seguroVida (nihil)
 //       Retorna o valor alvo de gastos mensais em relação a seguro de vida com cobertura
 //       de 24 salários brutos.
-// 
+//
 // - seguroImoveis (nihil)
 //       Retorna o valor alvo de gastos mensais em relação a seguro de imoveis com cobertura
 //       do patrimonio informado.
@@ -103,12 +103,12 @@
 //       do patriomônio informado.
 //
 // - patrimonioProt (nihil)
-//       Retorna o valor total do patrimônio protegido de acordo com as coberturas 
+//       Retorna o valor total do patrimônio protegido de acordo com as coberturas
 //       registradas em seguridade.
 //
 // - montante(vp, parcela, prazo, taxaMM)
 //       Retorna o valor de investimentos periódicos após o prazo determinado
-//       vp (Valor Presente), parcela (depósito mensal), 
+//       vp (Valor Presente), parcela (depósito mensal),
 //       prazo (em meses), taxaMM (XX% ao mês)
 //
 // - taxaMensal(taxaAnual)
@@ -119,22 +119,22 @@
 //
 // - planoAuto (nihil)
 //       Retorna o valor da parcela sugerida para investimento em automóvel.
-// 
+//
 // - imovelInvest (nihil)
 //       Retorna o valor de imóvel para investimento de acordo com um prazo pré-
 //       estabelecido.
-// 
+//
 // - autoInvest (nihil)
 //       Retorna o valor de automóvel para compra ou troca de acordo com um prazo pré-
 //       estabelecido.
-// 
+//
 // - resultadoGrafico (nihil)
 //       Retorna objeto JSON com os valor em cadas área para montagem do gráfico.
-// 
+//
 // - resultadoAnalise (nihil)
-//       Retorna o tipo de resultado de acordo com a análise do ciclo de vida do 
+//       Retorna o tipo de resultado de acordo com a análise do ciclo de vida do
 //       usuário, caso saldo positivo ou negativo.
-// 
+//
 
 import moment from 'moment';
 
@@ -152,32 +152,32 @@ export default class Ciclo {
     return Ciclo.instance;
   }
 
-  async recuperar(email) {
-    return email;
+  async recuperar() {
+    return this;
   }
 
   async salvar() {
     return this;
   }
 
-  tempoDecorridoAnos(data) {
+  static tempoDecorridoAnos(data) {
     moment.updateLocale('en', {
-        relativeTime: {
-            future: '',
-            past: '',
-            s: '',
-            ss: '',
-            m: '',
-            mm: '',
-            h: '',
-            hh: '',
-            d: '',
-            dd: '',
-            M: '',
-            MM: '',
-            y: '1',
-            yy: '%d'
-        }
+      relativeTime: {
+        future: '',
+        past: '',
+        s: '',
+        ss: '',
+        m: '',
+        mm: '',
+        h: '',
+        hh: '',
+        d: '',
+        dd: '',
+        M: '',
+        MM: '',
+        y: '1',
+        yy: '%d',
+      },
     });
 
     const tempoDecorridoAA = moment(data, 'DD/MM/YYYY').fromNow(true);
@@ -198,7 +198,7 @@ export default class Ciclo {
     // switch implementado com base na ordem das telas. caso haja alteração, refatorar
     if (typeof tela === 'string') {
       switch (tela.toLowerCase()) {
-        case 'resultado': 
+        case 'resultado':
           valor += this.getSalLiq() * 0.1;
           valor += this.getSalLiq() * 0.1;
 
@@ -217,25 +217,25 @@ export default class Ciclo {
           valor += this.getReserva();
 
         case 'reserva': //eslint-disable-line
-          // sem calculos a realizar
+        // sem calculos a realizar
 
         case 'patrimonio': //eslint-disable-line
-          // sem calculos a realizar
+        // sem calculos a realizar
 
         case 'home': //eslint-disable-line
           // sem calculos a realizar
           break;
-        default: 
+        default:
           return 0;
       }
       compr += this.comprometimentoGasto(valor + valorAdd) * 100;
       return parseInt(compr, 10);
     }
-    return 0;    
+    return 0;
   }
 
   idadeAtual() {
-    return this.tempoDecorridoAnos(this.getNasc());
+    return Ciclo.tempoDecorridoAnos(this.getNasc());
   }
 
   faixaEtaria() {
@@ -259,9 +259,9 @@ export default class Ciclo {
   }
 
   patrimonioEsperado() {
-    const tempoTrab = this.tempoDecorridoAnos(this.getIniCarreira());
-    // Cálculo: 10% dos anos de trabalho * 12 
-    const baseCalc = parseInt((tempoTrab * 0.1) * 12, 10);
+    const tempoTrab = Ciclo.tempoDecorridoAnos(this.getIniCarreira());
+    // Cálculo: 10% dos anos de trabalho * 12
+    const baseCalc = parseInt(tempoTrab * 0.1 * 12, 10);
     const calculo = baseCalc * this.getSalLiq();
 
     if (calculo > 0) {
@@ -341,17 +341,14 @@ export default class Ciclo {
     return 0;
   }
 
-  montante(vp, parcela, prazo, rentabMM) {
-    if (typeof vp === 'number' && 
-        typeof parcela === 'number' && 
-        typeof prazo === 'number' && 
-        typeof rentabMM === 'number') {
+  static montante(vp, parcela, prazo, rentabMM) {
+    if (typeof vp === 'number' && typeof parcela === 'number' && typeof prazo === 'number' && typeof rentabMM === 'number') {
       let montante = vp;
 
       // Cálculo de juros compostos com adição de depósito mensal
-      for (let i = 1; i <= prazo; i++) {
+      for (let i = 1; i <= prazo; i += 1) {
         montante += parcela;
-        montante *= (1 + (rentabMM / 100));
+        montante *= 1 + rentabMM / 100;
       }
 
       return parseInt(montante, 10);
@@ -359,12 +356,12 @@ export default class Ciclo {
     return 0;
   }
 
-  taxaMensal(taxaAnual) {
+  static taxaMensal(taxaAnual) {
     if (typeof taxaAnual === 'number' && taxaAnual > 0) {
-      const tmpTaxa = 1 + ((taxaAnual * 1) / 100);
-      const taxaMensal = (Math.pow(tmpTaxa, (1 / 12)) - 1) * 100;
+      const tmpTaxa = 1 + (taxaAnual * 1) / 100;
+      const taxaMensal = (tmpTaxa ** (1 / 12) - 1) * 100;
       return taxaMensal;
-    } 
+    }
     return 0;
   }
 
@@ -380,7 +377,7 @@ export default class Ciclo {
   planoAuto(perc) {
     if (typeof perc === 'number' && perc > 0 && perc <= 1 && this.getSalLiq() > 0) {
       const plano = this.getSalLiq() * perc;
-      
+
       return parseInt(plano, 10);
     }
     return 0;
@@ -388,9 +385,7 @@ export default class Ciclo {
 
   imovelInvest(anos, perc) {
     if (typeof anos === 'number' && anos > 0 && this.planoImovel(perc) > 0) {
-      const invest = this.montante(0, 
-        this.planoImovel(perc), 
-        anos * 12, this.taxaMensal(this.getRentab()));
+      const invest = Ciclo.montante(0, this.planoImovel(perc), anos * 12, Ciclo.taxaMensal(this.getRentab()));
 
       return parseInt(invest, 10);
     }
@@ -399,10 +394,7 @@ export default class Ciclo {
 
   autoInvest(anos, perc) {
     if (typeof anos === 'number' && anos > 0 && this.planoAuto(perc) > 0) {
-      const invest = this.montante(0, 
-        this.planoAuto(perc), 
-        anos * 12, 
-        this.taxaMensal(this.getRentab()));
+      const invest = Ciclo.montante(0, this.planoAuto(perc), anos * 12, Ciclo.taxaMensal(this.getRentab()));
 
       return parseInt(invest, 10);
     }
@@ -417,7 +409,6 @@ export default class Ciclo {
     return this;
   }
 
-
   // ******************************************************
   // * GETTERS AND SETTERS                                *
   // ******************************************************
@@ -429,6 +420,7 @@ export default class Ciclo {
     }
     return '';
   }
+
   setEmail(str) {
     if (!str) {
       throw Erro.e14;
@@ -437,6 +429,7 @@ export default class Ciclo {
       this.Email = str.toLowerCase();
       return true;
     }
+    return false;
   }
 
   // Getter e Setter - Nome
@@ -577,7 +570,7 @@ export default class Ciclo {
   // Getter e Setter - Veiculos
   getVeiculos() {
     if (this.Veiculos) {
-      return this.Veiculos;  
+      return this.Veiculos;
     }
     return 0;
   }
@@ -600,7 +593,7 @@ export default class Ciclo {
     if (typeof str === 'number' && str > 0) {
       this.Gasto = str;
       return true;
-    } 
+    }
     throw Erro.e08;
   }
 
@@ -615,7 +608,7 @@ export default class Ciclo {
     if (typeof str === 'number' && str >= 0) {
       this.Reserva = str;
       return true;
-    } 
+    }
     throw Erro.e09;
   }
 
@@ -630,7 +623,7 @@ export default class Ciclo {
     if (typeof str === 'number' && str > 0) {
       this.Disponib = str;
       return true;
-    } 
+    }
     throw Erro.t09;
   }
 
@@ -645,7 +638,7 @@ export default class Ciclo {
     if (typeof str === 'number' && str >= 0) {
       this.ReservaPrev = str;
       return true;
-    } 
+    }
     throw Erro.e10;
   }
 
@@ -661,7 +654,7 @@ export default class Ciclo {
     if (typeof str === 'number' && str >= idadeAtual && str <= 99) {
       this.IdadeAposent = str;
       return true;
-    } 
+    }
     throw Erro.e11;
   }
 
@@ -691,10 +684,10 @@ export default class Ciclo {
     if (typeof str === 'number' && str > 0) {
       this.Saude = str;
       return true;
-    } 
+    }
     throw Erro.e13;
   }
-  
+
   // Getter e Setter - ImovelInvestPrazo
   getImovelInvestPrazo() {
     if (this.ImovelInvestPrazo) {
@@ -706,7 +699,7 @@ export default class Ciclo {
     if (typeof str === 'number' && str > 0) {
       this.ImovelInvestPrazo = str;
       return true;
-    } 
+    }
     throw Erro.e15;
   }
 
@@ -721,7 +714,7 @@ export default class Ciclo {
     if (typeof str === 'number' && str > 0) {
       this.ImovelInvestPerc = str;
       return true;
-    } 
+    }
     throw Erro.e16;
   }
 
@@ -736,7 +729,7 @@ export default class Ciclo {
     if (typeof str === 'number' && str > 0) {
       this.AutoInvestPrazo = str;
       return true;
-    } 
+    }
     throw Erro.e17;
   }
 
@@ -751,8 +744,7 @@ export default class Ciclo {
     if (typeof str === 'number' && str > 0) {
       this.AutoInvesPerc = str;
       return true;
-    } 
+    }
     throw Erro.e18;
   }
-
 }

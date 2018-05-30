@@ -5,12 +5,11 @@ import { Text } from 'react-native';
 import PatrimonioScreen from '../src/components/PatrimonioScreen';
 import Ciclo from '../src/components/functions/Ciclo';
 
-const nav = (tela) => { console.log(tela); };
+const nav = tela => {
+  console.log(tela);
+};
 const app = shallow(<PatrimonioScreen />);
-const appMock = shallow(
-  <PatrimonioScreen 
-    navigation={{ state: { params: { teste: 'teste' } }, navigate: nav }} 
-  />);
+const appMock = shallow(<PatrimonioScreen navigation={{ state: { params: { teste: 'teste' } }, navigate: nav }} />);
 const C = new Ciclo();
 
 describe('PatrimonioScreen', async () => {
@@ -19,18 +18,18 @@ describe('PatrimonioScreen', async () => {
     C.setIniCarreira('01/01/2000');
   });
 
-  it('renders correctly', () => {  
+  it('renders correctly', () => {
     expect(app).toMatchSnapshot();
   });
 
-  it('verifica os valores iniciais de uma nova simulação', () => { 
+  it('verifica os valores iniciais de uma nova simulação', () => {
     expect(app.state('invest')).toBe(0);
     expect(app.state('imoveis')).toBe(0);
     expect(app.state('veiculos')).toBe(0);
     expect(app.state('comprometimento')).toBe(0);
   });
 
-  it('testa definicao de valores vindos dos componentes independentes', () => { 
+  it('testa definicao de valores vindos dos componentes independentes', () => {
     app.instance().defInvest(40000);
     app.instance().defImoveis(100000);
     app.instance().defVeiculos(35000);
@@ -42,28 +41,40 @@ describe('PatrimonioScreen', async () => {
   it('testa retorno do Patrimonio Formado zerado', () => {
     app.instance().defInvest(0);
     app.instance().defImoveis(0);
-    app.instance().defVeiculos(0); 
+    app.instance().defVeiculos(0);
     const test = app.instance().patrimonioFormado();
-    const obj = (<Text accessible={true} allowFontScaling={true} ellipsizeMode="tail" style={{"alignSelf": "center", "textAlign": "center"}}>R$ 0</Text>);
+    const obj = (
+      <Text accessible allowFontScaling ellipsizeMode="tail" style={{ alignSelf: 'center', textAlign: 'center' }}>
+        R$ 0
+      </Text>
+    );
     expect(test).toMatchObject(obj);
   });
 
-  it('testa retorno do Patrimonio Formado abaixo do esperado', () => { 
+  it('testa retorno do Patrimonio Formado abaixo do esperado', () => {
     console.log(C.patrimonioEsperado());
     app.instance().defInvest(1000);
     app.instance().defImoveis(1000);
     app.instance().defVeiculos(1000);
     const test = app.instance().patrimonioFormado();
-    const obj = (<Text accessible={true} allowFontScaling={true} ellipsizeMode="tail" style={{"alignSelf": "center", "color": "red", "textAlign": "center"}}>R$ 3.000</Text>);
+    const obj = (
+      <Text accessible allowFontScaling ellipsizeMode="tail" style={{ alignSelf: 'center', color: 'red', textAlign: 'center' }}>
+        R$ 3.000
+      </Text>
+    );
     expect(test).toMatchObject(obj);
   });
 
-  it('testa retorno do Patrimonio Formado acima do esperado', () => { 
+  it('testa retorno do Patrimonio Formado acima do esperado', () => {
     app.instance().defInvest(100000);
     app.instance().defImoveis(100000);
     app.instance().defVeiculos(35000);
     const test = app.instance().patrimonioFormado();
-    const obj = (<Text accessible={true} allowFontScaling={true} ellipsizeMode="tail" style={{"alignSelf": "center", "color": "green", "textAlign": "center"}}>R$ 235.000</Text>);
+    const obj = (
+      <Text accessible allowFontScaling ellipsizeMode="tail" style={{ alignSelf: 'center', color: 'green', textAlign: 'center' }}>
+        R$ 235.000
+      </Text>
+    );
     expect(test).toMatchObject(obj);
   });
 
@@ -75,7 +86,7 @@ describe('PatrimonioScreen', async () => {
     expect(func).toHaveBeenCalledTimes(1);
   });
 
-  it('abre e fecha modal de Erro', () => {
+  it('abre e fecha modal de Msg', () => {
     const funcAbre = jest.fn(() => {
       app.instance().abreErro({ erro: 'erro' });
     });
@@ -85,10 +96,10 @@ describe('PatrimonioScreen', async () => {
     });
 
     funcAbre();
-    expect(app.state('modalErro')).toBe(true);
+    expect(app.state('modalMsg')).toBe(true);
 
-    funcFecha(); 
-    expect(app.state('modalErro')).toBe(false);
+    funcFecha();
+    expect(app.state('modalMsg')).toBe(false);
   });
 
   it('proxTela com valores inválidos', () => {

@@ -1,21 +1,23 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
-import HomeScreen from '../src/components/HomeScreen';
-import mock from '../src/components/functions/mock';
 import { TextInput, Picker } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
-const nav = (tela) => { console.log(tela); };
+import HomeScreen from '../src/components/HomeScreen';
+import mock from '../src/components/functions/mock';
+
+const nav = tela => {
+  console.log(tela);
+};
 const app = shallow(<HomeScreen />);
 const appMock = shallow(<HomeScreen navigation={{ state: { params: mock }, navigate: nav }} />);
 
 describe('HomeScreen', async () => {
-  it('renders correctly', () => {  
+  it('renders correctly', () => {
     expect(app).toMatchSnapshot();
   });
 
-  it('verifica os valores iniciais de uma nova simulação', () => { 
+  it('verifica os valores iniciais de uma nova simulação', () => {
     expect(app.state('nome')).toBe('');
     expect(app.state('nasc')).toBe('');
     expect(app.state('estCiv')).toBe(1);
@@ -26,7 +28,7 @@ describe('HomeScreen', async () => {
     expect(app.state('comprometimento')).toBe(0);
   });
 
-  it('verifica os valores iniciais de um mock', () => { 
+  it('verifica os valores iniciais de um mock', () => {
     expect(appMock.state('nome')).toBe('BRUNO P. SIQUEIRA');
     expect(appMock.state('nasc')).toBe('25/01/1980');
     expect(appMock.state('estCiv')).toBe(2);
@@ -39,46 +41,70 @@ describe('HomeScreen', async () => {
 
   // TextInput Nome
   it('nome em maiusculo', async () => {
-    app.find(TextInput).at(0).simulate('changeText', 'BRUNO P. SIQUEIRA');
+    app
+      .find(TextInput)
+      .at(0)
+      .simulate('changeText', 'BRUNO P. SIQUEIRA');
     expect(app.state('nome')).toBe('BRUNO P. SIQUEIRA');
   });
 
   it('nome em minusculo > maiusculo', () => {
-    app.find(TextInput).at(0).simulate('changeText', 'bruno p. siqueira');
+    app
+      .find(TextInput)
+      .at(0)
+      .simulate('changeText', 'bruno p. siqueira');
     expect(app.state('nome')).toBe('BRUNO P. SIQUEIRA');
   });
 
   // TextInput email
   it('email em minusculo', async () => {
-    app.find(TextInput).at(1).simulate('changeText', 'brunop@gmail.com');
+    app
+      .find(TextInput)
+      .at(1)
+      .simulate('changeText', 'brunop@gmail.com');
     expect(app.state('email')).toBe('brunop@gmail.com');
   });
 
   it('email em minusculo > maiusculo', () => {
-    app.find(TextInput).at(1).simulate('changeText', 'BRUNOp@gmail.com');
+    app
+      .find(TextInput)
+      .at(1)
+      .simulate('changeText', 'BRUNOp@gmail.com');
     expect(app.state('email')).toBe('brunop@gmail.com');
   });
 
   // DatePicker Nascimento
   it('altera o valor do DatePicker Nasc', () => {
-    app.find(DatePicker).at(0).simulate('dateChange', '15/01/1980');
+    app
+      .find(DatePicker)
+      .at(0)
+      .simulate('dateChange', '15/01/1980');
     expect(app.state('nasc')).toBe('15/01/1980');
   });
 
   // Picker Estado Civil
   it('zera o Picker', async () => {
-    app.find(Picker).at(0).simulate('valueChange', 0);
+    app
+      .find(Picker)
+      .at(0)
+      .simulate('valueChange', 0);
     expect(app.state('estCiv')).toBe(0);
   });
 
   it('altera o valor do Picker', () => {
-    app.find(Picker).at(0).simulate('valueChange', 3);
+    app
+      .find(Picker)
+      .at(0)
+      .simulate('valueChange', 3);
     expect(app.state('estCiv')).toBe(3);
   });
 
   // DatePicker Nascimento
   it('altera o valor do DatePicker IniCarr', () => {
-    app.find(DatePicker).at(1).simulate('dateChange', '14/04/2008');
+    app
+      .find(DatePicker)
+      .at(1)
+      .simulate('dateChange', '14/04/2008');
     expect(app.state('iniCarr')).toBe('14/04/2008');
   });
 
@@ -100,13 +126,13 @@ describe('HomeScreen', async () => {
     });
 
     funcFilhos();
-    funcSalario(); 
+    funcSalario();
 
     expect(app.state('filhos')).toBe(3);
     expect(app.state('salLiq')).toBe(10000);
   });
 
-  it('abre e fecha modal de Erro', () => {
+  it('abre e fecha modal de Msg', () => {
     const funcAbre = jest.fn(() => {
       app.instance().abreErro({ erro: 'erro' });
     });
@@ -116,10 +142,10 @@ describe('HomeScreen', async () => {
     });
 
     funcAbre();
-    expect(app.state('modalErro')).toBe(true);
+    expect(app.state('modalMsg')).toBe(true);
 
-    funcFecha(); 
-    expect(app.state('modalErro')).toBe(false);
+    funcFecha();
+    expect(app.state('modalMsg')).toBe(false);
   });
 
   it('proxTela com valores inválidos', () => {

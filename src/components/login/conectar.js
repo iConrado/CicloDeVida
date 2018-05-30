@@ -4,6 +4,57 @@ import Expo from 'expo';
 
 import CONST from '../functions/constantes';
 
+export const cadastrarComEmailESenha = async (email, senha) => {
+  const erro = {};
+
+  try {
+    const credencial = await firebase
+      .auth()
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(async () => {
+        const cred = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, senha)
+          .catch(error => {
+            erro.code = error.code;
+
+            switch (error.code) {
+              case 'auth/invalid-email':
+                erro.msg = 'Endereço de email inválido.';
+                break;
+
+              case 'auth/email-already-in-use':
+                erro.msg = 'Email já cadastrado.';
+                break;
+
+              case 'auth/operation-not-allowed':
+                erro.msg = 'Operação não permitida no momento. Tente novamente mais tarde.';
+                break;
+
+              case 'auth/weak-password':
+                erro.msg = 'Senha muito simples. Tente usar uma senha com pelo menos 6 caracteres entre letras e números.';
+                break;
+
+              default:
+                erro.msg = 'Ocorreu um erro desconhecido ou a aplicação está indisponível neste momento. Por favor, tentar novamente mais tarde.';
+            }
+          });
+
+        return cred;
+      });
+
+    if (erro.code) {
+      return erro;
+    }
+
+    await AsyncStorage.setItem('userToken', JSON.stringify(credencial));
+    return true;
+  } catch (e) {
+    erro.msg = e.errorMessage;
+    return erro;
+  }
+};
+
 export const conectar = async (email, senha) => {
   const erro = {};
   try {
@@ -35,7 +86,7 @@ export const conectar = async (email, senha) => {
                 break;
 
               default:
-                erro.msg = error.message;
+                erro.msg = 'Ocorreu um erro desconhecido ou a aplicação está indisponível neste momento. Por favor, tentar novamente mais tarde.';
             }
           });
 
@@ -111,7 +162,7 @@ export const conectarComGoogle = async () => {
                   break;
 
                 default:
-                  erro.msg = error.message;
+                  erro.msg = 'Ocorreu um erro desconhecido ou a aplicação está indisponível neste momento. Por favor, tentar novamente mais tarde.';
               }
             });
           return cred;
@@ -127,6 +178,7 @@ export const conectarComGoogle = async () => {
   } catch (e) {
     return e;
   }
+  return false;
 };
 
 export const conectarComFacebook = async () => {
@@ -135,14 +187,13 @@ export const conectarComFacebook = async () => {
     const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(CONST.facebookID, { permissions: ['public_profile', 'email'] });
 
     if (type === 'success') {
-      // Build Firebase credential with the Facebook access token.
       const credential = await firebase.auth.FacebookAuthProvider.credential(token);
 
       // PARA OBTER INFORMAÇÕES DO USUARIO, USAR O CODIGO ABAIXO:
       // const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
       // const user = await response.json();
 
-      // Rconsole.log('user', user);
+      // console.log('user', user);
 
       // Sign in with credential from the Facebook user.
       const credencial = await firebase
@@ -189,7 +240,7 @@ export const conectarComFacebook = async () => {
                   break;
 
                 default:
-                  erro.msg = error.message;
+                  erro.msg = 'Ocorreu um erro desconhecido ou a aplicação está indisponível neste momento. Por favor, tentar novamente mais tarde.';
               }
             });
           return cred;
@@ -205,4 +256,5 @@ export const conectarComFacebook = async () => {
   } catch (e) {
     return e;
   }
+  return false;
 };

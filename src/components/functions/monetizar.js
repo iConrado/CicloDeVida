@@ -1,10 +1,10 @@
 import milhar from './milhar';
 
-const monetizar = (quantia) => {
+const monetizar = quantia => {
   if (Number.isInteger(quantia)) {
     return `R$ ${milhar(quantia.toString())}`;
   }
-  return 'R$ ';  
+  return 'R$ ';
 };
 
 export default monetizar;

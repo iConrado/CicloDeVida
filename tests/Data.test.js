@@ -47,5 +47,4 @@ describe('Converte as datas corretamente', () => {
   test('Retorna falso para outros tipos', () => {
     expect(Data.stringToData()).toBeFalsy();
   });
-
 });

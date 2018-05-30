@@ -62,8 +62,7 @@ const Erro = {
   e13: {
     titulo: 'Erro',
     descricao: 'Valor dedicado a convênio de saúde inválido.',
-    solucao: 'Uma boa saúde é primordial para alcançar seus tão sonhados objetivos. ' + 
-             'Tente informar um valor superior a zero.',
+    solucao: 'Uma boa saúde é primordial para alcançar seus tão sonhados objetivos. Tente informar um valor superior a zero.',
   },
   e14: {
     titulo: 'Erro',

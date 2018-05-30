@@ -1,8 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Text } from 'react-native';
 import LimiteDeErro from '../src/components/functions/LimiteDeErro';
-
 
 const app = shallow(<LimiteDeErro />);
 

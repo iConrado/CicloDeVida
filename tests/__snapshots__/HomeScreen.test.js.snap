@@ -34,7 +34,7 @@ ShallowWrapper {
             }
           }
         >
-          <ModalErro
+          <Unknown
             fechar={[Function]}
             objErro={Object {}}
             visivel={false}
@@ -361,7 +361,7 @@ ShallowWrapper {
             retorno={[Function]}
           />
         </ScrollView>,
-        <Unknown
+        <Rodape
           funcProxTela={[Function]}
           tela="Patrimonio"
           valor={0}
@@ -379,7 +379,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <ModalErro
+            <Unknown
               fechar={[Function]}
               objErro={Object {}}
               visivel={false}
@@ -722,7 +722,7 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "function",
             "props": Object {
               "fechar": [Function],
               "objErro": Object {},
@@ -1770,7 +1770,7 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
           "funcProxTela": [Function],
           "tela": "Patrimonio",
@@ -1806,7 +1806,7 @@ ShallowWrapper {
               }
             }
           >
-            <ModalErro
+            <Unknown
               fechar={[Function]}
               objErro={Object {}}
               visivel={false}
@@ -2133,7 +2133,7 @@ ShallowWrapper {
               retorno={[Function]}
             />
           </ScrollView>,
-          <Unknown
+          <Rodape
             funcProxTela={[Function]}
             tela="Patrimonio"
             valor={0}
@@ -2151,7 +2151,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <ModalErro
+              <Unknown
                 fechar={[Function]}
                 objErro={Object {}}
                 visivel={false}
@@ -2494,7 +2494,7 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "function",
               "props": Object {
                 "fechar": [Function],
                 "objErro": Object {},
@@ -3542,7 +3542,7 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
             "funcProxTela": [Function],
             "tela": "Patrimonio",
