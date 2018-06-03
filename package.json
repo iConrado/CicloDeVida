@@ -1,6 +1,6 @@
 {
   "name": "ciclodevida",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "private": true,
   "devDependencies": {
     "babel-eslint": "8",
@@ -16,10 +16,11 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
     "jest-expo": "~27.0.0",
+    "jsdom": "^11.10.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.12.1",
     "react-dom": "16.2.0",
-    "react-native-mock": "^0.3.1",
+    "react-native-mock-render": "^0.0.25",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1",
     "sinon": "^4.5.0"
@@ -40,7 +41,8 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "setupTestFrameworkScriptFile": "./setupTests.js"
+    "setupTestFrameworkScriptFile": "./setupTests.js",
+    "coveragePathIgnorePatterns": ["/node_modules/", "./setupTests.js"]
   },
   "dependencies": {
     "expo": "^27.0.1",

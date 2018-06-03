@@ -43,11 +43,7 @@ describe('PatrimonioScreen', async () => {
     app.instance().defImoveis(0);
     app.instance().defVeiculos(0);
     const test = app.instance().patrimonioFormado();
-    const obj = (
-      <Text accessible allowFontScaling ellipsizeMode="tail" style={{ alignSelf: 'center', textAlign: 'center' }}>
-        R$ 0
-      </Text>
-    );
+    const obj = <Text style={{ alignSelf: 'center', textAlign: 'center' }}>R$ 0</Text>;
     expect(test).toMatchObject(obj);
   });
 
@@ -57,11 +53,7 @@ describe('PatrimonioScreen', async () => {
     app.instance().defImoveis(1000);
     app.instance().defVeiculos(1000);
     const test = app.instance().patrimonioFormado();
-    const obj = (
-      <Text accessible allowFontScaling ellipsizeMode="tail" style={{ alignSelf: 'center', color: 'red', textAlign: 'center' }}>
-        R$ 3.000
-      </Text>
-    );
+    const obj = <Text style={{ alignSelf: 'center', color: 'red', textAlign: 'center' }}>R$ 3.000</Text>;
     expect(test).toMatchObject(obj);
   });
 
@@ -70,11 +62,7 @@ describe('PatrimonioScreen', async () => {
     app.instance().defImoveis(100000);
     app.instance().defVeiculos(35000);
     const test = app.instance().patrimonioFormado();
-    const obj = (
-      <Text accessible allowFontScaling ellipsizeMode="tail" style={{ alignSelf: 'center', color: 'green', textAlign: 'center' }}>
-        R$ 235.000
-      </Text>
-    );
+    const obj = <Text style={{ alignSelf: 'center', color: 'green', textAlign: 'center' }}>R$ 235.000</Text>;
     expect(test).toMatchObject(obj);
   });
 

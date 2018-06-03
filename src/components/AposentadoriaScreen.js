@@ -73,7 +73,7 @@ export default class AposentadoriaScreen extends React.Component {
     this.state = {
       carregado: false,
       modalMsg: false,
-      disponib: Math.ceil(AposentadoriaScreen.rendaPercentual() / 50) * 50,
+      disponib: 0,
       reservaPrev: 0,
       idadeAposent: 50,
       rentab: 0,
@@ -92,10 +92,16 @@ export default class AposentadoriaScreen extends React.Component {
     this.montagem();
   }
 
-  montagem() {
+  async montagem() {
     tmpComprometimento[0] = this.state.disponib;
-    this.comprometimentoAtual();
-    this.setState({ carregado: true });
+    await this.comprometimentoAtual();
+    await this.setState({
+      disponib: C.getDisponib() || Math.ceil(AposentadoriaScreen.rendaPercentual() / 50) * 50,
+      reservaPrev: C.getReservaPrev(),
+      idadeAposent: C.getIdadeAposent() || 50,
+      rentab: C.getRentab(),
+    });
+    await this.setState({ carregado: true });
   }
 
   abreErro(e) {
@@ -134,11 +140,11 @@ export default class AposentadoriaScreen extends React.Component {
     this.setState({ rentab: valor });
   }
 
-  comprometimentoAtual() {
+  async comprometimentoAtual() {
     if (tmpComprometimento[0] !== undefined) {
       const valor = tmpComprometimento.reduce((prevVal, elem) => prevVal + elem);
       const compr = C.comprometimentoAtual('Aposentadoria', valor);
-      this.setState({ comprometimento: compr });
+      await this.setState({ comprometimento: compr });
     }
   }
 

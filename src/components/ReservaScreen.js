@@ -64,7 +64,7 @@ export default class ReservaScreen extends React.Component {
       carregado: false,
       modalMsg: false,
       gasto: 0,
-      reserva: C.getReserva() === 0 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
+      reserva: 0,
       comprometimento: 0,
     };
     this.fechaErro = this.fechaErro.bind(this);
@@ -79,11 +79,15 @@ export default class ReservaScreen extends React.Component {
     this.montagem();
   }
 
-  montagem() {
+  async montagem() {
     tmpComprometimento[0] = this.state.gasto;
     tmpComprometimento[1] = this.state.reserva;
-    this.comprometimentoAtual();
-    this.setState({ carregado: true });
+    await this.comprometimentoAtual();
+    await this.setState({
+      gasto: C.getGasto(),
+      reserva: C.getReserva() === 0 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
+    });
+    await this.setState({ carregado: true });
   }
 
   abreErro(e) {
@@ -130,11 +134,11 @@ export default class ReservaScreen extends React.Component {
     this.comprometimentoAtual();
   }
 
-  comprometimentoAtual() {
+  async comprometimentoAtual() {
     if (tmpComprometimento[0] !== undefined) {
       const valor = tmpComprometimento.reduce((prevVal, elem) => prevVal + elem);
       const compr = C.comprometimentoAtual('Reserva', valor);
-      this.setState({ comprometimento: compr });
+      await this.setState({ comprometimento: compr });
     }
   }
 

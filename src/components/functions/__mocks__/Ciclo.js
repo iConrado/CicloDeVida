@@ -138,9 +138,9 @@
 
 import moment from 'moment';
 
-import Storage from './Storage';
-import hashCode from './hashcode';
-import Erro from './Erro';
+import Storage from '../Storage';
+import hashCode from '../hashcode';
+import Erro from '../Erro';
 
 export default class Ciclo {
   constructor() {
@@ -154,35 +154,12 @@ export default class Ciclo {
   }
 
   async recuperar() {
-    const recup = await Storage.recuperar('simulacao');
-
-    // Associa o singleton a cada um dos itens recuperados
-    if (recup) {
-      Object.keys(recup).forEach(key => {
-        this[key] = recup[key];
-      });
-      return true;
-    }
-
-    // Caso não retorne dados recuperados, limpa o singleton
-    Object.keys(this).forEach(key => {
-      // Reseta todos os itens exceto o id
-      if (key !== 'id') {
-        this[key] = undefined;
-      }
-    });
-    return false;
+    console.log('Usou o mock');
+    return true;
   }
 
   async salvar() {
-    const d = new Date();
-    this.timestamp = d.toString();
-    const save = await Storage.gravar('simulacao', this);
-
-    if (save) {
-      return true;
-    }
-    return false;
+    return true;
   }
 
   static tempoDecorridoAnos(data) {

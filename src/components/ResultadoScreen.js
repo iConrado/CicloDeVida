@@ -8,9 +8,9 @@ import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalMsg from './functions/ModalMsg';
 // import Controle from './functions/Controle';
-// import Ciclo from './functions/Ciclo';
+import Ciclo from './functions/Ciclo';
 
-// const C = new Ciclo();
+const C = new Ciclo();
 const objErro = {};
 
 export default class ResultadoScreen extends React.Component {
@@ -39,6 +39,7 @@ export default class ResultadoScreen extends React.Component {
   }
 
   montagem() {
+    C.salvar();
     this.setState({ carregado: true });
   }
 

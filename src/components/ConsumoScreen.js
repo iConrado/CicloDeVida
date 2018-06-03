@@ -47,11 +47,17 @@ export default class ConsumoScreen extends React.Component {
     this.montagem();
   }
 
-  montagem() {
+  async montagem() {
     tmpComprometimento[0] = C.getSalLiq() * 0.1;
     tmpComprometimento[1] = C.getSalLiq() * 0.1;
-    this.comprometimentoAtual();
-    this.setState({ carregado: true });
+    await this.comprometimentoAtual();
+    await this.setState({
+      imovelPrazo: C.getImovelInvestPrazo() || 15,
+      imovelPerc: C.getImovelInvestPerc() || 0.07,
+      autoPrazo: C.getAutoInvestPrazo() || 7,
+      autoPerc: C.getAutoInvestPerc() || 0.03,
+    });
+    await this.setState({ carregado: true });
   }
 
   abreErro(e) {
@@ -94,13 +100,13 @@ export default class ConsumoScreen extends React.Component {
     return invest;
   }
 
-  comprometimentoAtual() {
+  async comprometimentoAtual() {
     let valor = 0;
     if (tmpComprometimento[0] !== undefined) {
       valor = tmpComprometimento.reduce((prevVal, elem) => prevVal + elem);
     }
     const compr = C.comprometimentoAtual('Consumo', valor);
-    this.setState({ comprometimento: compr });
+    await this.setState({ comprometimento: compr });
   }
 
   proxTela(tela) {

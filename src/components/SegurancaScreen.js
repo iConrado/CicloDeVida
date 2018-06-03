@@ -70,10 +70,13 @@ export default class SegurancaScreen extends React.Component {
     this.montagem();
   }
 
-  montagem() {
+  async montagem() {
     tmpComprometimento[0] = this.state.saude;
-    this.comprometimentoAtual();
-    this.setState({ carregado: true });
+    await this.comprometimentoAtual();
+    await this.setState({
+      saude: C.getSaude(),
+    });
+    await this.setState({ carregado: true });
   }
 
   abreErro(e) {
@@ -109,13 +112,13 @@ export default class SegurancaScreen extends React.Component {
     this.comprometimentoAtual();
   }
 
-  comprometimentoAtual() {
+  async comprometimentoAtual() {
     let valor = 0;
     if (tmpComprometimento[0] !== undefined) {
       valor = tmpComprometimento.reduce((prevVal, elem) => prevVal + elem);
     }
     const compr = C.comprometimentoAtual('Seguranca', valor);
-    this.setState({ comprometimento: compr });
+    await this.setState({ comprometimento: compr });
   }
 
   proxTela(tela) {

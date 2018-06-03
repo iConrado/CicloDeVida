@@ -13,18 +13,22 @@ export default props => {
   // Componente para apresentação de uma tela de erros
   //
   // Props esperadas:
-  // visivel      [boolean] - estado repassado para informar se a tela estará visível ou não
-  // fechar()     [função]  - função para ser acionada para fechar a janela
-  //                          (necessita bind no componente de origem)
-  // prosseguir() [função]  - função para ser acionada ao clicar em prosseguir (necessário se indicado okCancela = true)
-  //                          (necessita bind no componente de origem)
-  // objErro      [objeto]  - objeto contendo as descrições do erro. na ausência será retornada
-  //                       uma mensagem padrão, retornando ao aplicativo
-  // okCancela    [boolean] - switch para permitr a visualização dos botões cancelar e prosseguir
+  // visivel          [boolean] - estado repassado para informar se a tela estará visível ou não
+  // fechar()         [função]  - função para ser acionada para fechar a janela
+  //                              (necessita bind no componente de origem)
+  // prosseguir()     [função]  - função para ser acionada ao clicar em prosseguir (necessário se indicado okCancela = true)
+  //                              (necessita bind no componente de origem)
+  // objErro          [objeto]  - objeto contendo as descrições do erro. na ausência será retornada
+  //                              uma mensagem padrão, retornando ao aplicativo
+  // okCancela        [boolean] - switch para permitr a visualização dos botões cancelar e prosseguir
+  // botaoCancela     [string]  - (opcional) texto do botão cancelar - padrão 'CANCELAR'
+  // botaoProsseguuir [string]  - (opcional) texto do botão prosseguir - padrão 'prosseguir'
   //
 
   const erro = props.objErro || erroPadrao;
-  const { fechar, prosseguir, okCancela } = props;
+  const { fechar, prosseguir, okCancela, botaoCancelar, botaoProsseguir } = props;
+  const txCancelar = botaoCancelar || 'CANCELAR';
+  const txProsseguir = botaoProsseguir || 'PROSSEGUIR';
 
   if (okCancela) {
     return (
@@ -38,11 +42,11 @@ export default props => {
             <Text style={styles.modalMsg_solucao}>{erro.solucao}</Text>
             <View style={styles.modalMsg_viewBotoes}>
               <TouchableOpacity style={styles.modalMsg_botao} onPress={() => fechar()}>
-                <Text style={styles.modalMsg_textoBotao}>CANCELAR</Text>
+                <Text style={styles.modalMsg_textoBotao}>{txCancelar}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.modalMsg_botao} onPress={() => prosseguir()}>
-                <Text style={styles.modalMsg_textoBotao}>PROSSEGUIR</Text>
+                <Text style={styles.modalMsg_textoBotao}>{txProsseguir}</Text>
               </TouchableOpacity>
             </View>
           </View>

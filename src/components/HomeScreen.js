@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import { View, ScrollView, Text, TextInput, Picker, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
@@ -80,18 +81,28 @@ export default class HomeScreen extends React.Component {
     this.defSalario = this.defSalario.bind(this);
   }
 
-  componentDidMount() {
-    this.montagem();
+  async componentDidMount() {
+    await this.montagem();
   }
 
   async montagem() {
     // mock para carregamento mais rápido
-    if (this.props.navigation) {
-      const { params } = this.props.navigation.state;
-      if (params) {
-        await this.setState(params);
-      }
-    }
+    // if (this.props.navigation) {
+    //   const { params } = this.props.navigation.state;
+    //   if (params) {
+    //     await this.setState(params);
+    //   }
+    // }
+    await C.recuperar();
+    await this.setState({
+      nome: C.getNome(),
+      nasc: C.getNasc(),
+      estCiv: C.getEstCivil(),
+      filhos: C.getFilhos(),
+      salLiq: C.getSalLiq(),
+      iniCarr: C.getIniCarreira(),
+      email: C.getEmail() || firebase.auth().currentUser.email,
+    });
     await this.setState({ carregado: true });
   }
 

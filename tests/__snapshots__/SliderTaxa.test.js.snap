@@ -21,7 +21,7 @@ ShallowWrapper {
     "nodeType": "class",
     "props": Object {
       "children": Array [
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -32,9 +32,6 @@ ShallowWrapper {
           }
         >
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#666",
@@ -43,8 +40,8 @@ ShallowWrapper {
           >
             Taxa de rentabilidade estimada (a.a.):
           </Text>
-        </Component>,
-        <Component
+        </View>,
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -79,7 +76,7 @@ ShallowWrapper {
             }
             value={50}
           />
-          <Component
+          <View
             style={
               Object {
                 "height": 40,
@@ -89,9 +86,6 @@ ShallowWrapper {
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "alignSelf": "center",
@@ -104,8 +98,8 @@ ShallowWrapper {
               50,0
               %
             </Text>
-          </Component>
-        </Component>,
+          </View>
+        </View>,
       ],
       "style": Object {
         "alignItems": "flex-start",
@@ -123,9 +117,6 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#666",
@@ -147,10 +138,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "accessible": true,
-            "allowFontScaling": true,
             "children": "Taxa de rentabilidade estimada (a.a.):",
-            "ellipsizeMode": "tail",
             "style": Object {
               "color": "#666",
             },
@@ -192,7 +180,7 @@ ShallowWrapper {
               }
               value={50}
             />,
-            <Component
+            <View
               style={
                 Object {
                   "height": 40,
@@ -202,9 +190,6 @@ ShallowWrapper {
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "alignSelf": "center",
@@ -217,7 +202,7 @@ ShallowWrapper {
                 50,0
                 %
               </Text>
-            </Component>,
+            </View>,
           ],
           "style": Object {
             "alignItems": "center",
@@ -263,9 +248,6 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "alignSelf": "center",
@@ -290,13 +272,10 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "accessible": true,
-                "allowFontScaling": true,
                 "children": Array [
                   "50,0",
                   "%",
                 ],
-                "ellipsizeMode": "tail",
                 "style": Object {
                   "alignSelf": "center",
                   "textAlign": "center",
@@ -326,7 +305,7 @@ ShallowWrapper {
       "nodeType": "class",
       "props": Object {
         "children": Array [
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -337,9 +316,6 @@ ShallowWrapper {
             }
           >
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -348,8 +324,8 @@ ShallowWrapper {
             >
               Taxa de rentabilidade estimada (a.a.):
             </Text>
-          </Component>,
-          <Component
+          </View>,
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -384,7 +360,7 @@ ShallowWrapper {
               }
               value={50}
             />
-            <Component
+            <View
               style={
                 Object {
                   "height": 40,
@@ -394,9 +370,6 @@ ShallowWrapper {
               }
             >
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "alignSelf": "center",
@@ -409,8 +382,8 @@ ShallowWrapper {
                 50,0
                 %
               </Text>
-            </Component>
-          </Component>,
+            </View>
+          </View>,
         ],
         "style": Object {
           "alignItems": "flex-start",
@@ -428,9 +401,6 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "color": "#666",
@@ -452,10 +422,7 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "accessible": true,
-              "allowFontScaling": true,
               "children": "Taxa de rentabilidade estimada (a.a.):",
-              "ellipsizeMode": "tail",
               "style": Object {
                 "color": "#666",
               },
@@ -497,7 +464,7 @@ ShallowWrapper {
                 }
                 value={50}
               />,
-              <Component
+              <View
                 style={
                   Object {
                     "height": 40,
@@ -507,9 +474,6 @@ ShallowWrapper {
                 }
               >
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Object {
                       "alignSelf": "center",
@@ -522,7 +486,7 @@ ShallowWrapper {
                   50,0
                   %
                 </Text>
-              </Component>,
+              </View>,
             ],
             "style": Object {
               "alignItems": "center",
@@ -568,9 +532,6 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Object {
                       "alignSelf": "center",
@@ -595,13 +556,10 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "accessible": true,
-                  "allowFontScaling": true,
                   "children": Array [
                     "50,0",
                     "%",
                   ],
-                  "ellipsizeMode": "tail",
                   "style": Object {
                     "alignSelf": "center",
                     "textAlign": "center",

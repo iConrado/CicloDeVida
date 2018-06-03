@@ -75,8 +75,13 @@ export default class PatrimonioScreen extends React.Component {
     this.montagem();
   }
 
-  montagem() {
-    this.setState({ carregado: true });
+  async montagem() {
+    await this.setState({
+      invest: C.getInvest(),
+      imoveis: C.getImoveis(),
+      veiculos: C.getVeiculos(),
+    });
+    await this.setState({ carregado: true });
   }
 
   abreErro(e) {

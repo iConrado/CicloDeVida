@@ -22,9 +22,6 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
           style={
             Object {
               "color": "#666",
@@ -33,7 +30,7 @@ ShallowWrapper {
         >
           Investimentos (aplicações, poupança, etc):
         </Text>,
-        <Component
+        <View
           style={
             Object {
               "alignItems": "center",
@@ -43,7 +40,7 @@ ShallowWrapper {
             }
           }
         >
-          <Component
+          <View
             style={
               Object {
                 "alignContent": "center",
@@ -65,8 +62,8 @@ ShallowWrapper {
                 }
               }
             />
-          </Component>
-          <Component
+          </View>
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -103,9 +100,6 @@ ShallowWrapper {
               value={50}
             />
             <Text
-              accessible={true}
-              allowFontScaling={true}
-              ellipsizeMode="tail"
               style={
                 Object {
                   "height": 40,
@@ -117,8 +111,8 @@ ShallowWrapper {
             >
               R$ 50
             </Text>
-          </Component>
-        </Component>,
+          </View>
+        </View>,
       ],
       "style": Object {
         "alignItems": "flex-start",
@@ -135,10 +129,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "accessible": true,
-          "allowFontScaling": true,
           "children": "Investimentos (aplicações, poupança, etc):",
-          "ellipsizeMode": "tail",
           "style": Object {
             "color": "#666",
           },
@@ -153,7 +144,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": Array [
-            <Component
+            <View
               style={
                 Object {
                   "alignContent": "center",
@@ -175,8 +166,8 @@ ShallowWrapper {
                   }
                 }
               />
-            </Component>,
-            <Component
+            </View>,
+            <View
               style={
                 Object {
                   "alignItems": "center",
@@ -213,9 +204,6 @@ ShallowWrapper {
                 value={50}
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "height": 40,
@@ -227,7 +215,7 @@ ShallowWrapper {
               >
                 R$ 50
               </Text>
-            </Component>,
+            </View>,
           ],
           "style": Object {
             "alignItems": "center",
@@ -312,9 +300,6 @@ ShallowWrapper {
                   value={50}
                 />,
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Object {
                       "height": 40,
@@ -371,10 +356,7 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "accessible": true,
-                  "allowFontScaling": true,
                   "children": "R$ 50",
-                  "ellipsizeMode": "tail",
                   "style": Object {
                     "height": 40,
                     "textAlign": "center",
@@ -403,9 +385,6 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
             style={
               Object {
                 "color": "#666",
@@ -414,7 +393,7 @@ ShallowWrapper {
           >
             Investimentos (aplicações, poupança, etc):
           </Text>,
-          <Component
+          <View
             style={
               Object {
                 "alignItems": "center",
@@ -424,7 +403,7 @@ ShallowWrapper {
               }
             }
           >
-            <Component
+            <View
               style={
                 Object {
                   "alignContent": "center",
@@ -446,8 +425,8 @@ ShallowWrapper {
                   }
                 }
               />
-            </Component>
-            <Component
+            </View>
+            <View
               style={
                 Object {
                   "alignItems": "center",
@@ -484,9 +463,6 @@ ShallowWrapper {
                 value={50}
               />
               <Text
-                accessible={true}
-                allowFontScaling={true}
-                ellipsizeMode="tail"
                 style={
                   Object {
                     "height": 40,
@@ -498,8 +474,8 @@ ShallowWrapper {
               >
                 R$ 50
               </Text>
-            </Component>
-          </Component>,
+            </View>
+          </View>,
         ],
         "style": Object {
           "alignItems": "flex-start",
@@ -516,10 +492,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "accessible": true,
-            "allowFontScaling": true,
             "children": "Investimentos (aplicações, poupança, etc):",
-            "ellipsizeMode": "tail",
             "style": Object {
               "color": "#666",
             },
@@ -534,7 +507,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": Array [
-              <Component
+              <View
                 style={
                   Object {
                     "alignContent": "center",
@@ -556,8 +529,8 @@ ShallowWrapper {
                     }
                   }
                 />
-              </Component>,
-              <Component
+              </View>,
+              <View
                 style={
                   Object {
                     "alignItems": "center",
@@ -594,9 +567,6 @@ ShallowWrapper {
                   value={50}
                 />
                 <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
                   style={
                     Object {
                       "height": 40,
@@ -608,7 +578,7 @@ ShallowWrapper {
                 >
                   R$ 50
                 </Text>
-              </Component>,
+              </View>,
             ],
             "style": Object {
               "alignItems": "center",
@@ -693,9 +663,6 @@ ShallowWrapper {
                     value={50}
                   />,
                   <Text
-                    accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
                     style={
                       Object {
                         "height": 40,
@@ -752,10 +719,7 @@ ShallowWrapper {
                   "key": undefined,
                   "nodeType": "class",
                   "props": Object {
-                    "accessible": true,
-                    "allowFontScaling": true,
                     "children": "R$ 50",
-                    "ellipsizeMode": "tail",
                     "style": Object {
                       "height": 40,
                       "textAlign": "center",

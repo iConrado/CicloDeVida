@@ -1,4 +1,3 @@
-import { AsyncStorage } from 'react-native';
 import firebase from 'firebase';
 import Expo from 'expo';
 
@@ -8,7 +7,7 @@ export const cadastrarComEmailESenha = async (email, senha) => {
   const erro = {};
 
   try {
-    const credencial = await firebase
+    await firebase
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       .then(async () => {
@@ -47,7 +46,6 @@ export const cadastrarComEmailESenha = async (email, senha) => {
       return erro;
     }
 
-    await AsyncStorage.setItem('userToken', JSON.stringify(credencial));
     return true;
   } catch (e) {
     erro.msg = e.errorMessage;
@@ -58,7 +56,7 @@ export const cadastrarComEmailESenha = async (email, senha) => {
 export const conectar = async (email, senha) => {
   const erro = {};
   try {
-    const credencial = await firebase
+    await firebase
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       .then(async () => {
@@ -96,8 +94,6 @@ export const conectar = async (email, senha) => {
     if (erro.code) {
       return erro;
     }
-
-    await AsyncStorage.setItem('userToken', JSON.stringify(credencial));
     return true;
   } catch (e) {
     erro.msg = e.errorMessage;
@@ -118,7 +114,7 @@ export const conectarComGoogle = async () => {
     if (type === 'success') {
       const credential = await firebase.auth.GoogleAuthProvider.credential(idToken, accessToken);
 
-      const credencial = await firebase
+      await firebase
         .auth()
         .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(async () => {
@@ -172,7 +168,6 @@ export const conectarComGoogle = async () => {
         return erro;
       }
 
-      await AsyncStorage.setItem('userToken', JSON.stringify(credencial));
       return true;
     }
   } catch (e) {
@@ -196,7 +191,7 @@ export const conectarComFacebook = async () => {
       // console.log('user', user);
 
       // Sign in with credential from the Facebook user.
-      const credencial = await firebase
+      await firebase
         .auth()
         .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
         .then(async () => {
@@ -250,7 +245,6 @@ export const conectarComFacebook = async () => {
         return erro;
       }
 
-      await AsyncStorage.setItem('userToken', JSON.stringify(credencial));
       return true;
     }
   } catch (e) {
