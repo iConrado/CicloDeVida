@@ -190,6 +190,57 @@ const styles = StyleSheet.create({
     width: 24,
   },
   // ***********************************
+  // * MenuDrawer                      *
+  // ***********************************
+  drawer_container: {
+    flex: 1,
+    width: '100%',
+  },
+  drawer_viewCabecalho: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0A2955',
+    paddingVertical: 20,
+    marginBottom: 10,
+  },
+  drawer_viewItem: {
+    height: 50,
+    marginTop: 20,
+    paddingVertical: 4,
+    paddingLeft: 16,
+    justifyContent: 'center',
+    borderTopWidth: 1,
+    borderTopColor: '#DEDADA',
+  },
+  drawer_viewFoto: {
+    height: 60,
+    width: 60,
+    borderRadius: 30,
+    marginTop: 20,
+    marginBottom: 5,
+    backgroundColor: '#FFF',
+    elevation: 1,
+  },
+  drawer_imgFoto: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
+  drawer_txTitulo: {
+    color: '#FFF',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  drawer_txNome: {
+    color: '#FFF',
+    fontSize: 16,
+  },
+  drawer_txItem: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#000000DE',
+  },
+  // ***********************************
   // * LOGIN_SCREEN                    *
   // ***********************************
   login_viewContainer: {

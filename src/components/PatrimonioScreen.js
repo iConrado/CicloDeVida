@@ -37,9 +37,14 @@ export default class PatrimonioScreen extends React.Component {
 
   static percentualPatrimonio() {
     let percPatr = 0;
+    const patrEsp = C.patrimonioEsperado();
+
+    if (patrEsp === 0) {
+      return <Text style={styles.txValorPos}>100%</Text>;
+    }
 
     if (patrForm > 0) {
-      percPatr = patrForm / C.patrimonioEsperado();
+      percPatr = patrForm / patrEsp;
     }
     if (percPatr >= 1) {
       return <Text style={styles.txValorPos}>{(percPatr * 100).toFixed(1).replace('.', ',')}%</Text>;
@@ -151,7 +156,7 @@ export default class PatrimonioScreen extends React.Component {
     }
     return (
       <View style={styles.tela}>
-        <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.container} keyboardDismissMode="none" keyboardShouldPersistTaps="always">
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
           <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}

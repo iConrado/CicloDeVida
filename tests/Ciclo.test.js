@@ -92,7 +92,7 @@ describe('Classe de negócio Ciclo', () => {
 
   // EstCivil
   test('Get EstCivil com retorno vazio', () => {
-    expect(c.getEstCivil()).toBeFalsy();
+    expect(c.getEstCivil()).toBe(1);
   });
 
   test('EstCivil válido', () => {

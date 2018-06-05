@@ -7,6 +7,7 @@ import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
 import EstiloVoltar from './functions/EstiloVoltar';
 import ModalMsg from './functions/ModalMsg';
+import Erro from './functions/Erro';
 import LimiteDeErro from './functions/LimiteDeErro';
 import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
@@ -19,6 +20,7 @@ import SliderReserva from './reserva/SliderReserva';
 const C = new Ciclo();
 let objErro = {};
 const tmpComprometimento = [];
+let mensagemGasto = 0;
 
 export default class ReservaScreen extends React.Component {
   static navigationOptions = {
@@ -80,13 +82,13 @@ export default class ReservaScreen extends React.Component {
   }
 
   async montagem() {
-    tmpComprometimento[0] = this.state.gasto;
-    tmpComprometimento[1] = this.state.reserva;
-    await this.comprometimentoAtual();
     await this.setState({
       gasto: C.getGasto(),
       reserva: C.getReserva() === 0 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
     });
+    tmpComprometimento[0] = this.state.gasto;
+    tmpComprometimento[1] = this.state.reserva;
+    await this.comprometimentoAtual();
     await this.setState({ carregado: true });
   }
 
@@ -126,6 +128,11 @@ export default class ReservaScreen extends React.Component {
     this.setState({ gasto: valor });
     tmpComprometimento[0] = valor;
     this.comprometimentoAtual();
+    const limite = C.getSalLiq() * 0.6;
+    if (valor > limite && mensagemGasto === 0) {
+      this.abreErro(Erro.t10);
+      mensagemGasto += 1;
+    }
   }
 
   defReserva(valor) {
@@ -167,7 +174,7 @@ export default class ReservaScreen extends React.Component {
     }
     return (
       <View style={styles.tela}>
-        <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.container} keyboardDismissMode="none" keyboardShouldPersistTaps="always">
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
           <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}

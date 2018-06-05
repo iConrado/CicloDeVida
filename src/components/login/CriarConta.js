@@ -3,7 +3,7 @@ import { View, ScrollView, ActivityIndicator, Text, TextInput, TouchableOpacity 
 
 import styles from '../functions/styles';
 import validaEmail from '../functions/validaEmail';
-import { cadastrarComEmailESenha } from '../login/conectar';
+import { cadastrarComEmailESenha } from '../functions/conectar';
 
 export default class CriarConta extends React.Component {
   static navigationOptions = {

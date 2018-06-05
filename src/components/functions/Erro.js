@@ -134,6 +134,11 @@ const Erro = {
     descricao: 'É importante garantir seu futuro.',
     solucao: 'Informe uma disponiblidade mensal para sua aposentadoria.',
   },
+  t10: {
+    titulo: 'Cuidado',
+    descricao: 'Seus gastos mensais ultrapassam o limite ideal de 60% da renda líquida.',
+    solucao: 'Lembre-se que é importante manter seus gastos sob controle.',
+  },
 };
 
 export default Erro;

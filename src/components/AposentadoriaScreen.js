@@ -93,14 +93,14 @@ export default class AposentadoriaScreen extends React.Component {
   }
 
   async montagem() {
-    tmpComprometimento[0] = this.state.disponib;
-    await this.comprometimentoAtual();
     await this.setState({
       disponib: C.getDisponib() || Math.ceil(AposentadoriaScreen.rendaPercentual() / 50) * 50,
       reservaPrev: C.getReservaPrev(),
       idadeAposent: C.getIdadeAposent() || 50,
       rentab: C.getRentab(),
     });
+    tmpComprometimento[0] = this.state.disponib;
+    await this.comprometimentoAtual();
     await this.setState({ carregado: true });
   }
 
@@ -180,7 +180,7 @@ export default class AposentadoriaScreen extends React.Component {
     }
     return (
       <View style={styles.tela}>
-        <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.container} keyboardDismissMode="none" keyboardShouldPersistTaps="always">
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
           <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}

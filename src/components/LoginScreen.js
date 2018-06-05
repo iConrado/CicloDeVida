@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 import styles from './functions/styles';
-import { conectarComFacebook, conectarComGoogle } from './login/conectar';
+import { conectarComFacebook, conectarComGoogle } from './functions/conectar';
 
 const facebook = require('../imgs/facebook.png');
 const google = require('../imgs/google.jpg');

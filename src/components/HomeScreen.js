@@ -13,7 +13,6 @@ import Erro from './functions/Erro';
 import controle from './functions/controle';
 import validaEmail from './functions/validaEmail';
 import Ciclo from './functions/Ciclo';
-import logout from './functions/logout';
 
 import SliderFilhos from './home/SliderFilhos';
 import SliderSalario from './home/SliderSalario';
@@ -22,21 +21,24 @@ const C = new Ciclo();
 let objErro = {};
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    headerTitle: Cabecalho('Consultoria Ciclo de Vida'),
-    headerBackTitle: 'Voltar',
-    headerTintColor: EstiloVoltar.hTintColor,
-    headerStyle: EstiloVoltar.hStyle,
-    headerRight: (
-      <TouchableOpacity
-        style={{ marginRight: 7 }}
-        onPress={() => {
-          logout();
-        }}
-      >
-        <Text style={{ color: '#FFF' }}>Sair</Text>
-      </TouchableOpacity>
-    ),
+  static navigationOptions = ({ navigation }) => {
+    const { openDrawer } = navigation;
+    return {
+      headerTitle: Cabecalho('Consultoria Ciclo de Vida'),
+      headerBackTitle: 'Voltar',
+      headerTintColor: EstiloVoltar.hTintColor,
+      headerStyle: EstiloVoltar.hStyle,
+      headerLeft: (
+        <TouchableOpacity
+          style={{ marginRight: 7 }}
+          onPress={() => {
+            openDrawer();
+          }}
+        >
+          <Text style={{ color: '#FFF' }}>Menu</Text>
+        </TouchableOpacity>
+      ),
+    };
   };
 
   constructor(props) {
@@ -219,7 +221,7 @@ export default class HomeScreen extends React.Component {
     }
     return (
       <View style={styles.tela}>
-        <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.container} keyboardDismissMode="none" keyboardShouldPersistTaps="always">
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
           <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}

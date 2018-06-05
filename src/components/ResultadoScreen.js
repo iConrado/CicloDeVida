@@ -69,7 +69,7 @@ export default class ResultadoScreen extends React.Component {
     }
     return (
       <View style={styles.tela}>
-        <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.container} keyboardDismissMode="none" keyboardShouldPersistTaps="always">
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
           <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}

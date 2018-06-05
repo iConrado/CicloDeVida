@@ -3,13 +3,16 @@ import mock from './components/functions/mock';
 
 const routesConfig = {
   App: {
-    initialRouteName: 'Home',
+    initialRouteName: 'Simulação',
     initialRouteParams: mock,
     headerMode: 'float',
   },
   Auth: {
     initialRouteName: 'SignIn',
     headerMode: 'none',
+  },
+  Drawer: {
+    initialRouteName: 'Simulação',
   },
 };
 

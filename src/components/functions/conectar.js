@@ -1,7 +1,9 @@
 import firebase from 'firebase';
 import Expo from 'expo';
 
-import CONST from '../functions/constantes';
+import CONST from './constantes';
+
+export const getUser = () => firebase.auth().currentUser;
 
 export const cadastrarComEmailESenha = async (email, senha) => {
   const erro = {};

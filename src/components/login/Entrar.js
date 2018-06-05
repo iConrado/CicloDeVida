@@ -2,7 +2,7 @@ import React from 'react';
 import { View, ScrollView, ActivityIndicator, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import styles from '../functions/styles';
-import { conectar } from './conectar';
+import { conectar } from '../functions/conectar';
 import validaEmail from '../functions/validaEmail';
 
 export default class Entrar extends React.Component {

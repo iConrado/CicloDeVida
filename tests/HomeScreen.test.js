@@ -31,7 +31,7 @@ describe('HomeScreen', async () => {
     await app.update();
     expect(app.state('nome')).toBe('');
     expect(app.state('nasc')).toBe('');
-    expect(app.state('estCiv')).toBe(0);
+    expect(app.state('estCiv')).toBe(1);
     expect(app.state('filhos')).toBe(0);
     expect(app.state('salLiq')).toBe(0);
     expect(app.state('iniCarr')).toBe('');

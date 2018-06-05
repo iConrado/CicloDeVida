@@ -11,7 +11,7 @@ import Entrar from './components/login/Entrar';
 import Esqueci from './components/login/Esqueci';
 
 export const routesApp = {
-  Home: { screen: HomeScreen },
+  Simulação: { screen: HomeScreen },
   Patrimonio: { screen: PatrimonioScreen },
   Reserva: { screen: ReservaScreen },
   Aposentadoria: { screen: AposentadoriaScreen },

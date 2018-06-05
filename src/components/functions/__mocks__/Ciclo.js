@@ -475,7 +475,7 @@ export default class Ciclo {
     if (this.EstCivil) {
       return this.EstCivil;
     }
-    return 0;
+    return 1;
   }
   setEstCivil(str) {
     if (!str) {

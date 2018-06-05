@@ -48,15 +48,15 @@ export default class ConsumoScreen extends React.Component {
   }
 
   async montagem() {
-    tmpComprometimento[0] = C.getSalLiq() * 0.1;
-    tmpComprometimento[1] = C.getSalLiq() * 0.1;
-    await this.comprometimentoAtual();
     await this.setState({
       imovelPrazo: C.getImovelInvestPrazo() || 15,
       imovelPerc: C.getImovelInvestPerc() || 0.07,
       autoPrazo: C.getAutoInvestPrazo() || 7,
       autoPerc: C.getAutoInvestPerc() || 0.03,
     });
+    tmpComprometimento[0] = C.getSalLiq() * 0.1;
+    tmpComprometimento[1] = C.getSalLiq() * 0.1;
+    await this.comprometimentoAtual();
     await this.setState({ carregado: true });
   }
 
@@ -175,7 +175,7 @@ export default class ConsumoScreen extends React.Component {
     }
     return (
       <View style={styles.tela}>
-        <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.container} keyboardDismissMode="none" keyboardShouldPersistTaps="always">
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
           <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}
