@@ -5,7 +5,6 @@ import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
-import EstiloVoltar from './functions/EstiloVoltar';
 import ModalMsg from './functions/ModalMsg';
 // import Controle from './functions/Controle';
 import Ciclo from './functions/Ciclo';
@@ -14,13 +13,7 @@ const C = new Ciclo();
 const objErro = {};
 
 export default class ResultadoScreen extends React.Component {
-  static navigationOptions = {
-    //eslint-disable-line
-    headerTitle: Cabecalho('Consultoria Ciclo de Vida'),
-    headerBackTitle: 'Voltar',
-    headerTintColor: EstiloVoltar.hTintColor,
-    headerStyle: EstiloVoltar.hStyle,
-  };
+  static navigationOptions = ({ navigation }) => Cabecalho(navigation, 'Consultoria Ciclo de Vida');
 
   constructor(props) {
     super(props);

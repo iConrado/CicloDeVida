@@ -1,13 +1,12 @@
 import React from 'react';
 import firebase from 'firebase';
-import { View, ScrollView, Text, TextInput, Picker, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Text, TextInput, Picker } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
-import EstiloVoltar from './functions/EstiloVoltar';
 import ModalMsg from './functions/ModalMsg';
 import Erro from './functions/Erro';
 import controle from './functions/controle';
@@ -21,25 +20,7 @@ const C = new Ciclo();
 let objErro = {};
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    const { openDrawer } = navigation;
-    return {
-      headerTitle: Cabecalho('Consultoria Ciclo de Vida'),
-      headerBackTitle: 'Voltar',
-      headerTintColor: EstiloVoltar.hTintColor,
-      headerStyle: EstiloVoltar.hStyle,
-      headerLeft: (
-        <TouchableOpacity
-          style={{ marginRight: 7 }}
-          onPress={() => {
-            openDrawer();
-          }}
-        >
-          <Text style={{ color: '#FFF' }}>Menu</Text>
-        </TouchableOpacity>
-      ),
-    };
-  };
+  static navigationOptions = ({ navigation }) => Cabecalho(navigation, 'Consultoria Ciclo de Vida', true);
 
   constructor(props) {
     super(props);

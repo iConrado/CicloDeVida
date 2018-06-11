@@ -751,7 +751,7 @@ export default class Ciclo {
     return 0;
   }
   setAutoInvestPrazo(str) {
-    if (typeof str === 'number' && str > 0) {
+    if (typeof str === 'number' && str >= 0) {
       this.AutoInvestPrazo = str;
       return true;
     }
@@ -766,7 +766,7 @@ export default class Ciclo {
     return 0;
   }
   setAutoInvestPerc(str) {
-    if (typeof str === 'number' && str > 0) {
+    if (typeof str === 'number' && str >= 0) {
       this.AutoInvesPerc = str;
       return true;
     }

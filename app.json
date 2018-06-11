@@ -1,5 +1,9 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "Consultoria Ciclo de Vida",
+    "slug": "ciclodevida",
+    "privacy": "public",
+    "sdkVersion": "27.0.0",
+    "icon": "./src/imgs/icon_512.png"
   }
 }

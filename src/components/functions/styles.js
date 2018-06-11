@@ -235,6 +235,10 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontSize: 16,
   },
+  drawer_viewVersao: {
+    marginTop: 60,
+    paddingLeft: 16,
+  },
   drawer_txItem: {
     fontSize: 14,
     fontWeight: 'bold',
@@ -431,6 +435,7 @@ const styles = StyleSheet.create({
   },
   modalMsg_viewBotoes: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   modalMsg_titulo: {
     alignSelf: 'center',

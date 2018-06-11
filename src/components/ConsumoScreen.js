@@ -5,10 +5,10 @@ import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
-import EstiloVoltar from './functions/EstiloVoltar';
 import ModalMsg from './functions/ModalMsg';
 import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
+import Erro from './functions/Erro';
 import monetizar from './functions/monetizar';
 
 const imgImoveis = require('../imgs/ic_home_white.png');
@@ -19,25 +19,24 @@ let objErro = {};
 const tmpComprometimento = [];
 
 export default class ConsumoScreen extends React.Component {
-  static navigationOptions = {
-    //eslint-disable-line
-    headerTitle: Cabecalho('Consultoria Ciclo de Vida'),
-    headerBackTitle: 'Voltar',
-    headerTintColor: EstiloVoltar.hTintColor,
-    headerStyle: EstiloVoltar.hStyle,
-  };
+  static navigationOptions = ({ navigation }) => Cabecalho(navigation, 'Consultoria Ciclo de Vida');
 
   constructor(props) {
     super(props);
     this.state = {
       carregado: false,
       modalMsg: false,
+      modalAviso: false,
       imovelPrazo: 15,
       imovelPerc: 0.07,
       autoPrazo: 7,
       autoPerc: 0.03,
       comprometimento: 0,
     };
+    this.continuar = false;
+    this.permissaoContinuar = this.permissaoContinuar.bind(this);
+    this.fechaAviso = this.fechaAviso.bind(this);
+    this.abreAviso = this.abreAviso.bind(this);
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
     this.proxTela = this.proxTela.bind(this);
@@ -58,6 +57,16 @@ export default class ConsumoScreen extends React.Component {
     tmpComprometimento[1] = C.getSalLiq() * 0.1;
     await this.comprometimentoAtual();
     await this.setState({ carregado: true });
+  }
+
+  abreAviso(e) {
+    objErro = e;
+    this.setState({ modalAviso: true });
+  }
+
+  async fechaAviso() {
+    await this.setState({ modalAviso: false });
+    objErro = {};
   }
 
   abreErro(e) {
@@ -133,9 +142,22 @@ export default class ConsumoScreen extends React.Component {
       return false;
     }
 
+    if (AutoPrazo === 0 || AutoPerc === 0) {
+      if (!this.continuar) {
+        this.abreAviso(Erro.t11);
+        return false;
+      }
+    }
+
     navigate(tela);
 
     return true;
+  }
+
+  async permissaoContinuar() {
+    this.continuar = true;
+    await this.fechaAviso();
+    this.proxTela('Resultado');
   }
 
   static renderPickerItem(step, max, tipo) {
@@ -178,6 +200,10 @@ export default class ConsumoScreen extends React.Component {
         <ScrollView style={styles.scroll} contentContainerStyle={styles.container} keyboardDismissMode="none" keyboardShouldPersistTaps="always">
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
           <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
+          {/* **************************************************************************** */}
+
+          {/* Camada Modal que intercepta avisos e exibe uma mensagem personalizada na tela */}
+          <ModalMsg okCancela visivel={this.state.modalAviso} fechar={this.fechaAviso} prosseguir={this.permissaoContinuar} objErro={objErro} />
           {/* **************************************************************************** */}
 
           <View style={styles.viewTitulo}>

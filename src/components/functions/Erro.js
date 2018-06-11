@@ -139,6 +139,11 @@ const Erro = {
     descricao: 'Seus gastos mensais ultrapassam o limite ideal de 60% da renda líquida.',
     solucao: 'Lembre-se que é importante manter seus gastos sob controle.',
   },
+  t11: {
+    titulo: 'Ops',
+    descricao: 'Você não definiu um valor a ser reservado para a troca ou compra do veículo novo.',
+    solucao: 'Tem certeza que deseja continuar assim?',
+  },
 };
 
 export default Erro;

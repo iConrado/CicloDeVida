@@ -5,7 +5,6 @@ import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
-import EstiloVoltar from './functions/EstiloVoltar';
 import ModalMsg from './functions/ModalMsg';
 import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
@@ -22,13 +21,7 @@ let objErro = {};
 const tmpComprometimento = [];
 
 export default class SegurancaScreen extends React.Component {
-  static navigationOptions = {
-    //eslint-disable-line
-    headerTitle: Cabecalho('Consultoria Ciclo de Vida'),
-    headerBackTitle: 'Voltar',
-    headerTintColor: EstiloVoltar.hTintColor,
-    headerStyle: EstiloVoltar.hStyle,
-  };
+  static navigationOptions = ({ navigation }) => Cabecalho(navigation, 'Consultoria Ciclo de Vida');
 
   static sugestLim() {
     return C.sugestaoLimSeg();

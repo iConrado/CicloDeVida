@@ -1,10 +1,11 @@
 import React from 'react';
-import { TouchableNativeFeedback, ScrollView, View, Text, Image } from 'react-native';
+import { TouchableOpacity, ScrollView, View, Text, Image } from 'react-native';
 import { DrawerItems, SafeAreaView } from 'react-navigation';
 
 import styles from './styles';
 import logout from './logout';
 import { getUser } from './conectar';
+import packageJson from '../../../package.json';
 
 const imgFotoPadrao = require('../../imgs/person.png');
 
@@ -24,7 +25,7 @@ const MenuDrawer = props => {
           <Text style={styles.drawer_txNome}>{nome}</Text>
         </View>
         <DrawerItems {...props} />
-        <TouchableNativeFeedback
+        <TouchableOpacity
           onPress={() => {
             logout();
           }}
@@ -32,7 +33,12 @@ const MenuDrawer = props => {
           <View style={styles.drawer_viewItem}>
             <Text style={styles.drawer_txItem}>Sair</Text>
           </View>
-        </TouchableNativeFeedback>
+        </TouchableOpacity>
+
+        {/* VIEW TEMPORÁRIA PARA MOSTRAR A VERSÃO DO APP */}
+        <View style={styles.drawer_viewVersao}>
+          <Text>{`Versão ${packageJson.version}`}</Text>
+        </View>
       </SafeAreaView>
     </ScrollView>
   );

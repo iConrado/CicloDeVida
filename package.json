@@ -1,6 +1,6 @@
 {
   "name": "ciclodevida",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "private": true,
   "devDependencies": {
     "babel-eslint": "8",
@@ -25,7 +25,9 @@
     "react-test-renderer": "16.3.1",
     "sinon": "^4.5.0"
   },
-  "pre-commit": ["test"],
+  "pre-commit": [
+    "test"
+  ],
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "coverage": "jest --colors --coverage",
@@ -42,10 +44,13 @@
   "jest": {
     "preset": "jest-expo",
     "setupTestFrameworkScriptFile": "./setupTests.js",
-    "coveragePathIgnorePatterns": ["/node_modules/", "./setupTests.js"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "./setupTests.js"
+    ]
   },
   "dependencies": {
-    "expo": "^27.0.1",
+    "expo": "^27.0.2",
     "firebase": "^5.0.4",
     "moment": "^2.20.1",
     "react": "16.3.1",
