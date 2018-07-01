@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   tela: {
     flex: 1,
+    backgroundColor: '#FFF',
   },
   scroll: {
     flexShrink: 1,
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     borderRadius: 12,
-    backgroundColor: '#E7A730',
+    backgroundColor: '#0EDF29', // '#E7A730'
   },
   viewPosLogo: {
     flex: 1,
@@ -188,6 +189,17 @@ const styles = StyleSheet.create({
   imgLogo: {
     height: 24,
     width: 24,
+  },
+  // ***********************************
+  // * CarregandoRsultado              *
+  // ***********************************
+  carregando_txResultado: {
+    width: '100%',
+    marginBottom: 30,
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#0A2955',
   },
   // ***********************************
   // * MenuDrawer                      *
@@ -649,7 +661,7 @@ const styles = StyleSheet.create({
   },
   aposent_input: {
     width: '100%',
-    height: 30,
+    height: 40,
     borderBottomWidth: 1,
     borderBottomColor: '#AAA', // #5BA849
     paddingHorizontal: 5,
@@ -686,13 +698,13 @@ const styles = StyleSheet.create({
   },
   segur_input: {
     width: '100%',
-    height: 30,
+    height: 40,
     borderBottomWidth: 1,
     borderBottomColor: '#AAA', // #5BA849
     paddingHorizontal: 5,
   },
   // ***********************************
-  // * CONSUMO_SCREEN                *
+  // * CONSUMO_SCREEN                  *
   // ***********************************
   consumo_viewLabel: {
     width: '70%',
@@ -724,6 +736,107 @@ const styles = StyleSheet.create({
   },
   consumo_pkItemEstCiv: {
     color: '#5E5E5E',
+  },
+  // ***********************************
+  // * RESULTADO_SCREEN                *
+  // ***********************************
+  result_viewRodape: {
+    flexDirection: 'row',
+    height: 50,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 0,
+    borderTopColor: '#D0D0D0',
+    borderTopWidth: 1,
+  },
+  result_viewLegenda: {
+    flexDirection: 'row',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 0,
+    borderTopColor: '#D0D0D0',
+    borderTopWidth: 1,
+  },
+  result_viewItemLegenda: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 5,
+  },
+  result_viewComponente: {
+    width: '100%',
+    alignContent: 'center',
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#DDD',
+  },
+  result_viewLogo: {
+    marginLeft: 20,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+    backgroundColor: '#0EDF29',
+  },
+  result_viewLogoNeg: {
+    marginLeft: 20,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    height: 40,
+    width: 40,
+    borderRadius: 15,
+  },
+  result_viewPosLogo: {
+    flex: 1,
+    alignItems: 'center',
+    paddingLeft: 10,
+  },
+  result_viewResultado: {
+    borderTopWidth: 0,
+  },
+  result_espacador: {
+    marginTop: 5,
+  },
+  result_imgLogoNeg: {
+    height: 40,
+    width: 40,
+  },
+  result_txResultado: {
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#666',
+  },
+  result_txComprometimento: {
+    width: '100%',
+    textAlign: 'center',
+    fontSize: 14,
+    color: '#611414',
+  },
+  result_txGrafico: {
+    fontSize: 14,
+    color: '#666',
+  },
+  result_txLegenda: {
+    paddingLeft: 2,
+    fontSize: 10,
+    color: '#666',
+  },
+  result_txAnalisePos: {
+    fontSize: 12,
+    color: '#5BA849',
+    textAlign: 'center',
+  },
+  result_txAnaliseNeg: {
+    fontSize: 12,
+    color: '#E10404',
+    textAlign: 'center',
   },
 });
 

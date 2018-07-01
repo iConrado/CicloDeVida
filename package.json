@@ -1,9 +1,44 @@
 {
   "name": "ciclodevida",
-  "version": "0.1.28",
+  "version": "0.2.0",
   "private": true,
+  "scripts": {
+    "coverage": "jest --colors --coverage",
+    "coveralls": "yarn coverage && cat ./coverage/lcov.info | coveralls",
+    "jest": "jest --colors --verbose",
+    "android": "react-native run-android",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "lint": "./node_modules/.bin/eslint src/**/*/*.js tests/**/*/*.js",
+    "test": "jest --colors --coverage",
+    "test-basico": "node node_modules/jest/bin/jest.js"
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupTestFrameworkScriptFile": "./setupTests.js",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "./setupTests.js"
+    ]
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "dependencies": {
+    "moment": "^2.20.1",
+    "react": "16.3.1",
+    "react-native": "0.55.4",
+    "react-native-datepicker": "^1.6.0",
+    "react-native-fbsdk": "^0.7.0",
+    "react-native-firebase": "^4.2.0",
+    "react-native-google-signin": "^0.12.0",
+    "react-native-highcharts": "^1.0.2",
+    "react-native-slider": "^0.11.0",
+    "react-native-timer": "^1.3.3",
+    "react-navigation": "~2.3.1"
+  },
   "devDependencies": {
     "babel-eslint": "8",
+    "babel-jest": "23.0.1",
     "babel-preset-react-native": "4.0.0",
     "coveralls": "^3.0.0",
     "enzyme": "^3.3.0",
@@ -15,7 +50,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.7.0",
-    "jest-expo": "~27.0.0",
+    "jest": "23.1.0",
     "jsdom": "^11.10.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.12.1",
@@ -24,39 +59,5 @@
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1",
     "sinon": "^4.5.0"
-  },
-  "pre-commit": [
-    "test"
-  ],
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
-  "scripts": {
-    "coverage": "jest --colors --coverage",
-    "coveralls": "yarn coverage && cat ./coverage/lcov.info | coveralls",
-    "jest": "jest --colors --verbose",
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "lint": "./node_modules/.bin/eslint src/**/*/*.js tests/**/*/*.js",
-    "test": "jest --colors --coverage",
-    "test-basico": "node node_modules/jest/bin/jest.js"
-  },
-  "jest": {
-    "preset": "jest-expo",
-    "setupTestFrameworkScriptFile": "./setupTests.js",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "./setupTests.js"
-    ]
-  },
-  "dependencies": {
-    "expo": "^27.0.2",
-    "firebase": "^5.0.4",
-    "moment": "^2.20.1",
-    "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.2.tar.gz",
-    "react-native-datepicker": "^1.6.0",
-    "react-native-slider": "^0.11.0",
-    "react-navigation": "^2.0.1"
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'firebase';
+import firebase from 'react-native-firebase';
 import { View, ScrollView, Text, TextInput, Picker } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
@@ -117,7 +117,7 @@ export default class HomeScreen extends React.Component {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
 
-    const { navigate } = this.props.navigation;
+    const { push } = this.props.navigation;
 
     const { nome, nasc, estCiv, filhos, salLiq, iniCarr, email } = this.state;
 
@@ -191,7 +191,7 @@ export default class HomeScreen extends React.Component {
     }
 
     // Após passar em todos os teste, abre a próxima tela do formulário
-    navigate(tela);
+    push(tela);
 
     return true;
   }

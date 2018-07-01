@@ -53,8 +53,8 @@ export default class ConsumoScreen extends React.Component {
       autoPrazo: C.getAutoInvestPrazo() || 7,
       autoPerc: C.getAutoInvestPerc() || 0.03,
     });
-    tmpComprometimento[0] = C.getSalLiq() * 0.1;
-    tmpComprometimento[1] = C.getSalLiq() * 0.1;
+    tmpComprometimento[0] = C.getSalLiq() * this.state.imovelPerc;
+    tmpComprometimento[1] = C.getSalLiq() * this.state.autoPerc;
     await this.comprometimentoAtual();
     await this.setState({ carregado: true });
   }

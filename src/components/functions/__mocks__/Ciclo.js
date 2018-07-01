@@ -138,7 +138,7 @@
 
 import moment from 'moment';
 
-import Storage from '../Storage';
+// import Storage from '../Storage';
 import hashCode from '../hashcode';
 import Erro from '../Erro';
 
@@ -361,7 +361,7 @@ export default class Ciclo {
   static taxaMensal(taxaAnual) {
     if (typeof taxaAnual === 'number' && taxaAnual > 0) {
       const tmpTaxa = 1 + (taxaAnual * 1) / 100;
-      const taxaMensal = (tmpTaxa ** (1 / 12) - 1) * 100;
+      const taxaMensal = (Math.pow(tmpTaxa, 1 / 12) - 1) * 100; //eslint-disable-line
       return taxaMensal;
     }
     return 0;

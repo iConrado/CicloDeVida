@@ -4,8 +4,8 @@ import { View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-na
 import styles from './functions/styles';
 import { conectarComFacebook, conectarComGoogle } from './functions/conectar';
 
-const facebook = require('../imgs/facebook.png');
 const google = require('../imgs/google.jpg');
+const facebook = require('../imgs/facebook.png');
 
 export default class SignInScreen extends React.Component {
   static navigationOptions = {
@@ -74,7 +74,6 @@ export default class SignInScreen extends React.Component {
               <ActivityIndicator animating={this.state.atualizando} size="large" color="#2561C7" />
             </View>
           ) : null}
-
           <TouchableOpacity
             style={[styles.login_botao, styles.login_facebook]}
             onPress={() => this.entrarFacebook()}
@@ -86,11 +85,7 @@ export default class SignInScreen extends React.Component {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={[styles.login_botao, styles.login_google]}
-            disabled={this.state.atualizando}
-            onPress={async () => this.entrarGoogle()}
-          >
+          <TouchableOpacity style={[styles.login_botao, styles.login_google]} disabled={this.state.atualizando} onPress={() => this.entrarGoogle()}>
             <View style={{ flexDirection: 'row' }}>
               <Image style={styles.login_imgGoogle} source={google} />
               <Text style={styles.login_textoBotaoGoogle}>Entrar com Google</Text>

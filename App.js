@@ -6,8 +6,7 @@ import routesConfig from './src/routesConfig';
 import SplashScreen from './src/components/SplashScreen';
 import MenuDrawer from './src/components/functions/MenuDrawer';
 
-YellowBox.ignoreWarnings(['Setting a timer']);
-console.ignoredYellowBox = ['Setting a timer'];
+YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
 const AppStack = createStackNavigator(routesApp, routesConfig.App);
 const AuthStack = createStackNavigator(routesAuth, routesConfig.Auth);

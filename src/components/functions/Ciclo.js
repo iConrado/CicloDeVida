@@ -128,12 +128,8 @@
 //       Retorna o valor de automóvel para compra ou troca de acordo com um prazo pré-
 //       estabelecido.
 //
-// - resultadoGrafico (nihil)
-//       Retorna objeto JSON com os valor em cadas área para montagem do gráfico.
-//
 // - resultadoAnalise (nihil)
-//       Retorna o tipo de resultado de acordo com a análise do ciclo de vida do
-//       usuário, caso saldo positivo ou negativo.
+//       Retorna objeto JSON com o resultado final e valores de cada área para montagem do gráfico.
 //
 
 import moment from 'moment';
@@ -141,6 +137,14 @@ import moment from 'moment';
 import Storage from './Storage';
 import hashCode from './hashcode';
 import Erro from './Erro';
+
+const defLimites = {
+  gastos: 0.6,
+  reserva: 0.1,
+  aposentadoria: 0.1,
+  seguranca: 0.1,
+  patrimonio: 0.1,
+};
 
 export default class Ciclo {
   constructor() {
@@ -150,6 +154,8 @@ export default class Ciclo {
     }
     const d = new Date();
     this.id = hashCode(d.getTime().toString());
+    this.limites = defLimites;
+
     return Ciclo.instance;
   }
 
@@ -161,6 +167,8 @@ export default class Ciclo {
       Object.keys(recup).forEach(key => {
         this[key] = recup[key];
       });
+      this.limites = defLimites;
+
       return true;
     }
 
@@ -171,6 +179,8 @@ export default class Ciclo {
         this[key] = undefined;
       }
     });
+    this.limites = defLimites;
+
     return false;
   }
 
@@ -311,7 +321,7 @@ export default class Ciclo {
 
   sugestaoLimSeg() {
     if (this.SalLiq > 0) {
-      const segur = this.getSalLiq() * 0.3;
+      const segur = this.getSalLiq() * 0.1;
       return parseInt(segur, 10);
     }
     return 0;
@@ -327,7 +337,7 @@ export default class Ciclo {
   seguroVida() {
     if (this.getSalLiq() > 0) {
       const patr = this.coberturaVida();
-      const premio = patr * 0.0016;
+      const premio = (patr * 0.016) / 10;
 
       return parseInt(premio, 10);
     }
@@ -384,7 +394,7 @@ export default class Ciclo {
   static taxaMensal(taxaAnual) {
     if (typeof taxaAnual === 'number' && taxaAnual > 0) {
       const tmpTaxa = 1 + (taxaAnual * 1) / 100;
-      const taxaMensal = (tmpTaxa ** (1 / 12) - 1) * 100;
+      const taxaMensal = (Math.pow(tmpTaxa, 1 / 12) - 1) * 100; //eslint-disable-line
       return taxaMensal;
     }
     return 0;
@@ -426,12 +436,59 @@ export default class Ciclo {
     return 0;
   }
 
-  resultadoGrafico() {
-    return this;
-  }
-
   resultadoAnalise() {
-    return this;
+    const { limites } = this;
+    const salLiq = this.getSalLiq();
+    const valorSeguranca = this.getSaude() + this.seguroVida() + this.seguroImoveis() + this.seguroAuto();
+    const valorPatrimonio = parseInt(salLiq * this.getAutoInvestPerc() + salLiq * this.getImovelInvestPerc(), 10);
+
+    // Define os objetos com a meta e valor de cada uma das etapas
+    const gastos = {
+      meta: salLiq * limites.gastos,
+      valor: this.getGasto(),
+    };
+    const reserva = {
+      meta: salLiq * limites.reserva,
+      valor: this.getReserva(),
+    };
+    const aposentadoria = {
+      meta: salLiq * limites.aposentadoria,
+      valor: this.getDisponib(),
+    };
+    const seguranca = {
+      meta: salLiq * limites.seguranca,
+      valor: valorSeguranca,
+    };
+    const patrimonio = {
+      meta: salLiq * limites.patrimonio,
+      valor: valorPatrimonio,
+    };
+
+    // verifica o atingimento das metas
+    const margem = 0.8;
+    gastos.resultado = gastos.valor <= gastos.meta;
+    reserva.resultado = reserva.valor >= reserva.meta * margem;
+    aposentadoria.resultado = aposentadoria.valor >= aposentadoria.meta * margem;
+    seguranca.resultado = seguranca.valor >= seguranca.meta * margem;
+    patrimonio.resultado = patrimonio.valor >= patrimonio.meta * margem;
+    const valorTotal = gastos.valor + reserva.valor + aposentadoria.valor + seguranca.valor + patrimonio.valor;
+    const comprometimentoTotal = valorTotal / salLiq;
+    const resultado =
+      gastos.resultado && reserva.resultado && aposentadoria.resultado && seguranca.resultado && patrimonio.resultado && comprometimentoTotal <= 1;
+
+    // objeto que alimentará os gráficos da tela resultado
+    const grafico = {
+      gastos,
+      reserva,
+      aposentadoria,
+      seguranca,
+      patrimonio,
+      comprometimentoTotal,
+      resultado,
+    };
+
+    // retorna uma cópia do objeto para manter a independência
+    return { ...grafico };
   }
 
   // ******************************************************
@@ -450,11 +507,8 @@ export default class Ciclo {
     if (!str) {
       throw Erro.e14;
     }
-    if (str) {
-      this.Email = str.toLowerCase();
-      return true;
-    }
-    return false;
+    this.Email = str.toLowerCase();
+    return true;
   }
 
   // Getter e Setter - Nome

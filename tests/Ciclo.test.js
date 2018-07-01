@@ -935,7 +935,7 @@ describe('Classe de negócio Ciclo', () => {
 
   // sugestaoLimSeg
   test('sugestaoLimSeg retorno válido', () => {
-    expect(c.sugestaoLimSeg()).toBe(2565);
+    expect(c.sugestaoLimSeg()).toBe(855);
   });
 
   test('sugestaoLimSeg retorno inválido', () => {
@@ -1122,13 +1122,17 @@ describe('Classe de negócio Ciclo', () => {
     expect(c.autoInvest('asd')).toBeFalsy();
   });
 
-  // resultadoGrafico
-  test.skip('resultadoGrafico retorno válido', () => {
-    expect(c.resultadoGrafico(7)).toBe(71820);
-  });
-
   // resultadoAnalise
-  test.skip('resultadoAnalise retorno válido', () => {
-    expect(c.resultadoAnalise(7)).toBe(71820);
+  test('resultadoAnalise retorno válido', () => {
+    const result = {
+      aposentadoria: { meta: 855, valor: 950 },
+      comprometimentoTotal: 1.072046783625731,
+      gastos: { meta: 5130, valor: 3550 },
+      patrimonio: { meta: 855, valor: 1710 },
+      reserva: { meta: 855, valor: 868 },
+      resultado: false,
+      seguranca: { meta: 855, valor: 2088 },
+    };
+    expect(c.resultadoAnalise()).toMatchObject(result);
   });
 });

@@ -54,7 +54,11 @@ ShallowWrapper {
             }
           >
             <Image
-              source={1}
+              source={
+                Object {
+                  "testUri": "../../../src/imgs/ic_money_white.png",
+                }
+              }
               style={
                 Object {
                   "height": 35,
@@ -158,7 +162,11 @@ ShallowWrapper {
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/imgs/ic_money_white.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 35,
@@ -232,7 +240,11 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/imgs/ic_money_white.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 35,
@@ -256,7 +268,9 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "source": 1,
+                "source": Object {
+                  "testUri": "../../../src/imgs/ic_money_white.png",
+                },
                 "style": Object {
                   "height": 35,
                   "width": 35,
@@ -417,7 +431,11 @@ ShallowWrapper {
               }
             >
               <Image
-                source={1}
+                source={
+                  Object {
+                    "testUri": "../../../src/imgs/ic_money_white.png",
+                  }
+                }
                 style={
                   Object {
                     "height": 35,
@@ -521,7 +539,11 @@ ShallowWrapper {
                 }
               >
                 <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/imgs/ic_money_white.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 35,
@@ -595,7 +617,11 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <Image
-                  source={1}
+                  source={
+                    Object {
+                      "testUri": "../../../src/imgs/ic_money_white.png",
+                    }
+                  }
                   style={
                     Object {
                       "height": 35,
@@ -619,7 +645,9 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "source": 1,
+                  "source": Object {
+                    "testUri": "../../../src/imgs/ic_money_white.png",
+                  },
                   "style": Object {
                     "height": 35,
                     "width": 35,

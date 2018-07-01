@@ -195,7 +195,7 @@ export default class AposentadoriaScreen extends React.Component {
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
               <View style={styles.aposent_viewCalculo}>
-                <Text style={[styles.label, styles.aposent_lbCalculo]}>Sua faixa estária:</Text>
+                <Text style={[styles.label, styles.aposent_lbCalculo]}>Sua faixa etária:</Text>
                 <Text style={[styles.label, styles.aposent_lbCalculo]}>{AposentadoriaScreen.faixaEtaria()}</Text>
               </View>
               <View style={styles.aposent_viewCentral}>
