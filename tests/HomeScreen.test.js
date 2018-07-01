@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'firebase';
+import firebase from 'react-native-firebase';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import { TextInput, Picker } from 'react-native';

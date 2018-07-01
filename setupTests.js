@@ -29,4 +29,25 @@ import Adapter from 'enzyme-adapter-react-16';
 
 require('react-native-mock-render/mock');
 jest.mock('react-native', () => require('react-native-mock-render'), { virtual: true });
+jest.mock('react-native-firebase', () => {
+  return {
+    messaging: jest.fn(() => {
+      return {
+        hasPermission: jest.fn(() => Promise.resolve(true)),
+        subscribeToTopic: jest.fn(),
+        unsubscribeFromTopic: jest.fn(),
+        requestPermission: jest.fn(() => Promise.resolve(true)),
+        getToken: jest.fn(() => Promise.resolve('myMockToken')),
+      };
+    }),
+    notifications: jest.fn(() => {
+      return {
+        onNotification: jest.fn(),
+        onNotificationDisplayed: jest.fn(),
+      };
+    }),
+    auth: jest.fn(),
+    database: jest.fn(),
+  };
+});
 configure({ adapter: new Adapter() });

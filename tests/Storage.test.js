@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import firebase from 'firebase';
+import firebase from 'react-native-firebase';
 
 import Storage from '../src/components/functions/Storage';
 
