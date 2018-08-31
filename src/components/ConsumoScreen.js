@@ -44,14 +44,15 @@ export default class ConsumoScreen extends React.Component {
 
   componentDidMount() {
     this.montagem();
+    C.salvar();
   }
 
   async montagem() {
     await this.setState({
       imovelPrazo: C.getImovelInvestPrazo() || 15,
       imovelPerc: C.getImovelInvestPerc() || 0.07,
-      autoPrazo: C.getAutoInvestPrazo() || 7,
-      autoPerc: C.getAutoInvestPerc() || 0.03,
+      autoPrazo: C.getVisualizacoesResultado() > 0 ? C.getAutoInvestPrazo() : 7,
+      autoPerc: C.getVisualizacoesResultado() > 0 ? C.getAutoInvestPerc() : 0.03,
     });
     tmpComprometimento[0] = C.getSalLiq() * this.state.imovelPerc;
     tmpComprometimento[1] = C.getSalLiq() * this.state.autoPerc;
@@ -109,11 +110,25 @@ export default class ConsumoScreen extends React.Component {
     return invest;
   }
 
+  async defPercRendaImovel(valor) {
+    await this.setState({ imovelPerc: valor });
+    this.comprometimentoAtual();
+  }
+
+  async defPercRendaAuto(valor) {
+    await this.setState({ autoPerc: valor });
+    this.comprometimentoAtual();
+  }
+
   async comprometimentoAtual() {
     let valor = 0;
+    tmpComprometimento[0] = C.getSalLiq() * this.state.imovelPerc;
+    tmpComprometimento[1] = C.getSalLiq() * this.state.autoPerc;
+
     if (tmpComprometimento[0] !== undefined) {
       valor = tmpComprometimento.reduce((prevVal, elem) => prevVal + elem);
     }
+
     const compr = C.comprometimentoAtual('Consumo', valor);
     await this.setState({ comprometimento: compr });
   }
@@ -176,19 +191,19 @@ export default class ConsumoScreen extends React.Component {
   }
 
   static renderImoveisPrazo() {
-    return ConsumoScreen.renderPickerItem(1, 15, 'prazo');
+    return ConsumoScreen.renderPickerItem(1, 30, 'prazo');
   }
 
   static renderImoveisPerc() {
-    return ConsumoScreen.renderPickerItem(1, 10, 'perc');
+    return ConsumoScreen.renderPickerItem(1, 30, 'perc');
   }
 
   static renderAutoPrazo() {
-    return ConsumoScreen.renderPickerItem(1, 7, 'prazo');
+    return ConsumoScreen.renderPickerItem(1, 10, 'prazo');
   }
 
   static renderAutoPerc() {
-    return ConsumoScreen.renderPickerItem(1, 10, 'perc');
+    return ConsumoScreen.renderPickerItem(1, 20, 'perc');
   }
 
   render() {
@@ -208,7 +223,7 @@ export default class ConsumoScreen extends React.Component {
 
           <View style={styles.viewTitulo}>
             <Text style={styles.titulo}>Consumo e</Text>
-            <Text style={styles.titulo}>Amplicação do Patrimônio</Text>
+            <Text style={styles.titulo}>Ampliação do Patrimônio</Text>
           </View>
 
           <View style={styles.espacador} />
@@ -255,7 +270,7 @@ export default class ConsumoScreen extends React.Component {
                               style={styles.consumo_pkEstCiv}
                               itemStyle={styles.consumo_pkItemEstCiv}
                               selectedValue={this.state.imovelPerc}
-                              onValueChange={itemValue => this.setState({ imovelPerc: itemValue })}
+                              onValueChange={itemValue => this.defPercRendaImovel(itemValue)}
                               prompt="Selecione o percentual da renda líquida"
                               mode="dialog"
                             >
@@ -319,7 +334,7 @@ export default class ConsumoScreen extends React.Component {
                               style={styles.consumo_pkEstCiv}
                               itemStyle={styles.consumo_pkItemEstCiv}
                               selectedValue={this.state.autoPerc}
-                              onValueChange={itemValue => this.setState({ autoPerc: itemValue })}
+                              onValueChange={itemValue => this.defPercRendaAuto(itemValue)}
                               prompt="Selecione o percentual da renda líquida"
                               mode="dialog"
                             >

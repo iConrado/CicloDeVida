@@ -39,6 +39,7 @@ export default class ResultadoScreen extends React.Component {
   }
 
   montagem() {
+    C.addVisualizacaoResultado();
     C.salvar();
     this.analise = C.resultadoAnalise();
     const { gastos, reserva, aposentadoria, seguranca, patrimonio, comprometimentoTotal, resultado } = this.analise;
@@ -122,7 +123,7 @@ export default class ResultadoScreen extends React.Component {
           <View style={styles.result_viewComponente}>
             <Text style={styles.result_txResultado}>Sua performance</Text>
             <Text style={styles.result_txGrafico}>Gastos</Text>
-            {this.analise.aposentadoria.resultado ? (
+            {this.analise.gastos.resultado ? (
               <Text style={styles.result_txAnalisePos}>Um importante passo para alcançar o equilíbrio financeiro!</Text>
             ) : (
               <Text style={styles.result_txAnaliseNeg}>Consumir é bom. Mas é necessário equilíbrio para conseguir manter.</Text>
@@ -136,7 +137,7 @@ export default class ResultadoScreen extends React.Component {
             />
 
             <Text style={styles.result_txGrafico}>Reserva</Text>
-            {this.analise.aposentadoria.resultado ? (
+            {this.analise.reserva.resultado ? (
               <Text style={styles.result_txAnalisePos}>Parabéns! Em tempos de crise você não terá dor de cabeça!</Text>
             ) : (
               <Text style={styles.result_txAnaliseNeg}>Você não está poupando para uma possível emergência...</Text>
@@ -164,7 +165,7 @@ export default class ResultadoScreen extends React.Component {
             />
 
             <Text style={styles.result_txGrafico}>Segurança</Text>
-            {this.analise.aposentadoria.resultado ? (
+            {this.analise.seguranca.resultado ? (
               <Text style={styles.result_txAnalisePos}>É isso aí! Mais importante do que ter é manter!</Text>
             ) : (
               <Text style={styles.result_txAnaliseNeg}>Cuidado, você não estará protegido se houver algum incidente...</Text>
@@ -178,7 +179,7 @@ export default class ResultadoScreen extends React.Component {
             />
 
             <Text style={styles.result_txGrafico}>Formação de patrimônio</Text>
-            {this.analise.aposentadoria.resultado ? (
+            {this.analise.patrimonio.resultado ? (
               <Text style={styles.result_txAnalisePos}>Evoluir sempre!</Text>
             ) : (
               <Text style={styles.result_txAnaliseNeg}>Talvez seria interessante aumentar seu patrimônio...</Text>

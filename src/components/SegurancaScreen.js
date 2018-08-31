@@ -61,6 +61,7 @@ export default class SegurancaScreen extends React.Component {
 
   componentDidMount() {
     this.montagem();
+    C.salvar();
   }
 
   async montagem() {
@@ -203,9 +204,9 @@ export default class SegurancaScreen extends React.Component {
               </View>
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
-                  <Text style={[styles.label, styles.segur_lbSeguridade]}>Vida (24x renda):</Text>
+                  <Text style={[styles.label, styles.segur_lbSeguridade]}>Vida (12x renda):</Text>
                   <Text style={styles.segur_txValor}>{monetizar(SegurancaScreen.calculaVida())}</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(C.getSalLiq() * 24)}</Text>
+                  <Text style={styles.segur_txValor}>{monetizar(C.getSalLiq() * 12)}</Text>
                 </View>
               </View>
             </View>

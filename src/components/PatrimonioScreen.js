@@ -22,10 +22,7 @@ export default class PatrimonioScreen extends React.Component {
   static navigationOptions = ({ navigation }) => Cabecalho(navigation, 'Consultoria Ciclo de Vida');
 
   static patrimonioEsperado() {
-    if (patrForm > 0) {
-      return <Text style={styles.txValor}>{monetizar(C.patrimonioEsperado())}</Text>;
-    }
-    return <Text style={styles.txValor}>{monetizar(0)}</Text>;
+    return <Text style={styles.txValor}>{monetizar(C.patrimonioEsperado())}</Text>;
   }
 
   static percentualPatrimonio() {
@@ -71,6 +68,7 @@ export default class PatrimonioScreen extends React.Component {
 
   componentDidMount() {
     this.montagem();
+    C.salvar();
   }
 
   async montagem() {

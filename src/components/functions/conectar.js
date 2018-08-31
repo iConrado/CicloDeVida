@@ -2,9 +2,27 @@ import firebase from 'react-native-firebase';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
 
+import Storage from './Storage';
+import Ciclo from './Ciclo';
+
+const salvarPrivacidade = async () => {
+  const d = new Date();
+  const C = new Ciclo();
+  await C.recuperar();
+  if (!C.getPoliticaPrivacidade()) {
+    C.setPoliticaPrivacidade(d);
+    C.salvar();
+  }
+};
+
 export const getUser = () => firebase.auth().currentUser;
 
-export const cadastrarComEmailESenha = async (email, senha) => {
+export const storageConfig = async () => {
+  const stor = new Storage();
+  await stor.config(getUser().uid, 'simulacao');
+};
+
+export const cadastrarComEmailESenha = async (email, senha, aceitePrivacidade) => {
   const erro = {};
 
   try {
@@ -40,6 +58,11 @@ export const cadastrarComEmailESenha = async (email, senha) => {
       return erro;
     }
 
+    await storageConfig();
+    if (aceitePrivacidade) {
+      salvarPrivacidade();
+    }
+
     return true;
   } catch (e) {
     erro.msg = e.errorMessage;
@@ -47,7 +70,7 @@ export const cadastrarComEmailESenha = async (email, senha) => {
   }
 };
 
-export const conectar = async (email, senha) => {
+export const conectar = async (email, senha, aceitePrivacidade) => {
   const erro = {};
   try {
     // signInWithEmailAndPassword
@@ -82,6 +105,12 @@ export const conectar = async (email, senha) => {
     if (erro.code) {
       return erro;
     }
+
+    await storageConfig();
+    if (aceitePrivacidade) {
+      salvarPrivacidade();
+    }
+
     return true;
   } catch (e) {
     erro.msg = e.errorMessage;
@@ -95,15 +124,13 @@ export const setupGoogle = async () => {
     await GoogleSignin.configure({
       offlineAccess: true,
     });
-
-    const user = await GoogleSignin.currentUserAsync();
-    console.log('UserAsync', user);
+    return true;
   } catch (err) {
-    console.log('Google signin error', err.code, err.message);
+    return false;
   }
 };
 
-export const conectarComGoogle = async () => {
+export const conectarComGoogle = async aceitePrivacidade => {
   const erro = {};
   let user;
   try {
@@ -156,13 +183,19 @@ export const conectarComGoogle = async () => {
     if (erro.code) {
       return erro;
     }
+
+    await storageConfig();
+    if (aceitePrivacidade) {
+      salvarPrivacidade();
+    }
+
     return true;
   } catch (e) {
     return e;
   }
 };
 
-export const conectarComFacebook = async () => {
+export const conectarComFacebook = async aceitePrivacidade => {
   // native_only config will fail in the case that the user has
   // not installed in his device the Facebook app. In this case we
   // need to go for webview.
@@ -230,6 +263,12 @@ export const conectarComFacebook = async () => {
         }
         return erro;
       });
+
+    await storageConfig();
+    if (aceitePrivacidade) {
+      salvarPrivacidade();
+    }
+
     return true;
   }
   return false;

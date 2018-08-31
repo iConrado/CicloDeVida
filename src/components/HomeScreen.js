@@ -12,9 +12,12 @@ import Erro from './functions/Erro';
 import controle from './functions/controle';
 import validaEmail from './functions/validaEmail';
 import Ciclo from './functions/Ciclo';
-
+import monetizar from './functions/monetizar';
+import desmonetizar from './functions/desmonetizar';
 import SliderFilhos from './home/SliderFilhos';
-import SliderSalario from './home/SliderSalario';
+// import SliderSalario from './home/SliderSalario';
+import ModalPoliticaPrivacidade from './termos/ModalPoliticaPrivacidade';
+import ControlePrivacidade from './functions/ControlePrivacidade';
 
 const C = new Ciclo();
 let objErro = {};
@@ -27,6 +30,7 @@ export default class HomeScreen extends React.Component {
     this.state = {
       carregado: false,
       modalMsg: false,
+      modalPrivacidade: false,
       nome: '',
       nasc: '',
       estCiv: 1,
@@ -60,12 +64,15 @@ export default class HomeScreen extends React.Component {
     this.abreErro = this.abreErro.bind(this);
     this.proxTela = this.proxTela.bind(this);
 
+    this.togglePrivacidade = this.togglePrivacidade.bind(this);
+
     this.defFilhos = this.defFilhos.bind(this);
     this.defSalario = this.defSalario.bind(this);
   }
 
   async componentDidMount() {
     await this.montagem();
+    C.addAcessoApp();
   }
 
   async montagem() {
@@ -76,8 +83,18 @@ export default class HomeScreen extends React.Component {
     //     await this.setState(params);
     //   }
     // }
-    await C.recuperar();
+    // const t2 = new Date();
+    let modalPriv;
+    const control = new ControlePrivacidade();
+
+    if (C.getPoliticaPrivacidade() || control.getAceitouPrivacidade()) {
+      modalPriv = false;
+    } else {
+      modalPriv = true;
+    }
+
     await this.setState({
+      modalPrivacidade: modalPriv,
       nome: C.getNome(),
       nasc: C.getNasc(),
       estCiv: C.getEstCivil(),
@@ -85,8 +102,12 @@ export default class HomeScreen extends React.Component {
       salLiq: C.getSalLiq(),
       iniCarr: C.getIniCarreira(),
       email: C.getEmail() || firebase.auth().currentUser.email,
+      carregado: true,
     });
-    await this.setState({ carregado: true });
+    // const t3 = new Date();
+    // console.log('t1', t1);
+    // console.log('t2', t2, t2 - t1);
+    // console.log('t3', t3, t3 - t2);
   }
 
   // ************************************************************
@@ -196,6 +217,11 @@ export default class HomeScreen extends React.Component {
     return true;
   }
 
+  togglePrivacidade() {
+    const priv = this.state.modalPrivacidade;
+    this.setState({ modalPrivacidade: !priv });
+  }
+
   render() {
     if (!this.state.carregado) {
       return <Carregando />;
@@ -206,9 +232,15 @@ export default class HomeScreen extends React.Component {
           {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
           <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
           {/* **************************************************************************** */}
+          {/* Camada Modal que apresenta a politica de privacidade do App                  */}
+          <ModalPoliticaPrivacidade visivel={this.state.modalPrivacidade} fechar={this.togglePrivacidade} tela="home" />
+          {/* **************************************************************************** */}
           <View style={styles.viewTitulo}>
             <Text style={styles.titulo}>Dados básicos</Text>
           </View>
+
+          <View style={styles.espacador} />
+
           <View style={styles.viewVertical}>
             <Text style={styles.label}>Nome completo:</Text>
             <TextInput
@@ -223,6 +255,9 @@ export default class HomeScreen extends React.Component {
               value={this.state.nome}
             />
           </View>
+
+          <View style={styles.espacador} />
+
           <View style={styles.viewVertical}>
             <Text style={styles.label}>E-mail:</Text>
             <TextInput
@@ -236,15 +271,19 @@ export default class HomeScreen extends React.Component {
               value={this.state.email}
             />
           </View>
+
+          <View style={styles.espacador} />
+
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
               <View style={styles.viewCompHoriz}>
-                <Text style={styles.label}>Data Nasc.:</Text>
+                <Text style={styles.label}>Data de nascimento:</Text>
                 <DatePicker
                   style={styles.home_dtNasc}
                   date={this.state.nasc}
                   mode="date"
                   placeholder="Selecione uma data"
+                  androidMode="spinner"
                   format="DD/MM/YYYY"
                   minDate="01/01/1900"
                   maxDate="31/12/2050"
@@ -283,33 +322,53 @@ export default class HomeScreen extends React.Component {
             </View>
           </View>
 
+          <View style={styles.espacador} />
+
           <SliderFilhos inicial={this.state.filhos} retorno={this.defFilhos} />
 
-          <View style={styles.viewVertical}>
-            <Text style={styles.label}>Início da carreira:</Text>
-            <DatePicker
-              style={styles.home_dtIniCarr}
-              date={this.state.iniCarr}
-              mode="date"
-              placeholder="Selecione uma data"
-              format="DD/MM/YYYY"
-              minDate="01/01/1900"
-              maxDate="31/12/2050"
-              confirmBtnText="Ok"
-              cancelBtnText="Cancelar"
-              showIcon={false}
-              customStyles={{
-                dateInput: {
-                  marginLeft: 0,
-                },
-              }}
-              onDateChange={iniCarr => {
-                this.setState({ iniCarr });
-              }}
-            />
+          <View style={styles.espacador} />
+
+          <View style={styles.viewHorizontal}>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.label}>Primeiro emprego:</Text>
+              <DatePicker
+                style={styles.home_dtIniCarr}
+                date={this.state.iniCarr}
+                mode="date"
+                placeholder="Selecione uma data"
+                androidMode="spinner"
+                format="DD/MM/YYYY"
+                minDate="01/01/1900"
+                maxDate="31/12/2050"
+                confirmBtnText="Ok"
+                cancelBtnText="Cancelar"
+                showIcon={false}
+                customStyles={{
+                  dateInput: {
+                    marginLeft: 0,
+                  },
+                }}
+                onDateChange={iniCarr => {
+                  this.setState({ iniCarr });
+                }}
+              />
+            </View>
+            <View style={styles.viewCompHoriz}>
+              <Text style={styles.label}>Salário líquido atual:</Text>
+              <TextInput
+                ref={this.salLiq}
+                style={styles.home_inpSal}
+                keyboardType="numeric"
+                maxLength={10}
+                autoCorrect={false}
+                underlineColorAndroid="#EAEAEA"
+                onChangeText={text => this.setState({ salLiq: desmonetizar(text) })}
+                value={monetizar(this.state.salLiq)}
+              />
+            </View>
           </View>
 
-          <SliderSalario inicial={this.state.salLiq} retorno={this.defSalario} />
+          {/* <SliderSalario inicial={this.state.salLiq} retorno={this.defSalario} /> */}
 
           {/* Código antigo - salário em TextInput */}
           {/* <View style={styles.viewHorizontal}>

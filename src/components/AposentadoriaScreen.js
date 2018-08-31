@@ -83,6 +83,7 @@ export default class AposentadoriaScreen extends React.Component {
 
   componentDidMount() {
     this.montagem();
+    C.salvar();
   }
 
   async montagem() {

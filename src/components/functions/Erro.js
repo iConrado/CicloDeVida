@@ -89,6 +89,11 @@ const Erro = {
     descricao: '% para compra ou troca do veículo inválido.',
     solucao: 'É importante pensar no futuro. Selecione um percentual na lista para simulação.',
   },
+  e19: {
+    titulo: 'Erro',
+    descricao: 'Opção para aceite da política de privacidade',
+    solucao: 'É necessário informar um valor afirmativo ou negativo.',
+  },
   t01: {
     titulo: 'Ops',
     descricao: 'O nome informado é curto demais.',

@@ -41,6 +41,7 @@ export default class CriarConta extends React.Component {
 
   async criarConta() {
     const { email, senha } = this.state;
+    const aceitePrivacidade = this.props.navigation.getParam('aceitePrivacidade', false);
 
     const validacao = this.validar();
 
@@ -51,13 +52,12 @@ export default class CriarConta extends React.Component {
 
     this.setState({ status: 'criar', atualizando: true });
 
-    const cadastro = await cadastrarComEmailESenha(email, senha);
+    const cadastro = await cadastrarComEmailESenha(email, senha, aceitePrivacidade);
 
     if (cadastro !== true) {
       await this.setState({ status: 'erro', atualizando: false, erro: cadastro.msg });
       return false;
     }
-
     return true;
   }
 

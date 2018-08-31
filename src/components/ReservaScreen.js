@@ -72,6 +72,7 @@ export default class ReservaScreen extends React.Component {
 
   componentDidMount() {
     this.montagem();
+    C.salvar();
   }
 
   async montagem() {

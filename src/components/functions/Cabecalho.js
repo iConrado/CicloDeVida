@@ -35,6 +35,8 @@ const Cabecalho = (navigation, txTitulo, principal = false) => {
     headerStyle: EstiloVoltar.hStyle,
   };
 
+  cabecalho.headerRight = <View />;
+
   if (principal) {
     cabecalho.headerLeft = (
       <TouchableOpacity

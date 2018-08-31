@@ -31,6 +31,7 @@ export default class Entrar extends React.Component {
 
   async entrar() {
     const { email, senha } = this.state;
+    const aceitePrivacidade = this.props.navigation.getParam('aceitePrivacidade', false);
 
     if (!this.validar()) {
       this.setState({ status: 'erro', atualizando: false, erro: 'Formato de email inválido.' });
@@ -39,7 +40,7 @@ export default class Entrar extends React.Component {
 
     this.setState({ status: 'entrar', atualizando: true });
 
-    const conexao = await conectar(email, senha);
+    const conexao = await conectar(email, senha, aceitePrivacidade);
 
     if (conexao !== true) {
       this.setState({ status: 'erro', atualizando: false, erro: conexao.msg });

@@ -1,8 +1,32 @@
 import firebase from 'react-native-firebase';
 
 export default class Storage {
-  static async gravar(item, dado) {
+  constructor() {
+    if (!Storage.instance) {
+      Storage.instance = this;
+    }
+
+    return Storage.instance;
+  }
+
+  async config(uid, item) {
+    if (!uid || typeof uid !== 'string' || uid.length === 0) {
+      return false;
+    }
     if (!item || typeof item !== 'string' || item.length === 0) {
+      return false;
+    }
+    try {
+      const db = firebase.database();
+      this.ref = db.ref(`users/${uid}/${item}`);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  async gravar(dado) {
+    if (!this.ref) {
       return false;
     }
 
@@ -11,42 +35,33 @@ export default class Storage {
     }
 
     try {
-      const { uid } = firebase.auth().currentUser;
-      const db = firebase.database();
-      await db.ref(`users/${uid}/${item}`).set(dado);
+      await this.ref.set(dado);
       return true;
     } catch (e) {
       return false;
     }
   }
 
-  static async recuperar(item) {
-    if (!item || typeof item !== 'string' || item.length === 0) {
+  async recuperar() {
+    if (!this.ref) {
       return false;
     }
 
     try {
-      const { uid } = firebase.auth().currentUser;
-      const db = firebase.database();
-      const resp = await db
-        .ref(`users/${uid}/${item}`)
-        .once('value')
-        .then(snapshot => snapshot.val());
+      const resp = await this.ref.once('value').then(snapshot => snapshot.val());
       return resp;
     } catch (e) {
       return false;
     }
   }
 
-  static async remover(item) {
-    if (!item || typeof item !== 'string' || item.length === 0) {
+  async remover() {
+    if (!this.ref) {
       return false;
     }
 
     try {
-      const { uid } = firebase.auth().currentUser;
-      const db = firebase.database();
-      await db.ref(`users/${uid}/${item}`).remove();
+      await this.ref.remove();
       return true;
     } catch (e) {
       return false;

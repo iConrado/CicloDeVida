@@ -160,7 +160,8 @@ export default class Ciclo {
   }
 
   async recuperar() {
-    const recup = await Storage.recuperar('simulacao');
+    const stor = new Storage();
+    const recup = await stor.recuperar();
 
     // Associa o singleton a cada um dos itens recuperados
     if (recup) {
@@ -187,7 +188,8 @@ export default class Ciclo {
   async salvar() {
     const d = new Date();
     this.timestamp = d.toString();
-    const save = await Storage.gravar('simulacao', this);
+    const stor = new Storage();
+    const save = await stor.gravar(this);
 
     if (save) {
       return true;
@@ -329,7 +331,7 @@ export default class Ciclo {
 
   coberturaVida() {
     if (this.getSalLiq() > 0) {
-      return parseInt(this.getSalLiq() * 24, 10);
+      return parseInt(this.getSalLiq() * 12, 10);
     }
     return 0;
   }
@@ -347,7 +349,7 @@ export default class Ciclo {
   seguroImoveis() {
     if (this.getImoveis() > 0) {
       const patr = this.getImoveis();
-      const premio = (patr * 0.003) / 10;
+      const premio = (patr * 0.0015) / 10;
 
       return parseInt(premio, 10);
     }
@@ -491,9 +493,35 @@ export default class Ciclo {
     return { ...grafico };
   }
 
+  addVisualizacaoResultado() {
+    const atual = this.getVisualizacoesResultado();
+    this.setVisualizacoesResultado(atual + 1);
+  }
+
+  addAcessoApp() {
+    const atual = this.getAcessosApp();
+    this.setAcessosApp(atual + 1);
+  }
+
   // ******************************************************
   // * GETTERS AND SETTERS                                *
   // ******************************************************
+
+  getPoliticaPrivacidade() {
+    if (this.PoliticaPrivacidade) {
+      return this.PoliticaPrivacidade;
+    }
+
+    return false;
+  }
+
+  setPoliticaPrivacidade(opcao) {
+    if (!opcao) {
+      return Erro.e19;
+    }
+    this.PoliticaPrivacidade = opcao;
+    return true;
+  }
 
   // Getter e Setter - Email
   getEmail() {
@@ -825,5 +853,35 @@ export default class Ciclo {
       return true;
     }
     throw Erro.e18;
+  }
+
+  // Getter e Setter - VisualizacoesResultado
+  getVisualizacoesResultado() {
+    if (this.VisualizacoesResultado) {
+      return this.VisualizacoesResultado;
+    }
+    return 0;
+  }
+  setVisualizacoesResultado(str) {
+    if (typeof str === 'number' && str >= 0) {
+      this.VisualizacoesResultado = str;
+      return true;
+    }
+    return false;
+  }
+
+  // Getter e Setter - AcessosApp
+  getAcessosApp() {
+    if (this.AcessosApp) {
+      return this.AcessosApp;
+    }
+    return 0;
+  }
+  setAcessosApp(str) {
+    if (typeof str === 'number' && str >= 0) {
+      this.AcessosApp = str;
+      return true;
+    }
+    return false;
   }
 }

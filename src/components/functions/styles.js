@@ -417,6 +417,56 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   // ***********************************
+  // * MODALTERMOS                     *
+  // ***********************************
+  modalTermos_viewContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalTermos_viewFundo: {
+    position: 'absolute',
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000',
+    opacity: 0.8,
+    zIndex: 1,
+  },
+  modalTermos_viewConteudo: {
+    position: 'absolute',
+    height: '95%',
+    width: '95%',
+    justifyContent: 'center',
+    backgroundColor: '#FFF',
+    borderRadius: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+    zIndex: 2,
+  },
+  modalTermos_viewBotoes: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  modalTermos_textoBotao: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFF',
+    marginHorizontal: 5,
+  },
+  modalTermos_botao: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    minWidth: '30%',
+    paddingVertical: 4,
+    marginTop: 10,
+    borderRadius: 2,
+    elevation: 4,
+    backgroundColor: '#5C86F5',
+  },
+  // ***********************************
   // * MODALMSG                        *
   // ***********************************
   modalMsg_viewContainer: {
@@ -510,12 +560,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   home_inpSal: {
-    width: '90%',
+    width: '100%',
     height: 40,
     borderWidth: 1,
     borderRadius: 5,
     borderColor: '#C1C1C1',
-    paddingHorizontal: 5,
   },
   home_inpEmail: {
     width: '100%',
@@ -541,7 +590,7 @@ const styles = StyleSheet.create({
     width: '85%',
   },
   home_dtIniCarr: {
-    width: '42.5%',
+    width: '85%',
   },
   // ***********************************
   // * PATRIMONIO_SCREEN               *

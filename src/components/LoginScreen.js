@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ActivityIndicator, AsyncStorage } from 'react-native';
 
 import styles from './functions/styles';
 import { conectarComFacebook, conectarComGoogle } from './functions/conectar';
+import ModalPoliticaPrivacidade from './termos/ModalPoliticaPrivacidade';
+import ControlePrivacidade from './functions/ControlePrivacidade';
 
 const google = require('../imgs/google.jpg');
 const facebook = require('../imgs/facebook.png');
@@ -16,15 +18,37 @@ export default class SignInScreen extends React.Component {
     super(props);
     this.state = {
       status: 'logar',
+      modalPrivacidade: false,
+      aceitePrivacidade: false,
       atualizando: false,
       erro: '',
     };
+    this.aceitarPrivacidade = this.aceitarPrivacidade.bind(this);
+  }
+
+  componentDidMount() {
+    this.montagem();
+  }
+
+  async montagem() {
+    // await AsyncStorage.removeItem('Privacidade');
+    const priv = await AsyncStorage.getItem('Privacidade');
+    if (!priv) {
+      this.setState({ modalPrivacidade: true });
+    }
+  }
+
+  async aceitarPrivacidade() {
+    const control = new ControlePrivacidade();
+    control.setAceitouPrivacidade(true);
+    await this.setState({ modalPrivacidade: false, aceitePrivacidade: true });
   }
 
   async entrarFacebook() {
+    const { aceitePrivacidade } = this.state;
     try {
       await this.setState({ status: 'logar', atualizando: true });
-      const conexao = await conectarComFacebook();
+      const conexao = await conectarComFacebook(aceitePrivacidade);
 
       if (conexao !== true) {
         this.setState({ status: 'erro', atualizando: false, erro: conexao.msg });
@@ -38,9 +62,10 @@ export default class SignInScreen extends React.Component {
   }
 
   async entrarGoogle() {
+    const { aceitePrivacidade } = this.state;
     try {
       await this.setState({ status: 'logar', atualizando: true });
-      const conexao = await conectarComGoogle();
+      const conexao = await conectarComGoogle(aceitePrivacidade);
 
       if (conexao !== true) {
         this.setState({ status: 'erro', atualizando: false, erro: conexao.msg });
@@ -58,6 +83,9 @@ export default class SignInScreen extends React.Component {
 
     return (
       <View style={styles.login_viewContainer}>
+        {/* Camada Modal que apresenta a politica de privacidade do App                  */}
+        <ModalPoliticaPrivacidade visivel={this.state.modalPrivacidade} fechar={this.aceitarPrivacidade} />
+        {/* **************************************************************************** */}
         <View style={styles.login_viewPrincipal}>
           <View style={styles.login_viewTitulo}>
             <Text style={styles.login_textoTitulo}>Consultoria</Text>
@@ -94,7 +122,7 @@ export default class SignInScreen extends React.Component {
 
           <TouchableOpacity
             style={[styles.login_botao, styles.login_cadastrar]}
-            onPress={() => navigate('Entrar')}
+            onPress={() => navigate('Entrar', { aceitePrivacidade: this.state.aceitePrivacidade })}
             disabled={this.state.atualizando}
           >
             <Text style={styles.login_textoBotao}>Entrar com email e senha</Text>
@@ -105,7 +133,10 @@ export default class SignInScreen extends React.Component {
               <Text style={styles.login_textoLink}>Esqueceu a senha?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigate('SignUp')} disabled={this.state.atualizando}>
+            <TouchableOpacity
+              onPress={() => navigate('SignUp', { aceitePrivacidade: this.state.aceitePrivacidade })}
+              disabled={this.state.atualizando}
+            >
               <Text style={styles.login_textoLink}>Cadastre-se</Text>
             </TouchableOpacity>
           </View>

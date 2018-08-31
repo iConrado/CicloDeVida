@@ -7,9 +7,6 @@ android/app/google-services.json
 android/app/src/main/res/values/strings.xml
 android/gradle.properties
 
-#android
-android/
-
 #ios
 ios/
 
