@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tex: {
+    textAlign: 'center',
     fontSize: 22,
     fontWeight: 'bold',
     color: '#FFF',

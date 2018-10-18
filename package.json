@@ -7,6 +7,7 @@
     "coveralls": "yarn coverage && cat ./coverage/lcov.info | coveralls",
     "jest": "jest --colors --verbose",
     "android": "react-native run-android",
+    "androidRelease": "cd android && ./gradlew assembleRelease && cd ..",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "./node_modules/.bin/eslint src/**/*/*.js tests/**/*/*.js",
     "test": "jest --colors --coverage",

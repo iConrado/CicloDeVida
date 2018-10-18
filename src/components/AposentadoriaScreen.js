@@ -88,7 +88,7 @@ export default class AposentadoriaScreen extends React.Component {
 
   async montagem() {
     await this.setState({
-      disponib: C.getDisponib() || Math.ceil(AposentadoriaScreen.rendaPercentual() / 50) * 50,
+      disponib: C.getDisponib() <= C.getSalLiq() ? C.getDisponib() * 0.3 : Math.ceil(AposentadoriaScreen.rendaPercentual() / 50) * 50,
       reservaPrev: C.getReservaPrev(),
       idadeAposent: C.getIdadeAposent() || 50,
       rentab: C.getRentab(),
