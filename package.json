@@ -1,6 +1,6 @@
 {
   "name": "ciclodevida",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "scripts": {
     "coverage": "jest --colors --coverage",
@@ -8,6 +8,7 @@
     "jest": "jest --colors --verbose",
     "android": "react-native run-android",
     "androidRelease": "cd android && ./gradlew assembleRelease && cd ..",
+    "ios": "react-native run-ios",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "./node_modules/.bin/eslint src/**/*/*.js tests/**/*/*.js",
     "test": "jest --colors --coverage",
