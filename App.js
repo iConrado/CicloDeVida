@@ -1,5 +1,5 @@
 import { createSwitchNavigator, createStackNavigator, createDrawerNavigator } from 'react-navigation';
-import { YellowBox } from 'react-native';
+import { StatusBar, YellowBox } from 'react-native';
 
 import { routesApp, routesAuth } from './src/routes';
 import routesConfig from './src/routesConfig';
@@ -7,6 +7,9 @@ import SplashScreen from './src/components/SplashScreen';
 import MenuDrawer from './src/components/functions/MenuDrawer';
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
+
+StatusBar.setBackgroundColor('#0A2955');
+StatusBar.setBarStyle('light-content');
 
 const AppStack = createStackNavigator(routesApp, routesConfig.App);
 const AuthStack = createStackNavigator(routesAuth, routesConfig.Auth);

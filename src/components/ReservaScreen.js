@@ -78,7 +78,7 @@ export default class ReservaScreen extends React.Component {
   async montagem() {
     await this.setState({
       gasto: C.getGasto() <= C.getSalLiq() ? C.getGasto() : 0,
-      reserva: C.getReserva() === 0 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
+      reserva: C.getReserva() >= 0 || C.getReserva() <= C.getSalLiq() * 0.3 ? Number.parseInt(C.getSalLiq() * 0.1, 10) : C.getReserva(),
     });
     tmpComprometimento[0] = this.state.gasto;
     tmpComprometimento[1] = this.state.reserva;

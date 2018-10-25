@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, TextInput, Image } from 'react-native';
+import { ScrollView, View, Text, TextInput, Image, Switch } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
@@ -52,6 +52,9 @@ export default class SegurancaScreen extends React.Component {
       modalMsg: false,
       saude: 0,
       comprometimento: 0,
+      swVida: true,
+      swImoveis: true,
+      swAuto: true,
     };
 
     this.fechaErro = this.fechaErro.bind(this);
@@ -65,8 +68,15 @@ export default class SegurancaScreen extends React.Component {
   }
 
   async montagem() {
+    const segvida = C.getSegVida() > 0;
+    const segimov = C.getSegImov() > 0;
+    const segauto = C.getSegAuto() > 0;
+
     await this.setState({
       saude: C.getSaude(),
+      swVida: C.getSaude() ? segvida : true,
+      swImoveis: C.getSaude() ? segimov : true,
+      swAuto: C.getSaude() ? segauto : true,
     });
     tmpComprometimento[0] = this.state.saude;
     await this.comprometimentoAtual();
@@ -115,15 +125,51 @@ export default class SegurancaScreen extends React.Component {
     await this.setState({ comprometimento: compr });
   }
 
+  switchVida() {
+    const status = !this.state.swVida;
+    this.setState({ swVida: status });
+    tmpComprometimento[1] = status ? SegurancaScreen.calculaVida() : 0;
+    this.comprometimentoAtual();
+  }
+
+  switchImoveis() {
+    const status = !this.state.swImoveis;
+    this.setState({ swImoveis: status });
+    tmpComprometimento[2] = status ? SegurancaScreen.calculaImoveis() : 0;
+    this.comprometimentoAtual();
+  }
+
+  switchAuto() {
+    const status = !this.state.swAuto;
+    this.setState({ swAuto: status });
+    tmpComprometimento[2] = status ? SegurancaScreen.calculaAuto() : 0;
+    this.comprometimentoAtual();
+  }
+
   proxTela(tela) {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
     const { navigate } = this.props.navigation;
 
-    const { saude } = this.state;
+    const { saude, swVida, swImoveis, swAuto } = this.state;
+    const segvida = SegurancaScreen.calculaVida();
+    const segimov = SegurancaScreen.calculaImoveis();
+    const segauto = SegurancaScreen.calculaAuto();
 
     // Validação das regras de negócio, registro e gravação de log
     if (!controle(this.abreErro, C, C.setSaude, saude)) {
+      return false;
+    }
+
+    if (!controle(this.abreErro, C, C.setSegVida, swVida ? segvida : 0)) {
+      return false;
+    }
+
+    if (!controle(this.abreErro, C, C.setSegImov, swImoveis ? segimov : 0)) {
+      return false;
+    }
+
+    if (!controle(this.abreErro, C, C.setSegAuto, swAuto ? segauto : 0)) {
       return false;
     }
 
@@ -133,6 +179,8 @@ export default class SegurancaScreen extends React.Component {
   }
 
   render() {
+    const { swVida, swImoveis, swAuto } = this.state;
+
     if (!this.state.carregado) {
       return <Carregando />;
     }
@@ -199,14 +247,17 @@ export default class SegurancaScreen extends React.Component {
 
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
-              <View style={styles.viewIcone}>
-                <Image style={styles.imgIcone} source={imgVida} />
+              <View style={styles.viewSwitch}>
+                <Switch onValueChange={() => this.switchVida()} value={this.state.swVida} />
               </View>
+              {/* <View style={styles.viewIcone}>
+                <Image style={styles.imgIcone} source={imgVida} />
+              </View> */}
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
                   <Text style={[styles.label, styles.segur_lbSeguridade]}>Vida (12x renda):</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(SegurancaScreen.calculaVida())}</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(C.getSalLiq() * 12)}</Text>
+                  <Text style={styles.segur_txValor}>{swVida ? monetizar(SegurancaScreen.calculaVida()) : monetizar(0)}</Text>
+                  <Text style={styles.segur_txValor}>{swVida ? monetizar(C.getSalLiq() * 12) : monetizar(0)}</Text>
                 </View>
               </View>
             </View>
@@ -214,14 +265,17 @@ export default class SegurancaScreen extends React.Component {
 
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
-              <View style={styles.viewIcone}>
-                <Image style={styles.imgIcone} source={imgImoveis} />
+              <View style={styles.viewSwitch}>
+                <Switch onValueChange={() => this.switchImoveis()} value={this.state.swImoveis} />
               </View>
+              {/* <View style={styles.viewIcone}>
+                <Image style={styles.imgIcone} source={imgImoveis} />
+              </View> */}
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
                   <Text style={[styles.label, styles.segur_lbSeguridade]}>Residencial:</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(SegurancaScreen.calculaImoveis())}</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(C.getImoveis())}</Text>
+                  <Text style={styles.segur_txValor}>{swImoveis ? monetizar(SegurancaScreen.calculaImoveis()) : monetizar(0)}</Text>
+                  <Text style={styles.segur_txValor}>{swImoveis ? monetizar(C.getImoveis()) : monetizar(0)}</Text>
                 </View>
               </View>
             </View>
@@ -229,14 +283,17 @@ export default class SegurancaScreen extends React.Component {
 
           <View style={styles.viewVertical}>
             <View style={styles.viewHorizontal}>
-              <View style={styles.viewIcone}>
-                <Image style={styles.imgIcone} source={imgAuto} />
+              <View style={styles.viewSwitch}>
+                <Switch onValueChange={() => this.switchAuto()} value={this.state.swAuto} />
               </View>
+              {/* <View style={styles.viewIcone}>
+                <Image style={styles.imgIcone} source={imgAuto} />
+              </View> */}
               <View style={styles.viewPosIcone}>
                 <View style={styles.viewHorizontal}>
                   <Text style={[styles.label, styles.segur_lbSeguridade]}>Auto:</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(SegurancaScreen.calculaAuto())}</Text>
-                  <Text style={styles.segur_txValor}>{monetizar(C.getVeiculos())}</Text>
+                  <Text style={styles.segur_txValor}>{swAuto ? monetizar(SegurancaScreen.calculaAuto()) : monetizar(0)}</Text>
+                  <Text style={styles.segur_txValor}>{swAuto ? monetizar(C.getVeiculos()) : monetizar(0)}</Text>
                 </View>
               </View>
             </View>

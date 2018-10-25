@@ -112,6 +112,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 10,
   },
+  viewSwitch: {
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   viewSplash: {
     flex: 1,
     alignContent: 'center',
