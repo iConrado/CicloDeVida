@@ -94,6 +94,21 @@ const Erro = {
     descricao: 'Opção para aceite da política de privacidade',
     solucao: 'É necessário informar um valor afirmativo ou negativo.',
   },
+  e20: {
+    titulo: 'Erro',
+    descricao: 'Valor dedicado ao seguro de vida inválido.',
+    solucao: 'Era esperado um valor superior ou igual a zero.',
+  },
+  e21: {
+    titulo: 'Erro',
+    descricao: 'Valor dedicado ao seguro residencial inválido.',
+    solucao: 'Era esperado um valor superior ou igual a zero.',
+  },
+  e22: {
+    titulo: 'Erro',
+    descricao: 'Valor dedicado ao seguro auto inválido.',
+    solucao: 'Era esperado um valor superior ou igual a zero.',
+  },
   t01: {
     titulo: 'Ops',
     descricao: 'O nome informado é curto demais.',

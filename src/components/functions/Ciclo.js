@@ -795,6 +795,51 @@ export default class Ciclo {
     throw Erro.e13;
   }
 
+  // Getter e Setter - SegVida
+  getSegVida() {
+    if (this.SegVida) {
+      return this.SegVida;
+    }
+    return 0;
+  }
+  setSegVida(str) {
+    if (typeof str === 'number' && str >= 0) {
+      this.SegVida = str;
+      return true;
+    }
+    throw Erro.e20;
+  }
+
+  // Getter e Setter - SegImov
+  getSegImov() {
+    if (this.SegImov) {
+      return this.SegImov;
+    }
+    return 0;
+  }
+  setSegImov(str) {
+    if (typeof str === 'number' && str >= 0) {
+      this.SegImov = str;
+      return true;
+    }
+    throw Erro.e21;
+  }
+
+  // Getter e Setter - SegAuto
+  getSegAuto() {
+    if (this.SegAuto) {
+      return this.SegAuto;
+    }
+    return 0;
+  }
+  setSegAuto(str) {
+    if (typeof str === 'number' && str >= 0) {
+      this.SegAuto = str;
+      return true;
+    }
+    throw Erro.e22;
+  }
+
   // Getter e Setter - ImovelInvestPrazo
   getImovelInvestPrazo() {
     if (this.ImovelInvestPrazo) {
