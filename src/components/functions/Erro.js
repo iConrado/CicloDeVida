@@ -161,7 +161,7 @@ const Erro = {
   },
   t11: {
     titulo: 'Ops',
-    descricao: 'Você não definiu um valor a ser reservado para a troca ou compra do veículo novo.',
+    descricao: 'Você não definiu um valor a ser reservado para um ou mais itens.',
     solucao: 'Tem certeza que deseja continuar assim?',
   },
 };

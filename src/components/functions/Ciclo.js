@@ -848,7 +848,7 @@ export default class Ciclo {
     return 0;
   }
   setImovelInvestPrazo(str) {
-    if (typeof str === 'number' && str > 0) {
+    if (typeof str === 'number' && str >= 0) {
       this.ImovelInvestPrazo = str;
       return true;
     }
@@ -863,7 +863,7 @@ export default class Ciclo {
     return 0;
   }
   setImovelInvestPerc(str) {
-    if (typeof str === 'number' && str > 0) {
+    if (typeof str === 'number' && str >= 0) {
       this.ImovelInvestPerc = str;
       return true;
     }

@@ -901,6 +901,25 @@ const styles = StyleSheet.create({
     color: '#E10404',
     textAlign: 'center',
   },
+  // ***********************************
+  // * ModalPickerIOS                  *
+  // ***********************************
+  pickerIOS_closeButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    borderTopColor: '#e2e2e2',
+    borderTopWidth: 1,
+    borderBottomColor: '#e2e2e2',
+    borderBottomWidth: 1,
+  },
+  pickerIOS_closeButton: {
+    paddingRight: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  pickerIOS_closeButtonText: {
+    color: '#027afe',
+  },
 });
 
 export default styles;

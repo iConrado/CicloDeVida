@@ -243,12 +243,12 @@ export default class HomeScreen extends React.Component {
   }
 
   togglePrivacidade() {
-    const { modalPrivacidade } = this.state.modalPrivacidade;
+    const { modalPrivacidade } = this.state;
     this.setState({ modalPrivacidade: !modalPrivacidade });
   }
 
   toggleEstCiv() {
-    const { modalEstCiv } = this.state.modalEstCiv;
+    const { modalEstCiv } = this.state;
     this.setState({ modalEstCiv: !modalEstCiv });
   }
 
@@ -273,6 +273,13 @@ export default class HomeScreen extends React.Component {
           {/* Camada Modal que apresenta a politica de privacidade do App                  */}
           <ModalPoliticaPrivacidade visivel={this.state.modalPrivacidade} fechar={this.togglePrivacidade} tela="home" />
           {/* **************************************************************************** */}
+          <ModalPickerIOS
+            visivel={this.state.modalEstCiv}
+            valor={this.state.estCiv}
+            opcoes={arrEstCiv}
+            fechar={this.toggleEstCiv}
+            retorno={this.defEstCiv}
+          />
           <View style={styles.viewTitulo}>
             <Text style={styles.titulo}>Dados básicos</Text>
           </View>
@@ -412,18 +419,6 @@ export default class HomeScreen extends React.Component {
             </View>
           </View>
         </ScrollView>
-
-        {this.state.modalEstCiv ? (
-          <View>
-            <ModalPickerIOS
-              visivel={this.state.modalEstCiv}
-              valor={this.state.estCiv}
-              opcoes={arrEstCiv}
-              fechar={this.toggleEstCiv}
-              retorno={this.defEstCiv}
-            />
-          </View>
-        ) : null}
 
         <Rodape valor={this.state.comprometimento} funcProxTela={this.proxTela} tela="Patrimonio" />
       </View>

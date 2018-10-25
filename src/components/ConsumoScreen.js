@@ -157,7 +157,7 @@ export default class ConsumoScreen extends React.Component {
       return false;
     }
 
-    if (AutoPrazo === 0 || AutoPerc === 0) {
+    if (ImovelPrazo === 0 || ImovelPerc === 0 || AutoPrazo === 0 || AutoPerc === 0) {
       if (!this.continuar) {
         this.abreAviso(Erro.t11);
         return false;
