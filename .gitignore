@@ -6,6 +6,8 @@
 android/app/google-services.json
 android/app/src/main/res/values/strings.xml
 android/gradle.properties
+ios/ciclodevida/Info.plist
+ios/ciclodevida/GoogleService-Info.plist
 
 #coverage
 /coverage
@@ -29,6 +31,9 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+ios/Frameworks/
+ios/Pods/
+ios/GoogleSdk/
 
 # Android/IntelliJ
 #

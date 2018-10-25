@@ -543,6 +543,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
   },
+  home_txEstCiv: {
+    width: '100%',
+    textAlign: 'center',
+  },
   home_slFilhos: {
     width: '80%',
     height: 40,
@@ -580,6 +584,11 @@ const styles = StyleSheet.create({
   },
   home_pkItemEstCiv: {
     color: '#5E5E5E',
+  },
+  home_tcEstCiv: {
+    width: '100%',
+    height: 38,
+    justifyContent: 'center',
   },
   home_viewEstCiv: {
     borderWidth: 1,

@@ -11,7 +11,7 @@ import Ciclo from './functions/Ciclo';
 const planoDeFundo = require('../imgs/fundo.jpg');
 
 export default class SplashScreen extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.carregarApp();
   }
 

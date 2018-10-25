@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import firebase from 'react-native-firebase';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import { GoogleSignin } from 'react-native-google-signin';
@@ -121,9 +122,15 @@ export const conectar = async (email, senha, aceitePrivacidade) => {
 export const setupGoogle = async () => {
   try {
     await GoogleSignin.hasPlayServices({ autoResolve: true });
-    await GoogleSignin.configure({
-      offlineAccess: true,
-    });
+    if (Platform.OS === 'android') {
+      await GoogleSignin.configure({
+        offlineAccess: true,
+      });
+    } else {
+      await GoogleSignin.configure({
+        iosClientId: '508485733058-gi6tb3kbafmss963tf52v7861ohldogd.apps.googleusercontent.com',
+      });
+    }
     return true;
   } catch (err) {
     return false;
@@ -203,7 +210,11 @@ export const conectarComFacebook = async aceitePrivacidade => {
   let result;
 
   try {
-    LoginManager.setLoginBehavior('NATIVE_ONLY');
+    if (Platform.OS === 'android') {
+      LoginManager.setLoginBehavior('NATIVE_ONLY');
+    } else {
+      LoginManager.setLoginBehavior('web');
+    }
     result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
   } catch (nativeError) {
     try {

@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'react-native-firebase';
-import { View, ScrollView, Text, TextInput, Picker } from 'react-native';
+import { View, TouchableOpacity, ScrollView, Text, TextInput, Picker, Platform } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
 import styles from './functions/styles';
@@ -8,6 +8,7 @@ import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
 import ModalMsg from './functions/ModalMsg';
+import ModalPickerIOS from './functions/ModalPickerIOS';
 import Erro from './functions/Erro';
 import controle from './functions/controle';
 import validaEmail from './functions/validaEmail';
@@ -31,6 +32,7 @@ export default class HomeScreen extends React.Component {
       carregado: false,
       modalMsg: false,
       modalPrivacidade: false,
+      modalEstCiv: false,
       nome: '',
       nasc: '',
       estCiv: 1,
@@ -65,14 +67,33 @@ export default class HomeScreen extends React.Component {
     this.proxTela = this.proxTela.bind(this);
 
     this.togglePrivacidade = this.togglePrivacidade.bind(this);
+    this.toggleEstCiv = this.toggleEstCiv.bind(this);
 
     this.defFilhos = this.defFilhos.bind(this);
     this.defSalario = this.defSalario.bind(this);
+    this.defEstCiv = this.defEstCiv.bind(this);
   }
 
   async componentDidMount() {
     await this.montagem();
     C.addAcessoApp();
+  }
+
+  static getEstCiv(estado) {
+    switch (estado) {
+      case 1:
+        return 'Solteiro';
+      case 2:
+        return 'Casado/União Estável';
+      case 3:
+        return 'Divorciado';
+      case 4:
+        return 'Viúvo';
+      case 5:
+        return 'Separado';
+      default:
+        return 'Não definido';
+    }
   }
 
   async montagem() {
@@ -132,6 +153,10 @@ export default class HomeScreen extends React.Component {
 
   defSalario(valor) {
     this.setState({ salLiq: valor });
+  }
+
+  defEstCiv(valor) {
+    this.setState({ estCiv: valor });
   }
 
   proxTela(tela) {
@@ -218,11 +243,24 @@ export default class HomeScreen extends React.Component {
   }
 
   togglePrivacidade() {
-    const priv = this.state.modalPrivacidade;
-    this.setState({ modalPrivacidade: !priv });
+    const { modalPrivacidade } = this.state.modalPrivacidade;
+    this.setState({ modalPrivacidade: !modalPrivacidade });
+  }
+
+  toggleEstCiv() {
+    const { modalEstCiv } = this.state.modalEstCiv;
+    this.setState({ modalEstCiv: !modalEstCiv });
   }
 
   render() {
+    const arrEstCiv = [
+      { id: 1, label: 'Solteiro' },
+      { id: 2, label: 'Casado/União Estável' },
+      { id: 3, label: 'Divorciado' },
+      { id: 4, label: 'Viúvo' },
+      { id: 5, label: 'Separado' },
+    ];
+
     if (!this.state.carregado) {
       return <Carregando />;
     }
@@ -303,20 +341,26 @@ export default class HomeScreen extends React.Component {
               <View style={styles.viewCompHoriz}>
                 <Text style={styles.label}>Estado Civil:</Text>
                 <View style={styles.home_viewEstCiv}>
-                  <Picker
-                    style={styles.home_pkEstCiv}
-                    itemStyle={styles.home_pkItemEstCiv}
-                    selectedValue={this.state.estCiv}
-                    onValueChange={itemValue => this.setState({ estCiv: itemValue })}
-                    prompt="Selecione"
-                    mode="dialog"
-                  >
-                    <Picker.Item label="Solteiro" value={1} />
-                    <Picker.Item label="Casado/União Estável" value={2} />
-                    <Picker.Item label="Divorciado" value={3} />
-                    <Picker.Item label="Viúvo" value={4} />
-                    <Picker.Item label="Separado" value={5} />
-                  </Picker>
+                  {Platform.OS === 'android' ? (
+                    <Picker
+                      style={styles.home_pkEstCiv}
+                      itemStyle={styles.home_pkItemEstCiv}
+                      selectedValue={this.state.estCiv}
+                      onValueChange={itemValue => this.setState({ estCiv: itemValue })}
+                      prompt="Selecione"
+                      mode="dialog"
+                    >
+                      <Picker.Item label="Solteiro" value={1} />
+                      <Picker.Item label="Casado/União Estável" value={2} />
+                      <Picker.Item label="Divorciado" value={3} />
+                      <Picker.Item label="Viúvo" value={4} />
+                      <Picker.Item label="Separado" value={5} />
+                    </Picker>
+                  ) : (
+                    <TouchableOpacity style={styles.home_tcEstCiv} onPress={() => this.toggleEstCiv()}>
+                      <Text style={styles.home_txEstCiv}>{HomeScreen.getEstCiv(this.state.estCiv)}</Text>
+                    </TouchableOpacity>
+                  )}
                 </View>
               </View>
             </View>
@@ -367,48 +411,19 @@ export default class HomeScreen extends React.Component {
               />
             </View>
           </View>
-
-          {/* <SliderSalario inicial={this.state.salLiq} retorno={this.defSalario} /> */}
-
-          {/* Código antigo - salário em TextInput */}
-          {/* <View style={styles.viewHorizontal}>
-            <View style={styles.viewCompHoriz}>
-              <Text style={styles.label}>Salário Líquido:</Text>
-              <TextInput
-                ref={this.salLiq}
-                style={styles.home_inpSal}
-                keyboardType='numeric'
-                maxLength={10}
-                autoCorrect={false}
-                underlineColorAndroid='#EAEAEA'
-                onChangeText={(text) => this.setState({ salLiq: desmonetizar(text) })}
-                value={monetizar(this.state.salLiq)}
-              />
-            </View>
-            <View style={styles.viewCompHoriz}>
-              <Text style={styles.label}>Início da carreira:</Text>
-              <DatePicker
-                style={styles.home_dtIniCarr}
-                date={this.state.iniCarr}
-                mode='date'
-                placeholder='Selecione uma data'
-                format='DD/MM/YYYY'
-                minDate='01/01/1900'
-                maxDate='31/12/2050'
-                confirmBtnText='Ok'
-                cancelBtnText='Cancelar'
-                showIcon={false}
-                customStyles={{
-                  dateInput: {
-                    marginLeft: 0
-                  }
-                  // ... You can check the source to find the other keys.
-                }}
-                onDateChange={(iniCarr) => { this.setState({ iniCarr }); }}
-              />
-            </View>
-          </View> */}
         </ScrollView>
+
+        {this.state.modalEstCiv ? (
+          <View>
+            <ModalPickerIOS
+              visivel={this.state.modalEstCiv}
+              valor={this.state.estCiv}
+              opcoes={arrEstCiv}
+              fechar={this.toggleEstCiv}
+              retorno={this.defEstCiv}
+            />
+          </View>
+        ) : null}
 
         <Rodape valor={this.state.comprometimento} funcProxTela={this.proxTela} tela="Patrimonio" />
       </View>
