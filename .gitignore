@@ -6,8 +6,7 @@
 android/app/google-services.json
 android/app/src/main/res/values/strings.xml
 android/gradle.properties
-ios/ciclodevida/Info.plist
-ios/ciclodevida/GoogleService-Info.plist
+*.plist
 
 #coverage
 /coverage
