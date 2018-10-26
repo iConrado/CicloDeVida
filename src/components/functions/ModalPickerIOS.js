@@ -4,7 +4,7 @@ import { View, Text, Modal, TouchableHighlight, PickerIOS } from 'react-native';
 import styles from './styles';
 
 export default props => {
-  // Componente para apresentação de uma tela de erros
+  // Componente para apresentação de uma Combo para IOS
   //
   // Props esperadas:
   // visivel          [boolean] - estado repassado para informar se a tela estará visível ou não
