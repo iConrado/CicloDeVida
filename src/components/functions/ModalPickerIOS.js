@@ -7,8 +7,9 @@ export default props => {
   // Componente para apresentação de uma Combo para IOS
   //
   // Props esperadas:
+  // nome             [string]  - nome do componente, util para identificação de qual componente ocultar
   // visivel          [boolean] - estado repassado para informar se a tela estará visível ou não
-  // fechar()         [função]  - função para ser acionada para fechar a janela
+  // fechar(nome)     [função]  - função para ser acionada para fechar a janela
   //                              (necessita bind no componente de origem)
   // retorno()        [função]  - função para ser acionada ao clicar em Selecionar
   // opcoes           [array]   - Objeto com pares das opções a serem exibidas no Picker
@@ -19,21 +20,21 @@ export default props => {
   //                                  ]
   //
   const PickerItemIOS = PickerIOS.Item;
-  const { visivel, valor, fechar, opcoes, retorno } = props;
+  const { nome, visivel, valor, fechar, opcoes, retorno } = props;
 
   return (
-    <Modal transparent visible={visivel} animationType="fade" onRequestClose={() => fechar()}>
+    <Modal transparent visible={visivel} animationType="fade" onRequestClose={() => fechar(nome)}>
       <View style={styles.modalMsg_viewContainer}>
         <View style={styles.modalMsg_viewFundo} />
 
         <View style={styles.modalMsg_viewCaixa}>
           <View style={styles.pickerIOS_closeButtonContainer}>
-            <TouchableHighlight onPress={() => fechar()} underlayColor="transparent" style={styles.pickerIOS_closeButton}>
+            <TouchableHighlight onPress={() => fechar(nome)} underlayColor="transparent" style={styles.pickerIOS_closeButton}>
               <Text style={styles.pickerIOS_closeButtonText}>Selecionar</Text>
             </TouchableHighlight>
           </View>
           <PickerIOS selectedValue={valor} onValueChange={opcao => retorno(opcao)}>
-            {opcoes.map(item => <PickerItemIOS key={item.id} value={item.id} label={item.label} />)}
+            {opcoes.map(item => <PickerItemIOS key={item.id} value={item.value} label={item.label} />)}
           </PickerIOS>
         </View>
       </View>

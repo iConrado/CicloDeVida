@@ -1,11 +1,12 @@
 import React from 'react';
-import { ScrollView, View, Text, Image, Picker } from 'react-native';
+import { ScrollView, View, TouchableOpacity, Text, Image, Picker, Platform } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import Rodape from './functions/Rodape';
 import Carregando from './functions/Carregando';
 import ModalMsg from './functions/ModalMsg';
+import ModalPickerIOS from './functions/ModalPickerIOS';
 import controle from './functions/controle';
 import Ciclo from './functions/Ciclo';
 import Erro from './functions/Erro';
@@ -21,24 +22,49 @@ const tmpComprometimento = [];
 export default class ConsumoScreen extends React.Component {
   static navigationOptions = ({ navigation }) => Cabecalho(navigation, 'Consultoria Ciclo de Vida');
 
+  static pickerIOSArray(step, max, tipo) {
+    const arr = [];
+
+    for (let i = step; i <= max; i += step) {
+      const divisor = tipo === 'perc' ? 100 : 1;
+      arr.push({ id: i, value: i / divisor, label: i.toString() });
+    }
+    return arr;
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       carregado: false,
       modalMsg: false,
       modalAviso: false,
+      modalImovPrazo: false,
+      modalImovPerc: false,
+      modalAutoPrazo: false,
+      modalAutoPerc: false,
       imovelPrazo: 15,
       imovelPerc: 0.07,
       autoPrazo: 7,
       autoPerc: 0.03,
       comprometimento: 0,
     };
+
     this.continuar = false;
     this.permissaoContinuar = this.permissaoContinuar.bind(this);
+
     this.fechaAviso = this.fechaAviso.bind(this);
     this.abreAviso = this.abreAviso.bind(this);
+
     this.fechaErro = this.fechaErro.bind(this);
     this.abreErro = this.abreErro.bind(this);
+
+    this.defImovPrazo = this.defImovPrazo.bind(this);
+    this.defImovPerc = this.defImovPerc.bind(this);
+    this.defAutoPrazo = this.defAutoPrazo.bind(this);
+    this.defAutoPerc = this.defAutoPerc.bind(this);
+
+    this.togglePicker = this.togglePicker.bind(this);
+
     this.proxTela = this.proxTela.bind(this);
   }
 
@@ -120,6 +146,22 @@ export default class ConsumoScreen extends React.Component {
     this.comprometimentoAtual();
   }
 
+  defImovPrazo(valor) {
+    this.setState({ imovelPrazo: valor });
+  }
+
+  defImovPerc(valor) {
+    this.setState({ imovelPerc: valor });
+  }
+
+  defAutoPrazo(valor) {
+    this.setState({ autoPrazo: valor });
+  }
+
+  defAutoPerc(valor) {
+    this.setState({ autoPerc: valor });
+  }
+
   async comprometimentoAtual() {
     let valor = 0;
     tmpComprometimento[0] = C.getSalLiq() * this.state.imovelPerc;
@@ -131,6 +173,25 @@ export default class ConsumoScreen extends React.Component {
 
     const compr = C.comprometimentoAtual('Consumo', valor);
     await this.setState({ comprometimento: compr });
+  }
+
+  togglePicker(nome) {
+    const { modalImovPrazo, modalImovPerc, modalAutoPrazo, modalAutoPerc } = this.state;
+    switch (nome) {
+      case 'ImovPrazo':
+        this.setState({ modalImovPrazo: !modalImovPrazo });
+        break;
+      case 'ImovPerc':
+        this.setState({ modalImovPerc: !modalImovPerc });
+        break;
+      case 'AutoPrazo':
+        this.setState({ modalAutoPrazo: !modalAutoPrazo });
+        break;
+      case 'AutoPerc':
+        this.setState({ modalAutoPerc: !modalAutoPerc });
+        break;
+      default:
+    }
   }
 
   proxTela(tela) {
@@ -207,6 +268,11 @@ export default class ConsumoScreen extends React.Component {
   }
 
   render() {
+    const arrImovPrazo = ConsumoScreen.pickerIOSArray(1, 30, 'prazo');
+    const arrImovPerc = ConsumoScreen.pickerIOSArray(1, 30, 'perc');
+    const arrAutoPrazo = ConsumoScreen.pickerIOSArray(1, 10, 'prazo');
+    const arrAutoPerc = ConsumoScreen.pickerIOSArray(1, 20, 'perc');
+
     if (!this.state.carregado) {
       return <Carregando />;
     }
@@ -219,6 +285,41 @@ export default class ConsumoScreen extends React.Component {
 
           {/* Camada Modal que intercepta avisos e exibe uma mensagem personalizada na tela */}
           <ModalMsg okCancela visivel={this.state.modalAviso} fechar={this.fechaAviso} prosseguir={this.permissaoContinuar} objErro={objErro} />
+          {/* **************************************************************************** */}
+
+          {/* Camada Modal que implementa as combos para IOS */}
+          <ModalPickerIOS
+            nome="ImovPrazo"
+            visivel={this.state.modalImovPrazo}
+            valor={this.state.imovelPrazo}
+            opcoes={arrImovPrazo}
+            fechar={this.togglePicker}
+            retorno={this.defImovPrazo}
+          />
+          <ModalPickerIOS
+            nome="ImovPerc"
+            visivel={this.state.modalImovPerc}
+            valor={this.state.imovelPerc}
+            opcoes={arrImovPerc}
+            fechar={this.togglePicker}
+            retorno={this.defImovPerc}
+          />
+          <ModalPickerIOS
+            nome="AutoPrazo"
+            visivel={this.state.modalAutoPrazo}
+            valor={this.state.autoPrazo}
+            opcoes={arrAutoPrazo}
+            fechar={this.togglePicker}
+            retorno={this.defAutoPrazo}
+          />
+          <ModalPickerIOS
+            nome="AutoPerc"
+            visivel={this.state.modalAutoPerc}
+            valor={this.state.autoPerc}
+            opcoes={arrAutoPerc}
+            fechar={this.togglePicker}
+            retorno={this.defAutoPerc}
+          />
           {/* **************************************************************************** */}
 
           <View style={styles.viewTitulo}>
@@ -251,31 +352,43 @@ export default class ConsumoScreen extends React.Component {
                         <View style={styles.viewCompHoriz}>
                           <Text style={styles.label}>Prazo (anos):</Text>
                           <View style={styles.consumo_viewPicker}>
-                            <Picker
-                              style={styles.consumo_pkEstCiv}
-                              itemStyle={styles.consumo_pkItemEstCiv}
-                              selectedValue={this.state.imovelPrazo}
-                              onValueChange={itemValue => this.setState({ imovelPrazo: itemValue })}
-                              prompt="Selecione a qtde. de anos"
-                              mode="dialog"
-                            >
-                              {ConsumoScreen.renderImoveisPrazo()}
-                            </Picker>
+                            {Platform.OS === 'android' ? (
+                              <Picker
+                                style={styles.consumo_picker}
+                                itemStyle={styles.consumo_itemPicker}
+                                selectedValue={this.state.imovelPrazo}
+                                onValueChange={itemValue => this.setState({ imovelPrazo: itemValue })}
+                                prompt="Selecione a qtde. de anos"
+                                mode="dialog"
+                              >
+                                {ConsumoScreen.renderImoveisPrazo()}
+                              </Picker>
+                            ) : (
+                              <TouchableOpacity style={styles.home_tcEstCiv} onPress={() => this.togglePicker('ImovPrazo')}>
+                                <Text style={styles.home_txEstCiv}>{this.state.imovelPrazo}</Text>
+                              </TouchableOpacity>
+                            )}
                           </View>
                         </View>
                         <View style={styles.viewCompHoriz}>
                           <Text style={styles.label}>% da renda:</Text>
                           <View style={styles.consumo_viewPicker}>
-                            <Picker
-                              style={styles.consumo_pkEstCiv}
-                              itemStyle={styles.consumo_pkItemEstCiv}
-                              selectedValue={this.state.imovelPerc}
-                              onValueChange={itemValue => this.defPercRendaImovel(itemValue)}
-                              prompt="Selecione o percentual da renda líquida"
-                              mode="dialog"
-                            >
-                              {ConsumoScreen.renderImoveisPerc()}
-                            </Picker>
+                            {Platform.OS === 'android' ? (
+                              <Picker
+                                style={styles.consumo_picker}
+                                itemStyle={styles.consumo_itemPicker}
+                                selectedValue={this.state.imovelPerc}
+                                onValueChange={itemValue => this.defPercRendaImovel(itemValue)}
+                                prompt="Selecione o percentual da renda líquida"
+                                mode="dialog"
+                              >
+                                {ConsumoScreen.renderImoveisPerc()}
+                              </Picker>
+                            ) : (
+                              <TouchableOpacity style={styles.home_tcEstCiv} onPress={() => this.togglePicker('ImovPerc')}>
+                                <Text style={styles.home_txEstCiv}>{parseInt(this.state.imovelPerc * 100, 10)}</Text>
+                              </TouchableOpacity>
+                            )}
                           </View>
                         </View>
                       </View>
@@ -315,31 +428,43 @@ export default class ConsumoScreen extends React.Component {
                         <View style={styles.viewCompHoriz}>
                           <Text style={styles.label}>Prazo (anos):</Text>
                           <View style={styles.consumo_viewPicker}>
-                            <Picker
-                              style={styles.consumo_pkEstCiv}
-                              itemStyle={styles.consumo_pkItemEstCiv}
-                              selectedValue={this.state.autoPrazo}
-                              onValueChange={itemValue => this.setState({ autoPrazo: itemValue })}
-                              prompt="Selecione a qtde. de anos"
-                              mode="dialog"
-                            >
-                              {ConsumoScreen.renderAutoPrazo()}
-                            </Picker>
+                            {Platform.OS === 'android' ? (
+                              <Picker
+                                style={styles.consumo_picker}
+                                itemStyle={styles.consumo_itemPicker}
+                                selectedValue={this.state.autoPrazo}
+                                onValueChange={itemValue => this.setState({ autoPrazo: itemValue })}
+                                prompt="Selecione a qtde. de anos"
+                                mode="dialog"
+                              >
+                                {ConsumoScreen.renderAutoPrazo()}
+                              </Picker>
+                            ) : (
+                              <TouchableOpacity style={styles.home_tcEstCiv} onPress={() => this.togglePicker('AutoPrazo')}>
+                                <Text style={styles.home_txEstCiv}>{this.state.autoPrazo}</Text>
+                              </TouchableOpacity>
+                            )}
                           </View>
                         </View>
                         <View style={styles.viewCompHoriz}>
                           <Text style={styles.label}>% da renda:</Text>
                           <View style={styles.consumo_viewPicker}>
-                            <Picker
-                              style={styles.consumo_pkEstCiv}
-                              itemStyle={styles.consumo_pkItemEstCiv}
-                              selectedValue={this.state.autoPerc}
-                              onValueChange={itemValue => this.defPercRendaAuto(itemValue)}
-                              prompt="Selecione o percentual da renda líquida"
-                              mode="dialog"
-                            >
-                              {ConsumoScreen.renderAutoPerc()}
-                            </Picker>
+                            {Platform.OS === 'android' ? (
+                              <Picker
+                                style={styles.consumo_picker}
+                                itemStyle={styles.consumo_itemPicker}
+                                selectedValue={this.state.autoPerc}
+                                onValueChange={itemValue => this.defPercRendaAuto(itemValue)}
+                                prompt="Selecione o percentual da renda líquida"
+                                mode="dialog"
+                              >
+                                {ConsumoScreen.renderAutoPerc()}
+                              </Picker>
+                            ) : (
+                              <TouchableOpacity style={styles.home_tcEstCiv} onPress={() => this.togglePicker('AutoPerc')}>
+                                <Text style={styles.home_txEstCiv}>{parseInt(this.state.autoPerc * 100, 10)}</Text>
+                              </TouchableOpacity>
+                            )}
                           </View>
                         </View>
                       </View>

@@ -254,11 +254,11 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const arrEstCiv = [
-      { id: 1, label: 'Solteiro' },
-      { id: 2, label: 'Casado/União Estável' },
-      { id: 3, label: 'Divorciado' },
-      { id: 4, label: 'Viúvo' },
-      { id: 5, label: 'Separado' },
+      { id: 1, value: 1, label: 'Solteiro' },
+      { id: 2, value: 2, label: 'Casado/União Estável' },
+      { id: 3, value: 3, label: 'Divorciado' },
+      { id: 4, value: 4, label: 'Viúvo' },
+      { id: 5, value: 5, label: 'Separado' },
     ];
 
     if (!this.state.carregado) {

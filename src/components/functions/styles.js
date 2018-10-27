@@ -791,13 +791,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
   },
-  consumo_pkEstCiv: {
+  consumo_picker: {
     width: '100%',
     height: 38,
     borderColor: '#5E5E5E',
     borderWidth: 1,
   },
-  consumo_pkItemEstCiv: {
+  consumo_itemPicker: {
     color: '#5E5E5E',
   },
   // ***********************************
