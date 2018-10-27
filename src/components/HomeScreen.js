@@ -273,13 +273,16 @@ export default class HomeScreen extends React.Component {
           {/* Camada Modal que apresenta a politica de privacidade do App                  */}
           <ModalPoliticaPrivacidade visivel={this.state.modalPrivacidade} fechar={this.togglePrivacidade} tela="home" />
           {/* **************************************************************************** */}
-          <ModalPickerIOS
-            visivel={this.state.modalEstCiv}
-            valor={this.state.estCiv}
-            opcoes={arrEstCiv}
-            fechar={this.toggleEstCiv}
-            retorno={this.defEstCiv}
-          />
+          {Platform.OS === 'android' ? null : (
+            <ModalPickerIOS
+              visivel={this.state.modalEstCiv}
+              valor={this.state.estCiv}
+              opcoes={arrEstCiv}
+              fechar={this.toggleEstCiv}
+              retorno={this.defEstCiv}
+            />
+          )}
+
           <View style={styles.viewTitulo}>
             <Text style={styles.titulo}>Dados básicos</Text>
           </View>

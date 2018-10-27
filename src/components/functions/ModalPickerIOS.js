@@ -3,7 +3,7 @@ import { View, Text, Modal, TouchableHighlight, PickerIOS } from 'react-native';
 
 import styles from './styles';
 
-export default props => {
+const ModalPickerIOS = props => {
   // Componente para apresentação de uma Combo para IOS
   //
   // Props esperadas:
@@ -19,7 +19,6 @@ export default props => {
   //                                    { id: 3, label: 'Divorciado' },
   //                                  ]
   //
-  const PickerItemIOS = PickerIOS.Item;
   const { nome, visivel, valor, fechar, opcoes, retorno } = props;
 
   return (
@@ -34,7 +33,7 @@ export default props => {
             </TouchableHighlight>
           </View>
           <PickerIOS selectedValue={valor} onValueChange={opcao => retorno(opcao)}>
-            {opcoes.map(item => <PickerItemIOS key={item.id} value={item.value} label={item.label} />)}
+            {opcoes.map(item => <PickerIOS.Item key={item.id} value={item.value} label={item.label} />)}
           </PickerIOS>
         </View>
       </View>
@@ -57,3 +56,5 @@ export default props => {
   //   </Modal>
   // );
 };
+
+export default ModalPickerIOS;

@@ -288,38 +288,43 @@ export default class ConsumoScreen extends React.Component {
           {/* **************************************************************************** */}
 
           {/* Camada Modal que implementa as combos para IOS */}
-          <ModalPickerIOS
-            nome="ImovPrazo"
-            visivel={this.state.modalImovPrazo}
-            valor={this.state.imovelPrazo}
-            opcoes={arrImovPrazo}
-            fechar={this.togglePicker}
-            retorno={this.defImovPrazo}
-          />
-          <ModalPickerIOS
-            nome="ImovPerc"
-            visivel={this.state.modalImovPerc}
-            valor={this.state.imovelPerc}
-            opcoes={arrImovPerc}
-            fechar={this.togglePicker}
-            retorno={this.defImovPerc}
-          />
-          <ModalPickerIOS
-            nome="AutoPrazo"
-            visivel={this.state.modalAutoPrazo}
-            valor={this.state.autoPrazo}
-            opcoes={arrAutoPrazo}
-            fechar={this.togglePicker}
-            retorno={this.defAutoPrazo}
-          />
-          <ModalPickerIOS
-            nome="AutoPerc"
-            visivel={this.state.modalAutoPerc}
-            valor={this.state.autoPerc}
-            opcoes={arrAutoPerc}
-            fechar={this.togglePicker}
-            retorno={this.defAutoPerc}
-          />
+          {Platform.OS === 'android' ? null : (
+            <View>
+              <ModalPickerIOS
+                nome="ImovPrazo"
+                visivel={this.state.modalImovPrazo}
+                valor={this.state.imovelPrazo}
+                opcoes={arrImovPrazo}
+                fechar={this.togglePicker}
+                retorno={this.defImovPrazo}
+              />
+              <ModalPickerIOS
+                nome="ImovPerc"
+                visivel={this.state.modalImovPerc}
+                valor={this.state.imovelPerc}
+                opcoes={arrImovPerc}
+                fechar={this.togglePicker}
+                retorno={this.defImovPerc}
+              />
+              <ModalPickerIOS
+                nome="AutoPrazo"
+                visivel={this.state.modalAutoPrazo}
+                valor={this.state.autoPrazo}
+                opcoes={arrAutoPrazo}
+                fechar={this.togglePicker}
+                retorno={this.defAutoPrazo}
+              />
+              <ModalPickerIOS
+                nome="AutoPerc"
+                visivel={this.state.modalAutoPerc}
+                valor={this.state.autoPerc}
+                opcoes={arrAutoPerc}
+                fechar={this.togglePicker}
+                retorno={this.defAutoPerc}
+              />
+            </View>
+          )}
+
           {/* **************************************************************************** */}
 
           <View style={styles.viewTitulo}>
