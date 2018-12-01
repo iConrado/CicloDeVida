@@ -1,7 +1,7 @@
 import { createSwitchNavigator, createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import { StatusBar, Platform, YellowBox } from 'react-native';
 
-import { routesApp, routesAuth } from './src/routes';
+import { routesApp, routesIntro, routesAuth } from './src/routes';
 import routesConfig from './src/routesConfig';
 import SplashScreen from './src/components/SplashScreen';
 import MenuDrawer from './src/components/functions/MenuDrawer';
@@ -14,9 +14,11 @@ if (Platform.OS === 'android') {
 StatusBar.setBarStyle('light-content');
 
 const AppStack = createStackNavigator(routesApp, routesConfig.App);
+const IntroStack = createStackNavigator(routesIntro, routesConfig.Intro);
 const AuthStack = createStackNavigator(routesAuth, routesConfig.Auth);
 
 const itensDrawer = {
+  Introdução: { screen: IntroStack },
   Simulação: { screen: AppStack },
 };
 
@@ -26,6 +28,7 @@ export default createSwitchNavigator(
   {
     Splash: SplashScreen,
     App: Drawer,
+    Intro: IntroStack,
     Auth: AuthStack,
   },
   {

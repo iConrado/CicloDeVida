@@ -3,6 +3,10 @@ const routesConfig = {
     initialRouteName: 'Simulação',
     headerMode: 'float',
   },
+  Intro: {
+    initialRouteName: 'Tutorial',
+    headerMode: 'none',
+  },
   Auth: {
     initialRouteName: 'SignIn',
     headerMode: 'none',

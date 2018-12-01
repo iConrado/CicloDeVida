@@ -94,13 +94,13 @@ def enableSeparateBuildPerCPUArchitecture = true
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.ciclodevida"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -152,6 +152,11 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-google-signin')
+    compile(project(':react-native-firebase')) {
+        transitive = false
+    }
+    compile project(':react-native-fbsdk')
     implementation project(':react-native-fbsdk')
     implementation(project(':react-native-firebase')) {
         transitive = false
@@ -163,10 +168,12 @@ dependencies {
         exclude group: 'com.google.android.gms'
     }
     // From node_modules
-    implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.2'
     implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation 'com.google.firebase:firebase-crash:16.0.1'
     implementation 'com.facebook.android:facebook-login:[4,5)'
+    implementation 'com.google.android.gms:play-services-base:15.0.1'
     implementation 'com.google.android.gms:play-services-auth:15.0.0'
     implementation 'com.android.support:multidex:1.0.3'
 }

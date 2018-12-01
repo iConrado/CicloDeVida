@@ -19,6 +19,7 @@ export default class Storage {
     try {
       const db = firebase.database();
       this.ref = db.ref(`users/${uid}/${item}`);
+      this.settingsref = db.ref('settings');
       return true;
     } catch (e) {
       return false;
@@ -49,6 +50,19 @@ export default class Storage {
 
     try {
       const resp = await this.ref.once('value').then(snapshot => snapshot.val());
+      return resp;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  async appSettings() {
+    if (!this.settingsref) {
+      return false;
+    }
+
+    try {
+      const resp = await this.settingsref.once('value').then(snapshot => snapshot.val());
       return resp;
     } catch (e) {
       return false;

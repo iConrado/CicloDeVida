@@ -33,7 +33,12 @@ export default class SplashScreen extends React.Component {
             await stor.config(user.uid, 'simulacao');
             const C = new Ciclo();
             await C.recuperar();
-            navigate('App');
+
+            if (await C.exibirTutorial()) {
+              navigate('Intro');
+            } else {
+              navigate('App');
+            }
           } else {
             navigate('Auth');
           }
@@ -41,19 +46,6 @@ export default class SplashScreen extends React.Component {
       },
       2000,
     );
-
-    // setupGoogle();
-    // firebase.auth().onAuthStateChanged(async user => {
-    //   if (user) {
-    //     const stor = new Storage();
-    //     await stor.config(user.uid, 'simulacao');
-    //     const C = new Ciclo();
-    //     await C.recuperar();
-    //     navigate('App');
-    //   } else {
-    //     navigate('Auth');
-    //   }
-    // });
   }
 
   // Render any loading content that you like here

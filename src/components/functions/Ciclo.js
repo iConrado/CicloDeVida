@@ -66,6 +66,13 @@
 //       Deve permitir salvar a consultoria a qualquer momento, independente da
 //       quantidade de informações registradas.
 //
+// - tempoDecorridoAnos (data)
+//       Função estática que retorna o tempo decorrico em anos com base na data informada.
+//
+// - exibirTutorial (nihil)
+//       Retorna falso/verdadeiro para a necessidade de se exibir a tela de tutorial ao
+//       usuário com base no tempo decorrido desde seu último login.
+//
 // - comprometimentoAtual (tela)
 //       Retorna o comprometimento da renda baseado no estágio da tela em que o
 //       usuário se encontra. Deve retornar cálculos parciais respectivos.
@@ -162,13 +169,23 @@ export default class Ciclo {
   async recuperar() {
     const stor = new Storage();
     const recup = await stor.recuperar();
+    const settings = await stor.appSettings();
+
+    // Caso consiga recuperar as configurações do App no DB, associa ao singleton
+    if (settings) {
+      this.limites = settings.limites;
+      this.diasTutorial = settings.diasTutorial;
+    } else {
+      // do contrário, utiliza dados arbitrados
+      this.limites = defLimites;
+      this.diasTutorial = 7;
+    }
 
     // Associa o singleton a cada um dos itens recuperados
     if (recup) {
       Object.keys(recup).forEach(key => {
         this[key] = recup[key];
       });
-      this.limites = defLimites;
 
       return true;
     }
@@ -180,7 +197,6 @@ export default class Ciclo {
         this[key] = undefined;
       }
     });
-    this.limites = defLimites;
 
     return false;
   }
@@ -224,6 +240,19 @@ export default class Ciclo {
     }
 
     return 0;
+  }
+
+  async exibirTutorial() {
+    const dataAtual = new Date();
+    const dataAnterior = new Date(this.timestamp);
+    const diaMs = 86400000; // Equivalente a um dia em milissegundos
+    const dif = Math.round((dataAtual - dataAnterior) / diaMs); // Clacula a quantidade de dias que se passaram
+
+    // Caso a diferenca de dias seja superior ao definido nas configurações, deverá ser exibida a tela de tutorial (retorno true)
+    if (dif >= this.diasTutorial) {
+      return true;
+    }
+    return false;
   }
 
   comprometimentoAtual(tela, valorAdd) {

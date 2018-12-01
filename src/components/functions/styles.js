@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     width: 24,
   },
   // ***********************************
-  // * CarregandoRsultado              *
+  // * CarregandoResultado             *
   // ***********************************
   carregando_txResultado: {
     width: '100%',
@@ -205,6 +205,68 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#0A2955',
+  },
+  // ***********************************
+  // * Intro/Tutorial                  *
+  // ***********************************
+  intro_view: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'space-between',
+    backgroundColor: '#0A2955',
+  },
+  intro_viewFrase: {
+    flexShrink: 1,
+    height: '100%',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  intro_viewRodape: {
+    height: 100,
+    paddingHorizontal: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  intro_viewCentral: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  intro_frase: {
+    marginVertical: 25,
+    paddingVertical: 5,
+    width: '90%',
+    borderWidth: 2,
+    borderColor: '#8DB209',
+    borderRadius: 5,
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    letterSpacing: 3,
+    fontFamily: 'sans-serif-light',
+  },
+  intro_botao: {
+    height: 40,
+    paddingHorizontal: 30,
+    backgroundColor: '#0054CC',
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  intro_botaoTexto: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFF',
+  },
+  intro_texto: {
+    fontSize: 14,
+    color: '#FFF',
+    textDecorationLine: 'underline',
   },
   // ***********************************
   // * MenuDrawer                      *
