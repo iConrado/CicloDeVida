@@ -18,6 +18,7 @@ export default class Storage {
     }
     try {
       const db = firebase.database();
+      this.id = uid;
       this.ref = db.ref(`users/${uid}/${item}`);
       this.settingsref = db.ref('settings');
       return true;

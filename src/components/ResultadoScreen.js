@@ -79,8 +79,8 @@ export default class ResultadoScreen extends React.Component {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
     // Validação das regras de negócio, registro e gravação de log
-    this.props.navigation.popToTop();
-    // navigate(tela);
+    const { navigate } = this.props.navigation;
+    navigate('SaibaMais');
 
     return true;
   }
@@ -218,7 +218,7 @@ export default class ResultadoScreen extends React.Component {
               this.proxTela();
             }}
           >
-            <Text style={styles.txtBotao}>REFAZER SIMULAÇÃO</Text>
+            <Text style={styles.txtBotao}>SAIBA MAIS</Text>
           </TouchableOpacity>
         </View>
       </View>

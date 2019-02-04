@@ -164,6 +164,11 @@ const Erro = {
     descricao: 'Você não definiu um valor a ser reservado para um ou mais itens.',
     solucao: 'Tem certeza que deseja continuar assim?',
   },
+  t12: {
+    titulo: 'Ops',
+    descricao: 'Telefone inválido.',
+    solucao: 'Verifique se o telefone informado está digitado corretamente.',
+  },
 };
 
 export default Erro;

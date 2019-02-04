@@ -5,6 +5,8 @@ import AposentadoriaScreen from './components/AposentadoriaScreen';
 import SegurancaScreen from './components/SegurancaScreen';
 import ConsumoScreen from './components/ConsumoScreen';
 import ResultadoScreen from './components/ResultadoScreen';
+import SaibaMaisScreen from './components/SaibaMaisScreen';
+import FinalScreen from './components/FinalScreen';
 
 import TutorialScreen from './components/TutorialScreen';
 import Tutorial2Screen from './components/Tutorial2Screen';
@@ -22,6 +24,8 @@ export const routesApp = {
   Seguranca: { screen: SegurancaScreen },
   Consumo: { screen: ConsumoScreen },
   Resultado: { screen: ResultadoScreen },
+  SaibaMais: { screen: SaibaMaisScreen },
+  Final: { screen: FinalScreen },
 };
 
 export const routesIntro = {

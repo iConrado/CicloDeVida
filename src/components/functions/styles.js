@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   intro_botaoTexto: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
     color: '#FFF',
   },
@@ -962,6 +962,45 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#E10404',
     textAlign: 'center',
+  },
+  // ***********************************
+  // * RESULTADO_SCREEN                *
+  // ***********************************
+  saiba_viewContainer: {
+    minHeight: 400,
+    width: '100%',
+    justifyContent: 'space-evenly',
+  },
+  saiba_viewHoriz: {
+    width: '100%',
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  saiba_viewTit: {
+    width: '100%',
+    alignItems: 'center',
+    padding: 10,
+  },
+  saiba_viewBorda: {
+    borderWidth: 2,
+    borderColor: '#5BA849',
+    borderRadius: 5,
+  },
+  saiba_textTit: {
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  saiba_input: {
+    width: '70%',
+    height: 35,
+    borderWidth: 0,
+    borderRadius: 5,
+    borderColor: '#C1C1C1',
+    paddingHorizontal: 5,
+    marginLeft: 15,
   },
   // ***********************************
   // * ModalPickerIOS                  *

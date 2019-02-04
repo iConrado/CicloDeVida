@@ -11,6 +11,13 @@ import Ciclo from './functions/Ciclo';
 const planoDeFundo = require('../imgs/fundo.jpg');
 
 export default class SplashScreen extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      erro: false,
+    };
+  }
   componentDidMount() {
     this.carregarApp();
   }
@@ -23,33 +30,50 @@ export default class SplashScreen extends React.Component {
   async carregarApp() {
     const { navigate } = this.props.navigation;
 
-    Timer.setTimeout(
-      'splash',
-      () => {
-        setupGoogle();
-        firebase.auth().onAuthStateChanged(async user => {
-          if (user) {
-            const stor = new Storage();
-            await stor.config(user.uid, 'simulacao');
-            const C = new Ciclo();
-            await C.recuperar();
+    try {
+      Timer.setTimeout(
+        'splash',
+        async () => {
+          setupGoogle();
+          // if (await !setupGoogle()) {
+          //   const erro = { error: 1, errorMessage: 'Erro' };
+          //   console.log('Erro no google');
+          //   throw erro;
+          // }
+          firebase.auth().onAuthStateChanged(async user => {
+            if (user) {
+              const stor = new Storage();
+              await stor.config(user.uid, 'simulacao');
+              const C = new Ciclo();
+              await C.recuperar();
 
-            if (await C.exibirTutorial()) {
-              navigate('Intro');
+              if (await C.exibirTutorial()) {
+                navigate('Intro');
+              } else {
+                navigate('App');
+              }
             } else {
-              navigate('App');
+              navigate('Auth');
             }
-          } else {
-            navigate('Auth');
-          }
-        });
-      },
-      2000,
-    );
+          });
+        },
+        2000,
+      );
+    } catch (e) {
+      await this.setState({ erro: true });
+    }
   }
 
   // Render any loading content that you like here
   render() {
+    const { erro } = this.state;
+    if (erro) {
+      return (
+        <View>
+          <Text>Erro</Text>
+        </View>
+      );
+    }
     return (
       <ImageBackground source={planoDeFundo} style={{ width: '100%', height: '100%' }}>
         <View style={styles.viewSplash}>

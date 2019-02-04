@@ -153,12 +153,12 @@ export default class Ciclo {
     return Ciclo.instance;
   }
 
-  async recuperar() {
+  async recuperar() { //eslint-disable-line
     console.log('Usou o mock');
     return true;
   }
 
-  async salvar() {
+  async salvar() { //eslint-disable-line
     return true;
   }
 
