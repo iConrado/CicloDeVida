@@ -964,7 +964,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   // ***********************************
-  // * RESULTADO_SCREEN                *
+  // * SAIBAMAIS_SCREEN                *
   // ***********************************
   saiba_viewContainer: {
     minHeight: 400,
@@ -994,6 +994,47 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   saiba_input: {
+    width: '70%',
+    height: 35,
+    borderWidth: 0,
+    borderRadius: 5,
+    borderColor: '#C1C1C1',
+    paddingHorizontal: 5,
+    marginLeft: 15,
+  },
+  // ***********************************
+  // * FINAL_SCREEN                *
+  // ***********************************
+  final_viewContainer: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  final_viewHoriz: {
+    width: '100%',
+    marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  final_viewTit: {
+    width: '80%',
+    marginBottom: 40,
+    alignItems: 'center',
+    padding: 10,
+  },
+  final_viewBorda: {
+    borderWidth: 2,
+    borderColor: '#5BA849',
+    borderRadius: 5,
+  },
+  final_textTit: {
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  final_input: {
     width: '70%',
     height: 35,
     borderWidth: 0,

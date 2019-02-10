@@ -169,6 +169,11 @@ const Erro = {
     descricao: 'Telefone inválido.',
     solucao: 'Verifique se o telefone informado está digitado corretamente.',
   },
+  t13: {
+    titulo: 'Ops',
+    descricao: 'Nenhum meio de contato selecionado.',
+    solucao: 'Caso tenha interesse em ser contatado, selecione o melhor meio de contato para você.',
+  },
 };
 
 export default Erro;

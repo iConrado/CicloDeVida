@@ -38,7 +38,7 @@ const enviarEmail = async dados => {
     arrText.push(`Nome: ${dados.nome || 'Não informado'}`);
     arrText.push('Contatos permitidos:');
     if (dados.permiteEmail) arrText.push(`email: ${dados.email || 'Não informado'}`);
-    if (dados.permiteTel) arrText.push(`telefone: ${dados.telefone || 'Não informado'}`);
+    if (dados.permiteTel) arrText.push(`telefone: ${dados.tel || 'Não informado'}`);
     arrText.push(' ');
     arrText.push(`Data e hora da solicitação: ${dados.timestamp || new Date()}`);
     arrText.push('-----------------------------------------------------------------------------');

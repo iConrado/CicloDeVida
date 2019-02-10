@@ -1,10 +1,12 @@
 import React from 'react';
-import { ScrollView, View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 
 import styles from './functions/styles';
 import Cabecalho from './functions/Cabecalho';
 import ModalMsg from './functions/ModalMsg';
+import Ciclo from './functions/Ciclo';
 
+const C = new Ciclo();
 const objErro = {};
 const replay = require('../imgs/replay.png');
 
@@ -24,6 +26,7 @@ export default class FinalScreen extends React.Component {
 
   componentDidMount() {
     this.montagem();
+    C.salvar();
   }
 
   montagem() {
@@ -53,15 +56,19 @@ export default class FinalScreen extends React.Component {
   render() {
     return (
       <View style={styles.tela}>
-        <ScrollView style={styles.scroll} contentContainerStyle={styles.container} keyboardDismissMode="none" keyboardShouldPersistTaps="always">
-          {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
-          <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
-          {/* **************************************************************************** */}
+        {/* Camada Modal que intercepta erros e exibe uma mensagem personalizada na tela */}
+        <ModalMsg visivel={this.state.modalMsg} fechar={this.fechaErro} objErro={objErro} />
+        {/* **************************************************************************** */}
 
-          <View>
-            <Text>Aprenda a organizar sua vida financeira e alcance seus objetivos!</Text>
+        <View style={styles.final_viewContainer}>
+          <View style={styles.final_viewTit}>
+            <Text style={styles.final_textTit}>Recebemos sua manifestação de interesse.</Text>
           </View>
-        </ScrollView>
+
+          <View style={styles.final_viewTit}>
+            <Text style={styles.final_textTit}>Entraremos em contato o mais breve possível.</Text>
+          </View>
+        </View>
 
         <View style={styles.result_viewRodape}>
           <TouchableOpacity onPress={() => this.proxTela()} style={{ flexDirection: 'row' }}>

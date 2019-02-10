@@ -8,6 +8,7 @@ import Erro from './functions/Erro';
 import validaEmail from './functions/validaEmail';
 import validaTel from './functions/validaTel';
 import enviarEmail from './functions/enviarEmail';
+import { formatarTel, extrairTel } from './functions/formataTel';
 
 import Ciclo from './functions/Ciclo';
 import Storage from './functions/Storage';
@@ -92,34 +93,28 @@ export default class SaibaMaisScreen extends React.Component {
   }
 
   async conhecer() {
-    const { confirmar, permiteEmail, permiteTel, id, nome, email, tel } = this.state;
+    const { confirmar } = this.state;
 
     if (confirmar) {
-      const dados = {
-        id,
-        nome,
-        permiteEmail,
-        email,
-        permiteTel,
-        tel,
-        timestamp: new Date(),
-      };
-
-      if (await !enviarEmail(dados)) {
-        // registrar erro no banco de dados
-      }
       this.proxTela();
     } else {
       this.setState({ confirmar: true });
     }
   }
 
-  proxTela() {
+  async proxTela() {
     // Função que valida os campos e submete os dados para registro na classe de negócio.
     // Em caso de algum retorno com erro, executa a abertura da tela de erros.
     // Validação das regras de negócio, registro e gravação de log
     const { navigate } = this.props.navigation;
-    const { permiteEmail, permiteTel, nome, email, tel } = this.state;
+    const { id, permiteEmail, permiteTel, nome, email, tel } = this.state;
+    const timestamp = new Date();
+
+    // Permissões
+    if (!permiteEmail && !permiteTel) {
+      this.abreErro(Erro.t13, 0);
+      return false;
+    }
 
     // Nome
     if (nome.trim().length < 6) {
@@ -144,13 +139,35 @@ export default class SaibaMaisScreen extends React.Component {
 
     // Tel
     if (permiteTel) {
-      if (!validaTel(tel)) {
+      if (!validaTel(formatarTel(tel))) {
         this.abreErro(Erro.t12, 0);
         this.focusTel();
         return false;
       }
     }
 
+    // Preparação dos dados para encaminhar o email
+    const dados = {
+      id,
+      nome,
+      permiteEmail,
+      email,
+      permiteTel,
+      timestamp,
+      tel: formatarTel(tel),
+    };
+
+    // Envio do email caso todos os campos estejam OK
+    if (await !enviarEmail(dados)) {
+      C.contatoNome = nome;
+      C.contatoPermiteEmail = permiteEmail;
+      C.contatoEmail = email;
+      C.contatoPermiteTel = permiteTel;
+      C.contatoTel = tel;
+      C.contatoTimestamp = timestamp;
+    }
+
+    // Navegação para a próxima tela
     navigate('Final');
 
     return true;
@@ -197,9 +214,13 @@ export default class SaibaMaisScreen extends React.Component {
                     selectTextOnFocus
                     autoCorrect={false}
                     underlineColorAndroid="#EAEAEA"
-                    onChangeText={text => this.setState({ nome: text.toUpperCase() })}
+                    onChangeText={text => this.setState({ nome: text.toUpperCase(), permiteEmail: true })}
                     value={this.state.nome}
                   />
+                </View>
+
+                <View style={styles.saiba_viewHoriz}>
+                  <Text>Selecione uma forma de contato:</Text>
                 </View>
 
                 <View style={styles.saiba_viewHoriz}>
@@ -213,7 +234,7 @@ export default class SaibaMaisScreen extends React.Component {
                     autoCorrect={false}
                     underlineColorAndroid="#EAEAEA"
                     editable={this.state.permiteEmail}
-                    onChangeText={text => this.setState({ email: text.toLowerCase() })}
+                    onChangeText={text => this.setState({ email: text.toLowerCase(), permiteTel: true })}
                     value={this.state.email}
                   />
                 </View>
@@ -224,32 +245,44 @@ export default class SaibaMaisScreen extends React.Component {
                     ref={this.refTel}
                     style={styles.saiba_input}
                     autoCapitalize="characters"
-                    maxLength={50}
+                    maxLength={15}
                     selectTextOnFocus
                     autoCorrect={false}
                     placeholder="(__) _____-____"
                     underlineColorAndroid="#EAEAEA"
                     editable={this.state.permiteTel}
-                    onChangeText={text => this.setState({ tel: text.toLowerCase() })}
-                    value={this.state.tel}
+                    onChangeText={text => this.setState({ tel: extrairTel(text) })}
+                    value={formatarTel(this.state.tel)}
                   />
                 </View>
               </View>
-            ) : null}
-
-            <View style={styles.saiba_viewTit}>
-              <TouchableOpacity
-                style={styles.botao}
-                onPress={() => {
-                  this.conhecer();
-                }}
-              >
-                <Text style={styles.txtBotao}>{confirmar ? 'CONFIRMAR' : 'CONHECER SEM COMPROMISSO'}</Text>
-              </TouchableOpacity>
-            </View>
+            ) : (
+              <View style={styles.saiba_viewTit}>
+                <TouchableOpacity
+                  style={styles.botao}
+                  onPress={() => {
+                    this.conhecer();
+                  }}
+                >
+                  <Text style={styles.txtBotao}>CONHECER SEM COMPROMISSO</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         </ScrollView>
 
+        {confirmar ? (
+          <View style={styles.saiba_viewTit}>
+            <TouchableOpacity
+              style={styles.botao}
+              onPress={() => {
+                this.conhecer();
+              }}
+            >
+              <Text style={styles.txtBotao}>CONFIRMAR</Text>
+            </TouchableOpacity>
+          </View>
+        ) : null}
         <View style={styles.result_viewRodape}>
           <TouchableOpacity onPress={() => this.refazerSim()} style={{ flexDirection: 'row' }}>
             <Image source={replay} style={{ height: 20, width: 20 }} />

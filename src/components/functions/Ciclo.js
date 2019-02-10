@@ -471,7 +471,7 @@ export default class Ciclo {
     const { limites } = this;
     const salLiq = this.getSalLiq();
     const valorSeguranca = this.getSaude() + this.seguroVida() + this.seguroImoveis() + this.seguroAuto();
-    const valorPatrimonio = parseInt(salLiq * this.getAutoInvestPerc() + salLiq * this.getImovelInvestPerc(), 10);
+    const valorPatrimonio = parseInt(salLiq * this.getAutoInvestPerc() + (salLiq * this.getImovelInvestPerc(), 10), 10);
 
     // Define os objetos com a meta e valor de cada uma das etapas
     const gastos = {
@@ -484,7 +484,7 @@ export default class Ciclo {
     };
     const aposentadoria = {
       meta: salLiq * limites.aposentadoria,
-      valor: this.getDisponib(),
+      valor: Math.round(this.getDisponib()),
     };
     const seguranca = {
       meta: salLiq * limites.seguranca,

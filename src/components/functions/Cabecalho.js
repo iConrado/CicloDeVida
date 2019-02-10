@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 
 import EstiloVoltar from './EstiloVoltar';
+
+const menu = require('../../imgs/menu.png');
 
 // Estilo a ser usado no componente principal do cabeçalho. INTERNO
 const styles = StyleSheet.create({
@@ -46,7 +48,8 @@ const Cabecalho = (navigation, txTitulo, principal = false) => {
           openDrawer();
         }}
       >
-        <Text style={{ color: '#FFF' }}>Menu</Text>
+        <Image source={menu} />
+        {/* <Text style={{ color: '#FFF' }}>Menu</Text> */}
       </TouchableOpacity>
     );
   }
