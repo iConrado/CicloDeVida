@@ -6,7 +6,7 @@ const controle = (retErro, obj, funcao, ...args) => {
   } catch (e) {
     retErro(e);
     /* Adicionar função de log para os erros */
-    console.log('Controle - função executou com erro:', e);
+    // console.log('Controle - função executou com erro:', e);
     return false;
   }
 };

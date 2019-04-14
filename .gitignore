@@ -51,7 +51,7 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-*.keystore
+*.keystore*
 
 # fastlane
 #
@@ -67,8 +67,14 @@ buck-out/
 # Bundle artifact
 *.jsbundle
 
-# planilhas
+# Yarn
+yarn.lock
+
+# ETC
 /src/prototipo/*ods*
+*.zip
+*.jar
+log*
 
 # TODOLIST
 TODOLIST.txt

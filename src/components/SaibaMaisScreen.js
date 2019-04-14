@@ -197,9 +197,7 @@ export default class SaibaMaisScreen extends React.Component {
             </View>
 
             <View style={styles.saiba_viewTit}>
-              <Text style={styles.saiba_textTit}>
-                Deixe-nos apresentar o COACHING FINANCEIRO e obtenha a orientação necessária para tomar as rédeas de suas finanças.
-              </Text>
+              <Text style={styles.saiba_textTit}>Receba nosso contato e tome as rédeas de suas finanças.</Text>
             </View>
 
             {confirmar ? (

@@ -18,9 +18,11 @@
 
 # Disabling obfuscation is useful if you collect stack traces from production crashes
 # (unless you are using a system that supports de-obfuscate the stack traces).
--dontobfuscate
+#-dontobfuscate
 
 # React Native
+
+-keep class com.ciclodevida.BuildConfig { *; }
 
 # Keep our interfaces so they can be used by other ProGuard rules.
 # See http://sourceforge.net/p/proguard/bugs/466/
@@ -58,6 +60,7 @@
 
 -keepattributes Signature
 -keepattributes *Annotation*
+#-keepattributes LineNumberTable
 -keep class okhttp3.** { *; }
 -keep interface okhttp3.** { *; }
 -dontwarn okhttp3.**
@@ -65,6 +68,8 @@
 # okio
 
 -keep class sun.misc.Unsafe { *; }
+-dontwarn sun.misc.Unsafe
+-dontnote sun.misc.Unsafe
 -dontwarn java.nio.file.*
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 -dontwarn okio.**
@@ -72,3 +77,40 @@
 # firebase
 -keep class io.invertase.firebase.** { *; }
 -dontwarn io.invertase.firebase.**
+-dontnote io.invertase.**
+
+# Google
+#-keep class com.google.** {*;}
+#-dontwarn com.google.**
+
+
+#CUSTOM pra fazer funcionar
+
+#-keep class com.android.vending.** { *; }
+#-dontwarn com.android.vending.**
+
+#-keep class com.google.firebase.messaging.** { *; }
+#-dontwarn com.google.firebase.messaging.**
+
+-keep class com.android.vending.billing.IInAppBillingService
+-dontwarn com.android.vending.billing.IInAppBillingService
+
+-keep class com.google.android.gms.** { *; }
+-dontwarn com.google.android.gms.**
+
+-keep class com.facebook.** { *; }
+-dontwarn com.facebook.**
+
+#-keep class com.android.** {*;}
+#-dontwarn com.android.**
+
+#-keep class dalvik.system.** {*;}
+#-dontwarn dalvik.system.**
+
+#-keep class org.apache.** {*;}
+#-dontwarn org.apache.**
+
+#-keep class sun.security.** {*;}
+#-dontwarn sun.security.**
+
+-verbose

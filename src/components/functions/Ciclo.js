@@ -243,16 +243,20 @@ export default class Ciclo {
   }
 
   async exibirTutorial() {
-    const dataAtual = new Date();
-    const dataAnterior = new Date(this.timestamp);
-    const diaMs = 86400000; // Equivalente a um dia em milissegundos
-    const dif = Math.round((dataAtual - dataAnterior) / diaMs); // Clacula a quantidade de dias que se passaram
+    try {
+      const dataAtual = new Date();
+      const dataAnterior = new Date(this.timestamp);
+      const diaMs = 86400000; // Equivalente a um dia em milissegundos
+      const dif = Math.round((dataAtual - dataAnterior) / diaMs); // Clacula a quantidade de dias que se passaram
 
-    // Caso a diferenca de dias seja superior ao definido nas configurações, deverá ser exibida a tela de tutorial (retorno true)
-    if (dif >= this.diasTutorial) {
-      return true;
+      // Caso a diferenca de dias seja superior ao definido nas configurações, deverá ser exibida a tela de tutorial (retorno true)
+      if (dif >= this.diasTutorial) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      return false;
     }
-    return false;
   }
 
   comprometimentoAtual(tela, valorAdd) {
@@ -471,7 +475,7 @@ export default class Ciclo {
     const { limites } = this;
     const salLiq = this.getSalLiq();
     const valorSeguranca = this.getSaude() + this.seguroVida() + this.seguroImoveis() + this.seguroAuto();
-    const valorPatrimonio = parseInt(salLiq * this.getAutoInvestPerc() + (salLiq * this.getImovelInvestPerc(), 10), 10);
+    const valorPatrimonio = parseInt(salLiq * this.getAutoInvestPerc() + salLiq * this.getImovelInvestPerc(), 10);
 
     // Define os objetos com a meta e valor de cada uma das etapas
     const gastos = {
